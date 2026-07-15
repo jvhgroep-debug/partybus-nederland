@@ -1,6 +1,5 @@
 ---
-import { primaryCta } from '../../data/settings/navigation';
-import Button from '../buttons/Button.astro';
+import QuoteForm from '../forms/QuoteForm.astro';
 ---
 
 <section id="offerte" class="section cta" aria-labelledby="cta-title">
@@ -16,16 +15,17 @@ import Button from '../buttons/Button.astro';
 			/>
 			<div class="cta__veil"></div>
 		</div>
-		<div class="cta__content">
-			<p class="section__eyebrow">Klaar om te vergelijken?</p>
-			<h2 id="cta-title" class="section__title">Vraag vandaag nog gratis offertes aan</h2>
-			<p class="section__lead">
-				Ontvang voorstellen van meerdere partybus-aanbieders en kies zelf de beste deal voor
-				jouw feest — vrijblijvend en door heel Nederland.
-			</p>
-			<div class="cta__actions">
-				<Button href={primaryCta.href} size="lg" class="cta__btn">Gratis offertes aanvragen</Button>
-				<Button href="/#steden" variant="ghost" size="lg">Bekijk populaire steden</Button>
+		<div class="cta__layout">
+			<div class="cta__content">
+				<p class="section__eyebrow">Klaar om te vergelijken?</p>
+				<h2 id="cta-title" class="section__title">Vraag vandaag nog gratis offertes aan</h2>
+				<p class="section__lead">
+					Vul je wensen in. Je ontvangt een bevestiging en wij sturen je aanvraag door —
+					vrijblijvend en door heel Nederland.
+				</p>
+			</div>
+			<div class="cta__form">
+				<QuoteForm sourcePage="/" />
 			</div>
 		</div>
 	</div>
@@ -40,13 +40,10 @@ import Button from '../buttons/Button.astro';
 		position: relative;
 		isolation: isolate;
 		overflow: hidden;
-		min-height: 22rem;
 		padding: clamp(2.25rem, 6vw, 4.25rem);
 		border-radius: var(--radius-lg);
 		border: 1px solid color-mix(in srgb, var(--color-primary) 48%, transparent);
 		box-shadow: var(--shadow-soft);
-		display: grid;
-		align-items: center;
 	}
 
 	.cta__media {
@@ -66,48 +63,32 @@ import Button from '../buttons/Button.astro';
 		position: absolute;
 		inset: 0;
 		background:
-			linear-gradient(115deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.78) 48%, rgba(18, 14, 8, 0.72) 100%),
-			radial-gradient(600px 260px at 20% 20%, color-mix(in srgb, var(--color-primary) 28%, transparent), transparent 70%);
+			linear-gradient(115deg, rgba(0, 0, 0, 0.94) 0%, rgba(0, 0, 0, 0.86) 48%, rgba(18, 14, 8, 0.82) 100%),
+			radial-gradient(600px 260px at 20% 20%, color-mix(in srgb, var(--color-primary) 22%, transparent), transparent 70%);
+	}
+
+	.cta__layout {
+		display: grid;
+		gap: 2rem;
+	}
+
+	@media (min-width: 960px) {
+		.cta__layout {
+			grid-template-columns: 0.9fr 1.1fr;
+			gap: 2.75rem;
+			align-items: start;
+		}
 	}
 
 	.cta__content {
-		max-width: 40rem;
+		max-width: 32rem;
 	}
 
 	.cta__panel .section__title {
 		max-width: 16ch;
 	}
 
-	.cta__actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.9rem;
-		margin-top: 1.9rem;
-	}
-
-	.cta__btn {
-		box-shadow: 0 16px 42px color-mix(in srgb, var(--color-primary) 45%, transparent);
-		animation: cta-glow 2.8s ease-in-out infinite;
-	}
-
-	@keyframes cta-glow {
-		0%, 100% { box-shadow: 0 14px 34px color-mix(in srgb, var(--color-primary) 35%, transparent); }
-		50% { box-shadow: 0 18px 48px color-mix(in srgb, var(--color-primary) 55%, transparent); }
-	}
-
-	@media (max-width: 640px) {
-		.cta__actions {
-			width: 100%;
-		}
-
-		.cta__actions :global(.btn) {
-			width: 100%;
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.cta__btn {
-			animation: none;
-		}
+	.cta__form {
+		width: 100%;
 	}
 </style>

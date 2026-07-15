@@ -1,12 +1,13 @@
 export type QuoteRequestPayload = {
 	name: string;
 	email: string;
-	phone?: string;
-	city?: string;
+	phone: string;
+	city: string;
 	date?: string;
 	guests?: string | number;
 	message?: string;
 	sourcePage?: string;
+	website?: string; // honeypot
 };
 
 export type EmailMessage = {
@@ -15,4 +16,9 @@ export type EmailMessage = {
 	html: string;
 	text: string;
 	replyTo?: string;
+};
+
+export type EmailRuntimeEnv = {
+	RESEND_API_KEY?: string;
+	FROM_EMAIL?: string;
 };

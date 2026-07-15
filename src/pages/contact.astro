@@ -3,8 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/settings/site';
 import { whatsapp } from '../data/settings/whatsapp';
 import { emailSettings } from '../data/settings/email';
-import { primaryCta } from '../data/settings/navigation';
 import Button from '../components/buttons/Button.astro';
+import QuoteForm from '../components/forms/QuoteForm.astro';
 ---
 
 <BaseLayout title="Contact">
@@ -14,29 +14,37 @@ import Button from '../components/buttons/Button.astro';
 				<p class="section__eyebrow">Contact</p>
 				<h1 class="section__title">Neem contact op met {site.name}</h1>
 				<p class="section__lead">
-					Heb je een vraag over partybus huren of wil je direct offertes aanvragen?
-					Bereik ons snel via WhatsApp — zonder formulier, zonder wachttijd.
+					Vraag vrijblijvend offertes aan via het formulier, of bereik ons direct via WhatsApp.
 				</p>
 				<div class="contact__actions">
 					<Button href={whatsapp.href} size="lg" target="_blank" rel="noopener noreferrer">
 						WhatsApp: {whatsapp.phoneDisplay}
 					</Button>
-					<Button href={primaryCta.href} variant="ghost" size="lg">{primaryCta.label}</Button>
+					<Button href="#offerte" variant="ghost" size="lg">Naar het formulier</Button>
+				</div>
+
+				<div class="contact__card">
+					<h2>Direct geregeld</h2>
+					<ul>
+						<li>WhatsApp: {whatsapp.phoneDisplay}</li>
+						<li>
+							E-mail:{' '}
+							<a href={`mailto:${emailSettings.inbox}`}>{emailSettings.inbox}</a>
+						</li>
+						<li>Reactie meestal binnen 24 uur</li>
+						<li>Door heel Nederland</li>
+						<li>Vrijblijvend offertes vergelijken</li>
+					</ul>
 				</div>
 			</div>
 
-			<div class="contact__card reveal">
-				<h2>Direct geregeld</h2>
-				<ul>
-					<li>WhatsApp: {whatsapp.phoneDisplay}</li>
-					<li>
-						E-mail:{' '}
-						<a href={`mailto:${emailSettings.inbox}`}>{emailSettings.inbox}</a>
-					</li>
-					<li>Reactie meestal binnen 24 uur</li>
-					<li>Door heel Nederland</li>
-					<li>Vrijblijvend offertes vergelijken</li>
-				</ul>
+			<div id="offerte" class="contact__form reveal">
+				<p class="section__eyebrow">Offerteaanvraag</p>
+				<h2 class="section__title">Gratis offertes aanvragen</h2>
+				<p class="section__lead">
+					Vul het formulier in. Je ontvangt een bevestiging per e-mail.
+				</p>
+				<QuoteForm sourcePage="/contact/" />
 			</div>
 		</div>
 	</section>
@@ -49,12 +57,12 @@ import Button from '../components/buttons/Button.astro';
 
 	.contact__inner {
 		display: grid;
-		gap: 2rem;
+		gap: 2.5rem;
 	}
 
-	@media (min-width: 900px) {
+	@media (min-width: 960px) {
 		.contact__inner {
-			grid-template-columns: 1.2fr 0.8fr;
+			grid-template-columns: 0.95fr 1.05fr;
 			gap: 3rem;
 			align-items: start;
 		}
@@ -72,6 +80,7 @@ import Button from '../components/buttons/Button.astro';
 	}
 
 	.contact__card {
+		margin-top: 2rem;
 		padding: 1.6rem 1.45rem;
 		border-radius: var(--radius-md);
 		border: 1px solid var(--color-primary-line);
@@ -109,6 +118,22 @@ import Button from '../components/buttons/Button.astro';
 		height: 0.45rem;
 		border-radius: 50%;
 		background: var(--color-primary);
+	}
+
+	.contact__form {
+		padding: 1.6rem 1.4rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+	}
+
+	.contact__form .section__title {
+		font-size: clamp(1.7rem, 3vw, 2.3rem);
+		max-width: 16ch;
+	}
+
+	.contact__form .section__lead {
+		margin-bottom: 1.35rem;
 	}
 
 	@media (max-width: 640px) {

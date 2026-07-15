@@ -1,0 +1,276 @@
+---
+import { emailSettings } from '../../data/settings/email';
+
+interface Props {
+	sourcePage?: string;
+	compact?: boolean;
+}
+
+const { sourcePage = '/', compact = false } = Astro.props;
+const successMessage = emailSettings.successMessage;
+const errorMessage = emailSettings.errorMessage;
+---
+
+<div class:list={['quote-form', compact && 'quote-form--compact']} data-quote-form>
+	<form class="quote-form__form" novalidate>
+		<input type="hidden" name="sourcePage" value={sourcePage} />
+		{/* Honeypot — verborgen voor gebruikers */}
+		<label class="quote-form__hp" aria-hidden="true">
+			Website
+			<input type="text" name="website" tabindex="-1" autocomplete="off" />
+		</label>
+
+		<div class="quote-form__grid">
+			<label class="quote-form__field">
+				<span>Naam <abbr title="verplicht">*</abbr></span>
+				<input type="text" name="name" required autocomplete="name" placeholder="Je naam" />
+			</label>
+
+			<label class="quote-form__field">
+				<span>E-mail <abbr title="verplicht">*</abbr></span>
+				<input type="email" name="email" required autocomplete="email" placeholder="naam@email.nl" />
+			</label>
+
+			<label class="quote-form__field">
+				<span>Telefoon <abbr title="verplicht">*</abbr></span>
+				<input type="tel" name="phone" required autocomplete="tel" placeholder="06 12345678" />
+			</label>
+
+			<label class="quote-form__field">
+				<span>Stad / locatie <abbr title="verplicht">*</abbr></span>
+				<input type="text" name="city" required autocomplete="address-level2" placeholder="Bijv. Amsterdam" />
+			</label>
+
+			<label class="quote-form__field">
+				<span>Gewenste datum</span>
+				<input type="date" name="date" />
+			</label>
+
+			<label class="quote-form__field">
+				<span>Aantal personen</span>
+				<input type="number" name="guests" min="1" max="80" inputmode="numeric" placeholder="Bijv. 20" />
+			</label>
+
+			<label class="quote-form__field quote-form__field--full">
+				<span>Bericht / wensen</span>
+				<textarea name="message" rows="4" placeholder="Vertel kort over je plannen, route of gelegenheid."></textarea>
+			</label>
+		</div>
+
+		<p class="quote-form__note">* Verplicht. We sturen een bevestiging naar je e-mailadres.</p>
+
+		<div class="quote-form__actions">
+			<button type="submit" class="btn btn--primary btn--lg quote-form__submit">
+				Gratis offertes aanvragen
+			</button>
+		</div>
+
+		<div class="quote-form__status" data-form-status role="status" aria-live="polite" hidden></div>
+	</form>
+</div>
+
+<script is:inline define:vars={{ successMessage, errorMessage }}>
+	(function () {
+		const roots = document.querySelectorAll('[data-quote-form]');
+		roots.forEach(function (root) {
+			const form = root.querySelector('form');
+			const status = root.querySelector('[data-form-status]');
+			const submit = root.querySelector('[type="submit"]');
+			if (!form || !status || !submit) return;
+
+			function setStatus(type, message) {
+				status.hidden = false;
+				status.className = 'quote-form__status quote-form__status--' + type;
+				status.textContent = message;
+			}
+
+			function clearFieldErrors() {
+				form.querySelectorAll('.is-invalid').forEach(function (el) {
+					el.classList.remove('is-invalid');
+				});
+			}
+
+			form.addEventListener('submit', async function (event) {
+				event.preventDefault();
+				clearFieldErrors();
+				status.hidden = true;
+
+				const data = new FormData(form);
+				const payload = Object.fromEntries(data.entries());
+
+				const required = ['name', 'email', 'phone', 'city'];
+				let valid = true;
+				required.forEach(function (key) {
+					const input = form.querySelector('[name="' + key + '"]');
+					const value = String(payload[key] || '').trim();
+					if (!value || (key === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))) {
+						valid = false;
+						if (input) input.classList.add('is-invalid');
+					}
+				});
+
+				if (!valid) {
+					setStatus('error', 'Vul alle verplichte velden correct in.');
+					return;
+				}
+
+				submit.disabled = true;
+				submit.setAttribute('aria-busy', 'true');
+				const original = submit.textContent;
+				submit.textContent = 'Verzenden…';
+
+				try {
+					const response = await fetch('/api/offerte', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+						body: JSON.stringify(payload),
+					});
+					const result = await response.json().catch(function () {
+						return { ok: false, error: errorMessage };
+					});
+
+					if (!response.ok || !result.ok) {
+						if (Array.isArray(result.fields)) {
+							result.fields.forEach(function (key) {
+								const input = form.querySelector('[name="' + key + '"]');
+								if (input) input.classList.add('is-invalid');
+							});
+						}
+						setStatus('error', result.error || errorMessage);
+						return;
+					}
+
+					form.reset();
+					setStatus('success', result.message || successMessage);
+				} catch (err) {
+					setStatus('error', errorMessage);
+				} finally {
+					submit.disabled = false;
+					submit.removeAttribute('aria-busy');
+					submit.textContent = original;
+				}
+			});
+		});
+	})();
+</script>
+
+<style>
+	.quote-form {
+		width: 100%;
+		max-width: 40rem;
+	}
+
+	.quote-form__hp {
+		position: absolute;
+		left: -10000px;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+
+	.quote-form__grid {
+		display: grid;
+		gap: 0.95rem;
+	}
+
+	@media (min-width: 700px) {
+		.quote-form__grid {
+			grid-template-columns: 1fr 1fr;
+			gap: 1rem;
+		}
+	}
+
+	.quote-form__field {
+		display: grid;
+		gap: 0.4rem;
+		font-size: 0.92rem;
+		color: color-mix(in srgb, var(--color-text) 92%, transparent);
+	}
+
+	.quote-form__field--full {
+		grid-column: 1 / -1;
+	}
+
+	.quote-form__field span abbr {
+		text-decoration: none;
+		color: var(--color-primary);
+	}
+
+	.quote-form__field input,
+	.quote-form__field textarea {
+		width: 100%;
+		min-height: 3rem;
+		padding: 0.75rem 0.95rem;
+		border-radius: var(--radius-sm);
+		border: 1px solid color-mix(in srgb, var(--color-text) 28%, transparent);
+		background: rgba(0, 0, 0, 0.45);
+		color: var(--color-text);
+		font: inherit;
+		transition:
+			border-color 0.2s var(--ease-out),
+			box-shadow 0.2s var(--ease-out);
+	}
+
+	.quote-form__field textarea {
+		min-height: 7rem;
+		resize: vertical;
+	}
+
+	.quote-form__field input:focus,
+	.quote-form__field textarea:focus {
+		outline: none;
+		border-color: var(--color-primary);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 28%, transparent);
+	}
+
+	.quote-form__field input.is-invalid,
+	.quote-form__field textarea.is-invalid {
+		border-color: #e57373;
+	}
+
+	.quote-form__note {
+		margin: 0.85rem 0 0;
+		font-size: 0.88rem;
+		color: var(--color-text-muted);
+	}
+
+	.quote-form__actions {
+		margin-top: 1.25rem;
+	}
+
+	.quote-form__submit {
+		border: 0;
+		cursor: pointer;
+	}
+
+	.quote-form__submit:disabled {
+		opacity: 0.7;
+		cursor: wait;
+	}
+
+	.quote-form__status {
+		margin-top: 1rem;
+		padding: 0.9rem 1rem;
+		border-radius: var(--radius-sm);
+		font-size: 0.95rem;
+		line-height: 1.55;
+	}
+
+	.quote-form__status--success {
+		border: 1px solid color-mix(in srgb, #4caf50 55%, transparent);
+		background: color-mix(in srgb, #4caf50 16%, transparent);
+		color: #d8ffe0;
+	}
+
+	.quote-form__status--error {
+		border: 1px solid color-mix(in srgb, #e57373 55%, transparent);
+		background: color-mix(in srgb, #e57373 14%, transparent);
+		color: #ffd7d7;
+	}
+
+	@media (max-width: 640px) {
+		.quote-form__submit {
+			width: 100%;
+		}
+	}
+</style>

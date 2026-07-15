@@ -1,43 +1,31 @@
-# Astro Starter Kit: Minimal
+# Partybus Nederland
+
+Astro-website voor Partybus Nederland, klaar voor **Cloudflare Pages** met offerteformulier via **Resend**.
+
+## Lokaal
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run build
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Offerteformulier
 
-## 🚀 Project Structure
+- Homepage: `/#offerte`
+- Contact: `/contact/#offerte`
+- API: `POST /api/offerte`
 
-Inside of your Astro project, you'll see the following folders and files:
+Zie [docs/EMAIL-SETUP.md](docs/EMAIL-SETUP.md) voor Resend + Cloudflare environment variables:
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- `RESEND_API_KEY`
+- `FROM_EMAIL`
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Aanvragen gaan naar `jvhgroep@gmail.com` met klantbevestiging.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Deploy (Cloudflare Pages)
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Repository: `jvhgroep-debug/partybus-nederland`
+- Build command: `npm run build`
+- Node: `22.12.0` (`.node-version`)
+- Adapter: `@astrojs/cloudflare`

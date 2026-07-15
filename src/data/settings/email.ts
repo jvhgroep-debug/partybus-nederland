@@ -1,17 +1,18 @@
 /**
  * Centrale e-mailinstellingen voor Partybus Nederland.
- * Pas hier ontvangers, onderwerpen en afzender aan.
+ * Ontvanger, onderwerpen en defaults aanpassen hier.
  *
- * Verzending via Resend gebeurt pas als RESEND_API_KEY
- * (en optioneel EMAIL_FROM) in de omgeving staat.
+ * Environment (Cloudflare Pages / .env):
+ * - RESEND_API_KEY (verplicht voor verzending)
+ * - FROM_EMAIL (verplicht geverifieerde afzender in Resend)
  */
 export const emailSettings = {
 	/** Vast ontvangstadres voor alle offerteaanvragen */
 	inbox: 'jvhgroep@gmail.com',
 
 	/**
-	 * Afzender in Resend (moet een geverifieerd domein/afzender zijn).
-	 * Override met env EMAIL_FROM wanneer beschikbaar.
+	 * Fallback-afzender als FROM_EMAIL niet is gezet.
+	 * Op Cloudflare Pages moet FROM_EMAIL altijd als env-var staan.
 	 */
 	fromDefault: 'Partybus Nederland <noreply@partybusnederland.nl>',
 
@@ -19,10 +20,16 @@ export const emailSettings = {
 		/** Bevestiging naar de klant */
 		customer: 'Bedankt voor je aanvraag bij Partybus Nederland',
 		/** Intern bericht naar het inbox-adres */
-		owner: 'Nieuwe offerteaanvraag - Partybus Nederland',
+		owner: 'Nieuwe offerteaanvraag – Partybus Nederland',
 	},
 
-	/** Reply-To op de klantmail (klant antwoorden bereiken de inbox) */
+	successMessage:
+		'Bedankt! Je aanvraag is succesvol verzonden. Wij nemen zo snel mogelijk contact met je op.',
+
+	errorMessage:
+		'Er ging iets mis bij het verzenden. Probeer het opnieuw of bereik ons via WhatsApp.',
+
+	/** Reply-To op de klantmail (klantantwoorden naar de inbox) */
 	replyToInbox: true as boolean,
 } as const;
 

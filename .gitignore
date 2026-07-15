@@ -30,3 +30,8 @@ scripts/_*
 # local screenshots / scratch
 _*.png
 _*.jpg
+
+# Cloudflare / Wrangler local state
+.wrangler/
+.dev.vars
+
