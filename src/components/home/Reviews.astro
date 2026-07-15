@@ -1,0 +1,108 @@
+---
+import { homeReviews } from '../../data/settings/reviews';
+---
+
+<section id="reviews" class="section reviews" aria-labelledby="reviews-title">
+	<div class="section__inner">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">Reviews</p>
+			<h2 id="reviews-title" class="section__title">Wat feestvierders zeggen</h2>
+			<p class="section__lead">
+				Echte feesten, heldere offertes en een partybus die de avond maakt.
+			</p>
+		</div>
+
+		<div class="reviews__grid">
+			{
+				homeReviews.map((review) => (
+					<figure class="review-card reveal">
+						<div class="review-card__stars" aria-label={`${review.rating} van 5 sterren`}>
+							{Array.from({ length: review.rating }).map(() => (
+								<span aria-hidden="true">★</span>
+							))}
+						</div>
+						<blockquote>
+							<p>“{review.text}”</p>
+						</blockquote>
+						<figcaption>
+							<strong>{review.name}</strong>
+							<span>{review.place}</span>
+						</figcaption>
+					</figure>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.reviews__grid {
+		display: grid;
+		gap: 1.25rem;
+		align-items: stretch;
+	}
+
+	@media (min-width: 800px) {
+		.reviews__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.review-card {
+		margin: 0;
+		padding: 1.65rem 1.45rem 1.7rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 6%, #090909);
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		box-shadow: var(--shadow-card);
+		transition:
+			transform 0.4s var(--ease-out),
+			box-shadow 0.4s var(--ease-out),
+			border-color 0.4s var(--ease-out);
+	}
+
+	.review-card:hover {
+		transform: translateY(-5px);
+		box-shadow: var(--shadow-soft);
+		border-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
+	}
+
+	.review-card__stars {
+		color: var(--color-primary);
+		letter-spacing: 0.1em;
+		font-size: 1.05rem;
+	}
+
+	.review-card blockquote {
+		margin: 0;
+		flex: 1;
+	}
+
+	.review-card p {
+		margin: 0;
+		color: var(--color-text-muted);
+		font-size: 1.05rem;
+		line-height: 1.75;
+	}
+
+	.review-card figcaption {
+		display: grid;
+		gap: 0.2rem;
+		padding-top: 0.35rem;
+		border-top: 1px solid var(--color-primary-line);
+	}
+
+	.review-card strong {
+		font-family: var(--font-display);
+		font-size: 1rem;
+	}
+
+	.review-card span {
+		color: var(--color-primary);
+		font-size: 0.9rem;
+	}
+</style>

@@ -1,0 +1,123 @@
+---
+import { homeFaqs } from '../../data/settings/faq-home';
+---
+
+<section id="faq" class="section faq" aria-labelledby="faq-title">
+	<div class="section__inner faq__layout">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">Veelgestelde vragen</p>
+			<h2 id="faq-title" class="section__title">Antwoorden vóór je boekt</h2>
+			<p class="section__lead">
+				De belangrijkste vragen over partybus huren, offertes en hoe het platform werkt.
+			</p>
+		</div>
+
+		<div class="faq__list">
+			{
+				homeFaqs.map((item) => (
+					<details class="faq-item reveal">
+						<summary>{item.question}</summary>
+						<div class="faq-item__panel">
+							<div class="faq-item__content">
+								<p>{item.answer}</p>
+							</div>
+						</div>
+					</details>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.faq__layout {
+		display: grid;
+		gap: 2rem;
+	}
+
+	@media (min-width: 900px) {
+		.faq__layout {
+			grid-template-columns: 0.85fr 1.15fr;
+			gap: 3.5rem;
+			align-items: start;
+		}
+
+		.faq__layout .section__head {
+			margin-bottom: 0;
+			position: sticky;
+			top: calc(var(--header-height) + 1.25rem);
+		}
+	}
+
+	.faq__list {
+		display: grid;
+		gap: 0.85rem;
+	}
+
+	.faq-item {
+		border-radius: var(--radius-sm);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+		padding: 0 1.15rem;
+		overflow: hidden;
+		transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+	}
+
+	.faq-item[open] {
+		border-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
+		box-shadow: var(--shadow-card);
+	}
+
+	.faq-item summary {
+		cursor: pointer;
+		list-style: none;
+		padding: 1.15rem 0;
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 1.05rem;
+		line-height: 1.4;
+	}
+
+	.faq-item summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.faq-item summary::after {
+		content: '+';
+		float: right;
+		margin-left: 1rem;
+		color: var(--color-primary);
+		font-weight: 800;
+		transition: transform 0.3s var(--ease-out);
+	}
+
+	.faq-item[open] summary::after {
+		content: '–';
+	}
+
+	.faq-item__panel {
+		display: grid;
+		grid-template-rows: 0fr;
+		transition: grid-template-rows 0.35s var(--ease-out);
+	}
+
+	.faq-item[open] .faq-item__panel {
+		grid-template-rows: 1fr;
+	}
+
+	.faq-item__content {
+		overflow: hidden;
+	}
+
+	.faq-item__content p {
+		margin: 0 0 1.15rem;
+		color: var(--color-text-muted);
+		line-height: 1.75;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.faq-item__panel {
+			transition: none;
+		}
+	}
+</style>

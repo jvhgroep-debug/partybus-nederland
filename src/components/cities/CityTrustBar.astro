@@ -1,0 +1,72 @@
+---
+interface Props {
+	items: readonly string[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="city-trust" aria-label="Voordelen">
+	<div class="section__inner">
+		<ul class="city-trust__list">
+			{
+				items.map((item) => (
+					<li class="city-trust__item reveal">
+						<span class="city-trust__icon" aria-hidden="true">✓</span>
+						<span>{item}</span>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.city-trust {
+		border-block: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+		padding-block: clamp(1.35rem, 3vw, 1.9rem);
+	}
+
+	.city-trust__list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.9rem 1.25rem;
+	}
+
+	@media (min-width: 700px) {
+		.city-trust__list {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1000px) {
+		.city-trust__list {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	.city-trust__item {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.65rem;
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 0.95rem;
+		line-height: 1.35;
+	}
+
+	.city-trust__icon {
+		display: inline-grid;
+		place-items: center;
+		width: 1.7rem;
+		height: 1.7rem;
+		border-radius: 999px;
+		flex-shrink: 0;
+		background: var(--color-primary);
+		color: #111;
+		font-size: 0.85rem;
+	}
+</style>

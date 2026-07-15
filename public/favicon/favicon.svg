@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Partybus Nederland">
+  <rect width="64" height="64" rx="14" fill="#000000"/>
+  <path fill="#CDB880" d="M32 12l5.2 8.2 9.5 1.8-6.6 6.8 1.3 9.6L32 34.8l-9.4 4.6 1.3-9.6-6.6-6.8 9.5-1.8L32 12z"/>
+  <text x="32" y="52" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#CDB880">PN</text>
+</svg>

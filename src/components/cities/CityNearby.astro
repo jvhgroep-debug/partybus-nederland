@@ -1,0 +1,52 @@
+---
+interface Props {
+	title: string;
+	lead: string;
+	cities: readonly string[];
+	note: string;
+}
+
+const { title, lead, cities, note } = Astro.props;
+---
+
+<section class="section" aria-labelledby="city-nearby-title">
+	<div class="section__inner">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">Routes</p>
+			<h2 id="city-nearby-title" class="section__title">{title}</h2>
+			<p class="section__lead">{lead}</p>
+		</div>
+		<ul class="city-nearby__list reveal">
+			{cities.map((city) => <li>{city}</li>)}
+		</ul>
+		<p class="city-nearby__note reveal">{note}</p>
+	</div>
+</section>
+
+<style>
+	.city-nearby__list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.city-nearby__list li {
+		padding: 0.7rem 1.05rem;
+		border-radius: var(--radius-pill);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+		font-family: var(--font-display);
+		font-weight: 700;
+		color: var(--color-text);
+	}
+
+	.city-nearby__note {
+		margin: 1.25rem 0 0;
+		color: var(--color-text-muted);
+		line-height: 1.7;
+		max-width: 48rem;
+	}
+</style>

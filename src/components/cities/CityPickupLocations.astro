@@ -1,0 +1,87 @@
+---
+import CityIcon from './CityIcon.astro';
+
+interface Props {
+	title: string;
+	lead: string;
+	items: readonly string[];
+	note?: string;
+}
+
+const { title, lead, items, note } = Astro.props;
+---
+
+<section class="section" aria-labelledby="city-pickup-title">
+	<div class="section__inner city-pickup">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">Opstappen</p>
+			<h2 id="city-pickup-title" class="section__title">{title}</h2>
+			<p class="section__lead">{lead}</p>
+		</div>
+		<ul class="city-pickup__list">
+			{
+				items.map((item) => (
+					<li class="city-pickup__item reveal">
+						<span class="city-pickup__icon">
+							<CityIcon name="pin" />
+						</span>
+						<span>{item}</span>
+					</li>
+				))
+			}
+		</ul>
+		{note && <p class="city-pickup__note reveal">{note}</p>}
+	</div>
+</section>
+
+<style>
+	.city-pickup__list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.85rem;
+	}
+
+	@media (min-width: 700px) {
+		.city-pickup__list {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.city-pickup__list {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.city-pickup__item {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1rem 1.15rem;
+		border-radius: var(--radius-sm);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+		font-family: var(--font-display);
+		font-weight: 700;
+	}
+
+	.city-pickup__icon {
+		display: inline-grid;
+		place-items: center;
+		width: 2.1rem;
+		height: 2.1rem;
+		flex-shrink: 0;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--color-primary) 18%, transparent);
+		color: var(--color-primary);
+	}
+
+	.city-pickup__note {
+		margin: 1.5rem 0 0;
+		color: var(--color-text-muted);
+		line-height: 1.7;
+		max-width: 48rem;
+	}
+</style>

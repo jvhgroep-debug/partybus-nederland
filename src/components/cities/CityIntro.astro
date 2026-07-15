@@ -1,0 +1,83 @@
+---
+interface Props {
+	title: string;
+	paragraphs: readonly string[];
+	image: string;
+	imageAlt: string;
+}
+
+const { title, paragraphs, image, imageAlt } = Astro.props;
+---
+
+<section class="section city-intro" aria-labelledby="city-intro-title">
+	<div class="section__inner city-intro__grid">
+		<div class="reveal">
+			<p class="section__eyebrow">Introductie</p>
+			<h2 id="city-intro-title" class="section__title">{title}</h2>
+			<div class="city-intro__copy">
+				{paragraphs.map((p) => <p>{p}</p>)}
+			</div>
+		</div>
+		<figure class="city-intro__visual reveal">
+			<img src={image} alt={imageAlt} width="1536" height="1024" loading="lazy" decoding="async" />
+		</figure>
+	</div>
+</section>
+
+<style>
+	.city-intro__grid {
+		display: grid;
+		gap: clamp(1.75rem, 4vw, 3rem);
+		align-items: start;
+	}
+
+	@media (min-width: 900px) {
+		.city-intro__grid {
+			grid-template-columns: 1.15fr 0.85fr;
+			gap: 3.25rem;
+		}
+	}
+
+	.city-intro__copy {
+		display: grid;
+		gap: 0.85rem;
+	}
+
+	.city-intro__copy p {
+		margin: 0;
+		color: var(--color-text-muted);
+		font-size: 1.02rem;
+		line-height: 1.65;
+	}
+
+	@media (min-width: 900px) {
+		.city-intro__grid {
+			align-items: center;
+		}
+
+		.city-intro__copy {
+			gap: 0.9rem;
+		}
+
+		.city-intro__copy p {
+			font-size: 1.05rem;
+			line-height: 1.7;
+		}
+	}
+
+	.city-intro__visual {
+		margin: 0;
+		overflow: hidden;
+		border-radius: var(--radius-lg);
+		border: 1px solid var(--color-primary-line);
+		box-shadow: var(--shadow-soft);
+		aspect-ratio: 4 / 3;
+		background: #111;
+	}
+
+	.city-intro__visual img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+</style>

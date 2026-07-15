@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { primaryCta } from '../data/settings/navigation';
+import Button from '../components/buttons/Button.astro';
+---
+
+<BaseLayout title="Pagina niet gevonden">
+	<section class="section not-found">
+		<div class="section__inner not-found__inner reveal">
+			<p class="section__eyebrow">404</p>
+			<h1 class="section__title">Deze pagina bestaat niet</h1>
+			<p class="section__lead">
+				De pagina die je zoekt is verplaatst of bestaat niet (meer). Ga terug naar de
+				homepage of vraag direct gratis offertes aan.
+			</p>
+			<div class="not-found__actions">
+				<Button href="/" size="lg">Naar homepage</Button>
+				<Button href={primaryCta.href} variant="ghost" size="lg">{primaryCta.label}</Button>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.not-found {
+		padding-top: calc(var(--header-height) + 3rem);
+		min-height: 70vh;
+		display: grid;
+		align-items: center;
+	}
+
+	.not-found__inner {
+		max-width: 40rem;
+	}
+
+	.not-found__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.85rem;
+		margin-top: 1.75rem;
+	}
+
+	@media (max-width: 640px) {
+		.not-found__actions :global(.btn) {
+			width: 100%;
+		}
+	}
+</style>

@@ -1,0 +1,122 @@
+---
+const steps = [
+	{
+		title: 'Vertel wat je zoekt',
+		text: 'Geef datum, stad, aantal gasten en sfeer door. Hoe scherper jouw wensen, hoe relevanter de offertes.',
+		icon: 'edit',
+	},
+	{
+		title: 'Ontvang meerdere offertes',
+		text: 'Passende aanbieders reageren met heldere voorstellen. Vergelijk prijs, bus en voorwaarden rustig naast elkaar.',
+		icon: 'list',
+	},
+	{
+		title: 'Kies en vier',
+		text: 'Jij bepaalt wie wint. Boek de partybus die bij jouw feest past — zonder verplichtingen tot jij kiest.',
+		icon: 'party',
+	},
+];
+---
+
+<section id="werkwijze" class="section how" aria-labelledby="how-title">
+	<div class="section__inner">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">Hoe werkt het</p>
+			<h2 id="how-title" class="section__title">In drie stappen naar jouw partybus</h2>
+			<p class="section__lead">
+				Eenvoudig aangevraagd, serieus vergeleken — zo blijft er meer tijd over voor het feest zelf.
+			</p>
+		</div>
+
+		<ol class="how__grid">
+			{
+				steps.map((step, index) => (
+					<li class="how-card reveal">
+						<span class="how-card__index">{index + 1}</span>
+						<span class="how-card__icon" aria-hidden="true">
+							{step.icon === 'edit' && (
+								<svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+									<path d="M4 20h4L18 10l-4-4L4 16v4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+									<path d="M12 6l4 4" stroke="currentColor" stroke-width="1.8" />
+								</svg>
+							)}
+							{step.icon === 'list' && (
+								<svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+									<path d="M8 7h12M8 12h12M8 17h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+									<circle cx="4.5" cy="7" r="1.2" fill="currentColor" />
+									<circle cx="4.5" cy="12" r="1.2" fill="currentColor" />
+									<circle cx="4.5" cy="17" r="1.2" fill="currentColor" />
+								</svg>
+							)}
+							{step.icon === 'party' && (
+								<svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+									<path d="M8 14l-3 7 7-3 9-9-4-4-9 9z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+									<path d="M14 5l2-2M17 8l2-2M6 16l-2 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+								</svg>
+							)}
+						</span>
+						<h3>{step.title}</h3>
+						<p>{step.text}</p>
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</section>
+
+<style>
+	.how__grid {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 1.1rem;
+	}
+
+	@media (min-width: 900px) {
+		.how__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.how-card {
+		position: relative;
+		padding: 1.5rem 1.35rem 1.55rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 6%, #090909);
+		min-height: 100%;
+	}
+
+	.how-card__index {
+		position: absolute;
+		top: 1.1rem;
+		right: 1.15rem;
+		font-family: var(--font-display);
+		font-weight: 800;
+		color: color-mix(in srgb, var(--color-primary) 55%, transparent);
+	}
+
+	.how-card__icon {
+		display: inline-grid;
+		place-items: center;
+		width: 3rem;
+		height: 3rem;
+		margin-bottom: 1rem;
+		border-radius: 999px;
+		color: #111;
+		background: var(--color-primary);
+	}
+
+	.how-card h3 {
+		margin: 0 0 0.55rem;
+		font-family: var(--font-display);
+		font-size: 1.2rem;
+		font-weight: 700;
+	}
+
+	.how-card p {
+		margin: 0;
+		color: var(--color-text-muted);
+	}
+</style>

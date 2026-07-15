@@ -1,0 +1,131 @@
+---
+import '../styles/global.css';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import WhatsAppFloat from '../components/shared/WhatsAppFloat.astro';
+import { site } from '../data/settings/site';
+
+interface Props {
+	title?: string;
+	description?: string;
+	canonical?: string;
+	titleExact?: boolean;
+	preloadImage?: string;
+	jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title = site.name, description, canonical, titleExact = false, preloadImage, jsonLd } = Astro.props;
+const pageTitle = titleExact
+	? title
+	: title === site.name
+		? site.name
+		: ` | `;
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
+const heroPreload = preloadImage || (isHome ? '/images/hero-partybus.png' : undefined);
+const jsonLdPayload = jsonLd
+	? Array.isArray(jsonLd)
+		? jsonLd
+		: [jsonLd]
+	: [];
+---
+
+<!doctype html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		{description && <meta name="description" content={description} />}
+		{canonical && <link rel="canonical" href={canonical} />}
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		{heroPreload && <link rel="preload" as="image" href={heroPreload} fetchpriority="high" />}
+		<title>{pageTitle}</title>
+		{
+			jsonLdPayload.map((item) => (
+				<script type="application/ld+json" set:html={JSON.stringify(item)} />
+			))
+		}
+	</head>
+	<body>
+		<div class="site-shell">
+			<Header />
+			<main class="site-main">
+				<slot />
+			</main>
+			<Footer />
+		</div>
+		<WhatsAppFloat />
+		<script>
+			const initReveal = () => {
+				const items = document.querySelectorAll('.reveal');
+				if (!('IntersectionObserver' in window)) {
+					items.forEach((el) => el.classList.add('is-visible'));
+					return;
+				}
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								entry.target.classList.add('is-visible');
+								observer.unobserve(entry.target);
+							}
+						});
+					},
+					{ threshold: 0.12, rootMargin: '0px 0px -6% 0px' },
+				);
+				items.forEach((el) => observer.observe(el));
+			};
+
+			const initHeader = () => {
+				const header = document.querySelector('.site-header');
+				const toggle = document.querySelector('[data-nav-toggle]');
+				const mobileNav = document.querySelector('[data-mobile-nav]');
+				if (!header) return;
+
+				const onScroll = () => {
+					header.classList.toggle('is-scrolled', window.scrollY > 24);
+				};
+				onScroll();
+				window.addEventListener('scroll', onScroll, { passive: true });
+
+				if (toggle && mobileNav) {
+					const closeMenu = () => {
+						header.classList.remove('is-open');
+						toggle.setAttribute('aria-expanded', 'false');
+						mobileNav.setAttribute('hidden', '');
+					};
+					const openMenu = () => {
+						header.classList.add('is-open');
+						toggle.setAttribute('aria-expanded', 'true');
+						mobileNav.removeAttribute('hidden');
+					};
+
+					toggle.addEventListener('click', () => {
+						const isOpen = header.classList.contains('is-open');
+						if (isOpen) closeMenu();
+						else openMenu();
+					});
+
+					mobileNav.querySelectorAll('[data-mobile-link], a.btn').forEach((link) => {
+						link.addEventListener('click', closeMenu);
+					});
+				}
+			};
+
+			const boot = () => {
+				initReveal();
+				initHeader();
+			};
+
+			boot();
+			document.addEventListener('astro:page-load', boot);
+		</script>
+	</body>
+</html>

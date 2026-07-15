@@ -1,0 +1,94 @@
+---
+---
+
+<section class="section intro" aria-labelledby="intro-title">
+	<div class="section__inner intro__grid">
+		<div class="intro__copy reveal">
+			<p class="section__eyebrow">Waarom Partybus Nederland</p>
+			<h2 id="intro-title" class="section__title">Meer keuze. Betere prijs. Minder gedoe.</h2>
+			<p class="section__lead">
+				Partybus Nederland is het platform waarop je partybussen eenvoudig vergelijkt.
+				Je doet één aanvraag, ontvangt meerdere offertes van aanbieders en kiest zelf
+				de optie die het beste bij jouw feest past.
+			</p>
+			<ul class="intro__points">
+				<li>Transparant vergelijken zonder verborgen voorwaarden</li>
+				<li>Aanbieders verspreid over heel Nederland</li>
+				<li>Gratis en vrijblijvend offertes aanvragen</li>
+			</ul>
+		</div>
+		<figure class="intro__visual reveal">
+			<img
+				src="/images/interior-partybus.png"
+				alt="Luxe voertuiginterieur met sfeervolle verlichting"
+				width="1536"
+				height="1024"
+				loading="lazy"
+				decoding="async"
+			/>
+		</figure>
+	</div>
+</section>
+
+<style>
+	.intro__grid {
+		display: grid;
+		gap: clamp(2rem, 5vw, 3.5rem);
+		align-items: center;
+	}
+
+	@media (min-width: 900px) {
+		.intro__grid {
+			grid-template-columns: 1.05fr 0.95fr;
+			gap: 4rem;
+		}
+	}
+
+	.intro__points {
+		margin: 1.75rem 0 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.95rem;
+	}
+
+	.intro__points li {
+		position: relative;
+		padding-left: 1.6rem;
+		color: var(--color-text-muted);
+		line-height: 1.65;
+		font-size: 1.05rem;
+	}
+
+	.intro__points li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.65rem;
+		width: 0.55rem;
+		height: 0.55rem;
+		border-radius: 50%;
+		background: var(--color-primary);
+	}
+
+	.intro__visual {
+		margin: 0;
+		overflow: hidden;
+		border-radius: var(--radius-lg);
+		border: 1px solid var(--color-primary-line);
+		box-shadow: var(--shadow-soft);
+		aspect-ratio: 4 / 3;
+		background: #111;
+	}
+
+	.intro__visual img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.8s var(--ease-out);
+	}
+
+	.intro__visual:hover img {
+		transform: scale(1.03);
+	}
+</style>

@@ -1,0 +1,304 @@
+---
+import Button from '../buttons/Button.astro';
+
+interface Props {
+	title: string;
+	subtitle: string;
+	image: string;
+	imageAlt: string;
+	whatsappHref: string;
+	primaryHref?: string;
+	trustItems?: readonly string[];
+}
+
+const {
+	title,
+	subtitle,
+	image,
+	imageAlt,
+	whatsappHref,
+	primaryHref = '#offerte-stad',
+	trustItems = [],
+} = Astro.props;
+
+const trustIcons = ['compare', 'clock', 'group', 'nl'] as const;
+---
+
+<section class="city-hero" aria-labelledby="city-hero-title">
+	<div class="city-hero__media">
+		<img src={image} alt={imageAlt} width="1536" height="1024" fetchpriority="high" decoding="async" />
+		<div class="city-hero__veil" aria-hidden="true"></div>
+	</div>
+	<div class="city-hero__content section__inner">
+		<p class="section__eyebrow">Steden</p>
+		<h1 id="city-hero-title" class="city-hero__title">{title}</h1>
+		<p class="city-hero__subtitle">{subtitle}</p>
+		<div class="city-hero__actions">
+			<Button href={primaryHref} size="lg">Gratis offertes aanvragen</Button>
+			<a
+				class="btn btn--ghost btn--lg city-hero__wa"
+				href={whatsappHref}
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<svg class="city-hero__wa-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+					<path
+						fill="currentColor"
+						d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+					></path>
+				</svg>
+				<span>Direct via WhatsApp</span>
+			</a>
+		</div>
+		{
+			trustItems.length > 0 && (
+				<ul class="city-hero__trust">
+					{trustItems.map((label, index) => (
+						<li>
+							<span class="city-hero__trust-icon" aria-hidden="true">
+								{trustIcons[index] === 'compare' && (
+									<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M8 7h11M8 12h11M8 17h11M5 7h.01M5 12h.01M5 17h.01"></path>
+									</svg>
+								)}
+								{trustIcons[index] === 'clock' && (
+									<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+										<circle cx="12" cy="12" r="8"></circle>
+										<path d="M12 8v4l2.5 2.5"></path>
+									</svg>
+								)}
+								{trustIcons[index] === 'group' && (
+									<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M16 19a4 4 0 0 0-8 0"></path>
+										<circle cx="12" cy="9" r="3"></circle>
+										<path d="M20 19a3.5 3.5 0 0 0-2.4-3.3"></path>
+										<path d="M4 19a3.5 3.5 0 0 1 2.4-3.3"></path>
+										<path d="M17.5 8.5a2.5 2.5 0 1 1-2 4.3"></path>
+										<path d="M6.5 8.5a2.5 2.5 0 1 0 2 4.3"></path>
+									</svg>
+								)}
+								{trustIcons[index] === 'nl' && (
+									<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10Z"></path>
+										<circle cx="12" cy="11" r="2.2"></circle>
+									</svg>
+								)}
+							</span>
+							<span>{label}</span>
+						</li>
+					))}
+				</ul>
+			)
+		}
+	</div>
+</section>
+
+<style>
+	.city-hero {
+		position: relative;
+		isolation: isolate;
+		height: 100vh;
+		height: 100dvh;
+		min-height: 32rem;
+		display: flex;
+		align-items: flex-start;
+		overflow: hidden;
+		background: #000;
+	}
+
+	.city-hero__media {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+	}
+
+	.city-hero__media img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center 38%;
+	}
+
+	.city-hero__veil {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(
+				105deg,
+				rgba(0, 0, 0, 0.82) 0%,
+				rgba(0, 0, 0, 0.55) 48%,
+				rgba(0, 0, 0, 0.28) 100%
+			),
+			linear-gradient(
+				180deg,
+				rgba(0, 0, 0, 0.62) 0%,
+				rgba(0, 0, 0, 0.28) 42%,
+				rgba(0, 0, 0, 0.55) 100%
+			);
+	}
+
+	.city-hero__content {
+		width: 100%;
+		box-sizing: border-box;
+		padding-top: calc(var(--header-height) + clamp(1.5rem, 3.5vh, 2.35rem));
+		padding-bottom: clamp(2rem, 5vh, 3rem);
+	}
+
+	.city-hero__title {
+		margin: 0 0 0.75rem;
+		max-width: 14ch;
+		font-family: var(--font-display);
+		font-size: clamp(1.95rem, 4.8vw, 3.25rem);
+		font-weight: 800;
+		line-height: 1.06;
+		letter-spacing: -0.03em;
+	}
+
+	.city-hero__subtitle {
+		margin: 0 0 1.35rem;
+		max-width: 34rem;
+		font-size: clamp(1rem, 1.8vw, 1.15rem);
+		line-height: 1.55;
+		color: color-mix(in srgb, var(--color-text) 90%, transparent);
+	}
+
+	.city-hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.city-hero__wa {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+	}
+
+	.city-hero__wa-icon {
+		flex-shrink: 0;
+	}
+
+	.city-hero__wa:hover {
+		border-color: #25d366;
+		color: #25d366;
+	}
+
+	.city-hero__trust {
+		margin: 1rem 0 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.55rem 0.75rem;
+		max-width: 42rem;
+	}
+
+	.city-hero__trust li {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.45rem;
+		font-size: 0.78rem;
+		line-height: 1.35;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.92);
+		text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+	}
+
+	.city-hero__trust-icon {
+		display: inline-grid;
+		place-items: center;
+		width: 1.35rem;
+		height: 1.35rem;
+		flex-shrink: 0;
+		margin-top: 0.05rem;
+		border-radius: 999px;
+		color: var(--color-primary);
+		background: color-mix(in srgb, var(--color-primary) 16%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-primary) 45%, transparent);
+	}
+
+	@media (min-width: 641px) and (max-width: 1023px) {
+		.city-hero__content {
+			padding-top: calc(var(--header-height) + clamp(1.75rem, 4vh, 2.5rem));
+		}
+
+		.city-hero__title {
+			font-size: clamp(2.1rem, 4.2vw, 2.85rem);
+		}
+
+		.city-hero__trust {
+			grid-template-columns: 1fr 1fr;
+			max-width: 36rem;
+			gap: 0.6rem 1rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.city-hero__content {
+			padding-top: calc(var(--header-height) + clamp(2rem, 5.5vh, 3rem));
+			padding-bottom: 0;
+			max-width: min(100% - 2.25rem, var(--content-max-width));
+		}
+
+		.city-hero__trust {
+			display: flex;
+			flex-wrap: nowrap;
+			align-items: center;
+			gap: 1rem 1.35rem;
+			max-width: none;
+		}
+
+		.city-hero__trust li {
+			white-space: nowrap;
+			font-size: 0.8rem;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.city-hero {
+			min-height: 28rem;
+		}
+
+		.city-hero__content {
+			padding-top: calc(var(--header-height) + 1.25rem);
+		}
+
+		.city-hero__subtitle {
+			margin-bottom: 1.2rem;
+		}
+
+		.city-hero__actions :global(.btn),
+		.city-hero__wa {
+			width: 100%;
+			justify-content: center;
+		}
+
+		.city-hero__trust {
+			margin-top: 0.9rem;
+			gap: 0.5rem 0.65rem;
+		}
+
+		.city-hero__trust li {
+			font-size: 0.74rem;
+		}
+	}
+
+	@media (max-height: 700px) {
+		.city-hero__content {
+			padding-top: calc(var(--header-height) + 1rem);
+		}
+
+		.city-hero__title {
+			font-size: clamp(1.85rem, 5vw, 2.6rem);
+		}
+
+		.city-hero__subtitle {
+			margin-bottom: 1rem;
+			font-size: 1rem;
+		}
+
+		.city-hero__trust {
+			margin-top: 0.75rem;
+		}
+	}
+</style>

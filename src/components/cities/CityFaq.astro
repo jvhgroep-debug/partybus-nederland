@@ -1,0 +1,114 @@
+---
+interface Faq {
+	question: string;
+	answer: string;
+}
+
+interface Props {
+	items: readonly Faq[];
+	cityName: string;
+}
+
+const { items, cityName } = Astro.props;
+---
+
+<section class="section" aria-labelledby="city-faq-title">
+	<div class="section__inner city-faq__layout">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">FAQ</p>
+			<h2 id="city-faq-title" class="section__title">Veelgestelde vragen over {cityName}</h2>
+		</div>
+		<div class="city-faq__list">
+			{
+				items.map((item) => (
+					<details class="city-faq__item reveal">
+						<summary>{item.question}</summary>
+						<div class="city-faq__panel">
+							<div class="city-faq__content">
+								<p>{item.answer}</p>
+							</div>
+						</div>
+					</details>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.city-faq__layout {
+		display: grid;
+		gap: 1.75rem;
+	}
+
+	@media (min-width: 900px) {
+		.city-faq__layout {
+			grid-template-columns: 0.85fr 1.15fr;
+			gap: 3rem;
+			align-items: start;
+		}
+
+		.city-faq__layout .section__head {
+			margin-bottom: 0;
+			position: sticky;
+			top: calc(var(--header-height) + 1.25rem);
+		}
+	}
+
+	.city-faq__list {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.city-faq__item {
+		border-radius: var(--radius-sm);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+		padding: 0 1.1rem;
+		overflow: hidden;
+	}
+
+	.city-faq__item summary {
+		cursor: pointer;
+		list-style: none;
+		padding: 1.05rem 0;
+		font-family: var(--font-display);
+		font-weight: 700;
+		line-height: 1.4;
+	}
+
+	.city-faq__item summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.city-faq__item summary::after {
+		content: '+';
+		float: right;
+		color: var(--color-primary);
+		margin-left: 0.75rem;
+	}
+
+	.city-faq__item[open] summary::after {
+		content: '–';
+	}
+
+	.city-faq__panel {
+		display: grid;
+		grid-template-rows: 0fr;
+		transition: grid-template-rows 0.35s var(--ease-out);
+	}
+
+	.city-faq__item[open] .city-faq__panel {
+		grid-template-rows: 1fr;
+	}
+
+	.city-faq__content {
+		overflow: hidden;
+	}
+
+	.city-faq__content p {
+		margin: 0 0 1.05rem;
+		color: var(--color-text-muted);
+		line-height: 1.75;
+	}
+</style>

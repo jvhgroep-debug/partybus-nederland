@@ -1,0 +1,96 @@
+---
+import type { CityLocation } from '../../data/cities/types';
+
+interface Props {
+	title: string;
+	lead: string;
+	items: readonly CityLocation[];
+}
+
+const { title, lead, items } = Astro.props;
+---
+
+<section class="section" aria-labelledby="city-dest-title">
+	<div class="section__inner">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">Locaties</p>
+			<h2 id="city-dest-title" class="section__title">{title}</h2>
+			<p class="section__lead">{lead}</p>
+		</div>
+		<div class="city-dest__grid">
+			{
+				items.map((item) => (
+					<article class="city-dest__card reveal">
+						<img src={item.image} alt="" width="1200" height="800" loading="lazy" decoding="async" />
+						<div class="city-dest__body">
+							<h3>{item.name}</h3>
+							<p>{item.text}</p>
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.city-dest__grid {
+		display: grid;
+		gap: 1.15rem;
+	}
+
+	@media (min-width: 700px) {
+		.city-dest__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.city-dest__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.city-dest__card {
+		overflow: hidden;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: #0a0a0a;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		transition:
+			transform 0.35s var(--ease-out),
+			box-shadow 0.35s var(--ease-out);
+	}
+
+	.city-dest__card:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-soft);
+	}
+
+	.city-dest__card img {
+		width: 100%;
+		aspect-ratio: 16 / 10;
+		object-fit: cover;
+	}
+
+	.city-dest__body {
+		padding: 1.1rem 1.15rem 1.25rem;
+		flex: 1;
+	}
+
+	.city-dest__body h3 {
+		margin: 0 0 0.45rem;
+		font-family: var(--font-display);
+		font-size: 1.08rem;
+		color: var(--color-primary);
+	}
+
+	.city-dest__body p {
+		margin: 0;
+		color: var(--color-text-muted);
+		font-size: 0.95rem;
+		line-height: 1.6;
+	}
+</style>

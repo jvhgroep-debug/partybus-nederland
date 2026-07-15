@@ -1,0 +1,90 @@
+---
+import type { PublishedCity } from '../../data/cities/registry';
+
+interface Props {
+	cityName: string;
+	cities: readonly PublishedCity[];
+}
+
+const { cityName, cities } = Astro.props;
+---
+
+<section class="section city-related" aria-labelledby="city-related-title">
+	<div class="section__inner">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">Gerelateerd</p>
+			<h2 id="city-related-title" class="section__title">Gerelateerde steden</h2>
+			<p class="section__lead">
+				Bekijk ook partybus-pagina’s bij steden in de buurt van {cityName}.
+			</p>
+		</div>
+		<ul class="city-related__grid">
+			{
+				cities.map((city) => (
+					<li class="reveal">
+						<a class="city-related__card" href={city.path}>
+							<span class="city-related__name">Partybus huren {city.name}</span>
+							<span class="city-related__cta">Bekijk pagina</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.city-related__grid {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 1rem;
+	}
+
+	@media (min-width: 700px) {
+		.city-related__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.city-related__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.city-related__card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+		height: 100%;
+		padding: 1.35rem 1.25rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+		transition:
+			transform 0.3s var(--ease-out),
+			border-color 0.3s var(--ease-out),
+			background-color 0.3s var(--ease-out);
+	}
+
+	.city-related__card:hover {
+		transform: translateY(-3px);
+		border-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
+		background: color-mix(in srgb, var(--color-primary) 10%, #090909);
+	}
+
+	.city-related__name {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 1.08rem;
+		color: var(--color-text);
+	}
+
+	.city-related__cta {
+		font-size: 0.92rem;
+		color: var(--color-primary);
+		font-weight: 700;
+	}
+</style>
