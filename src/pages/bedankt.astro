@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/buttons/Button.astro';
+import { whatsapp } from '../data/settings/whatsapp';
+---
+
+<BaseLayout
+	title="Bedankt voor je aanvraag"
+	description="Je offerteaanvraag bij Partybus Nederland is succesvol verzonden."
+>
+	<section class="section thanks" aria-labelledby="thanks-title">
+		<div class="section__inner thanks__inner reveal">
+			<p class="section__eyebrow">Aanvraag ontvangen</p>
+			<h1 id="thanks-title" class="section__title">Bedankt!</h1>
+			<p class="section__lead">
+				Je aanvraag is succesvol verzonden. Je ontvangt een bevestiging per e-mail en wij
+				zetten je verzoek door — vrijblijvend en door heel Nederland.
+			</p>
+			<p class="thanks__note">
+				Controleer eventueel je spamfolder als de bevestiging even op zich laat wachten.
+			</p>
+			<div class="thanks__actions">
+				<Button href="/" size="lg">Terug naar home</Button>
+				<Button href={whatsapp.href} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
+					WhatsApp
+				</Button>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.thanks {
+		padding-top: calc(var(--header-height) + 3rem);
+		padding-bottom: clamp(3.5rem, 8vw, 6rem);
+		min-height: 70vh;
+		display: grid;
+		align-items: center;
+	}
+
+	.thanks__inner {
+		max-width: 36rem;
+	}
+
+	.thanks .section__title {
+		max-width: 10ch;
+	}
+
+	.thanks__note {
+		margin: 1rem 0 0;
+		color: var(--color-text-muted);
+		font-size: 0.95rem;
+	}
+
+	.thanks__actions {
+		margin-top: 2rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.85rem;
+	}
+
+	@media (max-width: 640px) {
+		.thanks__actions :global(.btn) {
+			width: 100%;
+		}
+	}
+</style>

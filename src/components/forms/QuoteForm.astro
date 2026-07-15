@@ -137,17 +137,24 @@ const errorMessage = emailSettings.errorMessage;
 							});
 						}
 						setStatus('error', result.error || errorMessage);
+						submit.disabled = false;
+						submit.removeAttribute('aria-busy');
+						submit.textContent = original;
 						return;
 					}
 
-					form.reset();
 					setStatus('success', result.message || successMessage);
+					form.reset();
+					window.location.href = result.redirect || '/bedankt/';
+					return;
 				} catch (err) {
 					setStatus('error', errorMessage);
 				} finally {
-					submit.disabled = false;
-					submit.removeAttribute('aria-busy');
-					submit.textContent = original;
+					if (!status.classList.contains('quote-form__status--success')) {
+						submit.disabled = false;
+						submit.removeAttribute('aria-busy');
+						submit.textContent = original;
+					}
 				}
 			});
 		});

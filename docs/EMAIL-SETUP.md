@@ -1,36 +1,27 @@
 # Offerteformulier & e-mail (Resend + Cloudflare Pages)
 
-## Environment variables (verplicht)
+## Environment variables
 
-Zet deze in **Cloudflare Pages → Settings → Environment variables** (Production én Preview):
+| Variable | Verplicht | Opmerking |
+|----------|-----------|-----------|
+| `RESEND_API_KEY` | ja | Bestaande key in Cloudflare Pages |
+| `FROM_EMAIL` | nee (preview) | Wordt genegeerd als het partybusnederland.nl bevat. Default: `onboarding@resend.dev` |
 
-| Variable | Voorbeeld |
-|----------|-----------|
-| `RESEND_API_KEY` | `re_...` |
-| `FROM_EMAIL` | `Partybus Nederland <noreply@partybusnederland.nl>` |
+**Geen DNS / geen mail.partybusnederland.nl** tijdens preview.
 
-`FROM_EMAIL` moet een **geverifieerd** afzender-/domeinadres in Resend zijn.
+Ontvangstadres (vast): `jvhgroep@gmail.com`
 
-Ontvangstadres (vast in code): `jvhgroep@gmail.com`
+## Wat er bij verzenden gebeurt
 
-## Cloudflare Pages instellingen
+1. Interne mail naar `jvhgroep@gmail.com`
+2. Bevestiging naar het e-mailadres van de klant
+3. Redirect naar `/bedankt/`
 
-- **Framework preset:** geen / none (of Astro static)
-- **Build command:** `npm run build`
-- **Build output directory:** `dist`
-- **Root directory:** `/` (repo-root)
+Resend-testdomein kan alleen naar het Resend-accountadres mailen. Voor een volledige
+test van beide mails: vul **jvhgroep@gmail.com** in als klant-e-mail.
 
-De statische pagina’s komen uit Astro. De API staat in `functions/api/offerte.ts` (Pages Function).
+## Cloudflare Pages
 
-Definitieve formulier-URL:
-
-`/gratis-partybus-offertes-aanvragen/`
-
-## Lokaal testen
-
-1. Kopieer `.env.example` naar `.env` (voor documentatie; de Pages Function gebruikt CF env-vars).
-2. `npm run build`
-3. `npx wrangler pages dev dist`
-4. Open `http://127.0.0.1:8788/gratis-partybus-offertes-aanvragen/`
-
-Na push naar `main` deployt Cloudflare opnieuw. Zonder de env-vars geeft `/api/offerte` HTTP 503.
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Formulier: `/gratis-partybus-offertes-aanvragen/`

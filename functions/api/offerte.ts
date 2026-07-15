@@ -1,7 +1,9 @@
 /**
  * Cloudflare Pages Function — POST /api/offerte
- * Env (Pages → Settings → Environment variables):
- *   RESEND_API_KEY, FROM_EMAIL
+ *
+ * Env: RESEND_API_KEY (verplicht)
+ * FROM_EMAIL: optioneel. Partybus-domeinen worden genegeerd tot DNS live is;
+ * fallback is Resend testdomein: onboarding@resend.dev
  */
 
 interface Env {
@@ -22,7 +24,8 @@ interface QuotePayload {
 }
 
 const INBOX = 'jvhgroep@gmail.com';
-const FROM_DEFAULT = 'Partybus Nederland <noreply@partybusnederland.nl>';
+/** Resend testdomein — werkt zonder DNS / zonder partybusnederland.nl */
+const FROM_TEST = 'Partybus Nederland <onboarding@resend.dev>';
 const SUCCESS =
 	'Bedankt! Je aanvraag is succesvol verzonden. Wij nemen zo snel mogelijk contact met je op.';
 const ERROR_GENERIC =
@@ -45,6 +48,23 @@ function escapeHtml(value: string): string {
 		.replace(/</g, '&lt;')
 		.replace(/>/g, '&gt;')
 		.replace(/"/g, '&quot;');
+}
+
+/**
+ * Gebruik geen partybusnederland.nl / mail.* tot DNS gekoppeld is.
+ * Resend testdomein werkt met de bestaande API-key.
+ */
+function resolveFrom(envFrom?: string): string {
+	const raw = (envFrom || '').trim();
+	if (!raw) return FROM_TEST;
+	const lower = raw.toLowerCase();
+	if (
+		lower.includes('partybusnederland.nl') ||
+		lower.includes('mail.partybus')
+	) {
+		return FROM_TEST;
+	}
+	return raw;
 }
 
 function validate(raw: unknown):
@@ -115,7 +135,7 @@ async function sendResend(
 	apiKey: string,
 	from: string,
 	message: { to: string; subject: string; html: string; text: string; replyTo?: string },
-): Promise<void> {
+): Promise<{ ok: true } | { ok: false; status: number; detail: string }> {
 	const body: Record<string, unknown> = {
 		from,
 		to: [message.to],
@@ -134,10 +154,28 @@ async function sendResend(
 		body: JSON.stringify(body),
 	});
 
+	const data = (await response.json().catch(() => ({}))) as {
+		message?: string;
+		name?: string;
+	};
+
 	if (!response.ok) {
-		const data = (await response.json().catch(() => ({}))) as { message?: string };
-		throw new Error(data.message || `Resend HTTP ${response.status}`);
+		return {
+			ok: false,
+			status: response.status,
+			detail: data.message || `Resend HTTP ${response.status}`,
+		};
 	}
+	return { ok: true };
+}
+
+function isTestDomainRecipientLimit(detail: string): boolean {
+	const d = detail.toLowerCase();
+	return (
+		d.includes('only send testing emails') ||
+		d.includes('verify a domain') ||
+		d.includes('own email address')
+	);
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
@@ -155,12 +193,12 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
 	const payload = validated.data;
 	if (payload.website && payload.website.trim() !== '') {
-		return json({ ok: true, message: SUCCESS });
+		return json({ ok: true, message: SUCCESS, redirect: '/bedankt/' });
 	}
 
 	const apiKey = context.env.RESEND_API_KEY?.trim();
-	const from = (context.env.FROM_EMAIL || FROM_DEFAULT).trim();
-	if (!apiKey || !from) {
+	const from = resolveFrom(context.env.FROM_EMAIL);
+	if (!apiKey) {
 		return json(
 			{
 				ok: false,
@@ -180,16 +218,31 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 		)
 		.join('');
 
-	try {
-		await sendResend(apiKey, from, {
-			to: INBOX,
-			subject: 'Nieuwe offerteaanvraag – Partybus Nederland',
-			text: `Nieuwe aanvraag via Partybus Nederland\n\n${summaryText}`,
-			html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;"><p><strong>Nieuwe offerteaanvraag</strong></p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table></div>`,
-			replyTo: payload.email,
-		});
+	const ownerResult = await sendResend(apiKey, from, {
+		to: INBOX,
+		subject: 'Nieuwe offerteaanvraag – Partybus Nederland',
+		text: `Nieuwe aanvraag via Partybus Nederland\n\n${summaryText}`,
+		html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;"><p><strong>Nieuwe offerteaanvraag</strong></p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table></div>`,
+		replyTo: payload.email,
+	});
 
-		await sendResend(apiKey, from, {
+	if (!ownerResult.ok) {
+		const hint = isTestDomainRecipientLimit(ownerResult.detail)
+			? ' De Resend-account moet gekoppeld zijn aan jvhgroep@gmail.com om met het testdomein te kunnen mailen.'
+			: '';
+		return json(
+			{
+				ok: false,
+				error: `${ERROR_GENERIC}${hint}`,
+			},
+			502,
+		);
+	}
+
+	const sameAsInbox = payload.email.toLowerCase() === INBOX.toLowerCase();
+
+	if (!sameAsInbox) {
+		const customerResult = await sendResend(apiKey, from, {
 			to: payload.email,
 			subject: 'Bedankt voor je aanvraag bij Partybus Nederland',
 			text: [
@@ -207,11 +260,57 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 			html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;max-width:560px;"><p>Hoi ${escapeHtml(payload.name)},</p><p>Bedankt voor je aanvraag bij <strong>Partybus Nederland</strong>.</p><p>We hebben je bericht goed ontvangen en gaan ermee aan de slag.</p><p><strong>Samenvatting</strong></p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table><p style="margin-top:24px;">Met vriendelijke groet,<br>Het team van Partybus Nederland</p></div>`,
 			replyTo: INBOX,
 		});
-	} catch {
-		return json({ ok: false, error: ERROR_GENERIC }, 502);
+
+		if (!customerResult.ok) {
+			if (isTestDomainRecipientLimit(customerResult.detail)) {
+				// Testdomein: klantmail naar derden geblokkeerd → stuur bevestigingskopie naar inbox
+				await sendResend(apiKey, from, {
+					to: INBOX,
+					subject: `Klantbevestiging (preview) – bedoeld voor ${payload.email}`,
+					text: [
+						`Kon de bevestiging niet naar ${payload.email} sturen (Resend-testdomeinlimiet).`,
+						'Tot DNS/afzenderdomein live is, werkt klantmail alleen naar het Resend-accountadres.',
+						'',
+						'--- Bevestigingstekst voor de klant ---',
+						'',
+						`Hoi ${payload.name},`,
+						'Bedankt voor je aanvraag bij Partybus Nederland.',
+						summaryText,
+					].join('\n'),
+					html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;"><p><em>Preview:</em> bevestiging kon niet naar <strong>${escapeHtml(payload.email)}</strong> (Resend testdomein).</p><p>Hoi ${escapeHtml(payload.name)}, bedankt voor je aanvraag.</p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table></div>`,
+					replyTo: payload.email,
+				});
+			} else {
+				return json({ ok: false, error: ERROR_GENERIC }, 502);
+			}
+		}
+	} else {
+		// Zelfde inbox: aparte bevestigingsmail naast de internmelding
+		const confirmResult = await sendResend(apiKey, from, {
+			to: INBOX,
+			subject: 'Bedankt voor je aanvraag bij Partybus Nederland',
+			text: [
+				`Hoi ${payload.name},`,
+				'',
+				'Bedankt voor je aanvraag bij Partybus Nederland.',
+				'We hebben je bericht goed ontvangen en gaan ermee aan de slag.',
+				'',
+				'Samenvatting:',
+				summaryText,
+				'',
+				'Met vriendelijke groet,',
+				'Het team van Partybus Nederland',
+			].join('\n'),
+			html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;max-width:560px;"><p>Hoi ${escapeHtml(payload.name)},</p><p>Bedankt voor je aanvraag bij <strong>Partybus Nederland</strong>.</p><p>We hebben je bericht goed ontvangen en gaan ermee aan de slag.</p><p><strong>Samenvatting</strong></p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table><p style="margin-top:24px;">Met vriendelijke groet,<br>Het team van Partybus Nederland</p></div>`,
+			replyTo: INBOX,
+		});
+
+		if (!confirmResult.ok) {
+			return json({ ok: false, error: ERROR_GENERIC }, 502);
+		}
 	}
 
-	return json({ ok: true, message: SUCCESS });
+	return json({ ok: true, message: SUCCESS, redirect: '/bedankt/' });
 };
 
 export const onRequest: PagesFunction<Env> = async (context) => {

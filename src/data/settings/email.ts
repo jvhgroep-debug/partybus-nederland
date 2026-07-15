@@ -11,10 +11,10 @@ export const emailSettings = {
 	inbox: 'jvhgroep@gmail.com',
 
 	/**
-	 * Fallback-afzender als FROM_EMAIL niet is gezet.
-	 * Op Cloudflare Pages moet FROM_EMAIL altijd als env-var staan.
+	 * Preview / zonder DNS: Resend testdomein.
+	 * Partybus-domein (mail.partybusnederland.nl) pas na DNS-koppeling.
 	 */
-	fromDefault: 'Partybus Nederland <noreply@partybusnederland.nl>',
+	fromDefault: 'Partybus Nederland <onboarding@resend.dev>',
 
 	subjects: {
 		/** Bevestiging naar de klant */
