@@ -13,6 +13,6 @@ export const mainNav: NavLink[] = [
 ];
 
 export const primaryCta: NavLink = {
-	href: '/#offerte',
+	href: '/gratis-partybus-offertes-aanvragen/',
 	label: 'Gratis offertes',
 };

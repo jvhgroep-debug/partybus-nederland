@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QuoteForm from '../components/forms/QuoteForm.astro';
+import { whatsapp } from '../data/settings/whatsapp';
+import Button from '../components/buttons/Button.astro';
+---
+
+<BaseLayout
+	title="Gratis partybus offertes aanvragen"
+	description="Vraag gratis en vrijblijvend offertes aan voor een partybus. Vergelijk meerdere aanbieders via Partybus Nederland."
+>
+	<section class="section quote-page" aria-labelledby="quote-page-title">
+		<div class="section__inner quote-page__inner">
+			<div class="quote-page__intro reveal">
+				<p class="section__eyebrow">Offerteaanvraag</p>
+				<h1 id="quote-page-title" class="section__title">Gratis partybus offertes aanvragen</h1>
+				<p class="section__lead">
+					Vul je wensen in. Je ontvangt een bevestiging per e-mail en wij zetten je aanvraag door —
+					vrijblijvend en door heel Nederland.
+				</p>
+				<div class="quote-page__alt">
+					<Button href={whatsapp.href} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
+						Liever WhatsApp?
+					</Button>
+				</div>
+			</div>
+
+			<div class="quote-page__form reveal">
+				<QuoteForm sourcePage="/gratis-partybus-offertes-aanvragen/" />
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.quote-page {
+		padding-top: calc(var(--header-height) + 2.5rem);
+		padding-bottom: clamp(3.5rem, 8vw, 6rem);
+	}
+
+	.quote-page__inner {
+		display: grid;
+		gap: 2.25rem;
+	}
+
+	@media (min-width: 960px) {
+		.quote-page__inner {
+			grid-template-columns: 0.9fr 1.1fr;
+			gap: 3rem;
+			align-items: start;
+		}
+	}
+
+	.quote-page .section__title {
+		max-width: 14ch;
+	}
+
+	.quote-page__alt {
+		margin-top: 1.5rem;
+	}
+
+	.quote-page__form {
+		padding: 1.6rem 1.4rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+	}
+
+	@media (max-width: 640px) {
+		.quote-page__alt :global(.btn) {
+			width: 100%;
+		}
+	}
+</style>
