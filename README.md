@@ -10,11 +10,16 @@ npm run build
 npm run preview
 ```
 
+Voor het API-endpoint lokaal (Pages Function):
+
+```sh
+npx wrangler pages dev dist
+```
+
 ## Offerteformulier
 
-- Homepage: `/#offerte`
-- Contact: `/contact/#offerte`
-- API: `POST /api/offerte`
+- Definitieve URL: `/gratis-partybus-offertes-aanvragen/`
+- API: `POST /api/offerte` (`functions/api/offerte.ts`)
 
 Zie [docs/EMAIL-SETUP.md](docs/EMAIL-SETUP.md) voor Resend + Cloudflare environment variables:
 
@@ -27,5 +32,5 @@ Aanvragen gaan naar `jvhgroep@gmail.com` met klantbevestiging.
 
 - Repository: `jvhgroep-debug/partybus-nederland`
 - Build command: `npm run build`
+- Build output directory: `dist`
 - Node: `22.12.0` (`.node-version`)
-- Adapter: `@astrojs/cloudflare`

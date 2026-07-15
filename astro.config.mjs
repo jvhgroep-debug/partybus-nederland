@@ -1,16 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import cloudflare from '@astrojs/cloudflare';
 
+// Static site for Cloudflare Pages. The quote API lives in /functions (Pages Functions).
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://www.partybusnederland.nl',
-	adapter: cloudflare({
-		imageService: 'compile',
-	}),
-	session: {
-		driver: {
-			entrypoint: 'unstorage/drivers/null',
-		},
-	},
+	output: 'static',
 });
