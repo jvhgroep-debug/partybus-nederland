@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import Button from '../../../components/buttons/Button.astro';
 import GuideBreadcrumbs from '../../../components/guides/GuideBreadcrumbs.astro';
 import GuideHero from '../../../components/guides/GuideHero.astro';
 import GuideFactorGrid from '../../../components/guides/GuideFactorGrid.astro';
@@ -8,6 +7,8 @@ import GuideChecklist from '../../../components/guides/GuideChecklist.astro';
 import GuideScenarioList from '../../../components/guides/GuideScenarioList.astro';
 import GuideFaqList from '../../../components/guides/GuideFaqList.astro';
 import GuideRelatedLinks from '../../../components/guides/GuideRelatedLinks.astro';
+import GuideCta from '../../../components/guides/GuideCta.astro';
+import GuideImage from '../../../components/guides/GuideImage.astro';
 import {
 	noFixedPriceReasons,
 	pricingBreadcrumbs,
@@ -19,6 +20,7 @@ import {
 	quoteChecklist,
 	savingsTips,
 } from '../../../data/guides/pricingGuide';
+import { guideImagePool } from '../../../data/guides/guideImages';
 import {
 	buildBreadcrumbSchema,
 	buildFaqPageSchema,
@@ -26,6 +28,7 @@ import {
 } from '../../../lib/guides/schema';
 
 const seo = pricingGuideSeo;
+const img = guideImagePool;
 
 const jsonLd = [
 	buildWebPageSchema({
@@ -65,6 +68,10 @@ const jsonLd = [
 			secondaryLabel="Algemene partybus-gids"
 		/>
 
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.luxeExterieur} class="reveal" />
+		</div>
+
 		<GuideFactorGrid
 			eyebrow="Prijsfactoren"
 			title="Belangrijkste factoren die de prijs bepalen"
@@ -72,6 +79,10 @@ const jsonLd = [
 			items={pricingFactorsDetailed}
 			columns={3}
 		/>
+
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.onderweg} class="reveal" />
+		</div>
 
 		<section class="section" aria-labelledby="no-fixed-price">
 			<div class="section__inner">
@@ -94,12 +105,20 @@ const jsonLd = [
 			</div>
 		</section>
 
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.interieur} class="reveal" />
+		</div>
+
 		<GuideScenarioList
 			eyebrow="Voorbeeldsituaties"
 			title="Zo ziet een rit eruit — zonder bedragen"
 			lead="Deze scenario’s helpen je plannen. Ze geven geen prijsindicatie in euro’s, wel een beeld van wat je in de aanvraag zet."
 			items={pricingScenarios}
 		/>
+
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.groepInstapt} class="reveal" />
+		</div>
 
 		<GuideFactorGrid
 			eyebrow="Bespaartips"
@@ -109,12 +128,20 @@ const jsonLd = [
 			columns={3}
 		/>
 
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.festivalAankomst} class="reveal" />
+		</div>
+
 		<GuideChecklist
 			eyebrow="Checklist"
 			title="Checklist voor een goede offerteaanvraag"
 			lead="Hoe completer je aanvraag, hoe bruikbaarder de prijsvoorstellen."
 			items={quoteChecklist}
 		/>
+
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.terugreis} class="reveal" />
+		</div>
 
 		<GuideFaqList
 			title="Veelgestelde vragen over partybus-prijzen"
@@ -127,19 +154,16 @@ const jsonLd = [
 			lead="Van offerte tot steden, festivals en de algemene gids."
 			items={pricingInternalLinks}
 		/>
-
-		<section class="section" aria-labelledby="pricing-cta">
-			<div class="section__inner pricing-guide__cta reveal">
-				<h2 id="pricing-cta" class="section__title">Klaar om offertes te vergelijken?</h2>
-				<p class="section__lead">
-					Gebruik de checklist hierboven en vraag vrijblijvend meerdere prijsvoorstellen aan.
-				</p>
-				<Button href="/gratis-partybus-offertes-aanvragen/" size="lg">
-					Gratis offertes aanvragen
-				</Button>
-			</div>
-		</section>
 	</article>
+
+	<GuideCta
+		eyebrow="Prijzen"
+		title="Klaar om offertes te vergelijken?"
+		lead="Gebruik de checklist hierboven en vraag vrijblijvend meerdere prijsvoorstellen aan."
+		titleId="pricing-cta"
+		image={img.cta}
+		showWhatsapp={false}
+	/>
 </BaseLayout>
 
 <style>
@@ -184,7 +208,7 @@ const jsonLd = [
 		background: var(--color-primary);
 	}
 
-	.pricing-guide__cta {
-		text-align: center;
+	.guide-visual {
+		padding-block: clamp(1rem, 3vw, 2rem);
 	}
 </style>

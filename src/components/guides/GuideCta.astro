@@ -1,37 +1,50 @@
 ---
 import Button from '../buttons/Button.astro';
+import GuideImage from './GuideImage.astro';
+import type { GuideImageAsset } from '../../data/guides/guideImages';
 
 interface Props {
 	title: string;
 	lead: string;
+	eyebrow?: string;
 	primaryHref?: string;
 	primaryLabel?: string;
-	whatsappHref: string;
+	whatsappHref?: string;
 	whatsappLabel?: string;
 	titleId?: string;
+	image?: GuideImageAsset;
+	showWhatsapp?: boolean;
 }
 
 const {
 	title,
 	lead,
+	eyebrow,
 	primaryHref = '/gratis-partybus-offertes-aanvragen/',
 	primaryLabel = 'Gratis offertes aanvragen',
 	whatsappHref,
 	whatsappLabel = 'WhatsApp direct',
 	titleId = 'guide-cta-title',
+	image,
+	showWhatsapp = Boolean(whatsappHref),
 } = Astro.props;
 ---
 
 <section class="guide-cta" aria-labelledby={titleId}>
 	<div class="guide-cta__inner section__inner reveal">
-		<p class="guide-cta__eyebrow">Festivalvervoer</p>
+		{image && <GuideImage image={image} variant="cta" class="guide-cta__image" />}
+		{eyebrow && <p class="guide-cta__eyebrow">{eyebrow}</p>}
 		<h2 id={titleId} class="guide-cta__title">{title}</h2>
 		<p class="guide-cta__lead">{lead}</p>
 		<div class="guide-cta__actions">
 			<Button href={primaryHref} size="lg">{primaryLabel}</Button>
-			<Button href={whatsappHref} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
-				{whatsappLabel}
-			</Button>
+			{
+				showWhatsapp && whatsappHref && (
+					<Button href={whatsappHref} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
+						{whatsappLabel}
+					</Button>
+				)
+			}
 		</div>
 	</div>
 </section>
@@ -47,6 +60,11 @@ const {
 	.guide-cta__inner {
 		padding-block: clamp(4rem, 9vw, 6.5rem);
 		text-align: center;
+	}
+
+	.guide-cta__image {
+		margin: 0 auto 2rem;
+		max-width: 56rem;
 	}
 
 	.guide-cta__eyebrow {

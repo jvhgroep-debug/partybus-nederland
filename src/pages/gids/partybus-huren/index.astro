@@ -2,18 +2,22 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Button from '../../../components/buttons/Button.astro';
 import InfoGuide from '../../../components/shared/InfoGuide.astro';
+import GuideImage from '../../../components/guides/GuideImage.astro';
+import GuideCta from '../../../components/guides/GuideCta.astro';
 import {
 	bookingTips,
 	compareChecklist,
 	pricingFactors,
 	occasionGuides,
 } from '../../../data/guides/partybusInfo';
+import { guideImagePool } from '../../../data/guides/guideImages';
 import { homeFaqs } from '../../../data/settings/faq-home';
 
 const title = 'Partybus huren: complete gids voor Nederland';
 const description =
 	'Alles over partybus huren in Nederland: prijzen zonder vaste tarieven, tips, bestemmingen, festivals, capaciteit tot 80 personen en waar je op let bij offertes.';
 const canonical = 'https://www.partybusnederland.nl/gids/partybus-huren/';
+const img = guideImagePool;
 
 const faqSchema = {
 	'@context': 'https://schema.org',
@@ -58,6 +62,10 @@ const faqSchema = {
 			</div>
 		</header>
 
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.luxeExterieur} class="reveal" />
+		</div>
+
 		<section class="section" aria-labelledby="guide-what">
 			<div class="section__inner guide__prose reveal">
 				<h2 id="guide-what">Wat is een partybus precies?</h2>
@@ -74,6 +82,10 @@ const faqSchema = {
 			</div>
 		</section>
 
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.groepInstapt} class="reveal" />
+		</div>
+
 		<InfoGuide
 			eyebrow="Prijzen"
 			title="Waar hangt de prijs van een partybus van af?"
@@ -82,12 +94,20 @@ const faqSchema = {
 			checklist={compareChecklist}
 		/>
 
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.interieur} class="reveal" />
+		</div>
+
 		<InfoGuide
 			eyebrow="Tips"
 			title="Praktische tips voor een soepele rit"
 			lead="Met een goede voorbereiding krijg je relevantere offertes en een rustiger feestavond."
 			cards={bookingTips}
 		/>
+
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.onderweg} class="reveal" />
+		</div>
 
 		<section class="section" aria-labelledby="guide-occasions">
 			<div class="section__inner">
@@ -111,6 +131,10 @@ const faqSchema = {
 			</div>
 		</section>
 
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.festivalterrein} class="reveal" />
+		</div>
+
 		<section class="section" aria-labelledby="guide-destinations">
 			<div class="section__inner guide__prose reveal">
 				<h2 id="guide-destinations">Bestemmingen, festivals en routes</h2>
@@ -130,6 +154,10 @@ const faqSchema = {
 				</p>
 			</div>
 		</section>
+
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.festivalAankomst} class="reveal" />
+		</div>
 
 		<section class="section" aria-labelledby="guide-faq">
 			<div class="section__inner guide__prose reveal">
@@ -151,17 +179,19 @@ const faqSchema = {
 			</div>
 		</section>
 
-		<section class="section" aria-labelledby="guide-cta">
-			<div class="section__inner guide__cta reveal">
-				<h2 id="guide-cta" class="section__title">Klaar om te vergelijken?</h2>
-				<p class="section__lead">
-					Gebruik de informatie hierboven, vraag daarna vrijblijvend meerdere offertes aan en kies
-					zelf de beste optie.
-				</p>
-				<Button href="/gratis-partybus-offertes-aanvragen/" size="lg">Gratis offertes aanvragen</Button>
-			</div>
-		</section>
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.terugreis} class="reveal" />
+		</div>
 	</article>
+
+	<GuideCta
+		eyebrow="Partybus huren"
+		title="Klaar om te vergelijken?"
+		lead="Gebruik de informatie hierboven, vraag daarna vrijblijvend meerdere offertes aan en kies zelf de beste optie."
+		titleId="guide-cta"
+		image={img.cta}
+		showWhatsapp={false}
+	/>
 </BaseLayout>
 
 <style>
@@ -245,8 +275,8 @@ const faqSchema = {
 		line-height: 1.65;
 	}
 
-	.guide__cta {
-		text-align: center;
+	.guide-visual {
+		padding-block: clamp(1rem, 3vw, 2rem);
 	}
 
 	@media (max-width: 640px) {

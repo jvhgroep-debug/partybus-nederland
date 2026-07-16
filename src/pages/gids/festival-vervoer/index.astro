@@ -7,6 +7,7 @@ import GuideChecklist from '../../../components/guides/GuideChecklist.astro';
 import GuideFaqList from '../../../components/guides/GuideFaqList.astro';
 import GuideRelatedLinks from '../../../components/guides/GuideRelatedLinks.astro';
 import GuideCta from '../../../components/guides/GuideCta.astro';
+import GuideImage from '../../../components/guides/GuideImage.astro';
 import {
 	festivalBenefits,
 	festivalBreadcrumbs,
@@ -20,6 +21,7 @@ import {
 	festivalWhy,
 	topFestivals,
 } from '../../../data/guides/festivalGuide';
+import { guideImagePool } from '../../../data/guides/guideImages';
 import {
 	buildBreadcrumbSchema,
 	buildFaqPageSchema,
@@ -27,6 +29,7 @@ import {
 } from '../../../lib/guides/schema';
 
 const seo = festivalGuideSeo;
+const img = guideImagePool;
 
 const jsonLd = [
 	buildWebPageSchema({
@@ -86,6 +89,10 @@ const jsonLd = [
 			</div>
 		</section>
 
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.groepInstapt} class="reveal" />
+		</div>
+
 		<GuideFactorGrid
 			eyebrow="Voordelen"
 			title="Voordelen van festivalvervoer per partybus"
@@ -93,6 +100,10 @@ const jsonLd = [
 			items={festivalBenefits}
 			columns={3}
 		/>
+
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.onderweg} class="reveal" />
+		</div>
 
 		<GuideFactorGrid
 			eyebrow="Topfestivals"
@@ -102,6 +113,10 @@ const jsonLd = [
 			columns={2}
 		/>
 
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.festivalAankomst} class="reveal" />
+		</div>
+
 		<GuideFactorGrid
 			eyebrow="Tips"
 			title="Praktische tips voor festivalvervoer"
@@ -110,6 +125,10 @@ const jsonLd = [
 			columns={3}
 		/>
 
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.interieur} class="reveal" />
+		</div>
+
 		<GuideChecklist
 			eyebrow="Checklist"
 			title="Checklist voor je festivalaanvraag"
@@ -117,11 +136,19 @@ const jsonLd = [
 			items={festivalChecklist}
 		/>
 
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.festivalterrein} class="reveal" />
+		</div>
+
 		<GuideFaqList
 			title="Veelgestelde vragen over festivalvervoer"
 			lead="Antwoorden op de vragen die we het vaakst horen over prijzen, ophalen, terugreis en meer."
 			items={festivalFaqs}
 		/>
+
+		<div class="guide-visual section__inner">
+			<GuideImage image={img.terugreis} class="reveal" />
+		</div>
 
 		<GuideRelatedLinks
 			eyebrow="Steden"
@@ -139,11 +166,13 @@ const jsonLd = [
 	</article>
 
 	<GuideCta
+		eyebrow="Festivalvervoer"
 		title={seo.ctaTitle}
 		lead={seo.ctaLead}
 		whatsappHref={festivalWhatsappHref}
 		whatsappLabel="WhatsApp direct"
 		titleId="festival-cta"
+		image={img.cta}
 	/>
 </BaseLayout>
 
@@ -164,5 +193,9 @@ const jsonLd = [
 		margin: 0 0 1rem;
 		color: var(--color-text-muted);
 		line-height: 1.75;
+	}
+
+	.guide-visual {
+		padding-block: clamp(1rem, 3vw, 2rem);
 	}
 </style>
