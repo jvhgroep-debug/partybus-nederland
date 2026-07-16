@@ -3,6 +3,13 @@ import type { CityPageData } from './types';
 import { whatsapp } from '../settings/whatsapp';
 
 type InventoryCity = (typeof cityInventory.cities)[number];
+type InventoryCitySeo = InventoryCity & {
+	seoTitle?: string;
+	metaDescription?: string;
+	heroTitle?: string;
+	heroSubtitle?: string;
+	h1?: string;
+};
 
 export const PILOT_CITY_SLUGS = [
 	'amsterdam',
@@ -38,25 +45,30 @@ function relatedSlugs(currentSlug: string): string[] {
 }
 
 export function buildPilotCityPageData(slug: string): CityPageData | null {
-	const city = cityBySlug(slug);
+	const city = cityBySlug(slug) as InventoryCitySeo | undefined;
 	if (!city) return null;
 
-	const canonical = city.canonical || city.url;
+	const canonical = city.canonical;
 	const cityName = city.city;
 	const landmark = city.landmark;
+	const metaTitle = city.seoTitle || `Partybus huren ${cityName} | Gratis offertes vergelijken`;
+	const metaDescription =
+		city.metaDescription ||
+		`Partybus huren in ${cityName}? Vergelijk gratis meerdere aanbieders voor feesten en groepsritten rond ${landmark}.`;
+	const h1 = city.h1 || `Partybus huren ${cityName}`;
+	const heroSubtitle =
+		city.heroSubtitle || `Vergelijk gratis meerdere partybus-aanbieders voor een sfeervolle rit door ${cityName}.`;
 
 	return {
 		slug: city.slug,
 		name: cityName,
-		path: `/steden/partybus-huren-${city.slug}/`,
+		path: new URL(city.url).pathname,
 		canonical,
-		metaTitle: `Partybus huren ${cityName} | Gratis offertes vergelijken`,
-		metaDescription:
-			city.description ||
-			`Partybus huren in ${cityName}? Vergelijk gratis meerdere aanbieders voor feesten en groepsritten.`,
-		h1: `Partybus huren ${cityName}`,
+		metaTitle,
+		metaDescription,
+		h1,
 		hero: {
-			subtitle: `Vergelijk gratis meerdere partybus-aanbieders voor een sfeervolle rit door ${cityName}.`,
+			subtitle: heroSubtitle,
 			image: '/images/hero-partybus.png',
 			imageAlt: city.imageAlt,
 			whatsappHref: whatsapp.href,

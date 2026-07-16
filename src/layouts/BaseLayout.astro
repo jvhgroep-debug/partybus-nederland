@@ -11,10 +11,33 @@ interface Props {
 	canonical?: string;
 	titleExact?: boolean;
 	preloadImage?: string;
+	ogTitle?: string;
+	ogDescription?: string;
+	ogUrl?: string;
+	ogImage?: string;
+	twitterCard?: string;
+	twitterTitle?: string;
+	twitterDescription?: string;
+	twitterImage?: string;
 	jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title = site.name, description, canonical, titleExact = false, preloadImage, jsonLd } = Astro.props;
+const {
+	title = site.name,
+	description,
+	canonical,
+	titleExact = false,
+	preloadImage,
+	ogTitle,
+	ogDescription,
+	ogUrl,
+	ogImage,
+	twitterCard = 'summary_large_image',
+	twitterTitle,
+	twitterDescription,
+	twitterImage,
+	jsonLd,
+} = Astro.props;
 const pageTitle = titleExact
 	? title
 	: title === site.name
@@ -27,6 +50,13 @@ const jsonLdPayload = jsonLd
 		? jsonLd
 		: [jsonLd]
 	: [];
+const socialTitle = ogTitle || pageTitle;
+const socialDescription = ogDescription || description;
+const socialUrl = ogUrl || canonical;
+const socialImage = ogImage || heroPreload;
+const twTitle = twitterTitle || socialTitle;
+const twDescription = twitterDescription || socialDescription;
+const twImage = twitterImage || socialImage;
 ---
 
 <!doctype html>
@@ -39,6 +69,14 @@ const jsonLdPayload = jsonLd
 		<meta name="generator" content={Astro.generator} />
 		{description && <meta name="description" content={description} />}
 		{canonical && <link rel="canonical" href={canonical} />}
+		{socialTitle && <meta property="og:title" content={socialTitle} />}
+		{socialDescription && <meta property="og:description" content={socialDescription} />}
+		{socialUrl && <meta property="og:url" content={socialUrl} />}
+		{socialImage && <meta property="og:image" content={socialImage} />}
+		{twTitle && <meta name="twitter:title" content={twTitle} />}
+		{twDescription && <meta name="twitter:description" content={twDescription} />}
+		{twImage && <meta name="twitter:image" content={twImage} />}
+		<meta name="twitter:card" content={twitterCard} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
