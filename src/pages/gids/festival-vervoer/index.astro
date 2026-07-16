@@ -42,6 +42,7 @@ const jsonLd = [
 	description={seo.description}
 	canonical={seo.canonical}
 	titleExact={true}
+	preloadImage="/images/hero-partybus.png"
 	ogTitle={seo.title}
 	ogDescription={seo.description}
 	ogUrl={seo.canonical}
@@ -52,17 +53,22 @@ const jsonLd = [
 	jsonLd={jsonLd}
 >
 	<article class="festival-guide">
-		<GuideBreadcrumbs items={festivalBreadcrumbs} />
-
 		<GuideHero
 			eyebrow={seo.eyebrow}
 			title={seo.h1}
 			lead={seo.lead}
+			image="/images/hero-partybus.png"
+			imageWidth={1536}
+			imageHeight={1024}
 			primaryHref="/gratis-partybus-offertes-aanvragen/"
 			primaryLabel="Gratis offertes aanvragen"
 			secondaryHref="/gids/partybus-kosten/"
 			secondaryLabel="Bekijk de prijzengids"
 		/>
+
+		<div class="festival-guide__crumbs">
+			<GuideBreadcrumbs items={festivalBreadcrumbs} />
+		</div>
 
 		<section class="section" aria-labelledby="festival-why">
 			<div class="section__inner">
@@ -137,6 +143,10 @@ const jsonLd = [
 <style>
 	.festival-guide :global(.section) {
 		padding-block: clamp(3.5rem, 8vw, 6.5rem);
+	}
+
+	.festival-guide__crumbs {
+		margin-top: 0.5rem;
 	}
 
 	.festival-guide__prose {
