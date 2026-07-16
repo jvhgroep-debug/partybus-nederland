@@ -14,6 +14,16 @@ export const publishedCities: readonly PublishedCity[] = [
 		name: 'Amsterdam',
 		path: '/steden/partybus-huren-amsterdam/',
 	},
+	{
+		slug: 'rotterdam',
+		name: 'Rotterdam',
+		path: '/steden/partybus-huren-rotterdam/',
+	},
+	{
+		slug: 'breda',
+		name: 'Breda',
+		path: '/steden/partybus-huren-breda/',
+	},
 ] as const;
 
 export function getPublishedCity(slug: string): PublishedCity | undefined {

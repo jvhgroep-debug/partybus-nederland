@@ -1,6 +1,7 @@
 ---
 import type { CityPageData } from '../../data/cities/types';
 import { getRelatedCities } from '../../data/cities/registry';
+import { resolveCityHeroImage } from '../../lib/cityImages';
 import CityHero from './CityHero.astro';
 import CityIntro from './CityIntro.astro';
 import CityWhy from './CityWhy.astro';
@@ -18,14 +19,17 @@ interface Props {
 
 const { city } = Astro.props;
 const relatedCities = getRelatedCities(city.slug, city.relatedCitySlugs);
+const heroImage = resolveCityHeroImage(city.slug);
 ---
 
 <div class="master-city">
 	<CityHero
 		title={city.h1}
 		subtitle={city.hero.subtitle}
-		image={city.hero.image}
-		imageAlt={city.hero.imageAlt}
+		image={heroImage.src}
+		imageAlt={heroImage.alt}
+		imageWidth={heroImage.width}
+		imageHeight={heroImage.height}
 		whatsappHref={city.hero.whatsappHref ?? city.cta.whatsappHref}
 		primaryHref="/gratis-partybus-offertes-aanvragen/"
 		trustItems={city.hero.trustItems}

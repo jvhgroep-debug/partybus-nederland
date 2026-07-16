@@ -6,6 +6,8 @@ interface Props {
 	subtitle: string;
 	image: string;
 	imageAlt: string;
+	imageWidth?: number;
+	imageHeight?: number;
 	whatsappHref: string;
 	primaryHref?: string;
 	trustItems?: readonly string[];
@@ -16,6 +18,8 @@ const {
 	subtitle,
 	image,
 	imageAlt,
+	imageWidth = 1536,
+	imageHeight = 1024,
 	whatsappHref,
 	primaryHref = '/gratis-partybus-offertes-aanvragen/',
 	trustItems = [],
@@ -26,7 +30,14 @@ const trustIcons = ['compare', 'clock', 'group', 'nl'] as const;
 
 <section class="city-hero" aria-labelledby="city-hero-title">
 	<div class="city-hero__media">
-		<img src={image} alt={imageAlt} width="1536" height="1024" fetchpriority="high" decoding="async" />
+		<img
+			src={image}
+			alt={imageAlt}
+			width={imageWidth}
+			height={imageHeight}
+			fetchpriority="high"
+			decoding="async"
+		/>
 		<div class="city-hero__veil" aria-hidden="true"></div>
 	</div>
 	<div class="city-hero__content section__inner">

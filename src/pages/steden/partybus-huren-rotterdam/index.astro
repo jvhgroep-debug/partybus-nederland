@@ -1,15 +1,10 @@
 ---
 import CityLayout from '../../../layouts/CityLayout.astro';
 import MasterCityTemplate from '../../../components/cities/MasterCityTemplate.astro';
-import { amsterdamCity as city } from '../../../data/cities/amsterdam';
+import { rotterdamCity as city } from '../../../data/cities/rotterdam';
 import { resolveCityHeroImage } from '../../../lib/cityImages';
 
 const heroImage = resolveCityHeroImage(city.slug);
-
-/**
- * Amsterdam = official Master City Template page.
- * Future cities reuse MasterCityTemplate + CityPageData.
- */
 
 const webPageLd = {
 	'@context': 'https://schema.org',
