@@ -6,8 +6,11 @@ import citiesData from '../data/cities/cities.json';
 const PROJECT_ROOT = process.cwd();
 const CITIES_PUBLIC_DIR = path.join(PROJECT_ROOT, 'public', 'images', 'cities');
 
-/** Safe fallback when a city-specific file is not available yet. */
+/** Homepage hero — same asset as src/components/home/Hero.astro */
 export const DEFAULT_CITY_FALLBACK_IMAGE = '/images/hero-partybus.png';
+
+/** Temporary: all city pages use the homepage hero until unique images are approved. */
+export const USE_HOMEPAGE_HERO_FOR_ALL_CITIES = true;
 
 export const CITY_HERO_IMAGE_WIDTH = 1536;
 export const CITY_HERO_IMAGE_HEIGHT = 1024;
@@ -38,6 +41,10 @@ function cityImageExists(filename: string): boolean {
  * 3. Falls back to the default partybus image so the hero never stays empty.
  */
 export function resolveCityImagePath(slug: string): string {
+	if (USE_HOMEPAGE_HERO_FOR_ALL_CITIES) {
+		return DEFAULT_CITY_FALLBACK_IMAGE;
+	}
+
 	const record = getCityImageRecord(slug);
 	const preferredFilename = record?.imageFilename ?? `partybus-${slug}.webp`;
 
