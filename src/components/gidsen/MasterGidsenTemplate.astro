@@ -1,0 +1,118 @@
+---
+import GuideBreadcrumbs from '../guides/GuideBreadcrumbs.astro';
+import GuideFactorGrid from '../guides/GuideFactorGrid.astro';
+import GuideChecklist from '../guides/GuideChecklist.astro';
+import GuideFaqList from '../guides/GuideFaqList.astro';
+import GuideRelatedLinks from '../guides/GuideRelatedLinks.astro';
+import GuideCta from '../guides/GuideCta.astro';
+import GuideImageSection from '../guides/GuideImageSection.astro';
+import ReadAlso from './ReadAlso.astro';
+import type { GidsenPageData } from '../../data/gidsen/types';
+import { guideImagePool } from '../../data/guides/guideImages';
+import { legacyGuideLinks } from '../../data/gidsen/shared';
+
+interface Props {
+	page: GidsenPageData;
+}
+
+const { page } = Astro.props;
+const seo = page.seo;
+const img = guideImagePool;
+---
+
+<article class="gidsen-page">
+	<GuideBreadcrumbs items={page.breadcrumbs} />
+
+	<header class="gidsen-page__hero section__inner">
+		<p class="section__eyebrow">{seo.eyebrow}</p>
+		<h1 class="gidsen-page__title">{seo.h1}</h1>
+		<p class="gidsen-page__lead">{seo.lead}</p>
+		<div class="gidsen-page__actions">
+			<a class="btn btn--primary btn--lg" href="/gratis-partybus-offertes-aanvragen/">Gratis offertes aanvragen</a>
+			<a class="btn btn--ghost btn--lg" href="/gidsen/">Alle gidsen</a>
+		</div>
+	</header>
+
+	{page.visualSections.map((section) => <GuideImageSection {...section} />)}
+
+	<GuideFactorGrid title="Praktische tips" items={page.tips} columns={3} hideHead={true} />
+
+	<GuideChecklist title="Checklist" items={page.checklist} hideHead={true} />
+
+	<GuideFaqList
+		title="Veelgestelde vragen"
+		lead="Antwoorden op vragen die we vaak horen — zonder vaste prijzen of beschikbaarheidsgaranties."
+		items={page.faqs}
+	/>
+
+	<ReadAlso
+		guides={page.relatedGuideLinks}
+		cities={page.cityLinks}
+		routes={page.routeLinks}
+	/>
+
+	<GuideRelatedLinks
+		eyebrow="Hoofdgidsen"
+		title="Originele gidsen op Partybus Nederland"
+		lead="Deze pagina's op /gids/ blijven beschikbaar naast de kennisbank."
+		items={[...legacyGuideLinks]}
+	/>
+
+	<GuideRelatedLinks
+		eyebrow="Meer uit de kennisbank"
+		title="Gerelateerde gidsen"
+		lead="Verdiep je verder in onderwerpen die passen bij deze pagina."
+		items={page.hubLinks}
+	/>
+</article>
+
+<GuideCta
+	eyebrow={seo.eyebrow}
+	title={seo.ctaTitle}
+	lead={seo.ctaLead}
+	titleId="gidsen-cta"
+	image={img.cta}
+	showWhatsapp={false}
+/>
+
+<style>
+	.gidsen-page :global(.section) {
+		padding-block: clamp(3rem, 7vw, 5.5rem);
+	}
+
+	.gidsen-page__hero {
+		padding-top: calc(var(--header-height) + 1.5rem);
+		padding-bottom: 2rem;
+	}
+
+	.gidsen-page__title {
+		margin: 0 0 1rem;
+		max-width: 20ch;
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 800;
+		line-height: 1.06;
+		letter-spacing: -0.03em;
+	}
+
+	.gidsen-page__lead {
+		margin: 0 0 1.5rem;
+		max-width: 44rem;
+		font-size: 1.08rem;
+		line-height: 1.65;
+		color: color-mix(in srgb, var(--color-text) 88%, transparent);
+	}
+
+	.gidsen-page__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	@media (max-width: 640px) {
+		.gidsen-page__actions :global(.btn) {
+			width: 100%;
+			justify-content: center;
+		}
+	}
+</style>

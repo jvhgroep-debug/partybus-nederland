@@ -11,6 +11,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "build:guide-images": "node scripts/build-guide-images.mjs",
+    "validate:gidsen": "node scripts/validate-gidsen-wordcount.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

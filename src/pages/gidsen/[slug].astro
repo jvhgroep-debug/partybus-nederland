@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MasterGidsenTemplate from '../../components/gidsen/MasterGidsenTemplate.astro';
+import { getAllGidsenSlugs, getGidsenDefinition } from '../../data/gidsen/registry';
+import { buildGidsenPage } from '../../data/gidsen/buildPage';
+import {
+	buildArticleSchema,
+	buildBreadcrumbSchema,
+	buildFaqPageSchema,
+	buildWebPageSchema,
+} from '../../lib/guides/schema';
+
+export function getStaticPaths() {
+	return getAllGidsenSlugs().map((slug) => {
+		const def = getGidsenDefinition(slug)!;
+		const page = buildGidsenPage(def);
+		return { params: { slug }, props: { page } };
+	});
+}
+
+interface Props {
+	page: ReturnType<typeof buildGidsenPage>;
+}
+
+const { page } = Astro.props;
+const seo = page.seo;
+const ogImage = seo.ogImage ?? 'https://www.partybusnederland.nl/images/hero-partybus.png';
+
+const jsonLd = [
+	buildWebPageSchema({
+		name: seo.h1,
+		description: seo.description,
+		url: page.canonical,
+	}),
+	buildArticleSchema({
+		headline: seo.h1,
+		description: seo.description,
+		url: page.canonical,
+	}),
+	buildBreadcrumbSchema(page.breadcrumbs),
+	buildFaqPageSchema(page.faqs),
+];
+---
+
+<BaseLayout
+	title={seo.title}
+	description={seo.description}
+	canonical={page.canonical}
+	titleExact={true}
+	ogTitle={seo.title}
+	ogDescription={seo.description}
+	ogUrl={page.canonical}
+	ogImage={ogImage}
+	twitterTitle={seo.title}
+	twitterDescription={seo.description}
+	twitterImage={ogImage}
+	jsonLd={jsonLd}
+>
+	<MasterGidsenTemplate page={page} />
+</BaseLayout>

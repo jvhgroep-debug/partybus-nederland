@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideBreadcrumbs from '../../components/guides/GuideBreadcrumbs.astro';
+import GuideRelatedLinks from '../../components/guides/GuideRelatedLinks.astro';
+import GuideCta from '../../components/guides/GuideCta.astro';
+import { hubGuideLinks, legacyGuideLinks, veelGezochteVragen, popularDestinations, popularRoutes, popularFestivals } from '../../data/gidsen/shared';
+import { gidsenHubMeta, gidsenPath } from '../../data/gidsen/registry';
+import { guideImagePool } from '../../data/guides/guideImages';
+import { buildBreadcrumbSchema, buildWebPageSchema } from '../../lib/guides/schema';
+
+const hub = gidsenHubMeta;
+
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Kennisbank' },
+] as const;
+
+const jsonLd = [
+	buildWebPageSchema({ name: hub.h1, description: hub.description, url: hub.canonical }),
+	buildBreadcrumbSchema(breadcrumbs),
+];
+---
+
+<BaseLayout
+	title={hub.title}
+	description={hub.description}
+	canonical={hub.canonical}
+	titleExact={true}
+	ogTitle={hub.title}
+	ogDescription={hub.description}
+	ogUrl={hub.canonical}
+	jsonLd={jsonLd}
+>
+	<article class="gidsen-hub">
+		<GuideBreadcrumbs items={breadcrumbs} />
+
+		<header class="gidsen-hub__hero section__inner">
+			<p class="section__eyebrow">{hub.eyebrow}</p>
+			<h1 class="gidsen-hub__title">{hub.h1}</h1>
+			<p class="gidsen-hub__lead">{hub.lead}</p>
+		</header>
+
+		<section class="section" aria-labelledby="gidsen-overzicht">
+			<div class="section__inner">
+				<div class="section__head reveal">
+					<p class="section__eyebrow">Alle gidsen</p>
+					<h2 id="gidsen-overzicht" class="section__title">20 uitgebreide gidsen over partybus huren</h2>
+					<p class="section__lead">
+						Praktische informatie over prijzen, regels, veiligheid, gelegenheden en routes — zonder vaste
+						tarieven of beschikbaarheidsgaranties.
+					</p>
+				</div>
+				<div class="gidsen-hub__grid">
+					{
+						hubGuideLinks.map((guide) => (
+							<a class="gidsen-hub__card reveal" href={gidsenPath(guide.slug)}>
+								<h3>{guide.label}</h3>
+								<p>{guide.description}</p>
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<GuideRelatedLinks
+			eyebrow="Veel gezocht"
+			title="Veel gezochte vragen"
+			lead="Snel naar het juiste onderwerp in de kennisbank."
+			items={veelGezochteVragen.map((item) => ({
+				label: item.question,
+				href: item.href,
+			}))}
+		/>
+
+		<GuideRelatedLinks
+			eyebrow="Bestemmingen"
+			title="Populaire steden & routes"
+			lead="Van vertrekstad naar bestemming — met lokale context en tips."
+			items={[
+				...popularDestinations.map((d) => ({ label: d.label, href: d.href })),
+				...popularRoutes.map((r) => ({ label: r.label, href: r.href })),
+			]}
+		/>
+
+		<GuideRelatedLinks
+			eyebrow="Festivals"
+			title="Populaire festivals"
+			lead="Groepsvervoer naar grote festivals in Nederland en België."
+			items={popularFestivals.map((f) => ({ label: f.label, href: f.href }))}
+		/>
+
+		<GuideRelatedLinks
+			eyebrow="Hoofdgidsen"
+			title="Originele gidsen"
+			lead="De uitgebreide gidsen op /gids/ blijven beschikbaar."
+			items={[...legacyGuideLinks]}
+		/>
+	</article>
+
+	<GuideCta
+		eyebrow="Kennisbank"
+		title="Klaar om offertes te vergelijken?"
+		lead="Gebruik de gidsen hierboven en vraag daarna vrijblijvend meerdere offertes aan."
+		titleId="gidsen-hub-cta"
+		image={guideImagePool.cta}
+		showWhatsapp={false}
+	/>
+</BaseLayout>
+
+<style>
+	.gidsen-hub :global(.section) {
+		padding-block: clamp(3rem, 7vw, 5.5rem);
+	}
+
+	.gidsen-hub__hero {
+		padding-top: calc(var(--header-height) + 1.5rem);
+		padding-bottom: 1rem;
+	}
+
+	.gidsen-hub__title {
+		margin: 0 0 1rem;
+		max-width: 18ch;
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 800;
+		line-height: 1.06;
+	}
+
+	.gidsen-hub__lead {
+		margin: 0;
+		max-width: 44rem;
+		font-size: 1.08rem;
+		line-height: 1.65;
+		color: color-mix(in srgb, var(--color-text) 88%, transparent);
+	}
+
+	.gidsen-hub__grid {
+		display: grid;
+		gap: 1rem;
+	}
+
+	@media (min-width: 640px) {
+		.gidsen-hub__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.gidsen-hub__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.gidsen-hub__card {
+		display: block;
+		padding: 1.25rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+		transition: border-color 0.2s var(--ease-out);
+	}
+
+	.gidsen-hub__card:hover {
+		border-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
+	}
+
+	.gidsen-hub__card h3 {
+		margin: 0 0 0.45rem;
+		font-family: var(--font-display);
+		color: var(--color-primary);
+		font-size: 1.05rem;
+	}
+
+	.gidsen-hub__card p {
+		margin: 0;
+		color: var(--color-text-muted);
+		line-height: 1.6;
+		font-size: 0.95rem;
+	}
+</style>

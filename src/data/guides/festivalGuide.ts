@@ -318,6 +318,11 @@ export const festivalCityLinks: GuideLink[] = festivalDepartureCities.map((city)
 
 export const festivalGuideLinks: GuideLink[] = [
 	{
+		label: 'Kennisbank',
+		href: '/gidsen/',
+		description: '20 uitgebreide gidsen over partybus huren',
+	},
+	{
 		label: 'Partybus huren',
 		href: '/gids/partybus-huren/',
 		description: 'Complete gids over partybus huren in Nederland',

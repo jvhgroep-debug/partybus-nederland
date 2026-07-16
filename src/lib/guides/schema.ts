@@ -64,3 +64,36 @@ export function buildFaqPageSchema(faqs: readonly FaqItem[]) {
 		})),
 	};
 }
+
+export function buildArticleSchema(opts: {
+	headline: string;
+	description: string;
+	url: string;
+	datePublished?: string;
+	dateModified?: string;
+}) {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'Article',
+		headline: opts.headline,
+		description: opts.description,
+		url: opts.url,
+		inLanguage: 'nl-NL',
+		datePublished: opts.datePublished ?? '2026-01-01',
+		dateModified: opts.dateModified ?? '2026-07-16',
+		author: {
+			'@type': 'Organization',
+			name: 'Partybus Nederland',
+			url: 'https://www.partybusnederland.nl/',
+		},
+		publisher: {
+			'@type': 'Organization',
+			name: 'Partybus Nederland',
+			url: 'https://www.partybusnederland.nl/',
+		},
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': opts.url,
+		},
+	};
+}

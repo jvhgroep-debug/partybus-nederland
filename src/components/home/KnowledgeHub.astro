@@ -1,0 +1,96 @@
+---
+import GuideRelatedLinks from '../guides/GuideRelatedLinks.astro';
+import { hubGuideLinks, veelGezochteVragen } from '../../data/gidsen/shared';
+import { gidsenPath } from '../../data/gidsen/registry';
+---
+
+<section class="section knowledge-hub" id="kennisbank" aria-labelledby="knowledge-hub-title">
+	<div class="section__inner">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">Kennisbank</p>
+			<h2 id="knowledge-hub-title" class="section__title">Uitgebreide gidsen over partybus huren</h2>
+			<p class="section__lead">
+				20 diepgaande gidsen over prijzen, regels, veiligheid, festivals, bruiloften en meer — zonder vaste
+				tarieven of beschikbaarheidsgaranties.
+			</p>
+		</div>
+		<div class="knowledge-hub__grid">
+			{
+				hubGuideLinks.slice(0, 6).map((guide) => (
+					<a class="knowledge-hub__card reveal" href={gidsenPath(guide.slug)}>
+						<h3>{guide.label}</h3>
+						<p>{guide.description}</p>
+					</a>
+				))
+			}
+		</div>
+		<p class="knowledge-hub__more reveal">
+			<a href="/gidsen/">Bekijk alle 20 gidsen in de kennisbank →</a>
+		</p>
+	</div>
+</section>
+
+<section class="section knowledge-hub-faq" aria-labelledby="veel-gezocht-title">
+	<div class="section__inner">
+		<GuideRelatedLinks
+			eyebrow="Veel gezocht"
+			title="Veel gezochte vragen"
+			lead="Snel antwoord vinden in de kennisbank."
+			items={veelGezochteVragen.map((item) => ({ label: item.question, href: item.href }))}
+		/>
+	</div>
+</section>
+
+<style>
+	.knowledge-hub__grid {
+		display: grid;
+		gap: 1rem;
+	}
+
+	@media (min-width: 640px) {
+		.knowledge-hub__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.knowledge-hub__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.knowledge-hub__card {
+		display: block;
+		padding: 1.2rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+	}
+
+	.knowledge-hub__card h3 {
+		margin: 0 0 0.4rem;
+		font-family: var(--font-display);
+		font-size: 1rem;
+		color: var(--color-primary);
+	}
+
+	.knowledge-hub__card p {
+		margin: 0;
+		font-size: 0.92rem;
+		color: var(--color-text-muted);
+		line-height: 1.55;
+	}
+
+	.knowledge-hub__more {
+		margin: 1.5rem 0 0;
+	}
+
+	.knowledge-hub__more a {
+		color: var(--color-primary);
+		font-weight: 600;
+	}
+
+	.knowledge-hub-faq :global(.section) {
+		padding-top: 0;
+	}
+</style>

@@ -1,0 +1,113 @@
+---
+import type { GuideLink } from '../../data/guides/pricingGuide';
+
+interface Props {
+	guides?: GuideLink[];
+	cities?: GuideLink[];
+	routes?: GuideLink[];
+	title?: string;
+}
+
+const {
+	guides = [],
+	cities = [],
+	routes = [],
+	title = 'Lees ook',
+} = Astro.props;
+
+const hasContent = guides.length > 0 || cities.length > 0 || routes.length > 0;
+---
+
+{
+	hasContent && (
+		<section class="section read-also" aria-labelledby="read-also-title">
+			<div class="section__inner">
+				<div class="section__head reveal">
+					<p class="section__eyebrow">Meer informatie</p>
+					<h2 id="read-also-title" class="section__title">{title}</h2>
+				</div>
+				<div class="read-also__grid">
+					{guides.length > 0 && (
+						<div class="read-also__col reveal">
+							<h3>Gerelateerde gidsen</h3>
+							<ul>
+								{guides.map((item) => (
+									<li>
+										<a href={item.href}>{item.label}</a>
+										{item.description && <p>{item.description}</p>}
+									</li>
+								))}
+							</ul>
+						</div>
+					)}
+					{cities.length > 0 && (
+						<div class="read-also__col reveal">
+							<h3>Relevante steden</h3>
+							<ul>
+								{cities.map((item) => (
+									<li>
+										<a href={item.href}>{item.label}</a>
+										{item.description && <p>{item.description}</p>}
+									</li>
+								))}
+							</ul>
+						</div>
+					)}
+					{routes.length > 0 && (
+						<div class="read-also__col reveal">
+							<h3>Populaire routes</h3>
+							<ul>
+								{routes.map((item) => (
+									<li>
+										<a href={item.href}>{item.label}</a>
+										{item.description && <p>{item.description}</p>}
+									</li>
+								))}
+							</ul>
+						</div>
+					)}
+				</div>
+			</div>
+		</section>
+	)
+}
+
+<style>
+	.read-also__grid {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	@media (min-width: 800px) {
+		.read-also__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.read-also__col h3 {
+		margin: 0 0 0.85rem;
+		font-family: var(--font-display);
+		font-size: 1rem;
+		color: var(--color-primary);
+	}
+
+	.read-also__col ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.85rem;
+	}
+
+	.read-also__col a {
+		color: var(--color-text);
+		font-weight: 600;
+	}
+
+	.read-also__col p {
+		margin: 0.2rem 0 0;
+		font-size: 0.92rem;
+		color: var(--color-text-muted);
+		line-height: 1.55;
+	}
+</style>

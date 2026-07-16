@@ -1,8 +1,11 @@
 ---
 import { site } from '../../data/settings/site';
 import { popularCities } from '../../data/cities/popular';
+import { publishedCities } from '../../data/cities/registry';
 import { mainNav, primaryCta } from '../../data/settings/navigation';
 import { whatsapp } from '../../data/settings/whatsapp';
+import { hubGuideLinks } from '../../data/gidsen/shared';
+import { gidsenPath } from '../../data/gidsen/registry';
 import Button from '../buttons/Button.astro';
 ---
 
@@ -25,9 +28,19 @@ import Button from '../buttons/Button.astro';
 
 		<div class="site-footer__col">
 			<p class="site-footer__heading">Steden</p>
-			{popularCities.slice(0, 6).map((city) => (
-				<a href="/#steden">{city.name}</a>
+			{publishedCities.slice(0, 6).map((city) => (
+				<a href={city.path}>{city.name}</a>
 			))}
+			<a href="/#steden">Alle steden</a>
+		</div>
+
+		<div class="site-footer__col">
+			<p class="site-footer__heading">Kennisbank</p>
+			{hubGuideLinks.slice(0, 5).map((guide) => (
+				<a href={gidsenPath(guide.slug)}>{guide.label}</a>
+			))}
+			<a href="/gidsen/">Alle gidsen</a>
+			<a href="/sitemap/">Sitemap</a>
 		</div>
 
 		<div class="site-footer__col">
@@ -70,8 +83,8 @@ import Button from '../buttons/Button.astro';
 
 	@media (min-width: 960px) {
 		.site-footer__inner {
-			grid-template-columns: 1.45fr 1fr 1fr 1fr;
-			gap: 3rem;
+			grid-template-columns: 1.45fr 1fr 1fr 1fr 1fr;
+			gap: 2.5rem;
 		}
 	}
 
