@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Button from '../../../components/buttons/Button.astro';
+import GuideBreadcrumbs from '../../../components/guides/GuideBreadcrumbs.astro';
+import GuideHero from '../../../components/guides/GuideHero.astro';
+import GuideFactorGrid from '../../../components/guides/GuideFactorGrid.astro';
+import GuideChecklist from '../../../components/guides/GuideChecklist.astro';
+import GuideFaqList from '../../../components/guides/GuideFaqList.astro';
+import GuideRelatedLinks from '../../../components/guides/GuideRelatedLinks.astro';
+import {
+	festivalBenefits,
+	festivalBreadcrumbs,
+	festivalChecklist,
+	festivalFaqs,
+	festivalGuideSeo,
+	festivalInternalLinks,
+	festivalTips,
+	festivalWhy,
+	topFestivals,
+} from '../../../data/guides/festivalGuide';
+import {
+	buildBreadcrumbSchema,
+	buildFaqPageSchema,
+	buildWebPageSchema,
+} from '../../../lib/guides/schema';
+
+const seo = festivalGuideSeo;
+
+const jsonLd = [
+	buildWebPageSchema({
+		name: seo.h1,
+		description: seo.description,
+		url: seo.canonical,
+	}),
+	buildBreadcrumbSchema(festivalBreadcrumbs),
+	buildFaqPageSchema(festivalFaqs),
+];
+---
+
+<BaseLayout
+	title={seo.title}
+	description={seo.description}
+	canonical={seo.canonical}
+	titleExact={true}
+	ogTitle={seo.title}
+	ogDescription={seo.description}
+	ogUrl={seo.canonical}
+	ogImage={seo.ogImage}
+	twitterTitle={seo.title}
+	twitterDescription={seo.description}
+	twitterImage={seo.ogImage}
+	jsonLd={jsonLd}
+>
+	<article class="festival-guide">
+		<GuideBreadcrumbs items={festivalBreadcrumbs} />
+
+		<GuideHero
+			eyebrow={seo.eyebrow}
+			title={seo.h1}
+			lead={seo.lead}
+			primaryHref="/gratis-partybus-offertes-aanvragen/"
+			primaryLabel="Gratis offertes aanvragen"
+			secondaryHref="/gids/partybus-kosten/"
+			secondaryLabel="Bekijk de prijzengids"
+		/>
+
+		<section class="section" aria-labelledby="festival-why">
+			<div class="section__inner">
+				<div class="section__head reveal">
+					<p class="section__eyebrow">Waarom partybus</p>
+					<h2 id="festival-why" class="section__title">{festivalWhy.title}</h2>
+					<p class="section__lead">{festivalWhy.lead}</p>
+				</div>
+				<div class="festival-guide__prose reveal">
+					{festivalWhy.paragraphs.map((p) => <p>{p}</p>)}
+				</div>
+			</div>
+		</section>
+
+		<GuideFactorGrid
+			eyebrow="Voordelen"
+			title="Voordelen van festivalvervoer per partybus"
+			lead="Praktisch, veilig en sfeervol — zo blijft de groep bij elkaar van deur tot festivalterrein."
+			items={festivalBenefits}
+			columns={3}
+		/>
+
+		<GuideFactorGrid
+			eyebrow="Topfestivals"
+			title="Populaire festivals voor partybusritten"
+			lead="Informatieve blokken per festival. Exacte data en edities wisselen per jaar — vermeld altijd het juiste evenement in je aanvraag."
+			items={topFestivals}
+			columns={2}
+		/>
+
+		<GuideFactorGrid
+			eyebrow="Tips"
+			title="Praktische tips voor festivalvervoer"
+			lead="Met een goede voorbereiding voorkom je stress rond vertrek, bagage en terugreis."
+			items={festivalTips}
+			columns={3}
+		/>
+
+		<GuideChecklist
+			eyebrow="Checklist"
+			title="Checklist voor je festivalaanvraag"
+			lead="Deze gegevens helpen aanbieders een passende rit voor te stellen."
+			items={festivalChecklist}
+		/>
+
+		<GuideFaqList
+			title="Veelgestelde vragen over festivalvervoer"
+			lead="Antwoorden op de vragen die we het vaakst horen rond festivals en partybussen."
+			items={festivalFaqs}
+		/>
+
+		<GuideRelatedLinks
+			title="Handige pagina’s om verder te gaan"
+			lead="Steden, prijzen, de algemene gids en gelegenheden."
+			items={festivalInternalLinks}
+		/>
+
+		<section class="section" aria-labelledby="festival-cta">
+			<div class="section__inner festival-guide__cta reveal">
+				<h2 id="festival-cta" class="section__title">Klaar voor jouw festivalrit?</h2>
+				<p class="section__lead">
+					Vraag vrijblijvend meerdere offertes aan voor heen- en terugrit vanuit jouw stad.
+				</p>
+				<Button href="/gratis-partybus-offertes-aanvragen/" size="lg">
+					Gratis offertes aanvragen
+				</Button>
+			</div>
+		</section>
+	</article>
+</BaseLayout>
+
+<style>
+	.festival-guide :global(.section) {
+		padding-block: clamp(3.5rem, 8vw, 6.5rem);
+	}
+
+	.festival-guide__prose {
+		max-width: 46rem;
+	}
+
+	.festival-guide__prose p {
+		margin: 0 0 1rem;
+		color: var(--color-text-muted);
+		line-height: 1.75;
+	}
+
+	.festival-guide__cta {
+		text-align: center;
+	}
+</style>
