@@ -2,15 +2,51 @@
 import { site } from '../../data/settings/site';
 import { primaryCta } from '../../data/settings/navigation';
 import Button from '../buttons/Button.astro';
+
+interface Props {
+	brand?: string;
+	title?: string;
+	subtitle?: string;
+	image?: string;
+	imageWidth?: number;
+	imageHeight?: number;
+	primaryHref?: string;
+	primaryLabel?: string;
+	secondaryHref?: string;
+	secondaryLabel?: string;
+	showScroll?: boolean;
+	scrollHref?: string;
+	titleId?: string;
+	/** Homepage default: center. Guide pages: start (left text block, max ~600px). */
+	align?: 'center' | 'start';
+}
+
+const {
+	brand = site.name,
+	title = 'Partybus huren in Nederland',
+	subtitle = 'Tips, bestemmingen en prijzen uitgelegd — daarna gratis meerdere offertes vergelijken.',
+	image = '/images/hero-partybus.png',
+	imageWidth = 1536,
+	imageHeight = 1024,
+	primaryHref = primaryCta.href,
+	primaryLabel = 'Gratis offertes aanvragen',
+	secondaryHref = '/gids/partybus-huren/',
+	secondaryLabel = 'Lees de gids',
+	showScroll = true,
+	scrollHref = '#vertrouwen',
+	titleId = 'hero-title',
+	align = 'center',
+} = Astro.props;
 ---
 
-<section class="hero" aria-labelledby="hero-title">
+<section class:list={['hero', align === 'start' && 'hero--start']} aria-labelledby={titleId}>
 	<div class="hero__media" aria-hidden="true">
 		<img
-			src="/images/hero-partybus.png"
+			src={image}
 			alt=""
-			width="1536"
-			height="1024"
+			width={imageWidth}
+			height={imageHeight}
+			loading="eager"
 			fetchpriority="high"
 			decoding="async"
 		/>
@@ -18,21 +54,29 @@ import Button from '../buttons/Button.astro';
 	</div>
 
 	<div class="hero__content section__inner">
-		<p class="hero__brand">{site.name}</p>
-		<h1 id="hero-title" class="hero__title">Partybus huren in Nederland</h1>
-		<p class="hero__subtitle">
-			Tips, bestemmingen en prijzen uitgelegd — daarna gratis meerdere offertes vergelijken.
-		</p>
+		<p class="hero__brand">{brand}</p>
+		<h1 id={titleId} class="hero__title">{title}</h1>
+		<p class="hero__subtitle">{subtitle}</p>
 		<div class="hero__actions">
-			<Button href={primaryCta.href} size="lg">Gratis offertes aanvragen</Button>
-			<Button href="/gids/partybus-huren/" variant="ghost" size="lg">Lees de gids</Button>
+			<Button href={primaryHref} size="lg">{primaryLabel}</Button>
+			{
+				secondaryHref && secondaryLabel && (
+					<Button href={secondaryHref} variant="ghost" size="lg">
+						{secondaryLabel}
+					</Button>
+				)
+			}
 		</div>
 	</div>
 
-	<a class="hero__scroll" href="#vertrouwen" aria-label="Scroll naar inhoud">
-		<span class="hero__scroll-label">Scroll</span>
-		<span class="hero__scroll-line" aria-hidden="true"></span>
-	</a>
+	{
+		showScroll && (
+			<a class="hero__scroll" href={scrollHref} aria-label="Scroll naar inhoud">
+				<span class="hero__scroll-label">Scroll</span>
+				<span class="hero__scroll-line" aria-hidden="true"></span>
+			</a>
+		)
+	}
 </section>
 
 <style>
@@ -48,15 +92,24 @@ import Button from '../buttons/Button.astro';
 		text-align: center;
 	}
 
+	.hero--start {
+		text-align: left;
+	}
+
 	.hero__media {
 		position: absolute;
 		inset: 0;
-		z-index: -1;
+		z-index: 0;
+		pointer-events: none;
 	}
 
 	.hero__media img {
+		position: absolute;
+		inset: 0;
 		width: 100%;
 		height: 100%;
+		max-width: none;
+		max-height: none;
 		object-fit: cover;
 		object-position: center 45%;
 		transform: scale(1.04);
@@ -66,15 +119,24 @@ import Button from '../buttons/Button.astro';
 	.hero__veil {
 		position: absolute;
 		inset: 0;
+		z-index: 1;
+		pointer-events: none;
 		background:
 			radial-gradient(circle at center, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.72) 72%),
 			linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.42) 40%, rgba(0, 0, 0, 0.84) 100%);
 	}
 
 	.hero__content {
+		position: relative;
+		z-index: 2;
 		padding-block: clamp(6rem, 12vw, 8rem) clamp(5rem, 10vw, 7rem);
 		display: grid;
 		justify-items: center;
+		width: 100%;
+	}
+
+	.hero--start .hero__content {
+		justify-items: start;
 	}
 
 	.hero__brand {
@@ -98,6 +160,10 @@ import Button from '../buttons/Button.astro';
 		text-wrap: balance;
 	}
 
+	.hero--start .hero__title {
+		max-width: 16ch;
+	}
+
 	.hero__subtitle {
 		margin: 0 0 2rem;
 		max-width: 32rem;
@@ -107,6 +173,10 @@ import Button from '../buttons/Button.astro';
 		text-wrap: pretty;
 	}
 
+	.hero--start .hero__subtitle {
+		max-width: 37.5rem;
+	}
+
 	.hero__actions {
 		display: flex;
 		flex-wrap: wrap;
@@ -114,10 +184,15 @@ import Button from '../buttons/Button.astro';
 		gap: 0.85rem;
 	}
 
+	.hero--start .hero__actions {
+		justify-content: flex-start;
+	}
+
 	.hero__scroll {
 		position: absolute;
 		left: 50%;
 		bottom: 1.25rem;
+		z-index: 2;
 		transform: translateX(-50%);
 		display: grid;
 		justify-items: center;
