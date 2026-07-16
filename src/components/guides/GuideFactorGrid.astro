@@ -7,33 +7,55 @@ interface Props {
 	lead?: string;
 	items: readonly GuideFactor[];
 	columns?: 2 | 3;
+	hideHead?: boolean;
 }
 
-const { eyebrow = 'Informatie', title, lead, items, columns = 3 } = Astro.props;
+const { eyebrow = 'Informatie', title, lead, items, columns = 3, hideHead = false } = Astro.props;
 const titleId = `guide-factors-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40)}`;
 ---
 
-<section class="section guide-factors" aria-labelledby={titleId} data-columns={columns}>
-	<div class="section__inner">
-		<div class="section__head reveal">
-			<p class="section__eyebrow">{eyebrow}</p>
-			<h2 id={titleId} class="section__title">{title}</h2>
-			{lead && <p class="section__lead">{lead}</p>}
+{
+	hideHead ? (
+		<div class="guide-factors guide-factors--compact section__inner" data-columns={columns}>
+			<div class="guide-factors__grid">
+				{
+					items.map((item) => (
+						<article class="guide-factors__card reveal">
+							<h3>{item.title}</h3>
+							<p>{item.text}</p>
+						</article>
+					))
+				}
+			</div>
 		</div>
-		<div class="guide-factors__grid">
-			{
-				items.map((item) => (
-					<article class="guide-factors__card reveal">
-						<h3>{item.title}</h3>
-						<p>{item.text}</p>
-					</article>
-				))
-			}
-		</div>
-	</div>
-</section>
+	) : (
+		<section class="section guide-factors" aria-labelledby={titleId} data-columns={columns}>
+			<div class="section__inner">
+				<div class="section__head reveal">
+					<p class="section__eyebrow">{eyebrow}</p>
+					<h2 id={titleId} class="section__title">{title}</h2>
+					{lead && <p class="section__lead">{lead}</p>}
+				</div>
+				<div class="guide-factors__grid">
+					{
+						items.map((item) => (
+							<article class="guide-factors__card reveal">
+								<h3>{item.title}</h3>
+								<p>{item.text}</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+	)
+}
 
 <style>
+	.guide-factors--compact {
+		padding-bottom: clamp(3.5rem, 8vw, 6.5rem);
+	}
+
 	.guide-factors__grid {
 		display: grid;
 		gap: 1rem;

@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Hero from '../../../components/home/Hero.astro';
 import GuideBreadcrumbs from '../../../components/guides/GuideBreadcrumbs.astro';
 import GuideFactorGrid from '../../../components/guides/GuideFactorGrid.astro';
+import GuideFestivalGrid from '../../../components/guides/GuideFestivalGrid.astro';
 import GuideChecklist from '../../../components/guides/GuideChecklist.astro';
 import GuideFaqList from '../../../components/guides/GuideFaqList.astro';
 import GuideRelatedLinks from '../../../components/guides/GuideRelatedLinks.astro';
@@ -18,10 +19,17 @@ import {
 	festivalGuideSeo,
 	festivalTips,
 	festivalWhatsappHref,
-	topFestivals,
+	popularFestivals,
 } from '../../../data/guides/festivalGuide';
 import { guideImagePool } from '../../../data/guides/guideImages';
-import { festivalVisualSections } from '../../../data/guides/guideVisualSections';
+import {
+	festivalChecklistSection,
+	festivalPopulairSection,
+	festivalTerugreisSection,
+	festivalTipsSection,
+	festivalVertrekSection,
+	festivalVisualSections,
+} from '../../../data/guides/guideVisualSections';
 import {
 	buildBreadcrumbSchema,
 	buildFaqPageSchema,
@@ -30,7 +38,7 @@ import {
 
 const seo = festivalGuideSeo;
 const img = guideImagePool;
-const [onderweg, opstap, festival, sfeer, aankomst, terugreis] = festivalVisualSections;
+const [onderweg, opstap] = festivalVisualSections;
 
 const jsonLd = [
 	buildWebPageSchema({
@@ -89,34 +97,30 @@ const jsonLd = [
 
 		<GuideImageSection {...opstap} />
 
-		<GuideFactorGrid
-			eyebrow="Topfestivals"
-			title="Populaire festivals voor partybusritten"
-			lead="Informatieve blokken per festival. Exacte data en edities wisselen per jaar — vermeld altijd het juiste evenement in je aanvraag."
-			items={topFestivals}
-			columns={2}
+		<GuideImageSection {...festivalPopulairSection} />
+
+		<div class="festival-guide__festivals section">
+			<GuideFestivalGrid items={popularFestivals} />
+		</div>
+
+		<GuideImageSection {...festivalVertrekSection} />
+
+		<GuideRelatedLinks
+			eyebrow="Vertreksteden"
+			title="Partybus huren vanuit populaire steden"
+			lead="Festivalvervoer vanuit jouw vertrekstad — met lokale tips en offertes."
+			items={festivalCityLinks}
 		/>
 
-		<GuideImageSection {...festival} />
+		<GuideImageSection {...festivalTipsSection} />
 
-		<GuideFactorGrid
-			eyebrow="Tips"
-			title="Praktische tips voor festivalvervoer"
-			lead="Met een goede voorbereiding voorkom je stress rond vertrek, bagage en terugreis."
-			items={festivalTips}
-			columns={3}
-		/>
+		<GuideFactorGrid title="Praktische tips" items={festivalTips} columns={3} hideHead={true} />
 
-		<GuideImageSection {...sfeer} />
+		<GuideImageSection {...festivalChecklistSection} />
 
-		<GuideChecklist
-			eyebrow="Checklist"
-			title="Checklist voor je festivalaanvraag"
-			lead="Deze gegevens helpen aanbieders een passende rit voor te stellen."
-			items={festivalChecklist}
-		/>
+		<GuideChecklist title="Checklist voor je festivalaanvraag" items={festivalChecklist} hideHead={true} />
 
-		<GuideImageSection {...aankomst} />
+		<GuideImageSection {...festivalTerugreisSection} />
 
 		<GuideFaqList
 			title="Veelgestelde vragen over festivalvervoer"
@@ -124,19 +128,10 @@ const jsonLd = [
 			items={festivalFaqs}
 		/>
 
-		<GuideImageSection {...terugreis} />
-
-		<GuideRelatedLinks
-			eyebrow="Steden"
-			title="Partybus huren vanuit populaire steden"
-			lead="Festivalvervoer vanuit jouw vertrekstad — met lokale tips en offertes."
-			items={festivalCityLinks}
-		/>
-
 		<GuideRelatedLinks
 			eyebrow="Meer lezen"
 			title="Gerelateerde gidsen en gelegenheden"
-			lead="Prijzen, algemene informatie en tips per gelegenheid."
+			lead="Van algemene informatie en prijzen tot bruiloften, bedrijfsuitjes en alle steden."
 			items={festivalGuideLinks}
 		/>
 	</article>
@@ -159,5 +154,10 @@ const jsonLd = [
 
 	.festival-guide__crumbs {
 		margin-top: 0.5rem;
+	}
+
+	.festival-guide__festivals {
+		padding-top: 0;
+		padding-bottom: clamp(3.5rem, 8vw, 6.5rem);
 	}
 </style>

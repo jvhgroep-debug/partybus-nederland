@@ -5,6 +5,22 @@
 
 import type { GuideFactor, GuideFaq, GuideLink } from './pricingGuide';
 
+export type GuideFestival = {
+	name: string;
+	slug: string;
+	description: string;
+	location: string;
+	partybusWhy: string;
+	href?: string;
+	linkLabel?: string;
+};
+
+export type GuideDepartureCity = {
+	name: string;
+	href: string;
+	description: string;
+};
+
 export const festivalGuideSeo = {
 	title: 'Festivalvervoer met een partybus | Complete gids & tips',
 	description:
@@ -59,87 +75,196 @@ export const festivalBenefits: GuideFactor[] = [
 	},
 ];
 
-export const topFestivals: GuideFactor[] = [
+export const popularFestivals: GuideFestival[] = [
 	{
-		title: 'Tomorrowland',
-		text: 'Populaire festivalrit naar België. Plan heen- en terugrit, houd rekening met grens en festivalverkeer, en vermeld dag(en) en bagage in je aanvraag.',
+		name: 'Tomorrowland',
+		slug: 'tomorrowland',
+		location: 'Boom, België',
+		description:
+			'Een van de grootste dancefestivals ter wereld, met meerdere dagen muziek en een internationale publiekstrekker. Veel Nederlandse groepen vertrekken gezamenlijk richting België.',
+		partybusWhy:
+			'Lange reistijd, druk grensverkeer en late eindtijden maken een vaste groepsrit ideaal. Niemand hoeft te rijden en iedereen reist heen én terug op dezelfde manier.',
+		href: '/partybus-rotterdam-tomorrowland/',
+		linkLabel: 'Route Rotterdam – Tomorrowland',
 	},
 	{
-		title: 'Defqon.1',
-		text: 'Hardstyle-weekend waar groepen vaak vanuit heel Nederland vertrekken. Stem opstapplaatsen, festivaldatum en retourtijden vroeg af.',
+		name: 'Defqon.1',
+		slug: 'defqon',
+		location: 'Biddinghuizen, Flevoland',
+		description:
+			'Hardstyle-festival met een massaal weekendprogramma en bezoekers uit heel Nederland. Populair voor grotere vriendengroepen en studentenverenigingen.',
+		partybusWhy:
+			'Met een partybus blijft de hele groep bij elkaar op een druk festivalweekend. Handig bij bagage, late terugreis en meerdere opstapplaatsen onderweg.',
+		href: '/partybus-breda-defqon/',
+		linkLabel: 'Route Breda – Defqon.1',
 	},
 	{
-		title: 'Mysteryland',
-		text: 'Festivalrit binnen of nabij Nederland met focus op comfortabele aankomst en terugkeer als groep. Geef eindtijden en verzamelplek duidelijk door.',
+		name: 'Mysteryland',
+		slug: 'mysteryland',
+		location: 'Haarlemmermeer (Floriadeterrein)',
+		description:
+			'Groots elektronisch festival vlak bij Amsterdam met meerdere podia en een breed publiek. Een klassieker voor groepsvervoer vanuit de Randstad.',
+		partybusWhy:
+			'Vermijd parkeerstress en losse treinreizen. De groep vertrekt samen, arriveert op tijd en kan na afloop weer gezamenlijk terugrijden.',
 	},
 	{
-		title: 'Decibel Outdoor',
-		text: 'Outdoorfestival met vaak langere dagen op het terrein. Denk aan wachttijd of een vaste retourafspraak en eventuele bagage.',
+		name: 'Decibel Outdoor',
+		slug: 'decibel',
+		location: 'Nederland (locatie per editie)',
+		description:
+			'Outdoor hardstyle- en dancefestival met lange festivaldagen en veel bezoekers uit het hele land. Check altijd de actuele locatie van de editie.',
+		partybusWhy:
+			'Bij lange festivaldagen is een vaste terugreisafspraak belangrijk. Met een partybus weet iedereen waar de bus staat na afloop.',
 	},
 	{
-		title: 'Intents Festival',
-		text: 'Groepsvervoer vanaf jouw vertrekstad naar het evenement. Vermeld aantal personen (tot max. 80) en gewenste opstapplaatsen.',
+		name: 'Intents Festival',
+		slug: 'intents',
+		location: 'Oisterwijk, Noord-Brabant',
+		description:
+			'Festival met een mix van hardstyle en dance, populair in het zuiden van Nederland. Veel groepen combineren een weekend met gezamenlijk vervoer.',
+		partybusWhy:
+			'Ideaal wanneer vrienden uit verschillende steden komen. Met meerdere opstapplaatsen haal je de groep op één route op.',
 	},
 	{
-		title: 'Paaspop',
-		text: 'Geschikt voor een dagtrip of meerdaags bezoek. Geef door of je één rit, heen-en-weer of meerdere dagen wilt plannen.',
+		name: 'Paaspop',
+		slug: 'paaspop',
+		location: 'Schijndel, Noord-Brabant',
+		description:
+			'Meerdaags popfestival in het voorjaar met een breed programma en veel bezoekers uit heel Nederland. Geschikt voor dagtrip of weekend.',
+		partybusWhy:
+			'Plan heen- en terugrit in één aanvraag. Zo rijdt de groep op de gewenste dag(en) samen op en neer zonder losse vervoersregeling.',
 	},
 	{
-		title: 'Dominator',
-		text: 'Samen aankomen en weer terugrijden als groep. Plan extra tijd voor festivalverkeer rond aankomst en vertrek.',
+		name: 'Pinkpop',
+		slug: 'pinkpop',
+		location: 'Landgraaf, Limburg',
+		description:
+			'Een van de oudste en bekendste popfestivals van Nederland, met meerdere dagen en artiesten uit verschillende genres.',
+		partybusWhy:
+			'Vanuit vrijwel elke hoek van Nederland vertrekken groepen richting Limburg. Een partybus voorkomt dat iemand de aangewezen chauffeur wordt.',
 	},
 	{
-		title: 'Awakenings',
-		text: 'Nachtleven en festivalvibes met één vaste groepsrit. Handig voor evenementen met late eindtijden.',
+		name: 'Lowlands',
+		slug: 'lowlands',
+		location: 'Biddinghuizen, Flevoland',
+		description:
+			'Meerdaags festival met muziek, cultuur en camping. Bagage, kampeerspullen en strakke timing spelen hier een grote rol.',
+		partybusWhy:
+			'Ruimte voor bagage en een vaste groepsafspraak op het terrein maken partybusvervoer populair. Plan ophaalmoment en retourdag vooraf.',
 	},
 	{
-		title: 'Lowlands',
-		text: 'Meerdaags festival waar bagage en timing zwaar meewegen. Stem ophaalmoment, bagage en eventuele retourdag helder af.',
+		name: 'Dance Valley',
+		slug: 'dance-valley',
+		location: 'Spaarnwoude, Noord-Holland',
+		description:
+			'Legendarisch dancefestival in de regio Amsterdam met een lange historie en een feestgerichte sfeer. Populair voor groepen uit de Randstad.',
+		partybusWhy:
+			'Eén bus voor de hele groep betekent geen gedoe met meerdere auto’s of laatste treinen. De sfeer begint al onderweg.',
 	},
 	{
-		title: 'Pinkpop',
-		text: 'Klassieker voor groepsritten vanuit heel Nederland. Vermeld festivaldag(en), opstapplaatsen en of je na afloop direct terug wilt.',
+		name: 'Awakenings',
+		slug: 'awakenings',
+		location: 'Amsterdam en omgeving',
+		description:
+			'Bekend techno-merk met festivals en events door het hele jaar, vaak met late eindtijden en een internationaal publiek.',
+		partybusWhy:
+			'Bij nachtevents en late afsluiting is een geplande terugreis cruciaal. Iedereen reist veilig terug zonder eigen rijders in de groep.',
+	},
+];
+
+/** @deprecated Use popularFestivals — kept for backwards compatibility in tooling. */
+export const topFestivals: GuideFactor[] = popularFestivals.map((f) => ({
+	title: f.name,
+	text: f.description,
+}));
+
+export const festivalDepartureCities: GuideDepartureCity[] = [
+	{
+		name: 'Amsterdam',
+		href: '/steden/partybus-huren-amsterdam/',
+		description: 'Vertrek vanuit de hoofdstad richting festivals in Nederland en België',
+	},
+	{
+		name: 'Rotterdam',
+		href: '/steden/partybus-huren-rotterdam/',
+		description: 'Populair vertrekpunt voor Tomorrowland en festivals in het land',
+	},
+	{
+		name: 'Den Haag',
+		href: '/steden/partybus-huren-den-haag/',
+		description: 'Festivalvervoer vanuit de Hofstad voor groepen uit de regio',
+	},
+	{
+		name: 'Utrecht',
+		href: '/steden/partybus-huren-utrecht/',
+		description: 'Centrale ligging — handig voor groepen uit Midden-Nederland',
+	},
+	{
+		name: 'Eindhoven',
+		href: '/steden/partybus-huren-eindhoven/',
+		description: 'Vertrek vanuit Brabant naar festivals in het zuiden en verder',
+	},
+	{
+		name: 'Breda',
+		href: '/steden/partybus-huren-breda/',
+		description: 'Dicht bij populaire festivalroutes, waaronder Defqon.1',
+	},
+	{
+		name: 'Groningen',
+		href: '/steden/partybus-huren-groningen/',
+		description: 'Festivalritten vanuit het noorden voor studenten en vriendengroepen',
+	},
+	{
+		name: 'Arnhem',
+		href: '/steden/partybus-huren-arnhem/',
+		description: 'Vertrek vanuit Gelderland naar festivals door heel Nederland',
+	},
+	{
+		name: 'Nijmegen',
+		href: '/steden/partybus-huren-nijmegen/',
+		description: 'Groepsvervoer vanuit Nijmegen en omgeving',
+	},
+	{
+		name: 'Zwolle',
+		href: '/steden/partybus-huren-zwolle/',
+		description: 'Festivalvervoer vanuit Overijssel en oostelijke regio’s',
 	},
 ];
 
 export const festivalTips: GuideFactor[] = [
 	{
-		title: 'Vertrek plannen',
-		text: 'Reken terug vanaf de gewenste aankomsttijd. Houd rekening met files, laden/uitstappen en festivalverkeer rond het terrein.',
+		title: 'Wanneer reserveren',
+		text: 'Vraag zo vroeg mogelijk aan rond populaire festivalperiodes. Beschikbaarheid verschilt per datum en regio — vergelijk meerdere offertes zonder vaste prijzen te verwachten.',
+	},
+	{
+		title: 'Groepsgrootte',
+		text: 'Geef het exacte aantal personen door (tot maximaal 80). Zo krijg je een bus met passende capaciteit en geen verrassingen over zitplaatsen of bagageruimte.',
 	},
 	{
 		title: 'Opstapplaatsen',
-		text: 'Kies plekken die de bus goed kan bereiken. Combineer waar mogelijk, of geef een logische volgorde van ophaalpunten door.',
+		text: 'Kies bereikbare plekken voor een bus: parkeerplaats, station of centrale verzamelplek. Meerdere opstapplaatsen zijn vaak mogelijk wanneer je een logische route doorgeeft.',
 	},
 	{
-		title: 'Parkeren',
-		text: 'Vraag of de bus mag wachten of ergens in de buurt kan staan. Festivalparkings en drop-off zones verschillen per evenement.',
+		title: 'Bagage',
+		text: 'Vermeld kampeerspullen, weekendtassen of grote tassen vooraf. Bij meerdaagse festivals bepaalt dit welke bus het beste past bij jullie groep.',
 	},
 	{
 		title: 'Terugreis',
-		text: 'Spreek een vaste verzameltijd en -plek af na het festival. Zo voorkom je dat de groep verspreid raakt bij drukte.',
+		text: 'Spreek een vaste verzamelplek en tijd af op of bij het festivalterrein. Heen- en terugrit kun je in één aanvraag zetten zodat niemand achterblijft.',
 	},
 	{
-		title: 'Alcohol',
-		text: 'Check of eigen consumpties zijn toegestaan en wat de regels van de aanbieder zijn. Niemand in de groep hoeft te rijden — plan verantwoord.',
-	},
-	{
-		title: 'Weersomstandigheden',
-		text: 'Outdoorfestivals betekenen soms regen of hitte. Neem geschikte kleding en bescherming mee; vermeld als er natte of omvangrijke bagage is.',
+		title: 'Veiligheid',
+		text: 'Een professionele chauffeur en één vaste groepsrit geven overzicht. Plan realistische tijden rond drukte, weer en vermoeidheid na een lange festivaldag.',
 	},
 ];
 
 export const festivalChecklist: string[] = [
-	'Festivalnaam en editie/datum(s)',
-	'Vertrekstad en concrete opstapplaats(en)',
-	'Gewenste vertrektijd heenreis',
-	'Gewenste aankomsttijd op of bij het festival',
-	'Of je een terugrit nodig hebt, inclusief verzameltijd',
-	'Aantal personen (maximaal 80)',
-	'Bagage- of kampeerwensen',
-	'Eventuele tussenstops onderweg',
-	'Of de chauffeur moet wachten of later terugkomt',
-	'Bijzondere wensen (muziek, toegankelijkheid, buitenland)',
+	'Aantal personen (tot maximaal 80)',
+	'Vertrekadres of opstapplaats(en)',
+	'Festivalnaam en datum',
+	'Gewenste vertrektijd',
+	'Gewenste terugtijd of verzamelmoment',
+	'Naam en telefoonnummer contactpersoon',
 ];
 
 export const festivalFaqs: GuideFaq[] = [
@@ -185,54 +310,22 @@ export const festivalFaqs: GuideFaq[] = [
 	},
 ];
 
-export const festivalCityLinks: GuideLink[] = [
-	{
-		label: 'Partybus huren Amsterdam',
-		href: '/steden/partybus-huren-amsterdam/',
-		description: 'Festivalritten en vertrek vanuit Amsterdam',
-	},
-	{
-		label: 'Partybus huren Rotterdam',
-		href: '/steden/partybus-huren-rotterdam/',
-		description: 'Groepsvervoer naar festivals vanuit Rotterdam',
-	},
-	{
-		label: 'Partybus huren Utrecht',
-		href: '/steden/partybus-huren-utrecht/',
-		description: 'Centraal vertrekpunt voor festivalritten',
-	},
-	{
-		label: 'Partybus huren Den Haag',
-		href: '/steden/partybus-huren-den-haag/',
-		description: 'Festivalvervoer vanuit Den Haag',
-	},
-	{
-		label: 'Partybus huren Eindhoven',
-		href: '/steden/partybus-huren-eindhoven/',
-		description: 'Vertrek vanuit Eindhoven naar festivals',
-	},
-	{
-		label: 'Partybus huren Breda',
-		href: '/steden/partybus-huren-breda/',
-		description: 'Handig vertrekpunt richting festivals',
-	},
-];
+export const festivalCityLinks: GuideLink[] = festivalDepartureCities.map((city) => ({
+	label: `Partybus huren ${city.name}`,
+	href: city.href,
+	description: city.description,
+}));
 
 export const festivalGuideLinks: GuideLink[] = [
-	{
-		label: 'Prijzengids',
-		href: '/gids/partybus-kosten/',
-		description: 'Waar de prijs van een partybus van afhangt',
-	},
 	{
 		label: 'Partybus huren',
 		href: '/gids/partybus-huren/',
 		description: 'Complete gids over partybus huren in Nederland',
 	},
 	{
-		label: 'Vrijgezellenfeest',
-		href: '/gids/partybus-huren/#guide-occasions',
-		description: 'Tips voor een partybus op een vrijgezellenfeest',
+		label: 'Partybus prijzen',
+		href: '/gids/partybus-kosten/',
+		description: 'Waar de prijs van een partybus van afhangt — zonder vaste tarieven',
 	},
 	{
 		label: 'Bruiloft',
@@ -243,6 +336,16 @@ export const festivalGuideLinks: GuideLink[] = [
 		label: 'Bedrijfsuitje',
 		href: '/gids/partybus-huren/#guide-occasions',
 		description: 'Professioneel vervoer voor teams en collega’s',
+	},
+	{
+		label: 'Vrijgezellenfeest',
+		href: '/gids/partybus-huren/#guide-occasions',
+		description: 'Tips voor een partybus op een vrijgezellenfeest',
+	},
+	{
+		label: 'Alle steden',
+		href: '/#steden',
+		description: 'Bekijk alle steden waar je een partybus kunt aanvragen',
 	},
 ];
 

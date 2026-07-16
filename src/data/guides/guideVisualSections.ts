@@ -37,55 +37,72 @@ export const festivalVisualSections: GuideVisualSection[] = [
 			'Geef in je aanvraag door hoeveel personen er instappen, of er bagage mee gaat en hoe laat je uiterlijk wilt vertrekken richting het festival.',
 		],
 	},
-	{
-		image: p.festival,
-		imagePosition: 'right',
-		eyebrow: 'Festival',
-		title: 'Naar Tomorrowland, Defqon.1 en meer',
-		titleId: 'festival-evenement',
-		lead: 'Populaire festivals vragen om strakke planning rond vertrek, aankomst en terugreis.',
-		paragraphs: [
-			'Vanuit vrijwel elke stad in Nederland kun je een partybus aanvragen richting grote festivals en evenementen. Vermeld altijd festivalnaam, editie en datum in je aanvraag.',
-			'Houd rekening met festivalverkeer, grensovergangen bij buitenlandse edities en realistische eindtijden op het terrein.',
-		],
-	},
-	{
-		image: p.interieur,
-		imagePosition: 'left',
-		eyebrow: 'Sfeer in de bus',
-		title: 'De beleving begint al onderweg',
-		titleId: 'festival-sfeer',
-		lead: 'Muziek, sfeerverlichting en ruimte voor de groep maken de rit onderdeel van het feest.',
-		paragraphs: [
-			'Bij de meeste partybussen horen muziek en paarse sfeerverlichting bij de standaardbeleving. Niemand in de groep hoeft te rijden — iedereen kan meegenieten van de rit.',
-			'Check in de offerte wat is toegestaan rond eigen consumpties en stem verwachtingen af met de hele groep vóór vertrek.',
-		],
-	},
-	{
-		image: p.aankomst,
-		imagePosition: 'right',
-		eyebrow: 'Aankomst',
-		title: 'Aankomst op het festivalterrein',
-		titleId: 'festival-aankomst',
-		lead: 'Plan terug vanaf de gewenste aankomsttijd en houd ruimte voor laden, uitstappen en drukte rond het terrein.',
-		paragraphs: [
-			'Vraag vooraf of de bus mag wachten, ergens in de buurt kan staan of op een afgesproken drop-off zone. Dat verschilt per evenement en locatie.',
-			'Een vaste aankomstafspraak voorkomt dat de groep verspreid raakt bij drukte rond de ingang of parkeerzones.',
-		],
-	},
-	{
-		image: p.terugreis,
-		imagePosition: 'left',
-		eyebrow: 'Terugreis',
-		title: 'Na afloop weer samen terug',
-		titleId: 'festival-terugreis',
-		lead: 'Spreek een vaste verzamelplek en tijd af — handig bij late eindtijden en drukte na het festival.',
-		paragraphs: [
-			'Heen- en terugrit kun je in één aanvraag zetten, zodat iedereen weet waar en wanneer de bus terugkomt. Dat geeft rust na een lange festivaldag.',
-			'Vermeld in je aanvraag of de chauffeur moet wachten, later terugkomt of direct na afloop vertrekt.',
-		],
-	},
 ];
+
+export const festivalPopulairSection: GuideVisualSection = {
+	image: p.festival,
+	imagePosition: 'right',
+	eyebrow: 'Populaire festivals',
+	title: 'Populairste festivals in Nederland',
+	titleId: 'festival-populair',
+	lead: 'Van dance en hardstyle tot pop en techno — dit zijn festivals waar groepen vaak per partybus naartoe reizen.',
+	paragraphs: [
+		'Exacte data en locaties kunnen per editie wijzigen. Vermeld altijd het juiste festival, de datum en je vertrekstad in je aanvraag.',
+		'Vergelijk vrijblijvend meerdere offertes. Er zijn geen vaste landelijke prijzen en beschikbaarheid verschilt per periode.',
+	],
+};
+
+export const festivalVertrekSection: GuideVisualSection = {
+	image: p.onderweg,
+	imagePosition: 'left',
+	eyebrow: 'Vertrek',
+	title: 'Vertrek vanuit heel Nederland',
+	titleId: 'festival-vertrek',
+	lead: 'Of je nu in de Randstad, Brabant of het noorden woont — festivalvervoer per partybus is vanuit vrijwel elke plaats mogelijk.',
+	paragraphs: [
+		'Populaire vertreksteden zijn Amsterdam, Rotterdam, Den Haag, Utrecht, Eindhoven, Breda, Groningen, Arnhem, Nijmegen en Zwolle. Maar ook kleinere plaatsen en dorpen kunnen een opstapplaats zijn.',
+		'Geef je concrete vertrekadres of verzamelplek door, zodat aanbieders een realistische route en offerte kunnen opstellen.',
+	],
+};
+
+export const festivalTipsSection: GuideVisualSection = {
+	image: p.interieur,
+	imagePosition: 'right',
+	eyebrow: 'Praktische tips',
+	title: 'Zo plan je festivalvervoer slim',
+	titleId: 'festival-tips',
+	lead: 'Met deze aandachtspunten voorkom je stress rond reserveren, opstappen, bagage en de terugreis.',
+	paragraphs: [
+		'Vraag vroeg aan rond populaire festivalweekenden en vergelijk meerdere offertes. Geef groepsgrootte, opstapplaatsen en bagagewensen duidelijk door.',
+		'Spreek een vaste terugreisafspraak af en plan veilig met een professionele chauffeur — niemand in de groep hoeft zelf te rijden.',
+	],
+};
+
+export const festivalChecklistSection: GuideVisualSection = {
+	image: p.aankomst,
+	imagePosition: 'left',
+	eyebrow: 'Checklist',
+	title: 'Dit heb je nodig voor je aanvraag',
+	titleId: 'festival-checklist',
+	lead: 'Hoe completer je gegevens, hoe sneller aanbieders een passend voorstel kunnen doen.',
+	paragraphs: [
+		'Noteer het aantal personen (tot maximaal 80), je vertrekadres, het festival, vertrek- en terugtijd en een bereikbare contactpersoon.',
+		'Voeg bagage- of kampeerwensen toe bij meerdaagse festivals en vermeld of je naar het buitenland reist.',
+	],
+};
+
+export const festivalTerugreisSection: GuideVisualSection = {
+	image: p.terugreis,
+	imagePosition: 'right',
+	eyebrow: 'Terugreis',
+	title: 'Na afloop weer samen terug',
+	titleId: 'festival-terugreis',
+	lead: 'Spreek een vaste verzamelplek en tijd af — handig bij late eindtijden en drukte na het festival.',
+	paragraphs: [
+		'Heen- en terugrit kun je in één aanvraag zetten, zodat iedereen weet waar en wanneer de bus terugkomt. Dat geeft rust na een lange festivaldag.',
+		'Vermeld in je aanvraag of de chauffeur moet wachten, later terugkomt of direct na afloop vertrekt.',
+	],
+};
 
 export const pricingVisualSections: GuideVisualSection[] = [
 	{

@@ -4,26 +4,49 @@ interface Props {
 	title: string;
 	lead?: string;
 	items: readonly string[];
+	hideHead?: boolean;
+	titleId?: string;
 }
 
-const { eyebrow = 'Checklist', title, lead, items } = Astro.props;
-const titleId = `guide-check-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40)}`;
+const {
+	eyebrow = 'Checklist',
+	title,
+	lead,
+	items,
+	hideHead = false,
+	titleId: titleIdProp,
+} = Astro.props;
+const titleId =
+	titleIdProp ??
+	`guide-check-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40)}`;
 ---
 
-<section class="section guide-checklist" aria-labelledby={titleId}>
-	<div class="section__inner">
-		<div class="section__head reveal">
-			<p class="section__eyebrow">{eyebrow}</p>
-			<h2 id={titleId} class="section__title">{title}</h2>
-			{lead && <p class="section__lead">{lead}</p>}
-		</div>
+{hideHead ? (
+	<div class="guide-checklist guide-checklist--compact section__inner">
 		<ul class="guide-checklist__list reveal">
 			{items.map((item) => <li>{item}</li>)}
 		</ul>
 	</div>
-</section>
+) : (
+	<section class="section guide-checklist" aria-labelledby={titleId}>
+		<div class="section__inner">
+			<div class="section__head reveal">
+				<p class="section__eyebrow">{eyebrow}</p>
+				<h2 id={titleId} class="section__title">{title}</h2>
+				{lead && <p class="section__lead">{lead}</p>}
+			</div>
+			<ul class="guide-checklist__list reveal">
+				{items.map((item) => <li>{item}</li>)}
+			</ul>
+		</div>
+	</section>
+)}
 
 <style>
+	.guide-checklist--compact {
+		padding-bottom: clamp(3.5rem, 8vw, 6.5rem);
+	}
+
 	.guide-checklist__list {
 		margin: 0;
 		padding: 1.35rem 1.3rem;
