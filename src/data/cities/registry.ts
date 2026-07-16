@@ -20,9 +20,94 @@ export const publishedCities: readonly PublishedCity[] = [
 		path: '/steden/partybus-huren-rotterdam/',
 	},
 	{
+		slug: 'den-haag',
+		name: 'Den Haag',
+		path: '/steden/partybus-huren-den-haag/',
+	},
+	{
+		slug: 'utrecht',
+		name: 'Utrecht',
+		path: '/steden/partybus-huren-utrecht/',
+	},
+	{
+		slug: 'eindhoven',
+		name: 'Eindhoven',
+		path: '/steden/partybus-huren-eindhoven/',
+	},
+	{
 		slug: 'breda',
 		name: 'Breda',
 		path: '/steden/partybus-huren-breda/',
+	},
+	{
+		slug: 'tilburg',
+		name: 'Tilburg',
+		path: '/steden/partybus-huren-tilburg/',
+	},
+	{
+		slug: 'groningen',
+		name: 'Groningen',
+		path: '/steden/partybus-huren-groningen/',
+	},
+	{
+		slug: 'nijmegen',
+		name: 'Nijmegen',
+		path: '/steden/partybus-huren-nijmegen/',
+	},
+	{
+		slug: 'arnhem',
+		name: 'Arnhem',
+		path: '/steden/partybus-huren-arnhem/',
+	},
+	{
+		slug: 'maastricht',
+		name: 'Maastricht',
+		path: '/steden/partybus-huren-maastricht/',
+	},
+	{
+		slug: 'haarlem',
+		name: 'Haarlem',
+		path: '/steden/partybus-huren-haarlem/',
+	},
+	{
+		slug: 'almere',
+		name: 'Almere',
+		path: '/steden/partybus-huren-almere/',
+	},
+	{
+		slug: 'apeldoorn',
+		name: 'Apeldoorn',
+		path: '/steden/partybus-huren-apeldoorn/',
+	},
+	{
+		slug: 'zwolle',
+		name: 'Zwolle',
+		path: '/steden/partybus-huren-zwolle/',
+	},
+	{
+		slug: 'leiden',
+		name: 'Leiden',
+		path: '/steden/partybus-huren-leiden/',
+	},
+	{
+		slug: 'dordrecht',
+		name: 'Dordrecht',
+		path: '/steden/partybus-huren-dordrecht/',
+	},
+	{
+		slug: 'enschede',
+		name: 'Enschede',
+		path: '/steden/partybus-huren-enschede/',
+	},
+	{
+		slug: 'amersfoort',
+		name: 'Amersfoort',
+		path: '/steden/partybus-huren-amersfoort/',
+	},
+	{
+		slug: 'den-bosch',
+		name: "'s-Hertogenbosch",
+		path: '/steden/partybus-huren-den-bosch/',
 	},
 ] as const;
 
