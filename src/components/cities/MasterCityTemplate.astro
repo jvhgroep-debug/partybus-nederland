@@ -4,11 +4,9 @@ import { getRelatedCities } from '../../data/cities/registry';
 import { resolveCityHeroImage } from '../../lib/cityImages';
 import CityHero from './CityHero.astro';
 import CityIntro from './CityIntro.astro';
-import CityWhy from './CityWhy.astro';
 import CityDestinations from './CityDestinations.astro';
 import CityActivities from './CityActivities.astro';
 import CityOccasions from './CityOccasions.astro';
-import CityPickupLocations from './CityPickupLocations.astro';
 import CityFaq from './CityFaq.astro';
 import CityRelatedCities from './CityRelatedCities.astro';
 import CityCta from './CityCta.astro';
@@ -42,20 +40,21 @@ const heroImage = resolveCityHeroImage(city.slug);
 		imageAlt={city.intro.imageAlt}
 	/>
 
-	<CityWhy title={city.why.title} lead={city.why.lead} items={city.why.items} />
+	<CityDestinations
+		title={city.locations.title}
+		lead={city.locations.lead}
+		items={city.locations.items}
+		eyebrow="Bestemmingen"
+	/>
 
-	<CityDestinations title={city.locations.title} lead={city.locations.lead} items={city.locations.items} />
-
-	<CityActivities title={city.activities.title} lead={city.activities.lead} items={city.activities.items} />
+	<CityActivities
+		title={city.activities.title}
+		lead={city.activities.lead}
+		items={city.activities.items}
+		eyebrow="Festivals"
+	/>
 
 	<CityOccasions title={city.occasions.title} lead={city.occasions.lead} items={city.occasions.items} />
-
-	<CityPickupLocations
-		title={city.pickup.title}
-		lead={city.pickup.lead}
-		items={city.pickup.items}
-		note={city.pickup.note}
-	/>
 
 	<CityFaq items={city.faqs} cityName={city.name} />
 

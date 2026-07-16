@@ -1,7 +1,14 @@
 import cityInventory from './cities.json';
 import type { CityPageData } from './types';
 import { whatsapp } from '../settings/whatsapp';
-import { buildCityFaqs } from './faqs';
+import {
+	buildDepartureFaqs,
+	buildDepartureIntro,
+	buildDepartureSeo,
+	buildFestivalSection,
+	buildOccasionSection,
+	buildPopularDestinations,
+} from './departureContent';
 
 type InventoryCity = (typeof cityInventory.cities)[number];
 type InventoryCitySeo = InventoryCity & {
@@ -35,22 +42,20 @@ export const PILOT_CITY_SLUGS = [
 	'den-bosch',
 ] as const;
 
-const FALLBACK_SECTION_IMAGE = '/images/partybus-verhuur.png';
-
 function cityBySlug(slug: string): InventoryCity | undefined {
 	return cityInventory.cities.find((city) => city.slug === slug);
 }
 
 function relatedSlugs(currentSlug: string): string[] {
-	return PILOT_CITY_SLUGS.filter((slug) => slug !== currentSlug).slice(0, 4);
+	return PILOT_CITY_SLUGS.filter((slug) => slug !== currentSlug).slice(0, 5);
 }
 
 const LOCAL_PICKUP_HINTS: Record<string, readonly string[]> = {
 	amsterdam: ['Amsterdam Centraal', 'Station Sloterdijk', 'Station Zuid', 'Bijlmer ArenA'],
 	rotterdam: ['Rotterdam Centraal', 'het centrum', 'Ahoy', 'Kop van Zuid'],
-	'den-haag': ['Den Haag Centraal', 'het centrum', 'Scheveningen', 'het Binnenhof'],
-	utrecht: ['Utrecht Centraal', 'het centrum', 'de Domtoren', 'de Oudegracht'],
-	eindhoven: ['Eindhoven Centraal', 'het centrum', 'Strijp-S', 'de Lichttoren'],
+	'den-haag': ['Den Haag Centraal', 'het centrum', 'Scheveningen'],
+	utrecht: ['Utrecht Centraal', 'het centrum', 'de Domtoren'],
+	eindhoven: ['Eindhoven Centraal', 'het centrum', 'Strijp-S'],
 	breda: ['Breda Centraal', 'Grote Markt', 'Havenkwartier'],
 	tilburg: ['Tilburg Centraal', 'het centrum', 'de Spoorzone'],
 	groningen: ['Groningen Centraal', 'het centrum', 'de Martinitoren'],
@@ -76,27 +81,25 @@ export function buildPilotCityPageData(slug: string): CityPageData | null {
 	const city = cityBySlug(slug) as InventoryCitySeo | undefined;
 	if (!city) return null;
 
-	const canonical = city.canonical;
 	const cityName = city.city;
 	const landmark = city.landmark;
-	const metaTitle = city.seoTitle || `Partybus huren ${cityName} | Gratis offertes vergelijken`;
-	const metaDescription =
-		city.metaDescription ||
-		`Partybus huren in ${cityName}? Vergelijk gratis meerdere aanbieders voor feesten en groepsritten rond ${landmark}.`;
-	const h1 = city.h1 || `Partybus huren ${cityName}`;
-	const heroSubtitle =
-		city.heroSubtitle || `Vergelijk gratis meerdere partybus-aanbieders voor een sfeervolle rit door ${cityName}.`;
+	const seo = buildDepartureSeo(cityName);
+	const intro = buildDepartureIntro(cityName);
+	const destinations = buildPopularDestinations(city.slug);
+	const festivals = buildFestivalSection(cityName);
+	const occasions = buildOccasionSection(cityName);
+	const pickups = pickupHintsFor(city.slug, cityName, landmark);
 
 	return {
 		slug: city.slug,
 		name: cityName,
 		path: new URL(city.url).pathname,
-		canonical,
-		metaTitle,
-		metaDescription,
-		h1,
+		canonical: city.canonical,
+		metaTitle: seo.metaTitle,
+		metaDescription: seo.metaDescription,
+		h1: seo.h1,
 		hero: {
-			subtitle: heroSubtitle,
+			subtitle: seo.heroSubtitle,
 			image: '/images/hero-partybus.png',
 			imageAlt: city.imageAlt,
 			whatsappHref: whatsapp.href,
@@ -104,65 +107,33 @@ export function buildPilotCityPageData(slug: string): CityPageData | null {
 				'Gratis offertes vergelijken',
 				'Reactie binnen 24 uur',
 				'Geschikt voor groepen tot 80 personen',
-				'Beschikbaar door heel Nederland',
+				'Ritten door Nederland en België',
 			],
 		},
-		intro: {
-			title: `Partybus huren in ${cityName}`,
-			paragraphs: [
-				`${cityName} is een populaire bestemming voor groepsuitjes en feestritten. Met een partybus houd je de groep onderweg bij elkaar en start de sfeer al tijdens de rit.`,
-				`Veel groepen combineren in ${cityName} meerdere stops, zoals ${landmark}. Zo voorkom je losse taxi's en blijft de planning overzichtelijk voor iedereen.`,
-				`Via Partybus Nederland vergelijk je vrijblijvend meerdere offertes voor ${cityName}. Geef route en groepsgrootte door en kies de optie die het best aansluit op jullie avond.`,
-			],
-			image: '/images/interior-partybus.png',
-			imageAlt: 'Interieur van een luxe partybus',
-		},
+		intro,
 		why: {
-			title: `Waarom een partybus in ${cityName}?`,
-			lead: `Met een partybus in ${cityName} reis je als groep comfortabel en zonder logistieke stress.`,
+			title: `Waarom vertrekken vanuit ${cityName}?`,
+			lead: `Vanuit ${cityName} regel je groepsritten naar steden, festivals en evenementen.`,
 			items: [
-				{ title: 'Samen reizen', text: 'De hele groep blijft bij elkaar van vertrek tot aankomst.', icon: 'group' },
-				{ title: 'Sfeer onderweg', text: 'Muziek en verlichting maken de rit onderdeel van de beleving.', icon: 'party' },
-				{ title: 'Overzichtelijke planning', text: 'Een vaste bus is vaak praktischer dan meerdere ritten.', icon: 'route' },
+				{ title: 'Samen vertrekken', text: 'De hele groep stapt op in of rond jouw stad.', icon: 'group' },
+				{ title: 'Sfeer onderweg', text: 'Muziek en verlichting maken van de rit een feest.', icon: 'party' },
+				{ title: 'Elke bestemming', text: 'Nederland, België, festivals of evenementenlocaties.', icon: 'route' },
 			],
 		},
-		locations: {
-			title: `Populaire locaties in ${cityName}`,
-			lead: `Locaties die vaak in routes door ${cityName} worden opgenomen.`,
-			items: [
-				{ name: landmark, text: `Bekende hotspot in ${cityName} voor een sfeervolle stop.`, image: FALLBACK_SECTION_IMAGE },
-				{ name: `Centrum ${cityName}`, text: 'Populair gebied voor horeca, terrassen en uitgaan.', image: '/images/partybus-nederland.png' },
-				{ name: `Station ${cityName}`, text: 'Praktisch opstappunt voor groepen uit meerdere plaatsen.', image: '/images/partybus-collage.png' },
-			],
-		},
-		activities: {
-			title: `Wat is er te doen in ${cityName}?`,
-			lead: `Combineer vervoer met activiteiten en uitgaan in ${cityName}.`,
-			items: [
-				{ title: 'Uitgaan', text: `Nachtleven en horeca in en rond ${cityName}.`, icon: 'nightlife' },
-				{ title: 'Events', text: 'Concerten en evenementen met de groep op een vaste route.', icon: 'music' },
-				{ title: 'Feestritten', text: 'Sfeervolle avondritten met meerdere haltes.', icon: 'festival' },
-			],
-		},
-		occasions: {
-			title: 'Partybus voor iedere gelegenheid',
-			items: [
-				{ title: 'Vrijgezellenfeest', text: 'Samen op pad met een vaste planning en sfeer onderweg.', image: FALLBACK_SECTION_IMAGE },
-				{ title: 'Verjaardag', text: 'Vier met de hele groep zonder losse vervoersregelingen.', image: '/images/hero-partybus.png' },
-				{ title: 'Bedrijfsuitje', text: 'Praktisch groepsvervoer met representatieve uitstraling.', image: '/images/partybus-arena.png' },
-			],
-		},
+		locations: destinations,
+		activities: festivals,
+		occasions,
 		pickup: {
-			title: 'Populaire opstaplocaties',
-			lead: `Kies in ${cityName} een centrale verzamelplek en stem exacte stops af met de aanbieder.`,
-			items: [`Station ${cityName}`, `Centrum ${cityName}`, 'Hotel of eigen locatie'],
-			note: 'Geef opstaplocatie en route vroeg door voor de beste offertevergelijking.',
+			title: `Opstappen in ${cityName}`,
+			lead: `Kies een centrale verzamelplek in of rond ${cityName}. De exacte opstap stem je af met de aanbieder.`,
+			items: [...pickups, 'Hotel of eigen locatie'],
+			note: 'Geef opstap en bestemming mee in je aanvraag voor snellere offertes.',
 		},
 		relatedCitySlugs: relatedSlugs(city.slug),
-		faqs: buildCityFaqs(cityName, pickupHintsFor(city.slug, cityName, landmark)),
+		faqs: buildDepartureFaqs(cityName, pickups),
 		cta: {
-			title: `Ontvang gratis offertes voor een partybus in ${cityName}`,
-			text: `Vertel je plannen voor ${cityName} en vergelijk vrijblijvend meerdere opties.`,
+			title: `Ontvang gratis offertes voor een partybus vanuit ${cityName}`,
+			text: `Vertel wanneer je wilt vertrekken, met hoeveel personen en wat je bestemming is. Vergelijk daarna vrijblijvend meerdere opties.`,
 			whatsappHref: whatsapp.href,
 			image: '/images/partybus-arena.png',
 		},

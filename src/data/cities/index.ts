@@ -4,3 +4,12 @@ export { amsterdamCity } from './amsterdam';
 export { rotterdamCity } from './rotterdam';
 export { bredaCity } from './breda';
 export { buildCityFaqs } from './faqs';
+export {
+	buildDepartureFaqs,
+	buildDepartureIntro,
+	buildDepartureSeo,
+	buildFestivalSection,
+	buildOccasionSection,
+	buildPopularDestinations,
+} from './departureContent';
+

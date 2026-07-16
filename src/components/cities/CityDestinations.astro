@@ -5,29 +5,40 @@ interface Props {
 	title: string;
 	lead: string;
 	items: readonly CityLocation[];
+	eyebrow?: string;
 }
 
-const { title, lead, items } = Astro.props;
+const { title, lead, items, eyebrow = 'Bestemmingen' } = Astro.props;
 ---
 
 <section class="section" aria-labelledby="city-dest-title">
 	<div class="section__inner">
 		<div class="section__head reveal">
-			<p class="section__eyebrow">Locaties</p>
+			<p class="section__eyebrow">{eyebrow}</p>
 			<h2 id="city-dest-title" class="section__title">{title}</h2>
 			<p class="section__lead">{lead}</p>
 		</div>
 		<div class="city-dest__grid">
 			{
-				items.map((item) => (
-					<article class="city-dest__card reveal">
-						<img src={item.image} alt="" width="1200" height="800" loading="lazy" decoding="async" />
-						<div class="city-dest__body">
-							<h3>{item.name}</h3>
-							<p>{item.text}</p>
-						</div>
-					</article>
-				))
+				items.map((item) =>
+					item.href ? (
+						<a class="city-dest__card reveal" href={item.href}>
+							<img src={item.image} alt="" width="1200" height="800" loading="lazy" decoding="async" />
+							<div class="city-dest__body">
+								<h3>{item.name}</h3>
+								<p>{item.text}</p>
+							</div>
+						</a>
+					) : (
+						<article class="city-dest__card reveal">
+							<img src={item.image} alt="" width="1200" height="800" loading="lazy" decoding="async" />
+							<div class="city-dest__body">
+								<h3>{item.name}</h3>
+								<p>{item.text}</p>
+							</div>
+						</article>
+					),
+				)
 			}
 		</div>
 	</div>
@@ -59,12 +70,14 @@ const { title, lead, items } = Astro.props;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
+		color: inherit;
+		text-decoration: none;
 		transition:
 			transform 0.35s var(--ease-out),
 			box-shadow 0.35s var(--ease-out);
 	}
 
-	.city-dest__card:hover {
+	a.city-dest__card:hover {
 		transform: translateY(-4px);
 		box-shadow: var(--shadow-soft);
 	}

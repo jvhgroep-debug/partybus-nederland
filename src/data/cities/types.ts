@@ -13,6 +13,7 @@ export type CityLocation = {
 	name: string;
 	text: string;
 	image: string;
+	href?: string;
 };
 
 export type CityActivity = {
