@@ -1,5 +1,6 @@
 import { whatsapp } from '../settings/whatsapp';
 import type { CityPageData } from './types';
+import { buildCityFaqs } from './faqs';
 
 /**
  * Amsterdam = Master City Template content example.
@@ -184,48 +185,12 @@ export const amsterdamCity: CityPageData = {
 		note: 'Tip: geef opstap en route al mee in je aanvraag. Dan kunnen aanbieders sneller aangeven wat haalbaar is.',
 	},
 	relatedCitySlugs: ['rotterdam', 'utrecht', 'den-haag', 'eindhoven', 'breda'],
-	faqs: [
-		{
-			question: 'Wat kost een partybus huren in Amsterdam?',
-			answer:
-				'De prijs hangt af van duur, route, groepsgrootte en opties. Via Partybus Nederland vergelijk je gratis meerdere offertes voor jouw rit.',
-		},
-		{
-			question: 'Voor hoeveel personen kan ik een partybus huren?',
-			answer:
-				'Partybussen zijn geschikt voor groepen tot 80 personen. Vermeld het aantal gasten in je aanvraag, zodat je alleen passende voorstellen krijgt.',
-		},
-		{
-			question: 'Kunnen we op meerdere plekken opstappen?',
-			answer:
-				'Vaak in overleg mogelijk. Exacte stops stem je af met de aanbieder, rekening houdend met verkeer en lokale regels.',
-		},
-		{
-			question: 'Mag er muziek worden afgespeeld?',
-			answer:
-				'Bij de meeste partybussen hoort muziek bij de beleving. Details over installatie of playlist stem je af bij de offerte.',
-		},
-		{
-			question: 'Kunnen we eten en drinken meenemen?',
-			answer:
-				'Dat hangt af van de voorwaarden van de aanbieder. Geef wensen rond consumpties vooraf door.',
-		},
-		{
-			question: 'Kan een partybus ons buiten Amsterdam brengen?',
-			answer:
-				'Ja, veel groepen combineren Amsterdam met omliggende steden. Vermeld de eindbestemming in je aanvraag.',
-		},
-		{
-			question: 'Hoe vroeg moet ik reserveren?',
-			answer:
-				'Voor weekenden en feestdagen is vroeg vergelijken verstandig. Op rustige momenten kan korter ook, maar vroeg geeft meer keuze.',
-		},
-		{
-			question: 'Is een partybus geschikt voor een bedrijfsuitje?',
-			answer:
-				'Zeker. Het is een praktische en sfeervolle manier om collega’s of relaties tussen locaties te brengen.',
-		},
-	],
+	faqs: buildCityFaqs('Amsterdam', [
+		'Amsterdam Centraal',
+		'Station Sloterdijk',
+		'Station Zuid',
+		'Bijlmer ArenA',
+	]),
 	cta: {
 		title: 'Ontvang gratis offertes voor een partybus in Amsterdam',
 		text: 'Vertel wanneer je wilt reizen, met hoeveel personen en wat je plannen zijn. Vergelijk daarna vrijblijvend meerdere opties.',

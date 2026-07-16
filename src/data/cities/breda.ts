@@ -1,5 +1,6 @@
 import { whatsapp } from '../settings/whatsapp';
 import type { CityPageData } from './types';
+import { buildCityFaqs } from './faqs';
 
 /** Temporary Breda content for image-system testing. */
 export const bredaCity: CityPageData = {
@@ -104,17 +105,7 @@ export const bredaCity: CityPageData = {
 		items: ['Breda Centraal', 'Grote Markt', 'Havenkwartier', 'Hotel of eigen locatie'],
 	},
 	relatedCitySlugs: ['amsterdam', 'rotterdam', 'den-haag', 'utrecht'],
-	faqs: [
-		{
-			question: 'Wat kost een partybus huren in Breda?',
-			answer:
-				'De prijs hangt af van duur, route en groepsgrootte. Via Partybus Nederland vergelijk je gratis meerdere offertes.',
-		},
-		{
-			question: 'Voor hoeveel personen kan ik een partybus huren?',
-			answer: 'Partybussen zijn geschikt voor groepen tot 80 personen.',
-		},
-	],
+	faqs: buildCityFaqs('Breda', ['Breda Centraal', 'Grote Markt', 'Havenkwartier']),
 	cta: {
 		title: 'Ontvang gratis offertes voor een partybus in Breda',
 		text: 'Vertel wanneer je wilt reizen, met hoeveel personen en wat je plannen zijn.',

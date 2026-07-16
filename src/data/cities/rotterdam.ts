@@ -1,5 +1,6 @@
 import { whatsapp } from '../settings/whatsapp';
 import type { CityPageData } from './types';
+import { buildCityFaqs } from './faqs';
 
 /** Temporary Rotterdam content for image-system testing. */
 export const rotterdamCity: CityPageData = {
@@ -109,17 +110,7 @@ export const rotterdamCity: CityPageData = {
 		items: ['Rotterdam Centraal', 'Station Blaak', 'Kop van Zuid', 'Hotel of eigen locatie'],
 	},
 	relatedCitySlugs: ['amsterdam', 'den-haag', 'breda', 'utrecht'],
-	faqs: [
-		{
-			question: 'Wat kost een partybus huren in Rotterdam?',
-			answer:
-				'De prijs hangt af van duur, route en groepsgrootte. Via Partybus Nederland vergelijk je gratis meerdere offertes.',
-		},
-		{
-			question: 'Voor hoeveel personen kan ik een partybus huren?',
-			answer: 'Partybussen zijn geschikt voor groepen tot 80 personen.',
-		},
-	],
+	faqs: buildCityFaqs('Rotterdam', ['Rotterdam Centraal', 'het centrum', 'Ahoy', 'Kop van Zuid']),
 	cta: {
 		title: 'Ontvang gratis offertes voor een partybus in Rotterdam',
 		text: 'Vertel wanneer je wilt reizen, met hoeveel personen en wat je plannen zijn.',

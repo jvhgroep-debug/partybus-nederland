@@ -1,6 +1,7 @@
 import cityInventory from './cities.json';
 import type { CityPageData } from './types';
 import { whatsapp } from '../settings/whatsapp';
+import { buildCityFaqs } from './faqs';
 
 type InventoryCity = (typeof cityInventory.cities)[number];
 type InventoryCitySeo = InventoryCity & {
@@ -42,6 +43,33 @@ function cityBySlug(slug: string): InventoryCity | undefined {
 
 function relatedSlugs(currentSlug: string): string[] {
 	return PILOT_CITY_SLUGS.filter((slug) => slug !== currentSlug).slice(0, 4);
+}
+
+const LOCAL_PICKUP_HINTS: Record<string, readonly string[]> = {
+	amsterdam: ['Amsterdam Centraal', 'Station Sloterdijk', 'Station Zuid', 'Bijlmer ArenA'],
+	rotterdam: ['Rotterdam Centraal', 'het centrum', 'Ahoy', 'Kop van Zuid'],
+	'den-haag': ['Den Haag Centraal', 'het centrum', 'Scheveningen', 'het Binnenhof'],
+	utrecht: ['Utrecht Centraal', 'het centrum', 'de Domtoren', 'de Oudegracht'],
+	eindhoven: ['Eindhoven Centraal', 'het centrum', 'Strijp-S', 'de Lichttoren'],
+	breda: ['Breda Centraal', 'Grote Markt', 'Havenkwartier'],
+	tilburg: ['Tilburg Centraal', 'het centrum', 'de Spoorzone'],
+	groningen: ['Groningen Centraal', 'het centrum', 'de Martinitoren'],
+	nijmegen: ['Nijmegen Centraal', 'het centrum', 'de Waalkade'],
+	arnhem: ['Arnhem Centraal', 'het centrum', 'de John Frostbrug'],
+	maastricht: ['Maastricht Centraal', 'het centrum', 'het Vrijthof'],
+	haarlem: ['Haarlem Centraal', 'Grote Markt', 'het centrum'],
+	almere: ['Almere Centrum', 'het Weerwater', 'het centrum'],
+	apeldoorn: ['Apeldoorn station', 'het centrum', 'Paleis Het Loo'],
+	zwolle: ['Zwolle station', 'het centrum', 'de Sassenpoort'],
+	leiden: ['Leiden Centraal', 'de Beestenmarkt', 'het centrum'],
+	dordrecht: ['Dordrecht station', 'het centrum', 'de historische havens'],
+	enschede: ['Enschede station', 'Oude Markt', 'het centrum'],
+	amersfoort: ['Amersfoort Centraal', 'de Koppelpoort', 'het centrum'],
+	'den-bosch': ["'s-Hertogenbosch station", 'de Markt', 'de Sint-Jan'],
+};
+
+function pickupHintsFor(slug: string, cityName: string, landmark: string): readonly string[] {
+	return LOCAL_PICKUP_HINTS[slug] ?? [`Station ${cityName}`, `het centrum van ${cityName}`, landmark];
 }
 
 export function buildPilotCityPageData(slug: string): CityPageData | null {
@@ -131,16 +159,7 @@ export function buildPilotCityPageData(slug: string): CityPageData | null {
 			note: 'Geef opstaplocatie en route vroeg door voor de beste offertevergelijking.',
 		},
 		relatedCitySlugs: relatedSlugs(city.slug),
-		faqs: [
-			{
-				question: `Wat kost een partybus in ${cityName}?`,
-				answer: `De prijs hangt af van route, duur en groepsgrootte. Via Partybus Nederland vergelijk je gratis meerdere offertes voor ${cityName}.`,
-			},
-			{
-				question: 'Voor hoeveel personen is een partybus geschikt?',
-				answer: 'Partybussen zijn geschikt voor groepen tot 80 personen.',
-			},
-		],
+		faqs: buildCityFaqs(cityName, pickupHintsFor(city.slug, cityName, landmark)),
 		cta: {
 			title: `Ontvang gratis offertes voor een partybus in ${cityName}`,
 			text: `Vertel je plannen voor ${cityName} en vergelijk vrijblijvend meerdere opties.`,

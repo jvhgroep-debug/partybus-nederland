@@ -3,3 +3,4 @@ export { publishedCities, getPublishedCity, getRelatedCities } from './registry'
 export { amsterdamCity } from './amsterdam';
 export { rotterdamCity } from './rotterdam';
 export { bredaCity } from './breda';
+export { buildCityFaqs } from './faqs';
