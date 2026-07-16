@@ -17,8 +17,6 @@ interface Props {
 	showScroll?: boolean;
 	scrollHref?: string;
 	titleId?: string;
-	/** Homepage default: center. Guide pages: start (left text block, max ~600px). */
-	align?: 'center' | 'start';
 }
 
 const {
@@ -35,18 +33,16 @@ const {
 	showScroll = true,
 	scrollHref = '#vertrouwen',
 	titleId = 'hero-title',
-	align = 'center',
 } = Astro.props;
 ---
 
-<section class:list={['hero', align === 'start' && 'hero--start']} aria-labelledby={titleId}>
+<section class="hero" aria-labelledby={titleId}>
 	<div class="hero__media" aria-hidden="true">
 		<img
 			src={image}
 			alt=""
 			width={imageWidth}
 			height={imageHeight}
-			loading="eager"
 			fetchpriority="high"
 			decoding="async"
 		/>
@@ -92,10 +88,6 @@ const {
 		text-align: center;
 	}
 
-	.hero--start {
-		text-align: left;
-	}
-
 	.hero__media {
 		position: absolute;
 		inset: 0;
@@ -120,7 +112,6 @@ const {
 		position: absolute;
 		inset: 0;
 		z-index: 1;
-		pointer-events: none;
 		background:
 			radial-gradient(circle at center, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.72) 72%),
 			linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.42) 40%, rgba(0, 0, 0, 0.84) 100%);
@@ -133,10 +124,6 @@ const {
 		display: grid;
 		justify-items: center;
 		width: 100%;
-	}
-
-	.hero--start .hero__content {
-		justify-items: start;
 	}
 
 	.hero__brand {
@@ -160,10 +147,6 @@ const {
 		text-wrap: balance;
 	}
 
-	.hero--start .hero__title {
-		max-width: 16ch;
-	}
-
 	.hero__subtitle {
 		margin: 0 0 2rem;
 		max-width: 32rem;
@@ -173,19 +156,11 @@ const {
 		text-wrap: pretty;
 	}
 
-	.hero--start .hero__subtitle {
-		max-width: 37.5rem;
-	}
-
 	.hero__actions {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
 		gap: 0.85rem;
-	}
-
-	.hero--start .hero__actions {
-		justify-content: flex-start;
 	}
 
 	.hero__scroll {
