@@ -1,0 +1,84 @@
+---
+import CityLayout from '../layouts/CityLayout.astro';
+import MasterRouteTemplate from '../components/routes/MasterRouteTemplate.astro';
+import { getAllRouteSlugs, getRouteBySlug } from '../data/routes';
+import { CITY_HERO_IMAGE } from '../lib/cityImages';
+
+export function getStaticPaths() {
+	return getAllRouteSlugs().map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+if (!slug) {
+	throw new Error('Missing route slug');
+}
+
+const route = getRouteBySlug(slug);
+if (!route) {
+	throw new Error(`Unknown route slug: ${slug}`);
+}
+
+const absoluteOgImage = new URL(CITY_HERO_IMAGE, 'https://www.partybusnederland.nl').href;
+
+const serviceLd = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	name: route.h1,
+	description: route.metaDescription,
+	url: route.canonical,
+	serviceType: 'Partybus verhuur',
+	areaServed: [route.departureCity, route.destination],
+	provider: {
+		'@type': 'Organization',
+		name: 'Partybus Nederland',
+		url: 'https://www.partybusnederland.nl/',
+	},
+};
+
+const breadcrumbLd = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: route.breadcrumbs.map((crumb, index) => ({
+		'@type': 'ListItem',
+		position: index + 1,
+		name: crumb.label,
+		...(crumb.href
+			? {
+					item: crumb.href.startsWith('http')
+						? crumb.href
+						: `https://www.partybusnederland.nl${crumb.href}`,
+				}
+			: { item: route.canonical }),
+	})),
+};
+
+const faqLd = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: route.faqs.map((faq) => ({
+		'@type': 'Question',
+		name: faq.question,
+		acceptedAnswer: {
+			'@type': 'Answer',
+			text: faq.answer,
+		},
+	})),
+};
+---
+
+<CityLayout
+	title={route.seoTitle}
+	description={route.metaDescription}
+	canonical={route.canonical}
+	preloadImage={CITY_HERO_IMAGE}
+	ogTitle={route.seoTitle}
+	ogDescription={route.metaDescription}
+	ogUrl={route.canonical}
+	ogImage={absoluteOgImage}
+	twitterTitle={route.seoTitle}
+	twitterDescription={route.metaDescription}
+	twitterImage={absoluteOgImage}
+	jsonLd={[serviceLd, breadcrumbLd, faqLd]}
+>
+	<MasterRouteTemplate route={route} />
+</CityLayout>

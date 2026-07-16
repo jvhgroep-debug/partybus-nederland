@@ -1,0 +1,236 @@
+---
+import type { RoutePageData } from '../../data/routes/types';
+import CityBreadcrumbs from '../cities/CityBreadcrumbs.astro';
+import CityIntro from '../cities/CityIntro.astro';
+import CityFaq from '../cities/CityFaq.astro';
+import CityCta from '../cities/CityCta.astro';
+import Button from '../buttons/Button.astro';
+
+interface Props {
+	route: RoutePageData;
+}
+
+const { route } = Astro.props;
+---
+
+<div class="master-route">
+	<CityBreadcrumbs items={route.breadcrumbs} />
+
+	<section class="route-hero section__inner" aria-labelledby="route-hero-title">
+		<p class="section__eyebrow">Route · {route.category}</p>
+		<h1 id="route-hero-title" class="route-hero__title">{route.h1}</h1>
+		<p class="route-hero__subtitle">{route.heroSubtitle}</p>
+		<div class="route-hero__actions">
+			<Button href="/gratis-partybus-offertes-aanvragen/" size="lg">Gratis offertes aanvragen</Button>
+			<a class="btn btn--ghost btn--lg" href={route.departureCityPath}>
+				Partybus vanuit {route.departureCity}
+			</a>
+		</div>
+		<dl class="route-hero__meta">
+			<div>
+				<dt>Afstand</dt>
+				<dd>ca. {route.distanceKm} km</dd>
+			</div>
+			<div>
+				<dt>Reistijd</dt>
+				<dd>{route.travelTime}</dd>
+			</div>
+			<div>
+				<dt>Aanbevolen</dt>
+				<dd>{route.recommendedVehicle}</dd>
+			</div>
+		</dl>
+	</section>
+
+	<CityIntro
+		title={route.intro.title}
+		paragraphs={route.intro.paragraphs}
+		image={route.intro.image}
+		imageAlt={route.intro.imageAlt}
+	/>
+
+	<section class="section" aria-labelledby="route-related-title">
+		<div class="section__inner">
+			<div class="section__head reveal">
+				<p class="section__eyebrow">Gerelateerd</p>
+				<h2 id="route-related-title" class="section__title">Gerelateerde routes & steden</h2>
+				<p class="section__lead">
+					Bekijk meer ritten vanuit {route.departureCity} of relevante stedenpagina’s.
+				</p>
+			</div>
+			<div class="route-links">
+				<div class="route-links__col reveal">
+					<h3>Gerelateerde routes</h3>
+					<ul>
+						{
+							route.relatedRoutes.map((item) => (
+								<li>
+									<a href={item.href}>{item.label}</a>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+				<div class="route-links__col reveal">
+					<h3>Relevante steden</h3>
+					<ul>
+						{
+							route.relatedCities.map((item) => (
+								<li>
+									<a href={item.href}>{item.label}</a>
+								</li>
+							))
+						}
+					</ul>
+					<p class="route-links__back">
+						<a href={route.departureCityPath}>← Terug naar partybus {route.departureCity}</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<CityFaq
+		items={route.faqs}
+		cityName={`${route.departureCity} – ${route.destination}`}
+		title={`Veelgestelde vragen over ${route.departureCity} – ${route.destination}`}
+	/>
+
+	<CityCta
+		title={route.cta.title}
+		text={route.cta.text}
+		whatsappHref={route.cta.whatsappHref}
+		image={route.cta.image}
+		primaryHref="/gratis-partybus-offertes-aanvragen/"
+	/>
+</div>
+
+<style>
+	.master-route :global(.section) {
+		padding-block: clamp(4.75rem, 10vw, 8.25rem);
+	}
+
+	@media (max-width: 640px) {
+		.master-route :global(.section) {
+			padding-block: clamp(3.5rem, 14vw, 5rem);
+		}
+	}
+
+	.route-hero {
+		padding-bottom: clamp(2.5rem, 6vw, 4rem);
+	}
+
+	.route-hero__title {
+		margin: 0 0 0.85rem;
+		max-width: 18ch;
+		font-family: var(--font-display);
+		font-size: clamp(1.95rem, 4.5vw, 3.1rem);
+		font-weight: 800;
+		line-height: 1.08;
+		letter-spacing: -0.03em;
+	}
+
+	.route-hero__subtitle {
+		margin: 0 0 1.35rem;
+		max-width: 36rem;
+		font-size: clamp(1rem, 1.7vw, 1.12rem);
+		line-height: 1.55;
+		color: color-mix(in srgb, var(--color-text) 88%, transparent);
+	}
+
+	.route-hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-bottom: 1.75rem;
+	}
+
+	.route-hero__meta {
+		display: grid;
+		gap: 0.85rem;
+		margin: 0;
+		max-width: 42rem;
+	}
+
+	@media (min-width: 700px) {
+		.route-hero__meta {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.route-hero__meta div {
+		padding: 1rem 1.1rem;
+		border-radius: var(--radius-sm);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 6%, #090909);
+	}
+
+	.route-hero__meta dt {
+		margin: 0 0 0.3rem;
+		font-size: 0.78rem;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		color: var(--color-primary);
+	}
+
+	.route-hero__meta dd {
+		margin: 0;
+		font-weight: 700;
+		font-family: var(--font-display);
+	}
+
+	.route-links {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	@media (min-width: 800px) {
+		.route-links {
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+		}
+	}
+
+	.route-links__col {
+		padding: 1.35rem 1.25rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+	}
+
+	.route-links__col h3 {
+		margin: 0 0 0.85rem;
+		font-family: var(--font-display);
+		font-size: 1.08rem;
+		color: var(--color-primary);
+	}
+
+	.route-links__col ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.55rem;
+	}
+
+	.route-links__col a {
+		color: var(--color-text);
+		font-weight: 600;
+	}
+
+	.route-links__col a:hover {
+		color: var(--color-primary);
+	}
+
+	.route-links__back {
+		margin: 1.1rem 0 0;
+		font-size: 0.95rem;
+	}
+
+	@media (max-width: 640px) {
+		.route-hero__actions :global(.btn) {
+			width: 100%;
+			justify-content: center;
+		}
+	}
+</style>
