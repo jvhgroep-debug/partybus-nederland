@@ -7,7 +7,7 @@ import GuideChecklist from '../../../components/guides/GuideChecklist.astro';
 import GuideFaqList from '../../../components/guides/GuideFaqList.astro';
 import GuideRelatedLinks from '../../../components/guides/GuideRelatedLinks.astro';
 import GuideCta from '../../../components/guides/GuideCta.astro';
-import GuideImage from '../../../components/guides/GuideImage.astro';
+import GuideImageSection from '../../../components/guides/GuideImageSection.astro';
 import {
 	festivalBenefits,
 	festivalBreadcrumbs,
@@ -18,10 +18,10 @@ import {
 	festivalGuideSeo,
 	festivalTips,
 	festivalWhatsappHref,
-	festivalWhy,
 	topFestivals,
 } from '../../../data/guides/festivalGuide';
 import { guideImagePool } from '../../../data/guides/guideImages';
+import { festivalVisualSections } from '../../../data/guides/guideVisualSections';
 import {
 	buildBreadcrumbSchema,
 	buildFaqPageSchema,
@@ -30,6 +30,7 @@ import {
 
 const seo = festivalGuideSeo;
 const img = guideImagePool;
+const [onderweg, opstap, festival, sfeer, aankomst, terugreis] = festivalVisualSections;
 
 const jsonLd = [
 	buildWebPageSchema({
@@ -76,22 +77,7 @@ const jsonLd = [
 			<GuideBreadcrumbs items={festivalBreadcrumbs} />
 		</div>
 
-		<section class="section" aria-labelledby="festival-why">
-			<div class="section__inner">
-				<div class="section__head reveal">
-					<p class="section__eyebrow">Waarom partybus</p>
-					<h2 id="festival-why" class="section__title">{festivalWhy.title}</h2>
-					<p class="section__lead">{festivalWhy.lead}</p>
-				</div>
-				<div class="festival-guide__prose reveal">
-					{festivalWhy.paragraphs.map((p) => <p>{p}</p>)}
-				</div>
-			</div>
-		</section>
-
-		<div class="guide-visual section__inner">
-			<GuideImage image={img.groepInstapt} class="reveal" />
-		</div>
+		<GuideImageSection {...onderweg} />
 
 		<GuideFactorGrid
 			eyebrow="Voordelen"
@@ -101,9 +87,7 @@ const jsonLd = [
 			columns={3}
 		/>
 
-		<div class="guide-visual section__inner">
-			<GuideImage image={img.onderweg} class="reveal" />
-		</div>
+		<GuideImageSection {...opstap} />
 
 		<GuideFactorGrid
 			eyebrow="Topfestivals"
@@ -113,9 +97,7 @@ const jsonLd = [
 			columns={2}
 		/>
 
-		<div class="guide-visual section__inner">
-			<GuideImage image={img.festivalAankomst} class="reveal" />
-		</div>
+		<GuideImageSection {...festival} />
 
 		<GuideFactorGrid
 			eyebrow="Tips"
@@ -125,9 +107,7 @@ const jsonLd = [
 			columns={3}
 		/>
 
-		<div class="guide-visual section__inner">
-			<GuideImage image={img.interieur} class="reveal" />
-		</div>
+		<GuideImageSection {...sfeer} />
 
 		<GuideChecklist
 			eyebrow="Checklist"
@@ -136,9 +116,7 @@ const jsonLd = [
 			items={festivalChecklist}
 		/>
 
-		<div class="guide-visual section__inner">
-			<GuideImage image={img.festivalterrein} class="reveal" />
-		</div>
+		<GuideImageSection {...aankomst} />
 
 		<GuideFaqList
 			title="Veelgestelde vragen over festivalvervoer"
@@ -146,9 +124,7 @@ const jsonLd = [
 			items={festivalFaqs}
 		/>
 
-		<div class="guide-visual section__inner">
-			<GuideImage image={img.terugreis} class="reveal" />
-		</div>
+		<GuideImageSection {...terugreis} />
 
 		<GuideRelatedLinks
 			eyebrow="Steden"
@@ -183,19 +159,5 @@ const jsonLd = [
 
 	.festival-guide__crumbs {
 		margin-top: 0.5rem;
-	}
-
-	.festival-guide__prose {
-		max-width: 46rem;
-	}
-
-	.festival-guide__prose p {
-		margin: 0 0 1rem;
-		color: var(--color-text-muted);
-		line-height: 1.75;
-	}
-
-	.guide-visual {
-		padding-block: clamp(1rem, 3vw, 2rem);
 	}
 </style>

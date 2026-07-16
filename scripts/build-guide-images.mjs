@@ -4,39 +4,40 @@ import sharp from 'sharp';
 
 const root = path.resolve(import.meta.dirname, '..');
 const outDir = path.join(root, 'public', 'images', 'guides');
+const widths = [640, 960, 1280, 1920];
 
 const sources = [
 	{
 		src: 'public/images/partybus-verhuur.png',
-		dest: 'partybus-groep-instapt.webp',
+		baseName: 'partybus-opstapplaats',
 	},
 	{
 		src: 'public/images/hero-partybus.png',
-		dest: 'partybus-onderweg-nacht.webp',
+		baseName: 'partybus-onderweg-nacht',
 	},
 	{
 		src: 'public/images/interior-partybus.png',
-		dest: 'partybus-interieur-sfeer.webp',
+		baseName: 'partybus-interieur-sfeer',
 	},
 	{
 		src: 'public/images/partybus-arena.png',
-		dest: 'partybus-festival-aankomst.webp',
+		baseName: 'partybus-festival-aankomst',
 	},
 	{
 		src: 'public/images/service-festival.jpg',
-		dest: 'partybus-festivalterrein.webp',
+		baseName: 'partybus-festivalterrein',
 	},
 	{
 		src: 'public/images/partybus-nederland.png',
-		dest: 'partybus-terugreis-avond.webp',
+		baseName: 'partybus-terugreis-avond',
 	},
 	{
 		src: 'public/images/partybus-collage.png',
-		dest: 'partybus-cta-offerte.webp',
+		baseName: 'partybus-cta-offerte',
 	},
 	{
 		src: 'public/images/partybus-alt.png',
-		dest: 'partybus-luxe-exterieur.webp',
+		baseName: 'partybus-luxe-exterieur',
 	},
 ];
 
@@ -44,10 +45,14 @@ fs.mkdirSync(outDir, { recursive: true });
 
 for (const item of sources) {
 	const input = path.join(root, item.src);
-	const output = path.join(outDir, item.dest);
-	await sharp(input)
-		.resize(1920, 1080, { fit: 'cover', position: 'centre' })
-		.webp({ quality: 82 })
-		.toFile(output);
-	console.log(`✓ ${item.dest}`);
+
+	for (const width of widths) {
+		const height = Math.round((width * 9) / 16);
+		const output = path.join(outDir, `${item.baseName}-${width}w.webp`);
+		await sharp(input)
+			.resize(width, height, { fit: 'cover', position: 'centre' })
+			.webp({ quality: 82 })
+			.toFile(output);
+		console.log(`✓ ${item.baseName}-${width}w.webp`);
+	}
 }

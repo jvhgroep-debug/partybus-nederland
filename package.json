@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:guide-images": "node scripts/build-guide-images.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -17,6 +18,7 @@
     "astro": "^7.0.9"
   },
   "devDependencies": {
+    "sharp": "^0.35.3",
     "wrangler": "^4.111.0"
   }
 }

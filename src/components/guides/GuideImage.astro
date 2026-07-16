@@ -1,26 +1,45 @@
 ---
 import type { GuideImageAsset } from '../../data/guides/guideImages';
+import { buildGuideImageSrcset } from '../../data/guides/guideImages';
 
 interface Props {
 	image: GuideImageAsset;
 	loading?: 'lazy' | 'eager';
+	fetchpriority?: 'high' | 'low' | 'auto';
 	variant?: 'full' | 'inline' | 'cta';
+	sizes?: string;
 	class?: string;
 }
 
-const { image, loading = 'lazy', variant = 'full', class: className } = Astro.props;
+const {
+	image,
+	loading = 'lazy',
+	fetchpriority,
+	variant = 'full',
+	sizes = variant === 'inline'
+		? '(min-width: 960px) 44vw, 100vw'
+		: variant === 'cta'
+			? '(min-width: 960px) 40vw, 100vw'
+			: '100vw',
+	class: className,
+} = Astro.props;
+
+const srcset = buildGuideImageSrcset(image);
 ---
 
 <figure class:list={['guide-image', `guide-image--${variant}`, className]}>
 	<div class="guide-image__frame">
 		<img
 			src={image.src}
+			srcset={srcset}
+			sizes={sizes}
 			alt={image.alt}
 			title={image.title}
 			width={image.width}
 			height={image.height}
 			loading={loading}
 			decoding="async"
+			fetchpriority={fetchpriority}
 		/>
 		<div class="guide-image__veil" aria-hidden="true"></div>
 	</div>
@@ -69,7 +88,7 @@ const { image, loading = 'lazy', variant = 'full', class: className } = Astro.pr
 	}
 
 	.guide-image--inline {
-		max-width: 46rem;
+		max-width: none;
 	}
 
 	.guide-image--cta .guide-image__frame {

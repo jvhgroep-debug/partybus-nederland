@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import Button from '../../../components/buttons/Button.astro';
 import InfoGuide from '../../../components/shared/InfoGuide.astro';
-import GuideImage from '../../../components/guides/GuideImage.astro';
+import GuideHero from '../../../components/guides/GuideHero.astro';
+import GuideImageSection from '../../../components/guides/GuideImageSection.astro';
 import GuideCta from '../../../components/guides/GuideCta.astro';
 import {
 	bookingTips,
@@ -11,6 +11,7 @@ import {
 	occasionGuides,
 } from '../../../data/guides/partybusInfo';
 import { guideImagePool } from '../../../data/guides/guideImages';
+import { partybusHurenVisualSections } from '../../../data/guides/guideVisualSections';
 import { homeFaqs } from '../../../data/settings/faq-home';
 
 const title = 'Partybus huren: complete gids voor Nederland';
@@ -18,6 +19,7 @@ const description =
 	'Alles over partybus huren in Nederland: prijzen zonder vaste tarieven, tips, bestemmingen, festivals, capaciteit tot 80 personen en waar je op let bij offertes.';
 const canonical = 'https://www.partybusnederland.nl/gids/partybus-huren/';
 const img = guideImagePool;
+const [onderweg, opstap, sfeer, festival, aankomst, terugreis] = partybusHurenVisualSections;
 
 const faqSchema = {
 	'@context': 'https://schema.org',
@@ -38,6 +40,7 @@ const faqSchema = {
 	description={description}
 	canonical={canonical}
 	titleExact={true}
+	preloadImage="/images/hero-partybus.png"
 	ogTitle={title}
 	ogDescription={description}
 	ogUrl={canonical}
@@ -48,43 +51,21 @@ const faqSchema = {
 	jsonLd={faqSchema}
 >
 	<article class="guide">
-		<header class="guide__hero section__inner">
-			<p class="section__eyebrow">Informatiegids</p>
-			<h1 class="guide__title">Partybus huren in Nederland: de complete gids</h1>
-			<p class="guide__lead">
-				Partybus Nederland helpt je niet alleen offertes vergelijken. Op deze pagina vind je
-				praktische informatie over prijzen, planning, bestemmingen, festivals en veelgestelde
-				vragen — zodat je een weloverwogen keuze maakt.
-			</p>
-			<div class="guide__actions">
-				<Button href="/gratis-partybus-offertes-aanvragen/" size="lg">Gratis offertes aanvragen</Button>
-				<a class="btn btn--ghost btn--lg" href="/#steden">Bekijk steden</a>
-			</div>
-		</header>
+		<GuideHero
+			eyebrow="Informatiegids"
+			title="Partybus huren in Nederland: de complete gids"
+			lead="Partybus Nederland helpt je niet alleen offertes vergelijken. Op deze pagina vind je praktische informatie over prijzen, planning, bestemmingen, festivals en veelgestelde vragen — zodat je een weloverwogen keuze maakt."
+			image="/images/hero-partybus.png"
+			imageAlt="Luxe zwarte partybus met paarse LED-verlichting — complete gids partybus huren Nederland"
+			primaryHref="/gratis-partybus-offertes-aanvragen/"
+			primaryLabel="Gratis offertes aanvragen"
+			secondaryHref="/#steden"
+			secondaryLabel="Bekijk steden"
+		/>
 
-		<div class="guide-visual section__inner">
-			<GuideImage image={img.luxeExterieur} class="reveal" />
-		</div>
+		<GuideImageSection {...onderweg} />
 
-		<section class="section" aria-labelledby="guide-what">
-			<div class="section__inner guide__prose reveal">
-				<h2 id="guide-what">Wat is een partybus precies?</h2>
-				<p>
-					Een partybus is een luxe groepsvoertuig met sfeerverlichting, muziek en ruimte om samen te
-					reizen. Je gebruikt hem als rijdend startpunt van je avond: iedereen blijft bij elkaar,
-					zonder losse taxi’s of parkeerstress.
-				</p>
-				<p>
-					Populaire toepassingen zijn vrijgezellenfeesten, bruiloften, bedrijfsuitjes, festivals,
-					verjaardagen en stadsritten. Vanuit vrijwel elke stad in Nederland kun je een rit plannen
-					naar een andere stad, een evenement of — in overleg — een bestemming in België.
-				</p>
-			</div>
-		</section>
-
-		<div class="guide-visual section__inner">
-			<GuideImage image={img.groepInstapt} class="reveal" />
-		</div>
+		<GuideImageSection {...opstap} />
 
 		<InfoGuide
 			eyebrow="Prijzen"
@@ -92,32 +73,23 @@ const faqSchema = {
 			lead="Er bestaat geen vaste landelijke prijs. Gebruik deze factoren om offertes eerlijk te vergelijken — zonder verrassingen achteraf."
 			cards={pricingFactors}
 			checklist={compareChecklist}
+			hideHead={true}
 		/>
 
-		<div class="guide-visual section__inner">
-			<GuideImage image={img.interieur} class="reveal" />
-		</div>
+		<GuideImageSection {...sfeer} />
 
 		<InfoGuide
 			eyebrow="Tips"
 			title="Praktische tips voor een soepele rit"
 			lead="Met een goede voorbereiding krijg je relevantere offertes en een rustiger feestavond."
 			cards={bookingTips}
+			hideHead={true}
 		/>
 
-		<div class="guide-visual section__inner">
-			<GuideImage image={img.onderweg} class="reveal" />
-		</div>
+		<GuideImageSection {...festival} />
 
-		<section class="section" aria-labelledby="guide-occasions">
+		<section class="section" aria-labelledby="guide-occasions-cards">
 			<div class="section__inner">
-				<div class="section__head reveal">
-					<p class="section__eyebrow">Gelegenheden</p>
-					<h2 id="guide-occasions" class="section__title">Per gelegenheid anders plannen</h2>
-					<p class="section__lead">
-						De beste partybusrit hangt af van jouw moment. Dit zijn de belangrijkste aandachtspunten.
-					</p>
-				</div>
 				<div class="guide__cards">
 					{
 						occasionGuides.map((item) => (
@@ -131,57 +103,19 @@ const faqSchema = {
 			</div>
 		</section>
 
-		<div class="guide-visual section__inner">
-			<GuideImage image={img.festivalterrein} class="reveal" />
-		</div>
+		<GuideImageSection {...aankomst}>
+			<p>
+				<a href="/steden/partybus-huren-rotterdam/">Partybus vanuit Rotterdam</a>
+				{' · '}
+				<a href="/steden/partybus-huren-amsterdam/">Partybus vanuit Amsterdam</a>
+				{' · '}
+				<a href="/partybus-rotterdam-amsterdam/">Route Rotterdam – Amsterdam</a>
+				{' · '}
+				<a href="/partybus-rotterdam-tomorrowland/">Route Rotterdam – Tomorrowland</a>
+			</p>
+		</GuideImageSection>
 
-		<section class="section" aria-labelledby="guide-destinations">
-			<div class="section__inner guide__prose reveal">
-				<h2 id="guide-destinations">Bestemmingen, festivals en routes</h2>
-				<p>
-					Veel groepen vertrekken vanuit hun eigen stad naar Amsterdam, Rotterdam, Utrecht, Den Haag,
-					Eindhoven, festivals zoals Tomorrowland of Defqon.1, of naar Schiphol. Op onze
-					stedenpagina’s vind je lokale context; op routepagina’s staat focus op een specifieke rit.
-				</p>
-				<p>
-					<a href="/steden/partybus-huren-rotterdam/">Partybus vanuit Rotterdam</a>
-					{' · '}
-					<a href="/steden/partybus-huren-amsterdam/">Partybus vanuit Amsterdam</a>
-					{' · '}
-					<a href="/partybus-rotterdam-amsterdam/">Route Rotterdam – Amsterdam</a>
-					{' · '}
-					<a href="/partybus-rotterdam-tomorrowland/">Route Rotterdam – Tomorrowland</a>
-				</p>
-			</div>
-		</section>
-
-		<div class="guide-visual section__inner">
-			<GuideImage image={img.festivalAankomst} class="reveal" />
-		</div>
-
-		<section class="section" aria-labelledby="guide-faq">
-			<div class="section__inner guide__prose reveal">
-				<h2 id="guide-faq">Kort antwoord op veelgestelde vragen</h2>
-				<p>
-					<strong>Hoeveel personen?</strong> Tot maximaal 80, afhankelijk van het voertuig.
-				</p>
-				<p>
-					<strong>Kunnen we naar België?</strong> Vaak mogelijk voor festivals of steden — vermeld de
-					bestemming in je aanvraag.
-				</p>
-				<p>
-					<strong>Meerdere stops?</strong> Vaak mogelijk als je ze vooraf doorgeeft aan de aanbieder.
-				</p>
-				<p>
-					<strong>Muziek en licht?</strong> Bij de meeste bussen onderdeel van de beleving; check
-					exacte opties in de offerte.
-				</p>
-			</div>
-		</section>
-
-		<div class="guide-visual section__inner">
-			<GuideImage image={img.terugreis} class="reveal" />
-		</div>
+		<GuideImageSection {...terugreis} />
 	</article>
 
 	<GuideCta
@@ -195,54 +129,8 @@ const faqSchema = {
 </BaseLayout>
 
 <style>
-	.guide__hero {
-		padding-top: calc(var(--header-height) + 2rem);
-		padding-bottom: 2rem;
-	}
-
-	.guide__title {
-		margin: 0 0 1rem;
-		max-width: 18ch;
-		font-family: var(--font-display);
-		font-size: clamp(2rem, 5vw, 3.2rem);
-		font-weight: 800;
-		line-height: 1.06;
-		letter-spacing: -0.03em;
-	}
-
-	.guide__lead {
-		margin: 0 0 1.5rem;
-		max-width: 42rem;
-		font-size: 1.08rem;
-		line-height: 1.65;
-		color: color-mix(in srgb, var(--color-text) 88%, transparent);
-	}
-
-	.guide__actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.75rem;
-	}
-
-	.guide__prose {
-		max-width: 46rem;
-	}
-
-	.guide__prose h2 {
-		margin: 0 0 1rem;
-		font-family: var(--font-display);
-		font-size: clamp(1.45rem, 3vw, 1.9rem);
-	}
-
-	.guide__prose p {
-		margin: 0 0 1rem;
-		color: var(--color-text-muted);
-		line-height: 1.75;
-	}
-
-	.guide__prose a {
-		color: var(--color-primary);
-		font-weight: 600;
+	.guide :global(.section) {
+		padding-block: clamp(3.5rem, 8vw, 6.5rem);
 	}
 
 	.guide__cards {
@@ -273,16 +161,5 @@ const faqSchema = {
 		margin: 0;
 		color: var(--color-text-muted);
 		line-height: 1.65;
-	}
-
-	.guide-visual {
-		padding-block: clamp(1rem, 3vw, 2rem);
-	}
-
-	@media (max-width: 640px) {
-		.guide__actions :global(.btn) {
-			width: 100%;
-			justify-content: center;
-		}
 	}
 </style>
