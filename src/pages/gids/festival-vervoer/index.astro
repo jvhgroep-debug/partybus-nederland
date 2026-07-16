@@ -1,20 +1,22 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import Button from '../../../components/buttons/Button.astro';
 import Hero from '../../../components/home/Hero.astro';
 import GuideBreadcrumbs from '../../../components/guides/GuideBreadcrumbs.astro';
 import GuideFactorGrid from '../../../components/guides/GuideFactorGrid.astro';
 import GuideChecklist from '../../../components/guides/GuideChecklist.astro';
 import GuideFaqList from '../../../components/guides/GuideFaqList.astro';
 import GuideRelatedLinks from '../../../components/guides/GuideRelatedLinks.astro';
+import GuideCta from '../../../components/guides/GuideCta.astro';
 import {
 	festivalBenefits,
 	festivalBreadcrumbs,
 	festivalChecklist,
+	festivalCityLinks,
 	festivalFaqs,
+	festivalGuideLinks,
 	festivalGuideSeo,
-	festivalInternalLinks,
 	festivalTips,
+	festivalWhatsappHref,
 	festivalWhy,
 	topFestivals,
 } from '../../../data/guides/festivalGuide';
@@ -58,6 +60,7 @@ const jsonLd = [
 			title={seo.h1}
 			subtitle={seo.lead}
 			image="/images/hero-partybus.png"
+			imageLoading="eager"
 			showScroll={false}
 			titleId="festival-hero-title"
 			primaryHref="/gratis-partybus-offertes-aanvragen/"
@@ -116,28 +119,32 @@ const jsonLd = [
 
 		<GuideFaqList
 			title="Veelgestelde vragen over festivalvervoer"
-			lead="Antwoorden op de vragen die we het vaakst horen rond festivals en partybussen."
+			lead="Antwoorden op de vragen die we het vaakst horen over prijzen, ophalen, terugreis en meer."
 			items={festivalFaqs}
 		/>
 
 		<GuideRelatedLinks
-			title="Handige pagina’s om verder te gaan"
-			lead="Steden, prijzen, de algemene gids en gelegenheden."
-			items={festivalInternalLinks}
+			eyebrow="Steden"
+			title="Partybus huren vanuit populaire steden"
+			lead="Festivalvervoer vanuit jouw vertrekstad — met lokale tips en offertes."
+			items={festivalCityLinks}
 		/>
 
-		<section class="section" aria-labelledby="festival-cta">
-			<div class="section__inner festival-guide__cta reveal">
-				<h2 id="festival-cta" class="section__title">Klaar voor jouw festivalrit?</h2>
-				<p class="section__lead">
-					Vraag vrijblijvend meerdere offertes aan voor heen- en terugrit vanuit jouw stad.
-				</p>
-				<Button href="/gratis-partybus-offertes-aanvragen/" size="lg">
-					Gratis offertes aanvragen
-				</Button>
-			</div>
-		</section>
+		<GuideRelatedLinks
+			eyebrow="Meer lezen"
+			title="Gerelateerde gidsen en gelegenheden"
+			lead="Prijzen, algemene informatie en tips per gelegenheid."
+			items={festivalGuideLinks}
+		/>
 	</article>
+
+	<GuideCta
+		title={seo.ctaTitle}
+		lead={seo.ctaLead}
+		whatsappHref={festivalWhatsappHref}
+		whatsappLabel="WhatsApp direct"
+		titleId="festival-cta"
+	/>
 </BaseLayout>
 
 <style>
@@ -157,9 +164,5 @@ const jsonLd = [
 		margin: 0 0 1rem;
 		color: var(--color-text-muted);
 		line-height: 1.75;
-	}
-
-	.festival-guide__cta {
-		text-align: center;
 	}
 </style>

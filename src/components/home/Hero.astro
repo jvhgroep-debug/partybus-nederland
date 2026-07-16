@@ -17,6 +17,7 @@ interface Props {
 	showScroll?: boolean;
 	scrollHref?: string;
 	titleId?: string;
+	imageLoading?: 'eager' | 'lazy';
 }
 
 const {
@@ -33,6 +34,7 @@ const {
 	showScroll = true,
 	scrollHref = '#vertrouwen',
 	titleId = 'hero-title',
+	imageLoading,
 } = Astro.props;
 ---
 
@@ -43,6 +45,7 @@ const {
 			alt=""
 			width={imageWidth}
 			height={imageHeight}
+			loading={imageLoading}
 			fetchpriority="high"
 			decoding="async"
 		/>

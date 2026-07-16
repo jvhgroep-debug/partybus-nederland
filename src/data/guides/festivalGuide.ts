@@ -6,14 +6,17 @@
 import type { GuideFactor, GuideFaq, GuideLink } from './pricingGuide';
 
 export const festivalGuideSeo = {
-	title: 'Festivalvervoer met een partybus | Tips en gids',
+	title: 'Festivalvervoer met een partybus | Complete gids & tips',
 	description:
-		'Alles over festivalvervoer met een partybus. Tips, voordelen, opstapplaatsen, planning en populaire festivals.',
+		'Festivalvervoer met een partybus uitgelegd: prijzen, opstapplaatsen, terugreis, bagage en populaire festivals. Vergelijk vrijblijvend offertes vanuit jouw stad.',
 	canonical: 'https://www.partybusnederland.nl/gids/festival-vervoer/',
 	ogImage: 'https://www.partybusnederland.nl/images/hero-partybus.png',
 	h1: 'Festivalvervoer met een partybus',
 	eyebrow: 'GIDS',
 	lead: 'Vanuit jouw stad naar Tomorrowland, Defqon.1, Mysteryland of een ander festival: met een partybus vertrek je samen, arriveer je samen en begint de sfeer al onderweg. Deze gids helpt je plannen — van opstapplaatsen tot terugreis.',
+	ctaTitle: 'Klaar voor jouw festival?',
+	ctaLead:
+		'Vraag vrijblijvend meerdere offertes aan voor heen- en terugrit. Geef festival, datum en groepsgrootte door — wij helpen je vergelijken.',
 } as const;
 
 export const festivalWhy = {
@@ -141,94 +144,110 @@ export const festivalChecklist: string[] = [
 
 export const festivalFaqs: GuideFaq[] = [
 	{
-		question: 'Kan ik met een partybus naar een festival?',
+		question: 'Wat kost festivalvervoer met een partybus?',
 		answer:
-			'Ja. Veel groepen gebruiken een partybus als festivalvervoer vanuit hun woonplaats of een centrale opstapplaats. Vermeld festival, datum, aantal personen en of je heen- én terugrit nodig hebt.',
+			'Er is geen vaste landelijke prijs. Kosten hangen af van afstand, uren, datum, groepsgrootte, opstapplaatsen en of je naar het buitenland rijdt. Vergelijk vrijblijvend meerdere offertes en lees de prijzengids voor alle factoren.',
 	},
 	{
-		question: 'Welke festivals zijn populair voor partybusritten?',
+		question: 'Vanuit welke plaatsen kan ik vertrekken?',
 		answer:
-			'Onder meer Tomorrowland, Defqon.1, Mysteryland, Decibel Outdoor, Intents Festival, Paaspop, Dominator, Awakenings, Lowlands en Pinkpop. Ook andere evenementen in Nederland of België zijn vaak mogelijk.',
+			'Vanuit vrijwel elke stad in Nederland kun je een partybus aanvragen richting een festival. Geef je vertrekstad en concrete opstapplaats door, zodat aanbieders een passend voorstel kunnen doen.',
+	},
+	{
+		question: 'Kunnen jullie ons ophalen bij een specifieke plek?',
+		answer:
+			'Ja, vaak op een adres, station of centrale verzamelplek in jouw stad. Vermeld de exacte ophaallocatie in je aanvraag, inclusief bereikbaarheid voor een bus.',
+	},
+	{
+		question: 'Hoe regelen we de terugreis na het festival?',
+		answer:
+			'Spreek vooraf een vaste verzamelplek en tijd af op of bij het festivalterrein. Heen- en terugrit kun je in één aanvraag zetten, zodat de groep na afloop weer bij elkaar komt.',
+	},
+	{
+		question: 'Mag er alcohol mee in de partybus?',
+		answer:
+			'Dat verschilt per aanbieder. Vraag in de offerte na wat is toegestaan. Niemand in de groep hoeft te rijden — de chauffeur is professioneel.',
+	},
+	{
+		question: 'Is muziek en sfeerverlichting inbegrepen?',
+		answer:
+			'Bij de meeste partybussen horen muziek en sfeerverlichting bij de beleving. Exacte opties verschillen per aanbieder — vraag dit mee bij het vergelijken van offertes.',
+	},
+	{
+		question: 'Kunnen we bagage of kampeerspullen meenemen?',
+		answer:
+			'Vaak wel, afhankelijk van de bus en beschikbare ruimte. Vermeld wat je meeneemt, zodat aanbieders de juiste capaciteit en inrichting kunnen voorstellen.',
 	},
 	{
 		question: 'Kunnen we meerdere opstapplaatsen kiezen?',
 		answer:
 			'Meerdere opstapplaatsen zijn vaak mogelijk wanneer je dit vooraf afstemt. Geef een logische route door, zodat de reistijd realistisch blijft.',
 	},
-	{
-		question: 'Hoe vroeg moet ik festivalvervoer aanvragen?',
-		answer:
-			'Voor populaire festivals en weekenden is vroeg aanvragen verstandig. Beschikbaarheid verschilt per aanbieder en periode — wij garanderen geen beschikbaarheid.',
-	},
-	{
-		question: 'Hoeveel personen kunnen mee naar het festival?',
-		answer:
-			'Dat hangt af van het type partybus. Partybus Nederland vergelijkt mogelijkheden tot maximaal 80 personen. Geef het exacte aantal door in je aanvraag.',
-	},
-	{
-		question: 'Kunnen we bagage of kampeerspullen meenemen?',
-		answer:
-			'Vaak wel, afhankelijk van de bus en de ruimte. Vermeld wat je meeneemt, zodat aanbieders de juiste capaciteit en inrichting kunnen voorstellen.',
-	},
-	{
-		question: 'Regelen jullie ook de terugrit na het festival?',
-		answer:
-			'Ja, heen- en terugrit kun je in één aanvraag zetten. Spreek een vaste verzamelplek en tijd af, zodat de groep na afloop weer bij elkaar komt.',
-	},
-	{
-		question: 'Mag er alcohol mee in de partybus?',
-		answer:
-			'Dat verschilt per aanbieder. Vraag in de offerte na wat is toegestaan. Belangrijk: niemand in de groep hoeft te rijden — de chauffeur is professioneel.',
-	},
-	{
-		question: 'Wat kost festivalvervoer met een partybus?',
-		answer:
-			'Er is geen vaste landelijke prijs. Kosten hangen af van afstand, uren, datum, groepsgrootte, stops en of je naar het buitenland rijdt. Vergelijk vrijblijvend meerdere offertes en lees ook de prijzengids.',
-	},
-	{
-		question: 'Kunnen we naar festivals in België?',
-		answer:
-			'Ritten naar België, bijvoorbeeld Tomorrowland, zijn vaak mogelijk. Vermeld bestemming, tijden en bagage duidelijk, zodat aanbieders kunnen aangeven wat voor jouw groep haalbaar is.',
-	},
 ];
 
-export const festivalInternalLinks: GuideLink[] = [
+export const festivalCityLinks: GuideLink[] = [
 	{
-		label: 'Partybus vanuit Rotterdam',
-		href: '/steden/partybus-huren-rotterdam/',
-		description: 'Vertrekstad met festivals en bestemmingen',
-	},
-	{
-		label: 'Partybus vanuit Amsterdam',
+		label: 'Partybus huren Amsterdam',
 		href: '/steden/partybus-huren-amsterdam/',
-		description: 'Festivalritten en stadsritten vanuit Amsterdam',
+		description: 'Festivalritten en vertrek vanuit Amsterdam',
 	},
 	{
-		label: 'Partybus vanuit Breda',
+		label: 'Partybus huren Rotterdam',
+		href: '/steden/partybus-huren-rotterdam/',
+		description: 'Groepsvervoer naar festivals vanuit Rotterdam',
+	},
+	{
+		label: 'Partybus huren Utrecht',
+		href: '/steden/partybus-huren-utrecht/',
+		description: 'Centraal vertrekpunt voor festivalritten',
+	},
+	{
+		label: 'Partybus huren Den Haag',
+		href: '/steden/partybus-huren-den-haag/',
+		description: 'Festivalvervoer vanuit Den Haag',
+	},
+	{
+		label: 'Partybus huren Eindhoven',
+		href: '/steden/partybus-huren-eindhoven/',
+		description: 'Vertrek vanuit Eindhoven naar festivals',
+	},
+	{
+		label: 'Partybus huren Breda',
 		href: '/steden/partybus-huren-breda/',
 		description: 'Handig vertrekpunt richting festivals',
 	},
+];
+
+export const festivalGuideLinks: GuideLink[] = [
 	{
 		label: 'Prijzengids',
 		href: '/gids/partybus-kosten/',
 		description: 'Waar de prijs van een partybus van afhangt',
 	},
 	{
-		label: 'Complete partybus-gids',
+		label: 'Partybus huren',
 		href: '/gids/partybus-huren/',
-		description: 'Algemene informatie over partybus huren',
+		description: 'Complete gids over partybus huren in Nederland',
 	},
 	{
-		label: 'Gelegenheden',
+		label: 'Vrijgezellenfeest',
 		href: '/gids/partybus-huren/#guide-occasions',
-		description: 'Tips per gelegenheid, inclusief festivals',
+		description: 'Tips voor een partybus op een vrijgezellenfeest',
 	},
 	{
-		label: 'Gratis offertes aanvragen',
-		href: '/gratis-partybus-offertes-aanvragen/',
-		description: 'Vrijblijvend festivalritten vergelijken',
+		label: 'Bruiloft',
+		href: '/gids/partybus-huren/#guide-occasions',
+		description: 'Representatief groepsvervoer voor bruiloften',
+	},
+	{
+		label: 'Bedrijfsuitje',
+		href: '/gids/partybus-huren/#guide-occasions',
+		description: 'Professioneel vervoer voor teams en collega’s',
 	},
 ];
+
+export const festivalWhatsappHref =
+	'https://wa.me/31684002350?text=Hallo%20Partybus%20Nederland,%0A%0AIk%20wil%20graag%20offertes%20voor%20festivalvervoer%20met%20een%20partybus.';
 
 export const festivalBreadcrumbs = [
 	{ label: 'Home', href: '/' },

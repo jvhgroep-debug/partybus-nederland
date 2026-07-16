@@ -1,0 +1,93 @@
+---
+import Button from '../buttons/Button.astro';
+
+interface Props {
+	title: string;
+	lead: string;
+	primaryHref?: string;
+	primaryLabel?: string;
+	whatsappHref: string;
+	whatsappLabel?: string;
+	titleId?: string;
+}
+
+const {
+	title,
+	lead,
+	primaryHref = '/gratis-partybus-offertes-aanvragen/',
+	primaryLabel = 'Gratis offertes aanvragen',
+	whatsappHref,
+	whatsappLabel = 'WhatsApp direct',
+	titleId = 'guide-cta-title',
+} = Astro.props;
+---
+
+<section class="guide-cta" aria-labelledby={titleId}>
+	<div class="guide-cta__inner section__inner reveal">
+		<p class="guide-cta__eyebrow">Festivalvervoer</p>
+		<h2 id={titleId} class="guide-cta__title">{title}</h2>
+		<p class="guide-cta__lead">{lead}</p>
+		<div class="guide-cta__actions">
+			<Button href={primaryHref} size="lg">{primaryLabel}</Button>
+			<Button href={whatsappHref} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
+				{whatsappLabel}
+			</Button>
+		</div>
+	</div>
+</section>
+
+<style>
+	.guide-cta {
+		margin-top: clamp(2rem, 5vw, 3rem);
+		background: #000;
+		border-top: 1px solid color-mix(in srgb, var(--color-primary) 55%, transparent);
+		border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+	}
+
+	.guide-cta__inner {
+		padding-block: clamp(4rem, 9vw, 6.5rem);
+		text-align: center;
+	}
+
+	.guide-cta__eyebrow {
+		margin: 0 0 1rem;
+		font-family: var(--font-display);
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--color-primary);
+	}
+
+	.guide-cta__title {
+		margin: 0 auto 1rem;
+		max-width: 16ch;
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 800;
+		line-height: 1.08;
+		letter-spacing: -0.03em;
+		text-wrap: balance;
+	}
+
+	.guide-cta__lead {
+		margin: 0 auto 1.75rem;
+		max-width: 36rem;
+		font-size: clamp(1rem, 1.8vw, 1.12rem);
+		line-height: 1.65;
+		color: color-mix(in srgb, var(--color-text) 88%, transparent);
+	}
+
+	.guide-cta__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.85rem;
+	}
+
+	@media (max-width: 640px) {
+		.guide-cta__actions :global(.btn) {
+			width: 100%;
+		}
+	}
+</style>
