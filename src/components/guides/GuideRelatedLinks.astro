@@ -1,0 +1,80 @@
+---
+import type { GuideLink } from '../../data/guides/pricingGuide';
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	lead?: string;
+	items: readonly GuideLink[];
+}
+
+const { eyebrow = 'Verder lezen', title, lead, items } = Astro.props;
+const titleId = 'guide-related-links';
+---
+
+<section class="section guide-links" aria-labelledby={titleId}>
+	<div class="section__inner">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">{eyebrow}</p>
+			<h2 id={titleId} class="section__title">{title}</h2>
+			{lead && <p class="section__lead">{lead}</p>}
+		</div>
+		<ul class="guide-links__list">
+			{
+				items.map((item) => (
+					<li class="reveal">
+						<a href={item.href}>
+							<span class="guide-links__label">{item.label}</span>
+							{item.description && <span class="guide-links__desc">{item.description}</span>}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.guide-links__list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	@media (min-width: 700px) {
+		.guide-links__list {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	.guide-links__list a {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		padding: 1.15rem 1.2rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+		color: var(--color-text);
+		text-decoration: none;
+		height: 100%;
+	}
+
+	.guide-links__list a:hover {
+		border-color: var(--color-primary);
+	}
+
+	.guide-links__label {
+		font-family: var(--font-display);
+		font-weight: 700;
+		color: var(--color-primary);
+	}
+
+	.guide-links__desc {
+		font-size: 0.92rem;
+		color: var(--color-text-muted);
+		line-height: 1.5;
+	}
+</style>

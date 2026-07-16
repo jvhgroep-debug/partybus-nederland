@@ -48,6 +48,11 @@ function buildFaqs(
 			question: `Is deze rit geschikt als ${category.toLowerCase()}?`,
 			answer: `Ja, deze route wordt vaak aangevraagd voor een ${category.toLowerCase()}. Geef gelegenheid en wensen mee zodat aanbieders passend kunnen reageren.`,
 		},
+		{
+			question: 'Waar let ik op bij offertes voor deze route?',
+			answer:
+				'Vergelijk capaciteit, wachttijd, meerdere opstapplaatsen, wat bij muziek en licht hoort, en annuleringsvoorwaarden. Er is geen vaste landelijke prijs.',
+		},
 	] as const;
 }
 
@@ -109,11 +114,12 @@ export const routePages: readonly RoutePageData[] = [
 		distanceKm: 75,
 		travelTime: '1 tot 1,5 uur',
 		recommendedVehicle: 'Partybus 30–50 personen',
-		seoTitle: 'Partybus Rotterdam – Amsterdam | Gratis offertes vergelijken',
+		seoTitle: 'Partybus Rotterdam – Amsterdam | Tips, afstand & offertes',
 		metaDescription:
-			'Partybus van Rotterdam naar Amsterdam? Vergelijk gratis aanbieders voor een sfeervolle groepsrit tussen skyline en hoofdstad.',
+			'Partybus Rotterdam – Amsterdam: info over afstand (~75 km), reistijd, tips en kostenfactoren. Vergelijk daarna vrijblijvend offertes.',
 		h1: 'Partybus van Rotterdam naar Amsterdam',
-		heroSubtitle: 'Vergelijk partybussen voor een feestelijke rit van Rotterdam naar Amsterdam.',
+		heroSubtitle:
+			'Tips en planning voor de rit Rotterdam – Amsterdam — daarna vrijblijvend offertes vergelijken.',
 		departureCityPath: cityPath('rotterdam'),
 		relatedRoutes: [
 			{ label: 'Rotterdam – Schiphol', href: routePath('rotterdam-schiphol') },
@@ -127,8 +133,8 @@ export const routePages: readonly RoutePageData[] = [
 		],
 		introParagraphs: [
 			'Vanuit Rotterdam reis je met een partybus comfortabel naar Amsterdam. Ideaal voor nightlife, vrijgezellenfeesten of een avond met de hele groep bij elkaar.',
-			'Stem opstapplaatsen in Rotterdam af — bijvoorbeeld Centraal, Kop van Zuid of Ahoy — en rijd door naar populaire Amsterdamse hotspots.',
-			'Vergelijk via Partybus Nederland vrijblijvend meerdere offertes voor deze stadsrit van ongeveer 75 km.',
+			'Stem opstapplaatsen in Rotterdam af — bijvoorbeeld Centraal, Kop van Zuid of Ahoy — en rijd door naar populaire Amsterdamse hotspots. Reken globaal op 1 tot 1,5 uur, afhankelijk van verkeer en stops.',
+			'Er is geen vaste prijs: datum, duur en groepsgrootte bepalen de offerte. Vergelijk via Partybus Nederland vrijblijvend meerdere voorstellen voor deze stadsrit van ongeveer 75 km.',
 		],
 	}),
 	baseRoute({
@@ -140,11 +146,12 @@ export const routePages: readonly RoutePageData[] = [
 		distanceKm: 65,
 		travelTime: '45 tot 75 minuten',
 		recommendedVehicle: 'Partybus of luxe groepsshuttle',
-		seoTitle: 'Partybus Rotterdam – Schiphol | Gratis offertes vergelijken',
+		seoTitle: 'Partybus Rotterdam – Schiphol | Tips & offertes',
 		metaDescription:
-			'Partybus van Rotterdam naar Schiphol? Vergelijk gratis aanbieders voor groepsvervoer naar de luchthaven, zonder vaste prijzen.',
+			'Partybus Rotterdam – Schiphol: praktische info over luchthavenvervoer, bagage en reistijd. Vergelijk daarna vrijblijvend offertes.',
 		h1: 'Partybus van Rotterdam naar Schiphol',
-		heroSubtitle: 'Vergelijk partybussen voor een comfortabele rit van Rotterdam naar Schiphol.',
+		heroSubtitle:
+			'Praktische tips voor groepsvervoer Rotterdam – Schiphol, plus vrijblijvend offertes vergelijken.',
 		departureCityPath: cityPath('rotterdam'),
 		relatedRoutes: [
 			{ label: 'Rotterdam – Amsterdam', href: routePath('rotterdam-amsterdam') },
@@ -158,8 +165,8 @@ export const routePages: readonly RoutePageData[] = [
 		],
 		introParagraphs: [
 			'Voor groepen die vanuit Rotterdam naar Schiphol willen, is een partybus een praktische optie. Iedereen reist samen, met bagage en zonder losse taxi’s.',
-			'Geef aankomst- of vertrektijd, aantal personen en bagagewensen door, zodat aanbieders een passende rit kunnen voorstellen.',
-			'Vergelijk gratis meerdere offertes via Partybus Nederland voor deze luchthavenrit van ongeveer 65 km.',
+			'Geef aankomst- of vertrektijd, aantal personen en bagagewensen door, zodat aanbieders een passende rit kunnen voorstellen. Reken globaal op 45 tot 75 minuten.',
+			'Vergelijk gratis meerdere offertes via Partybus Nederland voor deze luchthavenrit van ongeveer 65 km — zonder vaste landelijke tarieven.',
 		],
 	}),
 	baseRoute({
@@ -171,11 +178,12 @@ export const routePages: readonly RoutePageData[] = [
 		distanceKm: 140,
 		travelTime: '2 tot 2,5 uur',
 		recommendedVehicle: 'Partybus 40–80 personen',
-		seoTitle: 'Partybus Rotterdam – Tomorrowland | Gratis offertes vergelijken',
+		seoTitle: 'Partybus Rotterdam – Tomorrowland | Festivalgids & offertes',
 		metaDescription:
-			'Partybus van Rotterdam naar Tomorrowland? Vergelijk gratis aanbieders voor een festivalrit naar België met de hele groep.',
+			'Partybus Rotterdam – Tomorrowland: tips voor festivalverkeer, heen- en terugrit en planning. Vergelijk daarna vrijblijvend offertes.',
 		h1: 'Partybus van Rotterdam naar Tomorrowland',
-		heroSubtitle: 'Vergelijk partybussen voor een festivalrit van Rotterdam naar Tomorrowland.',
+		heroSubtitle:
+			'Festivalplanning Rotterdam – Tomorrowland uitgelegd — daarna vrijblijvend offertes vergelijken.',
 		departureCityPath: cityPath('rotterdam'),
 		relatedRoutes: [
 			{ label: 'Breda – Defqon.1', href: routePath('breda-defqon') },
@@ -189,7 +197,7 @@ export const routePages: readonly RoutePageData[] = [
 		],
 		introParagraphs: [
 			'Vanuit Rotterdam regel je een partybus naar Tomorrowland in België. De groep vertrekt samen en de sfeer begint al onderweg.',
-			'Vermeld festivaldag(en), opstapplaats en of je heen- én terugrit nodig hebt. Beschikbaarheid verschilt per aanbieder en periode.',
+			'Vermeld festivaldag(en), opstapplaats en of je heen- én terugrit nodig hebt. Houd rekening met festivalverkeer; beschikbaarheid verschilt per aanbieder en periode.',
 			'Vergelijk vrijblijvend meerdere offertes via Partybus Nederland voor deze festivalroute van ongeveer 140 km.',
 		],
 	}),
@@ -202,11 +210,12 @@ export const routePages: readonly RoutePageData[] = [
 		distanceKm: 110,
 		travelTime: '1,5 tot 2 uur',
 		recommendedVehicle: 'Partybus 40–80 personen',
-		seoTitle: 'Partybus Breda – Defqon.1 | Gratis offertes vergelijken',
+		seoTitle: 'Partybus Breda – Defqon.1 | Festivalgids & offertes',
 		metaDescription:
-			'Partybus van Breda naar Defqon.1? Vergelijk gratis aanbieders voor een hardstyle-festivalrit met de hele groep.',
+			'Partybus Breda – Defqon.1: tips voor hardstyle-festivalvervoer, reistijd en planning. Vergelijk daarna vrijblijvend offertes.',
 		h1: 'Partybus van Breda naar Defqon.1',
-		heroSubtitle: 'Vergelijk partybussen voor een festivalrit van Breda naar Defqon.1.',
+		heroSubtitle:
+			'Tips voor een festivalrit Breda – Defqon.1 — daarna vrijblijvend offertes vergelijken.',
 		departureCityPath: cityPath('breda'),
 		relatedRoutes: [
 			{ label: 'Rotterdam – Tomorrowland', href: routePath('rotterdam-tomorrowland') },
@@ -220,7 +229,7 @@ export const routePages: readonly RoutePageData[] = [
 		],
 		introParagraphs: [
 			'Vanuit Breda is Defqon.1 een populaire festivalbestemming per partybus. Reis als groep, met muziek en comfort onderweg.',
-			'Geef festivaldatum, aantal personen en gewenste opstap in Breda door — bijvoorbeeld Centraal, Grote Markt of Havenkwartier.',
+			'Geef festivaldatum, aantal personen en gewenste opstap in Breda door — bijvoorbeeld Centraal, Grote Markt of Havenkwartier. Reken globaal op 1,5 tot 2 uur.',
 			'Vergelijk gratis meerdere offertes via Partybus Nederland voor deze festivalrit van ongeveer 110 km.',
 		],
 	}),
@@ -234,11 +243,12 @@ export const routePages: readonly RoutePageData[] = [
 		distanceKm: 70,
 		travelTime: '1 tot 1,25 uur',
 		recommendedVehicle: 'Partybus 20–50 personen',
-		seoTitle: 'Partybus Den Haag – Utrecht | Gratis offertes vergelijken',
+		seoTitle: 'Partybus Den Haag – Utrecht | Tips, afstand & offertes',
 		metaDescription:
-			'Partybus van Den Haag naar Utrecht? Vergelijk gratis aanbieders voor een groepsrit tussen hofstad en Domstad.',
+			'Partybus Den Haag – Utrecht: info over afstand, reistijd en plannings tips. Vergelijk daarna vrijblijvend offertes.',
 		h1: 'Partybus van Den Haag naar Utrecht',
-		heroSubtitle: 'Vergelijk partybussen voor een sfeervolle rit van Den Haag naar Utrecht.',
+		heroSubtitle:
+			'Tips en planning voor Den Haag – Utrecht — daarna vrijblijvend offertes vergelijken.',
 		departureCityPath: cityPath('den-haag'),
 		relatedRoutes: [
 			{ label: 'Rotterdam – Amsterdam', href: routePath('rotterdam-amsterdam') },
@@ -253,7 +263,7 @@ export const routePages: readonly RoutePageData[] = [
 		introParagraphs: [
 			'Vanuit Den Haag rijd je met een partybus comfortabel naar Utrecht. Geschikt voor uitgaan, vrijgezellenfeesten of een bedrijfsuitje.',
 			'Kies een opstapplaats in Den Haag — denk aan Centraal of het centrum — en combineer desgewenst stops in Utrecht rond Domtoren of Oudegracht.',
-			'Vergelijk vrijblijvend meerdere offertes via Partybus Nederland voor deze stadsrit van ongeveer 70 km.',
+			'Vergelijk vrijblijvend meerdere offertes via Partybus Nederland voor deze stadsrit van ongeveer 70 km. Prijs hangt af van datum, duur en groepsgrootte.',
 		],
 	}),
 ];

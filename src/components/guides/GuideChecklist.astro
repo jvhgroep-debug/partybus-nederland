@@ -1,0 +1,63 @@
+---
+interface Props {
+	eyebrow?: string;
+	title: string;
+	lead?: string;
+	items: readonly string[];
+}
+
+const { eyebrow = 'Checklist', title, lead, items } = Astro.props;
+const titleId = `guide-check-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40)}`;
+---
+
+<section class="section guide-checklist" aria-labelledby={titleId}>
+	<div class="section__inner">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">{eyebrow}</p>
+			<h2 id={titleId} class="section__title">{title}</h2>
+			{lead && <p class="section__lead">{lead}</p>}
+		</div>
+		<ul class="guide-checklist__list reveal">
+			{items.map((item) => <li>{item}</li>)}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.guide-checklist__list {
+		margin: 0;
+		padding: 1.35rem 1.3rem;
+		list-style: none;
+		display: grid;
+		gap: 0.75rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: #0a0a0a;
+	}
+
+	@media (min-width: 800px) {
+		.guide-checklist__list {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.85rem 1.5rem;
+		}
+	}
+
+	.guide-checklist__list li {
+		position: relative;
+		padding-left: 1.35rem;
+		color: var(--color-text-muted);
+		line-height: 1.55;
+		font-size: 0.95rem;
+	}
+
+	.guide-checklist__list li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.55rem;
+		width: 0.45rem;
+		height: 0.45rem;
+		border-radius: 50%;
+		background: var(--color-primary);
+	}
+</style>

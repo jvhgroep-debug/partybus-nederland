@@ -1,0 +1,20 @@
+---
+import CityBreadcrumbs from '../cities/CityBreadcrumbs.astro';
+
+interface Props {
+	items: readonly { label: string; href?: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="guide-breadcrumbs section__inner">
+	<CityBreadcrumbs items={[...items]} />
+</div>
+
+<style>
+	.guide-breadcrumbs {
+		padding-top: 0.5rem;
+		padding-bottom: 0;
+	}
+</style>

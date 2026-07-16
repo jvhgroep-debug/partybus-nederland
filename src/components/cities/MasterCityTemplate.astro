@@ -10,6 +10,13 @@ import CityOccasions from './CityOccasions.astro';
 import CityFaq from './CityFaq.astro';
 import CityRelatedCities from './CityRelatedCities.astro';
 import CityCta from './CityCta.astro';
+import InfoGuide from '../shared/InfoGuide.astro';
+import {
+	bookingTips,
+	cityInfoLead,
+	compareChecklist,
+	pricingFactors,
+} from '../../data/guides/partybusInfo';
 
 interface Props {
 	city: CityPageData;
@@ -40,6 +47,14 @@ const heroImage = resolveCityHeroImage(city.slug);
 		imageAlt={city.intro.imageAlt}
 	/>
 
+	<InfoGuide
+		eyebrow="Informatie"
+		title={`Partybus vanuit ${city.name}: prijzen & tips`}
+		lead={cityInfoLead(city.name)}
+		cards={pricingFactors}
+		checklist={compareChecklist}
+	/>
+
 	<CityDestinations
 		title={city.locations.title}
 		lead={city.locations.lead}
@@ -56,9 +71,20 @@ const heroImage = resolveCityHeroImage(city.slug);
 
 	<CityOccasions title={city.occasions.title} lead={city.occasions.lead} items={city.occasions.items} />
 
+	<InfoGuide
+		eyebrow="Tips"
+		title={`Praktische tips voor een rit vanuit ${city.name}`}
+		lead={`Zo bereid je een partybusrit vanuit ${city.name} goed voor — van route tot voorwaarden.`}
+		cards={bookingTips}
+	/>
+
 	<CityFaq items={city.faqs} cityName={city.name} />
 
 	{relatedCities.length > 0 && <CityRelatedCities cityName={city.name} cities={relatedCities} />}
+
+	<p class="master-city__guide-link section__inner">
+		<a href="/gids/partybus-huren/">Meer lezen in de complete partybus-gids →</a>
+	</p>
 
 	<CityCta
 		title={city.cta.title}
@@ -77,5 +103,15 @@ const heroImage = resolveCityHeroImage(city.slug);
 		.master-city :global(.section) {
 			padding-block: clamp(3.5rem, 14vw, 5rem);
 		}
+	}
+
+	.master-city__guide-link {
+		margin: 0 0 1rem;
+		padding-bottom: 0;
+	}
+
+	.master-city__guide-link a {
+		color: var(--color-primary);
+		font-weight: 700;
 	}
 </style>

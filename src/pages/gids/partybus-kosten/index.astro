@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Button from '../../../components/buttons/Button.astro';
+import GuideBreadcrumbs from '../../../components/guides/GuideBreadcrumbs.astro';
+import GuideHero from '../../../components/guides/GuideHero.astro';
+import GuideFactorGrid from '../../../components/guides/GuideFactorGrid.astro';
+import GuideChecklist from '../../../components/guides/GuideChecklist.astro';
+import GuideScenarioList from '../../../components/guides/GuideScenarioList.astro';
+import GuideFaqList from '../../../components/guides/GuideFaqList.astro';
+import GuideRelatedLinks from '../../../components/guides/GuideRelatedLinks.astro';
+import {
+	noFixedPriceReasons,
+	pricingBreadcrumbs,
+	pricingFactorsDetailed,
+	pricingFaqs,
+	pricingGuideSeo,
+	pricingInternalLinks,
+	pricingScenarios,
+	quoteChecklist,
+	savingsTips,
+} from '../../../data/guides/pricingGuide';
+import {
+	buildBreadcrumbSchema,
+	buildFaqPageSchema,
+	buildWebPageSchema,
+} from '../../../lib/guides/schema';
+
+const seo = pricingGuideSeo;
+
+const jsonLd = [
+	buildWebPageSchema({
+		name: seo.h1,
+		description: seo.description,
+		url: seo.canonical,
+	}),
+	buildBreadcrumbSchema(pricingBreadcrumbs),
+	buildFaqPageSchema(pricingFaqs),
+];
+---
+
+<BaseLayout
+	title={seo.title}
+	description={seo.description}
+	canonical={seo.canonical}
+	titleExact={true}
+	ogTitle={seo.title}
+	ogDescription={seo.description}
+	ogUrl={seo.canonical}
+	ogImage={seo.ogImage}
+	twitterTitle={seo.title}
+	twitterDescription={seo.description}
+	twitterImage={seo.ogImage}
+	jsonLd={jsonLd}
+>
+	<article class="pricing-guide">
+		<GuideBreadcrumbs items={pricingBreadcrumbs} />
+
+		<GuideHero
+			eyebrow={seo.eyebrow}
+			title={seo.h1}
+			lead={seo.lead}
+			primaryHref="/gratis-partybus-offertes-aanvragen/"
+			primaryLabel="Gratis offertes aanvragen"
+			secondaryHref="/gids/partybus-huren/"
+			secondaryLabel="Algemene partybus-gids"
+		/>
+
+		<GuideFactorGrid
+			eyebrow="Prijsfactoren"
+			title="Belangrijkste factoren die de prijs bepalen"
+			lead="Geen vaste landelijke tarieven — wel duidelijke bouwstenen waarmee je offertes begrijpt en vergelijkt."
+			items={pricingFactorsDetailed}
+			columns={3}
+		/>
+
+		<section class="section" aria-labelledby="no-fixed-price">
+			<div class="section__inner">
+				<div class="section__head reveal">
+					<p class="section__eyebrow">Geen vaste prijs</p>
+					<h2 id="no-fixed-price" class="section__title">Waarom een betrouwbare prijs pas later komt</h2>
+					<p class="section__lead">
+						Een eerlijke prijsopgave is pas mogelijk wanneer aanbieders jouw rit concreet kunnen
+						inschatten. Zonder context ontstaan misleidende “vanaf”-bedragen die in de praktijk
+						niet kloppen.
+					</p>
+				</div>
+				<p class="pricing-guide__prose reveal">
+					Geef daarom minstens deze gegevens door. Dan kunnen aanbieders een voorstel doen dat past
+					bij jouw situatie — en kun jij meerdere offertes eerlijk naast elkaar leggen.
+				</p>
+				<ul class="pricing-guide__needs reveal">
+					{noFixedPriceReasons.map((item) => <li>{item}</li>)}
+				</ul>
+			</div>
+		</section>
+
+		<GuideScenarioList
+			eyebrow="Voorbeeldsituaties"
+			title="Zo ziet een rit eruit — zonder bedragen"
+			lead="Deze scenario’s helpen je plannen. Ze geven geen prijsindicatie in euro’s, wel een beeld van wat je in de aanvraag zet."
+			items={pricingScenarios}
+		/>
+
+		<GuideFactorGrid
+			eyebrow="Bespaartips"
+			title="Praktische tips om scherper te vergelijken"
+			lead="Je hoeft niet op kwaliteit in te leveren. Wel kun je met een goede voorbereiding relevantere en vergelijkbaardere offertes krijgen."
+			items={savingsTips}
+			columns={3}
+		/>
+
+		<GuideChecklist
+			eyebrow="Checklist"
+			title="Checklist voor een goede offerteaanvraag"
+			lead="Hoe completer je aanvraag, hoe bruikbaarder de prijsvoorstellen."
+			items={quoteChecklist}
+		/>
+
+		<GuideFaqList
+			title="Veelgestelde vragen over partybus-prijzen"
+			lead="Antwoorden op de vragen die we het vaakst horen over kosten en offertes."
+			items={pricingFaqs}
+		/>
+
+		<GuideRelatedLinks
+			title="Handige pagina’s om verder te gaan"
+			lead="Van offerte tot steden, festivals en de algemene gids."
+			items={pricingInternalLinks}
+		/>
+
+		<section class="section" aria-labelledby="pricing-cta">
+			<div class="section__inner pricing-guide__cta reveal">
+				<h2 id="pricing-cta" class="section__title">Klaar om offertes te vergelijken?</h2>
+				<p class="section__lead">
+					Gebruik de checklist hierboven en vraag vrijblijvend meerdere prijsvoorstellen aan.
+				</p>
+				<Button href="/gratis-partybus-offertes-aanvragen/" size="lg">
+					Gratis offertes aanvragen
+				</Button>
+			</div>
+		</section>
+	</article>
+</BaseLayout>
+
+<style>
+	.pricing-guide :global(.section) {
+		padding-block: clamp(3.5rem, 8vw, 6.5rem);
+	}
+
+	.pricing-guide__prose {
+		margin: 0 0 1.25rem;
+		max-width: 46rem;
+		color: var(--color-text-muted);
+		line-height: 1.75;
+	}
+
+	.pricing-guide__needs {
+		margin: 0;
+		padding: 1.35rem 1.3rem;
+		list-style: none;
+		display: grid;
+		gap: 0.7rem;
+		max-width: 40rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: #0a0a0a;
+	}
+
+	.pricing-guide__needs li {
+		position: relative;
+		padding-left: 1.35rem;
+		color: var(--color-text-muted);
+		line-height: 1.55;
+	}
+
+	.pricing-guide__needs li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.55rem;
+		width: 0.45rem;
+		height: 0.45rem;
+		border-radius: 50%;
+		background: var(--color-primary);
+	}
+
+	.pricing-guide__cta {
+		text-align: center;
+	}
+</style>

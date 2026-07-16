@@ -1,0 +1,58 @@
+---
+import { occasionGuides } from '../../data/guides/partybusInfo';
+---
+
+<section class="section occasions-guide" aria-labelledby="occasions-guide-title">
+	<div class="section__inner">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">Gelegenheden</p>
+			<h2 id="occasions-guide-title" class="section__title">Voor welk moment huur je een partybus?</h2>
+			<p class="section__lead">
+				Van festival tot bruiloft: de planning verschilt per gelegenheid. Gebruik deze tips om je
+				aanvraag scherper te maken.
+			</p>
+		</div>
+		<div class="occasions-guide__grid">
+			{
+				occasionGuides.map((item) => (
+					<article class="occasions-guide__card reveal">
+						<h3>{item.title}</h3>
+						<p>{item.text}</p>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.occasions-guide__grid {
+		display: grid;
+		gap: 1rem;
+	}
+
+	@media (min-width: 700px) {
+		.occasions-guide__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	.occasions-guide__card {
+		padding: 1.3rem 1.25rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+	}
+
+	.occasions-guide__card h3 {
+		margin: 0 0 0.45rem;
+		font-family: var(--font-display);
+		color: var(--color-primary);
+	}
+
+	.occasions-guide__card p {
+		margin: 0;
+		color: var(--color-text-muted);
+		line-height: 1.65;
+	}
+</style>

@@ -1,7 +1,7 @@
 export const site = {
 	name: 'Partybus Nederland',
 	companyName: 'Partybus Nederland',
-	tagline: 'Vergelijk partybussen door heel Nederland',
+	tagline: 'Informatie, tips & partybussen vergelijken in Nederland',
 	colors: {
 		primary: '#CDB880',
 		background: '#000000',

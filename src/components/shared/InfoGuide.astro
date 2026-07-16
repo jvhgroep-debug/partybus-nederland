@@ -1,0 +1,147 @@
+---
+import type { InfoCard } from '../../data/guides/partybusInfo';
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	lead: string;
+	cards: readonly InfoCard[];
+	checklist?: readonly string[];
+	checklistTitle?: string;
+}
+
+const {
+	eyebrow = 'Informatie',
+	title,
+	lead,
+	cards,
+	checklist = [],
+	checklistTitle = 'Checklist bij het vergelijken',
+} = Astro.props;
+
+const titleId = `info-guide-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 48)}`;
+---
+
+<section class="section info-guide" aria-labelledby={titleId}>
+	<div class="section__inner">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">{eyebrow}</p>
+			<h2 id={titleId} class="section__title">{title}</h2>
+			<p class="section__lead">{lead}</p>
+		</div>
+
+		<div class="info-guide__grid">
+			{
+				cards.map((card) => (
+					<article class="info-guide__card reveal">
+						<h3>{card.title}</h3>
+						<p>{card.text}</p>
+					</article>
+				))
+			}
+		</div>
+
+		{
+			checklist.length > 0 && (
+				<div class="info-guide__checklist reveal">
+					<h3>{checklistTitle}</h3>
+					<ul>
+						{checklist.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+			)
+		}
+	</div>
+</section>
+
+<style>
+	.info-guide__grid {
+		display: grid;
+		gap: 1rem;
+	}
+
+	@media (min-width: 700px) {
+		.info-guide__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.info-guide__grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	.info-guide__card {
+		padding: 1.25rem 1.2rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+		height: 100%;
+	}
+
+	.info-guide__card h3 {
+		margin: 0 0 0.5rem;
+		font-family: var(--font-display);
+		font-size: 1.02rem;
+		color: var(--color-primary);
+	}
+
+	.info-guide__card p {
+		margin: 0;
+		color: var(--color-text-muted);
+		line-height: 1.65;
+		font-size: 0.95rem;
+	}
+
+	.info-guide__checklist {
+		margin-top: 1.75rem;
+		padding: 1.35rem 1.3rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: #0a0a0a;
+	}
+
+	.info-guide__checklist h3 {
+		margin: 0 0 0.85rem;
+		font-family: var(--font-display);
+		font-size: 1.08rem;
+		color: var(--color-primary);
+	}
+
+	.info-guide__checklist ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.65rem;
+	}
+
+	@media (min-width: 800px) {
+		.info-guide__checklist ul {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.75rem 1.5rem;
+		}
+	}
+
+	.info-guide__checklist li {
+		position: relative;
+		padding-left: 1.35rem;
+		color: var(--color-text-muted);
+		line-height: 1.55;
+		font-size: 0.95rem;
+	}
+
+	.info-guide__checklist li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.55rem;
+		width: 0.45rem;
+		height: 0.45rem;
+		border-radius: 50%;
+		background: var(--color-primary);
+	}
+</style>

@@ -5,6 +5,8 @@ import CityIntro from '../cities/CityIntro.astro';
 import CityFaq from '../cities/CityFaq.astro';
 import CityCta from '../cities/CityCta.astro';
 import Button from '../buttons/Button.astro';
+import InfoGuide from '../shared/InfoGuide.astro';
+import { bookingTips, compareChecklist, pricingFactors, routeInfoLead } from '../../data/guides/partybusInfo';
 
 interface Props {
 	route: RoutePageData;
@@ -49,6 +51,14 @@ const { route } = Astro.props;
 		imageAlt={route.intro.imageAlt}
 	/>
 
+	<InfoGuide
+		eyebrow="Informatie"
+		title={`Tips voor ${route.departureCity} – ${route.destination}`}
+		lead={routeInfoLead(route.departureCity, route.destination)}
+		cards={pricingFactors}
+		checklist={compareChecklist}
+	/>
+
 	<section class="section" aria-labelledby="route-related-title">
 		<div class="section__inner">
 			<div class="section__head reveal">
@@ -90,11 +100,22 @@ const { route } = Astro.props;
 		</div>
 	</section>
 
+	<InfoGuide
+		eyebrow="Tips"
+		title="Checklist vóór je offertes aanvraagt"
+		lead="Gebruik deze tips om sneller passende offertes te krijgen voor jouw route."
+		cards={bookingTips}
+	/>
+
 	<CityFaq
 		items={route.faqs}
 		cityName={`${route.departureCity} – ${route.destination}`}
 		title={`Veelgestelde vragen over ${route.departureCity} – ${route.destination}`}
 	/>
+
+	<p class="master-route__guide-link section__inner">
+		<a href="/gids/partybus-huren/">Meer lezen in de complete partybus-gids →</a>
+	</p>
 
 	<CityCta
 		title={route.cta.title}
@@ -225,6 +246,15 @@ const { route } = Astro.props;
 	.route-links__back {
 		margin: 1.1rem 0 0;
 		font-size: 0.95rem;
+	}
+
+	.master-route__guide-link {
+		margin: 0 0 1rem;
+	}
+
+	.master-route__guide-link a {
+		color: var(--color-primary);
+		font-weight: 700;
 	}
 
 	@media (max-width: 640px) {

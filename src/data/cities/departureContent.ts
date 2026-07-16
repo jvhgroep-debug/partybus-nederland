@@ -48,10 +48,10 @@ const OCCASIONS: readonly { title: string; text: string }[] = [
 
 export function buildDepartureSeo(cityName: string) {
 	return {
-		metaTitle: `Partybus huren vanuit ${cityName} | Gratis offertes vergelijken`,
-		metaDescription: `Partybus huren vanuit ${cityName}? Vergelijk gratis aanbieders voor ritten door Nederland en België — festivals, steden en groepsfeesten.`,
+		metaTitle: `Partybus huren vanuit ${cityName} | Tips, prijzen & offertes`,
+		metaDescription: `Partybus huren vanuit ${cityName}: informatie over bestemmingen, festivals, kostenfactoren en planning. Vergelijk daarna vrijblijvend meerdere offertes.`,
 		h1: `Partybus huren vanuit ${cityName}`,
-		heroSubtitle: `Vergelijk partybussen voor een rit vanuit ${cityName} naar festivals, steden of iedere bestemming die je kiest.`,
+		heroSubtitle: `Informatie over ritten vanuit ${cityName} naar festivals, steden en evenementen — plus vrijblijvend offertes vergelijken.`,
 	};
 }
 
@@ -60,8 +60,8 @@ export function buildDepartureIntro(cityName: string) {
 		title: `Partybus huren vanuit ${cityName}`,
 		paragraphs: [
 			`Vanuit ${cityName} huur je een partybus naar vrijwel iedere bestemming in Nederland en België. Of je nu naar een festival, een andere stad of een evenementenlocatie wilt: de groep vertrekt samen en de sfeer begint al onderweg.`,
-			`Je kiest zelf de opstapplaats in of rond ${cityName} en stemt de eindbestemming af met de aanbieder. Denk aan populaire steden, festivals, Schiphol of een rit over de grens naar België.`,
-			`Via Partybus Nederland vergelijk je vrijblijvend meerdere offertes voor jouw rit vanuit ${cityName}. Geef datum, groepsgrootte en bestemming door, zodat je snel passende opties naast elkaar ziet.`,
+			`Je kiest zelf de opstapplaats in of rond ${cityName} en stemt de eindbestemming af met de aanbieder. Denk aan populaire steden, festivals, Schiphol of een rit over de grens naar België. Op deze pagina vind je bestemmingen, gelegenheden, tips over prijzen en veelgestelde vragen.`,
+			`Er is geen vaste landelijke prijs: datum, route, duur en groepsgrootte (tot max. 80 personen) bepalen de offerte. Via Partybus Nederland vergelijk je vrijblijvend meerdere voorstellen voor jouw rit vanuit ${cityName}.`,
 		] as const,
 		image: '/images/interior-partybus.png',
 		imageAlt: 'Interieur van een luxe partybus',

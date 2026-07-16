@@ -1,0 +1,83 @@
+---
+import Button from '../buttons/Button.astro';
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	lead: string;
+	primaryHref?: string;
+	primaryLabel?: string;
+	secondaryHref?: string;
+	secondaryLabel?: string;
+}
+
+const {
+	eyebrow = 'GIDS',
+	title,
+	lead,
+	primaryHref = '/gratis-partybus-offertes-aanvragen/',
+	primaryLabel = 'Gratis offertes aanvragen',
+	secondaryHref,
+	secondaryLabel,
+} = Astro.props;
+---
+
+<header class="guide-hero section__inner">
+	<p class="section__eyebrow">{eyebrow}</p>
+	<h1 class="guide-hero__title">{title}</h1>
+	<p class="guide-hero__lead">{lead}</p>
+	{
+		(primaryHref || secondaryHref) && (
+			<div class="guide-hero__actions">
+				{primaryHref && (
+					<Button href={primaryHref} size="lg">
+						{primaryLabel}
+					</Button>
+				)}
+				{secondaryHref && secondaryLabel && (
+					<a class="btn btn--ghost btn--lg" href={secondaryHref}>
+						{secondaryLabel}
+					</a>
+				)}
+			</div>
+		)
+	}
+</header>
+
+<style>
+	.guide-hero {
+		padding-top: calc(var(--header-height) + 2rem);
+		padding-bottom: 2rem;
+	}
+
+	.guide-hero__title {
+		margin: 0 0 1rem;
+		max-width: 16ch;
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 5vw, 3.2rem);
+		font-weight: 800;
+		line-height: 1.06;
+		letter-spacing: -0.03em;
+	}
+
+	.guide-hero__lead {
+		margin: 0 0 1.5rem;
+		max-width: 42rem;
+		font-size: 1.08rem;
+		line-height: 1.65;
+		color: color-mix(in srgb, var(--color-text) 88%, transparent);
+	}
+
+	.guide-hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	@media (max-width: 640px) {
+		.guide-hero__actions :global(.btn) {
+			width: 100%;
+			justify-content: center;
+		}
+	}
+</style>
