@@ -5,7 +5,7 @@ import { mainNav, primaryCta } from '../../data/settings/navigation';
 import { whatsapp } from '../../data/settings/whatsapp';
 import { hubGuideLinks } from '../../data/gidsen/shared';
 import { gidsenPath } from '../../data/gidsen/registry';
-import { legalNav } from '../../data/legal/pages';
+import { trustNav, footerLegalNav } from '../../data/trust/pages';
 import Button from '../buttons/Button.astro';
 
 const year = new Date().getFullYear();
@@ -50,22 +50,34 @@ const year = new Date().getFullYear();
 			<a href="/contact/">Contactpagina</a>
 			<a href={whatsapp.href} target="_blank" rel="noopener noreferrer">WhatsApp {whatsapp.phoneDisplay}</a>
 			<a href={primaryCta.href}>{primaryCta.label}</a>
-			<a href="/#faq">Veelgestelde vragen</a>
+			<a href="/over-ons/">Over ons</a>
 		</div>
 	</div>
 
 	<div class="site-footer__bottom">
 		<p class="site-footer__copy">© {site.companyName} {year}</p>
-		<nav class="site-footer__legal" aria-label="Juridische informatie">
-			{
-				legalNav.map((item, index) => (
-					<span class="site-footer__legal-item">
-						{index > 0 && <span class="site-footer__sep" aria-hidden="true">·</span>}
-						<a href={item.href}>{item.label}</a>
-					</span>
-				))
-			}
-		</nav>
+		<div class="site-footer__nav-rows">
+			<nav class="site-footer__legal" aria-label="Over Partybus Nederland">
+				{
+					trustNav.map((item, index) => (
+						<span class="site-footer__legal-item">
+							{index > 0 && <span class="site-footer__sep" aria-hidden="true">·</span>}
+							<a href={item.href}>{item.label}</a>
+						</span>
+					))
+				}
+			</nav>
+			<nav class="site-footer__legal" aria-label="Juridische informatie">
+				{
+					footerLegalNav.map((item, index) => (
+						<span class="site-footer__legal-item">
+							{index > 0 && <span class="site-footer__sep" aria-hidden="true">·</span>}
+							<a href={item.href}>{item.label}</a>
+						</span>
+					))
+				}
+			</nav>
+		</div>
 	</div>
 </footer>
 
@@ -166,6 +178,12 @@ const year = new Date().getFullYear();
 		margin: 0;
 	}
 
+	.site-footer__nav-rows {
+		display: flex;
+		flex-direction: column;
+		gap: 0.55rem;
+	}
+
 	.site-footer__legal {
 		display: flex;
 		flex-wrap: wrap;
@@ -203,12 +221,16 @@ const year = new Date().getFullYear();
 		padding-inline: 0.15rem;
 	}
 
-	@media (min-width: 800px) {
+	@media (min-width: 900px) {
 		.site-footer__bottom {
 			flex-direction: row;
-			align-items: center;
+			align-items: flex-start;
 			justify-content: space-between;
 			gap: 1.5rem;
+		}
+
+		.site-footer__nav-rows {
+			align-items: flex-end;
 		}
 
 		.site-footer__legal {

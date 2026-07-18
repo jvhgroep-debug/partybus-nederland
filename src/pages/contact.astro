@@ -1,68 +1,115 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import GuideBreadcrumbs from '../components/guides/GuideBreadcrumbs.astro';
 import { site } from '../data/settings/site';
 import { whatsapp } from '../data/settings/whatsapp';
 import { emailSettings } from '../data/settings/email';
 import Button from '../components/buttons/Button.astro';
 import QuoteForm from '../components/forms/QuoteForm.astro';
+import { buildContactPageSchema, buildOrganizationSchema } from '../data/trust/pages';
+import { buildBreadcrumbSchema } from '../lib/guides/schema';
+
+const title = 'Contact | Partybus Nederland';
+const description =
+	'Neem contact op met Partybus Nederland via e-mail, WhatsApp of het offerteformulier. Vrijblijvend offertes vergelijken.';
+const canonical = 'https://www.partybusnederland.nl/contact/';
+
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Contact' },
+] as const;
+
+const jsonLd = [
+	buildContactPageSchema({
+		name: 'Contact',
+		description,
+		url: canonical,
+	}),
+	buildOrganizationSchema(),
+	buildBreadcrumbSchema(breadcrumbs),
+];
 ---
 
 <BaseLayout
-	title="Contact | Partybus Nederland"
-	description="Neem contact op met Partybus Nederland via WhatsApp of het offerteformulier. Vrijblijvend offertes vergelijken voor partybus huren in Nederland."
-	canonical="https://www.partybusnederland.nl/contact/"
+	title={title}
+	description={description}
+	canonical={canonical}
 	titleExact={true}
-	ogTitle="Contact | Partybus Nederland"
-	ogDescription="Neem contact op met Partybus Nederland via WhatsApp of het offerteformulier."
-	ogUrl="https://www.partybusnederland.nl/contact/"
+	ogTitle={title}
+	ogDescription={description}
+	ogUrl={canonical}
+	ogImage="https://www.partybusnederland.nl/images/hero-partybus.png"
+	twitterTitle={title}
+	twitterDescription={description}
+	twitterImage="https://www.partybusnederland.nl/images/hero-partybus.png"
+	jsonLd={jsonLd}
 >
-	<section class="section contact">
-		<div class="section__inner contact__inner">
-			<div class="contact__copy reveal">
-				<p class="section__eyebrow">Contact</p>
-				<h1 class="section__title">Neem contact op met {site.name}</h1>
-				<p class="section__lead">
-					Vraag vrijblijvend offertes aan via het formulier, of bereik ons direct via WhatsApp.
-				</p>
-				<div class="contact__actions">
-					<Button href={whatsapp.href} size="lg" target="_blank" rel="noopener noreferrer">
-						WhatsApp: {whatsapp.phoneDisplay}
-					</Button>
-					<Button href="/gratis-partybus-offertes-aanvragen/" variant="ghost" size="lg">
-						Naar het formulier
-					</Button>
+	<article class="contact">
+		<GuideBreadcrumbs items={breadcrumbs} />
+
+		<section class="section contact__section">
+			<div class="section__inner contact__inner">
+				<div class="contact__copy reveal">
+					<p class="section__eyebrow">Contact</p>
+					<h1 class="section__title">Neem contact op met {site.name}</h1>
+					<p class="section__lead">
+						Stel je vraag via e-mail of WhatsApp, of vraag vrijblijvend offertes aan via het
+						formulier. We reageren zo snel mogelijk — zonder harde reactietijdgarantie.
+					</p>
+					<div class="contact__actions">
+						<Button href={whatsapp.href} size="lg" target="_blank" rel="noopener noreferrer">
+							WhatsApp: {whatsapp.phoneDisplay}
+						</Button>
+						<Button href="/gratis-partybus-offertes-aanvragen/" variant="ghost" size="lg">
+							Naar het offerteformulier
+						</Button>
+					</div>
+
+					<div class="contact__card">
+						<h2>Contactgegevens</h2>
+						<ul>
+							<li>
+								E-mail:{' '}
+								<a href={`mailto:${emailSettings.inbox}`}>{emailSettings.inbox}</a>
+							</li>
+							<li>
+								WhatsApp:{' '}
+								<a href={whatsapp.href} target="_blank" rel="noopener noreferrer">
+									{whatsapp.phoneDisplay}
+								</a>
+							</li>
+							<li>We streven ernaar zo snel mogelijk te reageren</li>
+							<li>Aanvragen zijn vrijblijvend</li>
+							<li>Door heel Nederland</li>
+						</ul>
+					</div>
+
+					<nav class="contact__legal" aria-label="Juridische pagina’s">
+						<a href="/privacybeleid/">Privacybeleid</a>
+						<span aria-hidden="true">·</span>
+						<a href="/algemene-voorwaarden/">Voorwaarden</a>
+						<span aria-hidden="true">·</span>
+						<a href="/disclaimer/">Disclaimer</a>
+					</nav>
 				</div>
 
-				<div class="contact__card">
-					<h2>Direct geregeld</h2>
-					<ul>
-						<li>WhatsApp: {whatsapp.phoneDisplay}</li>
-						<li>
-							E-mail:{' '}
-							<a href={`mailto:${emailSettings.inbox}`}>{emailSettings.inbox}</a>
-						</li>
-						<li>Reactie meestal binnen 24 uur</li>
-						<li>Door heel Nederland</li>
-						<li>Vrijblijvend offertes vergelijken</li>
-					</ul>
+				<div id="offerte" class="contact__form reveal">
+					<p class="section__eyebrow">Offerteaanvraag</p>
+					<h2 class="contact__form-title">Gratis offertes aanvragen</h2>
+					<p class="section__lead">
+						Vul het formulier in. Je ontvangt een bevestiging per e-mail. Prijzen en beschikbaarheid
+						verschillen per aanbieder.
+					</p>
+					<QuoteForm sourcePage="/contact/" />
 				</div>
 			</div>
-
-			<div id="offerte" class="contact__form reveal">
-				<p class="section__eyebrow">Offerteaanvraag</p>
-				<h2 class="section__title">Gratis offertes aanvragen</h2>
-				<p class="section__lead">
-					Vul het formulier in. Je ontvangt een bevestiging per e-mail.
-				</p>
-				<QuoteForm sourcePage="/contact/" />
-			</div>
-		</div>
-	</section>
+		</section>
+	</article>
 </BaseLayout>
 
 <style>
-	.contact {
-		padding-top: calc(var(--header-height) + 2.5rem);
+	.contact__section {
+		padding-top: 1rem;
 	}
 
 	.contact__inner {
@@ -130,6 +177,30 @@ import QuoteForm from '../components/forms/QuoteForm.astro';
 		background: var(--color-primary);
 	}
 
+	.contact__card a {
+		color: var(--color-primary);
+		font-weight: 600;
+	}
+
+	.contact__legal {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.35rem 0.5rem;
+		margin-top: 1.5rem;
+		font-size: 0.95rem;
+	}
+
+	.contact__legal a {
+		color: var(--color-text-muted);
+		font-weight: 600;
+	}
+
+	.contact__legal a:hover,
+	.contact__legal a:focus-visible {
+		color: var(--color-primary);
+	}
+
 	.contact__form {
 		padding: 1.6rem 1.4rem;
 		border-radius: var(--radius-md);
@@ -137,7 +208,9 @@ import QuoteForm from '../components/forms/QuoteForm.astro';
 		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
 	}
 
-	.contact__form .section__title {
+	.contact__form-title {
+		margin: 0 0 0.75rem;
+		font-family: var(--font-display);
 		font-size: clamp(1.7rem, 3vw, 2.3rem);
 		max-width: 16ch;
 	}

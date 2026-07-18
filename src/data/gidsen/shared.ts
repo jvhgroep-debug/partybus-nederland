@@ -306,6 +306,8 @@ export const veelGezochteVragen = [
 
 /** Existing legal/trust pages. */
 export const existingTrustPages = [
+	{ label: 'Over ons', href: '/over-ons/' },
+	{ label: 'Hoe werkt het', href: '/hoe-werkt-het/' },
 	{ label: 'Privacybeleid', href: '/privacybeleid/' },
 	{ label: 'Cookiebeleid', href: '/cookiebeleid/' },
 	{ label: 'Algemene voorwaarden', href: '/algemene-voorwaarden/' },
@@ -314,7 +316,7 @@ export const existingTrustPages = [
 ] as const;
 
 /** Still optional / not yet published. */
-export const missingTrustPages = ['Over ons'] as const;
+export const missingTrustPages = [] as const;
 
 export function hubLink(slug: string) {
 	return gidsenPath(slug);

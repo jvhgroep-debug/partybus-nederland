@@ -5,6 +5,7 @@ import { routePages } from '../../data/routes/routes';
 import { hubGuideLinks, legacyGuideLinks } from '../../data/gidsen/shared';
 import { gidsenPath } from '../../data/gidsen/registry';
 import { legalNav } from '../../data/legal/pages';
+import { trustNav } from '../../data/trust/pages';
 
 const title = 'HTML-sitemap | Partybus Nederland';
 const description =
@@ -79,6 +80,17 @@ const mainPages = [
 						<a href={route.path}>
 							{route.departureCity} – {route.destination}
 						</a>
+					</li>
+				))}
+			</ul>
+		</section>
+
+		<section>
+			<h2>Over ons & werkwijze</h2>
+			<ul>
+				{trustNav.map((item) => (
+					<li>
+						<a href={item.href}>{item.label}</a>
 					</li>
 				))}
 			</ul>

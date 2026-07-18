@@ -8,10 +8,9 @@ export const mainNav: NavLink[] = [
 	{ href: '/gids/partybus-huren/', label: 'Gids' },
 	{ href: '/gidsen/', label: 'Kennisbank' },
 	{ href: '/#steden', label: 'Steden' },
-	{ href: '/#diensten', label: 'Diensten' },
-	{ href: '/#werkwijze', label: 'Hoe werkt het' },
-	{ href: '/#faq', label: 'FAQ' },
-	{ href: '/contact', label: 'Contact' },
+	{ href: '/hoe-werkt-het/', label: 'Hoe werkt het' },
+	{ href: '/over-ons/', label: 'Over ons' },
+	{ href: '/contact/', label: 'Contact' },
 ];
 
 export const primaryCta: NavLink = {

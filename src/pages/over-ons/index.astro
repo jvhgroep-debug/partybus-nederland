@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideBreadcrumbs from '../../components/guides/GuideBreadcrumbs.astro';
+import GuideCta from '../../components/guides/GuideCta.astro';
+import Button from '../../components/buttons/Button.astro';
+import { overOnsPage, buildAboutPageSchema, buildOrganizationSchema } from '../../data/trust/pages';
+import { guideImagePool } from '../../data/guides/guideImages';
+import { buildBreadcrumbSchema } from '../../lib/guides/schema';
+
+const page = overOnsPage;
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Over ons' },
+] as const;
+
+const jsonLd = [
+	buildAboutPageSchema({
+		name: page.h1,
+		description: page.description,
+		url: page.canonical,
+	}),
+	buildOrganizationSchema(),
+	buildBreadcrumbSchema(breadcrumbs),
+];
+---
+
+<BaseLayout
+	title={page.title}
+	description={page.description}
+	canonical={page.canonical}
+	titleExact={true}
+	ogTitle={page.title}
+	ogDescription={page.description}
+	ogUrl={page.canonical}
+	ogImage="https://www.partybusnederland.nl/images/hero-partybus.png"
+	twitterTitle={page.title}
+	twitterDescription={page.description}
+	twitterImage="https://www.partybusnederland.nl/images/hero-partybus.png"
+	jsonLd={jsonLd}
+>
+	<article class="trust-page">
+		<GuideBreadcrumbs items={breadcrumbs} />
+
+		<header class="trust-page__hero section__inner">
+			<p class="section__eyebrow">Vertrouwen</p>
+			<h1 class="trust-page__title">{page.h1}</h1>
+			<p class="trust-page__lead">{page.lead}</p>
+			<div class="trust-page__actions">
+				<Button href="/gratis-partybus-offertes-aanvragen/" size="lg">Gratis offertes aanvragen</Button>
+				<a class="btn btn--ghost btn--lg" href="/hoe-werkt-het/">Hoe werkt het?</a>
+			</div>
+		</header>
+
+		<section class="section" aria-labelledby="over-platform">
+			<div class="section__inner trust-page__prose">
+				<h2 id="over-platform">Een onafhankelijk vergelijkingsplatform</h2>
+				<p>
+					Partybus Nederland is een onafhankelijk platform voor informatie over partybus huren.
+					We helpen bezoekers om groepsvervoer overzichtelijker te maken: met gidsen, stedenpagina’s
+					en een vrijblijvende aanvraag waarmee je offertes kunt vergelijken.
+				</p>
+				<p>
+					We claimen niet dat Partybus Nederland zelf alle partybussen bezit of exploiteert.
+					Aanvragen kunnen worden doorgestuurd naar geschikte aanbieders. De uiteindelijke offerte,
+					beschikbaarheid en uitvoering liggen bij die aanbieders.
+				</p>
+			</div>
+		</section>
+
+		<section class="section" aria-labelledby="over-missie">
+			<div class="section__inner trust-page__prose">
+				<h2 id="over-missie">Onze missie</h2>
+				<p>
+					Onze missie is groepsvervoer eenvoudiger en overzichtelijker maken. Of je nu een
+					vrijgezellenfeest, bruiloft, bedrijfsuitje of festival plant: je wilt weten waar je op
+					let, zonder misleidende vaste tarieven of valse beschikbaarheidsbeloften.
+				</p>
+				<p>
+					Daarom leggen we uit waar prijzen van afhangen, hoe je een aanvraag voorbereidt en hoe
+					je voorstellen eerlijk naast elkaar legt — tot maximaal 80 personen, afhankelijk van
+					voertuig en aanbieder.
+				</p>
+			</div>
+		</section>
+
+		<section class="section" aria-labelledby="over-dekking">
+			<div class="section__inner trust-page__prose">
+				<h2 id="over-dekking">Landelijke dekking</h2>
+				<p>
+					Bezoekers kunnen vanuit vrijwel elke plaats in Nederland een aanvraag doen. Via onze
+					stedenpagina’s en kennisbank vind je lokale context en praktische tips. Exacte routes en
+					beschikbaarheid hangen altijd af van de aanbieders die op jouw aanvraag reageren.
+				</p>
+			</div>
+		</section>
+
+		<section class="section" aria-labelledby="over-privacy">
+			<div class="section__inner trust-page__prose">
+				<h2 id="over-privacy">Privacy en zorgvuldige aanvragen</h2>
+				<p>
+					We gaan zorgvuldig om met gegevens die je via formulieren of WhatsApp deelt. Die
+					informatie gebruiken we om je aanvraag te behandelen en — waar relevant — door te zetten
+					naar geschikte aanbieders. We verkopen je gegevens niet.
+				</p>
+				<p>
+					Meer details lees je in ons <a href="/privacybeleid/">privacybeleid</a>. Heb je een
+					vraag? Ga naar <a href="/contact/">Contact</a> of bekijk eerst
+					<a href="/hoe-werkt-het/">Hoe werkt het</a>.
+				</p>
+			</div>
+		</section>
+	</article>
+
+	<GuideCta
+		eyebrow="Over ons"
+		title={page.ctaTitle}
+		lead={page.ctaLead}
+		titleId="over-ons-cta"
+		image={guideImagePool.cta}
+		showWhatsapp={false}
+	/>
+</BaseLayout>
+
+<style>
+	.trust-page__hero {
+		padding-top: calc(var(--header-height) + 1.25rem);
+		padding-bottom: 1.5rem;
+	}
+
+	.trust-page__title {
+		margin: 0 0 1rem;
+		max-width: 16ch;
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 800;
+		line-height: 1.06;
+		letter-spacing: -0.03em;
+	}
+
+	.trust-page__lead {
+		margin: 0 0 1.5rem;
+		max-width: 44rem;
+		font-size: 1.08rem;
+		line-height: 1.65;
+		color: color-mix(in srgb, var(--color-text) 88%, transparent);
+	}
+
+	.trust-page__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.trust-page :global(.section) {
+		padding-block: clamp(2.5rem, 6vw, 4.5rem);
+	}
+
+	.trust-page__prose {
+		max-width: 46rem;
+	}
+
+	.trust-page__prose h2 {
+		margin: 0 0 1rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 3vw, 1.75rem);
+	}
+
+	.trust-page__prose p {
+		margin: 0 0 1rem;
+		color: var(--color-text-muted);
+		line-height: 1.75;
+	}
+
+	.trust-page__prose a {
+		color: var(--color-primary);
+		font-weight: 600;
+	}
+
+	@media (max-width: 640px) {
+		.trust-page__actions :global(.btn) {
+			width: 100%;
+			justify-content: center;
+		}
+	}
+</style>

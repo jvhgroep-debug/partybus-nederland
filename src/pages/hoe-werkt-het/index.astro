@@ -1,0 +1,239 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideBreadcrumbs from '../../components/guides/GuideBreadcrumbs.astro';
+import GuideCta from '../../components/guides/GuideCta.astro';
+import Button from '../../components/buttons/Button.astro';
+import { hoeWerktHetPage } from '../../data/trust/pages';
+import { guideImagePool } from '../../data/guides/guideImages';
+import { buildBreadcrumbSchema, buildWebPageSchema } from '../../lib/guides/schema';
+
+const page = hoeWerktHetPage;
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Hoe werkt het' },
+] as const;
+
+const jsonLd = [
+	buildWebPageSchema({
+		name: page.h1,
+		description: page.description,
+		url: page.canonical,
+	}),
+	buildBreadcrumbSchema(breadcrumbs),
+];
+---
+
+<BaseLayout
+	title={page.title}
+	description={page.description}
+	canonical={page.canonical}
+	titleExact={true}
+	ogTitle={page.title}
+	ogDescription={page.description}
+	ogUrl={page.canonical}
+	ogImage="https://www.partybusnederland.nl/images/hero-partybus.png"
+	twitterTitle={page.title}
+	twitterDescription={page.description}
+	twitterImage="https://www.partybusnederland.nl/images/hero-partybus.png"
+	jsonLd={jsonLd}
+>
+	<article class="how-page">
+		<GuideBreadcrumbs items={breadcrumbs} />
+
+		<header class="how-page__hero section__inner">
+			<p class="section__eyebrow">Werkwijze</p>
+			<h1 class="how-page__title">{page.h1}</h1>
+			<p class="how-page__lead">{page.lead}</p>
+			<div class="how-page__actions">
+				<Button href="/gratis-partybus-offertes-aanvragen/" size="lg">Gratis offertes aanvragen</Button>
+				<a class="btn btn--ghost btn--lg" href="/over-ons/">Over ons</a>
+			</div>
+		</header>
+
+		<section class="section" aria-labelledby="how-steps">
+			<div class="section__inner">
+				<div class="section__head reveal">
+					<p class="section__eyebrow">Stappenplan</p>
+					<h2 id="how-steps" class="section__title">Van aanvraag tot keuze</h2>
+					<p class="section__lead">
+						Vijf duidelijke stappen. Jij blijft de baas over de uiteindelijke keuze.
+					</p>
+				</div>
+				<ol class="how-page__steps">
+					{
+						page.steps.map((step, index) => (
+							<li class="how-page__step reveal">
+								<span class="how-page__num" aria-hidden="true">
+									{index + 1}
+								</span>
+								<div>
+									<h3>{step.title}</h3>
+									<p>{step.text}</p>
+								</div>
+							</li>
+						))
+					}
+				</ol>
+			</div>
+		</section>
+
+		<section class="section" aria-labelledby="how-notes">
+			<div class="section__inner how-page__notes">
+				<h2 id="how-notes">Goed om te weten</h2>
+				<ul>
+					<li>Aanvragen via Partybus Nederland zijn vrijblijvend.</li>
+					<li>Prijzen en beschikbaarheid verschillen per aanbieder — er zijn geen vaste landelijke tarieven.</li>
+					<li>Partybus Nederland geeft geen beschikbaarheidsgarantie.</li>
+					<li>
+						Capaciteit is maximaal 80 personen, afhankelijk van het voertuig en de aanbieder.
+					</li>
+				</ul>
+				<p>
+					Meer over wie we zijn? Lees <a href="/over-ons/">Over ons</a>. Vragen?
+					<a href="/contact/">Neem contact op</a>.
+				</p>
+			</div>
+		</section>
+	</article>
+
+	<GuideCta
+		eyebrow="Werkwijze"
+		title="Start je vrijblijvende aanvraag"
+		lead="Geef je wensen door en vergelijk daarna zelf de mogelijkheden die bij jouw rit passen."
+		titleId="hoe-werkt-cta"
+		image={guideImagePool.cta}
+		showWhatsapp={false}
+	/>
+</BaseLayout>
+
+<style>
+	.how-page__hero {
+		padding-top: calc(var(--header-height) + 1.25rem);
+		padding-bottom: 1.5rem;
+	}
+
+	.how-page__title {
+		margin: 0 0 1rem;
+		max-width: 16ch;
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 800;
+		line-height: 1.06;
+		letter-spacing: -0.03em;
+	}
+
+	.how-page__lead {
+		margin: 0 0 1.5rem;
+		max-width: 44rem;
+		font-size: 1.08rem;
+		line-height: 1.65;
+		color: color-mix(in srgb, var(--color-text) 88%, transparent);
+	}
+
+	.how-page__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.how-page :global(.section) {
+		padding-block: clamp(2.5rem, 6vw, 4.5rem);
+	}
+
+	.how-page__steps {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 1rem;
+	}
+
+	.how-page__step {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 1rem 1.15rem;
+		padding: 1.25rem 1.2rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+	}
+
+	.how-page__num {
+		display: grid;
+		place-items: center;
+		width: 2.4rem;
+		height: 2.4rem;
+		border-radius: 50%;
+		font-family: var(--font-display);
+		font-weight: 800;
+		color: #000;
+		background: var(--color-primary);
+	}
+
+	.how-page__step h3 {
+		margin: 0 0 0.4rem;
+		font-family: var(--font-display);
+		font-size: 1.1rem;
+		color: var(--color-primary);
+	}
+
+	.how-page__step p {
+		margin: 0;
+		color: var(--color-text-muted);
+		line-height: 1.65;
+	}
+
+	.how-page__notes {
+		max-width: 46rem;
+	}
+
+	.how-page__notes h2 {
+		margin: 0 0 1rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 3vw, 1.75rem);
+	}
+
+	.how-page__notes ul {
+		margin: 0 0 1.25rem;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.how-page__notes li {
+		position: relative;
+		padding-left: 1.35rem;
+		color: var(--color-text-muted);
+		line-height: 1.65;
+	}
+
+	.how-page__notes li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.55rem;
+		width: 0.45rem;
+		height: 0.45rem;
+		border-radius: 50%;
+		background: var(--color-primary);
+	}
+
+	.how-page__notes p {
+		margin: 0;
+		color: var(--color-text-muted);
+		line-height: 1.7;
+	}
+
+	.how-page__notes a {
+		color: var(--color-primary);
+		font-weight: 600;
+	}
+
+	@media (max-width: 640px) {
+		.how-page__actions :global(.btn) {
+			width: 100%;
+			justify-content: center;
+		}
+	}
+</style>
