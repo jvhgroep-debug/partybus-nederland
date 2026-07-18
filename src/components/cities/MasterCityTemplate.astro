@@ -1,49 +1,51 @@
 ---
 import type { CityPageData } from '../../data/cities/types';
 import { getRelatedCities } from '../../data/cities/registry';
-import { buildLocalCityImages } from '../../data/cities/localTypes';
+import { resolveCityHeroImage } from '../../lib/cityImages';
 import CityHero from './CityHero.astro';
 import CityIntro from './CityIntro.astro';
-import LocalCityGuide from './LocalCityGuide.astro';
+import CityDestinations from './CityDestinations.astro';
+import CityActivities from './CityActivities.astro';
+import CityOccasions from './CityOccasions.astro';
 import CityFaq from './CityFaq.astro';
 import CityRelatedCities from './CityRelatedCities.astro';
 import CityCta from './CityCta.astro';
 import InfoGuide from '../shared/InfoGuide.astro';
-import { cityInfoLead, compareChecklist, pricingFactors } from '../../data/guides/partybusInfo';
+import {
+	bookingTips,
+	cityInfoLead,
+	compareChecklist,
+	pricingFactors,
+} from '../../data/guides/partybusInfo';
 
 interface Props {
 	city: CityPageData;
 }
 
 const { city } = Astro.props;
-const profile = city.localProfile;
-const images = buildLocalCityImages(profile);
-const relatedCities = getRelatedCities(city.slug, profile.relatedCitySlugs);
+const relatedCities = getRelatedCities(city.slug, city.relatedCitySlugs);
+const heroImage = resolveCityHeroImage(city.slug);
 ---
 
 <div class="master-city">
 	<CityHero
 		title={city.h1}
 		subtitle={city.hero.subtitle}
-		image={images.hero.src}
-		imageAlt={images.hero.alt}
-		imageWidth={images.hero.width}
-		imageHeight={images.hero.height}
+		image={heroImage.src}
+		imageAlt={heroImage.alt}
+		imageWidth={heroImage.width}
+		imageHeight={heroImage.height}
 		whatsappHref={city.hero.whatsappHref ?? city.cta.whatsappHref}
 		primaryHref="/gratis-partybus-offertes-aanvragen/"
 		trustItems={city.hero.trustItems}
 	/>
 
 	<CityIntro
-		title={profile.intro.title}
-		paragraphs={profile.intro.paragraphs}
-		image={images.nightlife.src}
-		imageAlt={profile.intro.imageAlt}
-		imageWidth={images.nightlife.width}
-		imageHeight={images.nightlife.height}
+		title={city.intro.title}
+		paragraphs={city.intro.paragraphs}
+		image={city.intro.image}
+		imageAlt={city.intro.imageAlt}
 	/>
-
-	<LocalCityGuide profile={profile} images={images} />
 
 	<InfoGuide
 		eyebrow="Informatie"
@@ -53,7 +55,30 @@ const relatedCities = getRelatedCities(city.slug, profile.relatedCitySlugs);
 		checklist={compareChecklist}
 	/>
 
-	<CityFaq items={profile.faqs} cityName={city.name} />
+	<CityDestinations
+		title={city.locations.title}
+		lead={city.locations.lead}
+		items={city.locations.items}
+		eyebrow="Bestemmingen"
+	/>
+
+	<CityActivities
+		title={city.activities.title}
+		lead={city.activities.lead}
+		items={city.activities.items}
+		eyebrow="Festivals"
+	/>
+
+	<CityOccasions title={city.occasions.title} lead={city.occasions.lead} items={city.occasions.items} />
+
+	<InfoGuide
+		eyebrow="Tips"
+		title={`Praktische tips voor een rit vanuit ${city.name}`}
+		lead={`Zo bereid je een partybusrit vanuit ${city.name} goed voor — van route tot voorwaarden.`}
+		cards={bookingTips}
+	/>
+
+	<CityFaq items={city.faqs} cityName={city.name} />
 
 	{relatedCities.length > 0 && <CityRelatedCities cityName={city.name} cities={relatedCities} />}
 
@@ -65,7 +90,7 @@ const relatedCities = getRelatedCities(city.slug, profile.relatedCitySlugs);
 		title={city.cta.title}
 		text={city.cta.text}
 		whatsappHref={city.cta.whatsappHref}
-		image={images.destination.src}
+		image={city.cta.image}
 		primaryHref="/gratis-partybus-offertes-aanvragen/"
 	/>
 </div>

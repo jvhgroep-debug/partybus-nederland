@@ -1,5 +1,3 @@
-import type { LocalCityProfile } from './localTypes';
-
 export type CityFaq = {
 	question: string;
 	answer: string;
@@ -83,8 +81,6 @@ export type CityPageData = {
 		items: readonly string[];
 		note?: string;
 	};
-	/** Unique, long-form local content used by the enriched city template. */
-	localProfile: LocalCityProfile;
 	/** Preferred related city slugs; only published pages are rendered. */
 	relatedCitySlugs: readonly CityRelatedSlug[];
 	faqs: readonly CityFaq[];
