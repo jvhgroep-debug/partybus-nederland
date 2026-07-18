@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideBreadcrumbs from '../../components/guides/GuideBreadcrumbs.astro';
+import GuideCta from '../../components/guides/GuideCta.astro';
+import { kennisbankArticles, kennisbankHubMeta } from '../../data/kennisbank/registry';
+import { guideImagePool } from '../../data/guides/guideImages';
+import { buildBreadcrumbSchema, buildWebPageSchema } from '../../lib/guides/schema';
+
+const hub = kennisbankHubMeta;
+
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Kennisbank' },
+] as const;
+
+const jsonLd = [
+	buildWebPageSchema({ name: hub.h1, description: hub.description, url: hub.canonical }),
+	buildBreadcrumbSchema(breadcrumbs),
+];
+---
+
+<BaseLayout
+	title={hub.title}
+	description={hub.description}
+	canonical={hub.canonical}
+	titleExact={true}
+	ogTitle={hub.title}
+	ogDescription={hub.description}
+	ogUrl={hub.canonical}
+	ogImage="https://www.partybusnederland.nl/images/hero-partybus.png"
+	twitterTitle={hub.title}
+	twitterDescription={hub.description}
+	twitterImage="https://www.partybusnederland.nl/images/hero-partybus.png"
+	jsonLd={jsonLd}
+>
+	<article class="kb-hub">
+		<GuideBreadcrumbs items={breadcrumbs} />
+
+		<header class="kb-hub__hero section__inner">
+			<p class="section__eyebrow">KENNISBANK</p>
+			<h1 class="kb-hub__title">{hub.h1}</h1>
+			<p class="kb-hub__lead">{hub.lead}</p>
+			<p class="kb-hub__note">
+				Partybus Nederland is een vergelijkingsplatform. Aanbieders bepalen prijs en
+				beschikbaarheid. Aanvragen zijn vrijblijvend.
+			</p>
+		</header>
+
+		<section class="section" aria-labelledby="kb-hub-list">
+			<div class="section__inner">
+				<div class="section__head reveal">
+					<p class="section__eyebrow">Artikelen</p>
+					<h2 id="kb-hub-list" class="section__title">Uitgelichte kennisbankartikelen</h2>
+					<p class="section__lead">
+						De complete gids hieronder is de kwaliteitsstandaard (Master Template) voor
+						toekomstige kennisbankartikelen.
+					</p>
+				</div>
+
+				<div class="kb-hub__grid">
+					{
+						kennisbankArticles.map((article) => (
+							<article class="kb-hub__card reveal">
+								<a class="kb-hub__card-link" href={article.path}>
+									<div class="kb-hub__card-media">
+										<img
+											src={article.heroImage.src}
+											srcset={`${article.heroImage.src.replace('-1920w.webp', '-640w.webp')} 640w, ${article.heroImage.src.replace('-1920w.webp', '-960w.webp')} 960w, ${article.heroImage.src} 1920w`}
+											sizes="(min-width: 800px) 40vw, 100vw"
+											alt={article.heroImage.alt}
+											title={article.heroImage.title}
+											width={article.heroImage.width}
+											height={article.heroImage.height}
+											loading="lazy"
+											decoding="async"
+										/>
+									</div>
+									<div class="kb-hub__card-body">
+										<p class="kb-hub__card-eyebrow">{article.eyebrow}</p>
+										<h3>{article.h1}</h3>
+										<p>{article.metaDescription}</p>
+										<span class="kb-hub__card-cta">Lees het artikel →</span>
+									</div>
+								</a>
+							</article>
+						))
+					}
+				</div>
+
+				<p class="kb-hub__more">
+					Zoek je kortere onderwerpgidsen? Bekijk ook de
+					<a href="/gidsen/">kennisbank-overzichtspagina met gidsen</a>
+					of de
+					<a href="/gids/partybus-huren/">originele partybus-gids</a>.
+				</p>
+			</div>
+		</section>
+	</article>
+
+	<GuideCta
+		eyebrow="Kennisbank"
+		title="Klaar om offertes te vergelijken?"
+		lead="Gebruik de gidsen hierboven en vraag daarna vrijblijvend meerdere offertes aan."
+		titleId="kb-hub-cta"
+		image={guideImagePool.cta}
+		showWhatsapp={false}
+	/>
+</BaseLayout>
+
+<style>
+	.kb-hub__hero {
+		padding-top: calc(var(--header-height) + 2rem);
+		padding-bottom: 1rem;
+	}
+
+	.kb-hub__title {
+		margin: 0.35rem 0 1rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+		line-height: 1.15;
+	}
+
+	.kb-hub__lead {
+		margin: 0 0 1rem;
+		max-width: 42rem;
+		font-size: 1.1rem;
+		line-height: 1.7;
+		color: var(--color-text-muted);
+	}
+
+	.kb-hub__note {
+		margin: 0;
+		max-width: 42rem;
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: var(--color-text-muted);
+	}
+
+	.kb-hub__grid {
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	.kb-hub__card {
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		overflow: hidden;
+		background: #0a0a0a;
+	}
+
+	.kb-hub__card-link {
+		display: grid;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	@media (min-width: 800px) {
+		.kb-hub__card-link {
+			grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+		}
+	}
+
+	.kb-hub__card-media {
+		aspect-ratio: 16 / 9;
+		background: #000;
+	}
+
+	.kb-hub__card-media img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.kb-hub__card-body {
+		padding: 1.25rem 1.35rem 1.5rem;
+	}
+
+	.kb-hub__card-eyebrow {
+		margin: 0 0 0.4rem;
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		color: var(--color-primary);
+	}
+
+	.kb-hub__card-body h3 {
+		margin: 0 0 0.65rem;
+		font-family: var(--font-display);
+		font-size: 1.25rem;
+		line-height: 1.25;
+	}
+
+	.kb-hub__card-body p {
+		margin: 0 0 1rem;
+		color: var(--color-text-muted);
+		line-height: 1.6;
+	}
+
+	.kb-hub__card-cta {
+		color: var(--color-primary);
+		font-weight: 600;
+	}
+
+	.kb-hub__more {
+		margin: 2rem 0 0;
+		color: var(--color-text-muted);
+		line-height: 1.65;
+	}
+
+	.kb-hub__more a {
+		color: var(--color-primary);
+		font-weight: 600;
+	}
+</style>

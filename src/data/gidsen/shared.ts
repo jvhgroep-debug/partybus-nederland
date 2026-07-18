@@ -238,6 +238,11 @@ export function guidesByCategory(categoryId: GidsenCategoryId): HubGuideCard[] {
 
 export const legacyGuideLinks = [
 	{
+		label: 'Complete kennisbankgids',
+		href: '/kennisbank/partybus-huren-complete-gids/',
+		description: 'Master Template: complete gids voor groepen',
+	},
+	{
 		label: 'Hoofdgids partybus huren',
 		href: '/gids/partybus-huren/',
 		description: 'Originele uitgebreide gids op /gids/',

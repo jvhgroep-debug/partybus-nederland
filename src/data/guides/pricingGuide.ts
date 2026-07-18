@@ -192,6 +192,11 @@ export const pricingFaqs: GuideFaq[] = [
 
 export const pricingInternalLinks: GuideLink[] = [
 	{
+		label: 'Complete gids: partybus huren',
+		href: '/kennisbank/partybus-huren-complete-gids/',
+		description: 'Mastergids over groepsgrootte, opstapplaatsen, festivals en boeken',
+	},
+	{
 		label: 'Gratis offertes aanvragen',
 		href: '/gratis-partybus-offertes-aanvragen/',
 		description: 'Vrijblijvend meerdere prijsvoorstellen vergelijken',

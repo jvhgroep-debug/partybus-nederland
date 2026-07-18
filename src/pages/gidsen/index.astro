@@ -67,6 +67,22 @@ const categoriesWithGuides = gidsenCategories
 			<p class="gidsen-hub__count">{hubGuideLinks.length} gidsen in {categoriesWithGuides.length} categorieën</p>
 		</header>
 
+		<section class="section gidsen-hub__featured" aria-labelledby="gidsen-master">
+			<div class="section__inner reveal">
+				<div class="section__head">
+					<p class="section__eyebrow">Mastergids</p>
+					<h2 id="gidsen-master" class="section__title">Complete gids: partybus huren</h2>
+					<p class="section__lead">
+						Ons AdSense-proof standaardartikel over partybus huren voor groepen — met
+						checklist, vergelijkingstabel en FAQ.
+					</p>
+				</div>
+				<a class="gidsen-hub__featured-link" href="/kennisbank/partybus-huren-complete-gids/">
+					Lees de complete kennisbankgids →
+				</a>
+			</div>
+		</section>
+
 		<section class="section" id="gidsen-categorieen" aria-labelledby="gidsen-overzicht">
 			<div class="section__inner">
 				<div class="section__head reveal">
@@ -212,6 +228,17 @@ const categoriesWithGuides = gidsenCategories
 		margin: 0;
 		font-size: 0.92rem;
 		color: var(--color-text-muted);
+	}
+
+	.gidsen-hub__featured {
+		padding-block: clamp(2rem, 5vw, 3.5rem) !important;
+	}
+
+	.gidsen-hub__featured-link {
+		display: inline-flex;
+		margin-top: 0.25rem;
+		font-weight: 600;
+		color: var(--color-primary);
 	}
 
 	.gidsen-hub__toc {

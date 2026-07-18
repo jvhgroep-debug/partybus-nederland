@@ -4,6 +4,7 @@ import { publishedCities } from '../../data/cities/registry';
 import { routePages } from '../../data/routes/routes';
 import { hubGuideLinks, legacyGuideLinks } from '../../data/gidsen/shared';
 import { gidsenPath } from '../../data/gidsen/registry';
+import { kennisbankArticles } from '../../data/kennisbank/registry';
 import { legalNav } from '../../data/legal/pages';
 import { trustNav } from '../../data/trust/pages';
 
@@ -14,7 +15,8 @@ const canonical = 'https://www.partybusnederland.nl/sitemap/';
 
 const mainPages = [
 	{ label: 'Home', href: '/' },
-	{ label: 'Kennisbank', href: '/gidsen/' },
+	{ label: 'Kennisbank', href: '/kennisbank/' },
+	{ label: 'Kennisbank-gidsen', href: '/gidsen/' },
 	{ label: 'Gratis offertes aanvragen', href: '/gratis-partybus-offertes-aanvragen/' },
 	{ label: 'HTML-sitemap', href: '/sitemap/' },
 ];
@@ -37,10 +39,24 @@ const mainPages = [
 		</section>
 
 		<section>
-			<h2>Kennisbank (/gidsen/)</h2>
+			<h2>Kennisbank (/kennisbank/)</h2>
 			<ul>
 				<li>
-					<a href="/gidsen/">Kennisbank-overzicht</a>
+					<a href="/kennisbank/">Kennisbank-overzicht</a>
+				</li>
+				{kennisbankArticles.map((article) => (
+					<li>
+						<a href={article.path}>{article.h1}</a>
+					</li>
+				))}
+			</ul>
+		</section>
+
+		<section>
+			<h2>Kennisbank-gidsen (/gidsen/)</h2>
+			<ul>
+				<li>
+					<a href="/gidsen/">Gidsen-overzicht</a>
 				</li>
 				{hubGuideLinks.map((guide) => (
 					<li>

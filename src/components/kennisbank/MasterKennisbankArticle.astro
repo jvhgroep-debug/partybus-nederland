@@ -1,0 +1,240 @@
+---
+import GuideBreadcrumbs from '../guides/GuideBreadcrumbs.astro';
+import GuideImage from '../guides/GuideImage.astro';
+import GuideImageSection from '../guides/GuideImageSection.astro';
+import GuideChecklist from '../guides/GuideChecklist.astro';
+import GuideFaqList from '../guides/GuideFaqList.astro';
+import GuideRelatedLinks from '../guides/GuideRelatedLinks.astro';
+import GuideCta from '../guides/GuideCta.astro';
+import ReadAlso from '../gidsen/ReadAlso.astro';
+import ComparisonTable from './ComparisonTable.astro';
+import type { KennisbankArticle } from '../../data/kennisbank/types';
+import { guideImagePool } from '../../data/guides/guideImages';
+import type { GuideImageAsset } from '../../data/guides/guideImages';
+
+interface Props {
+	article: KennisbankArticle;
+}
+
+const { article } = Astro.props;
+
+const imageMap: Record<string, GuideImageAsset> = {
+	opstapplaats: guideImagePool.opstapplaats,
+	onderweg: guideImagePool.onderweg,
+	interieur: guideImagePool.interieur,
+	festival: guideImagePool.festival,
+	aankomst: guideImagePool.aankomst,
+	terugreis: guideImagePool.terugreis,
+};
+
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Kennisbank', href: '/kennisbank/' },
+	{ label: article.h1 },
+] as const;
+
+/** Comparison table sits after the “verschil” section. */
+const compareAfterId = 'verschil-vervoersvormen';
+
+let imageSectionIndex = 0;
+const renderedSections = article.sections.map((section) => {
+	const image = section.imageKey ? imageMap[section.imageKey] : undefined;
+	const position = (imageSectionIndex % 2 === 0 ? 'left' : 'right') as 'left' | 'right';
+	if (image) imageSectionIndex += 1;
+	return {
+		...section,
+		image,
+		position,
+		showComparison: section.id === compareAfterId,
+	};
+});
+---
+
+<article class="kb-article">
+	<GuideBreadcrumbs items={breadcrumbs} />
+
+	<header class="kb-article__hero section__inner">
+		<p class="section__eyebrow">{article.eyebrow}</p>
+		<h1 class="kb-article__title">{article.h1}</h1>
+		<p class="kb-article__lead">{article.lead}</p>
+		<div class="kb-article__actions">
+			<a class="btn btn--primary btn--lg" href="/gratis-partybus-offertes-aanvragen/">
+				Gratis offertes aanvragen
+			</a>
+			<a class="btn btn--ghost btn--lg" href="/kennisbank/">Alle kennisbankartikelen</a>
+		</div>
+		<div class="kb-article__hero-media reveal">
+			<GuideImage
+				image={article.heroImage}
+				loading="eager"
+				fetchpriority="high"
+				variant="full"
+				sizes="100vw"
+			/>
+		</div>
+		<p class="kb-article__trust">{article.trustNote}</p>
+	</header>
+
+	{
+		renderedSections.map((section) => (
+			<>
+				{section.image ? (
+					<GuideImageSection
+						image={section.image}
+						imagePosition={section.position}
+						title={section.title}
+						titleId={section.id}
+						paragraphs={section.paragraphs}
+					>
+						{section.moreLink && (
+							<p class="kb-article__more">
+								<a href={section.moreLink.href}>{section.moreLink.label} →</a>
+							</p>
+						)}
+					</GuideImageSection>
+				) : (
+					<section class="section kb-article__section" aria-labelledby={section.id}>
+						<div class="section__inner reveal">
+							<h2 id={section.id} class="section__title">
+								{section.title}
+							</h2>
+							<div class="kb-article__prose">
+								{section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+								{section.moreLink && (
+									<p class="kb-article__more">
+										<a href={section.moreLink.href}>{section.moreLink.label} →</a>
+									</p>
+								)}
+							</div>
+						</div>
+					</section>
+				)}
+				{section.showComparison && (
+					<ComparisonTable
+						title={article.comparison.title}
+						lead={article.comparison.lead}
+						rows={article.comparison.rows}
+					/>
+				)}
+			</>
+		))
+	}
+
+	<GuideChecklist
+		eyebrow="Checklist"
+		title={article.checklist.title}
+		lead={article.checklist.lead}
+		items={article.checklist.items}
+		titleId="kb-checklist"
+	/>
+
+	<section class="section kb-article__section" aria-labelledby="kb-summary">
+		<div class="section__inner reveal">
+			<h2 id="kb-summary" class="section__title">{article.summary.title}</h2>
+			<div class="kb-article__prose">
+				{article.summary.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+		</div>
+	</section>
+
+	<GuideFaqList
+		title="Veelgestelde vragen"
+		lead="Antwoorden op de vragen die we het vaakst horen — zonder vaste prijzen of beschikbaarheidsgaranties."
+		items={article.faqs}
+	/>
+
+	<ReadAlso
+		title="Lees ook"
+		guides={article.relatedLinks}
+		cities={article.cityLinks}
+	/>
+
+	<GuideRelatedLinks
+		eyebrow="Vervolgstappen"
+		title="Handige pagina’s"
+		lead="Van kostenfactoren en festivalvervoer tot contact en steden."
+		items={article.relatedLinks}
+	/>
+</article>
+
+<GuideCta
+	eyebrow={article.eyebrow}
+	title={article.cta.title}
+	lead={article.cta.lead}
+	titleId="kb-cta"
+	image={article.ctaImage}
+	showWhatsapp={false}
+/>
+
+<style>
+	.kb-article :global(.section) {
+		padding-block: clamp(3rem, 7vw, 5.5rem);
+	}
+
+	.kb-article__hero {
+		padding-top: calc(var(--header-height) + 2rem);
+		padding-bottom: 2rem;
+	}
+
+	.kb-article__title {
+		margin: 0.35rem 0 1rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.85rem, 4.5vw, 3rem);
+		line-height: 1.15;
+		color: var(--color-text);
+	}
+
+	.kb-article__lead {
+		margin: 0 0 1.5rem;
+		max-width: 46rem;
+		font-size: 1.1rem;
+		line-height: 1.7;
+		color: var(--color-text-muted);
+	}
+
+	.kb-article__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-bottom: 1.75rem;
+	}
+
+	.kb-article__hero-media {
+		margin-bottom: 1.25rem;
+	}
+
+	.kb-article__trust {
+		margin: 0;
+		max-width: 48rem;
+		padding: 1rem 1.15rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: rgba(205, 184, 128, 0.05);
+		font-size: 0.95rem;
+		line-height: 1.65;
+		color: var(--color-text-muted);
+	}
+
+	.kb-article__prose {
+		max-width: 46rem;
+	}
+
+	.kb-article__prose p {
+		margin: 0 0 1.1rem;
+		color: var(--color-text-muted);
+		line-height: 1.75;
+	}
+
+	.kb-article__prose p:last-child {
+		margin-bottom: 0;
+	}
+
+	.kb-article__more {
+		margin: 1rem 0 0;
+	}
+
+	.kb-article__more a {
+		color: var(--color-primary);
+		font-weight: 600;
+	}
+</style>

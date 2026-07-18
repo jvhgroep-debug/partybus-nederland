@@ -1,0 +1,100 @@
+---
+interface Props {
+	title: string;
+	lead?: string;
+	rows: readonly {
+		aspect: string;
+		partybus: string;
+		touringcar: string;
+		limousine: string;
+		taxi: string;
+	}[];
+}
+
+const { title, lead, rows } = Astro.props;
+---
+
+<section class="section kb-compare" aria-labelledby="kb-compare-title">
+	<div class="section__inner">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">Vergelijking</p>
+			<h2 id="kb-compare-title" class="section__title">{title}</h2>
+			{lead && <p class="section__lead">{lead}</p>}
+		</div>
+		<div class="kb-compare__wrap reveal">
+			<table class="kb-compare__table">
+				<thead>
+					<tr>
+						<th scope="col">Aspect</th>
+						<th scope="col">Partybus</th>
+						<th scope="col">Touringcar</th>
+						<th scope="col">Limousine</th>
+						<th scope="col">Taxi</th>
+					</tr>
+				</thead>
+				<tbody>
+					{
+						rows.map((row) => (
+							<tr>
+								<th scope="row">{row.aspect}</th>
+								<td>{row.partybus}</td>
+								<td>{row.touringcar}</td>
+								<td>{row.limousine}</td>
+								<td>{row.taxi}</td>
+							</tr>
+						))
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+
+<style>
+	.kb-compare__wrap {
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: #0a0a0a;
+	}
+
+	.kb-compare__table {
+		width: 100%;
+		min-width: 640px;
+		border-collapse: collapse;
+		font-size: 0.95rem;
+	}
+
+	.kb-compare__table th,
+	.kb-compare__table td {
+		padding: 0.85rem 1rem;
+		text-align: left;
+		vertical-align: top;
+		line-height: 1.5;
+		border-bottom: 1px solid rgba(205, 184, 128, 0.12);
+	}
+
+	.kb-compare__table thead th {
+		font-family: var(--font-display);
+		font-weight: 600;
+		color: var(--color-primary);
+		background: rgba(205, 184, 128, 0.06);
+		white-space: nowrap;
+	}
+
+	.kb-compare__table tbody th {
+		font-weight: 600;
+		color: var(--color-text);
+		min-width: 9rem;
+	}
+
+	.kb-compare__table td {
+		color: var(--color-text-muted);
+	}
+
+	.kb-compare__table tbody tr:last-child th,
+	.kb-compare__table tbody tr:last-child td {
+		border-bottom: none;
+	}
+</style>
