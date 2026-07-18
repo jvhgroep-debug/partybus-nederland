@@ -2,8 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { publishedCities } from '../../data/cities/registry';
 import { routePages } from '../../data/routes/routes';
-import { hubGuideLinks, legacyGuideLinks, existingTrustPages } from '../../data/gidsen/shared';
+import { hubGuideLinks, legacyGuideLinks } from '../../data/gidsen/shared';
 import { gidsenPath } from '../../data/gidsen/registry';
+import { legalNav } from '../../data/legal/pages';
 
 const title = 'HTML-sitemap | Partybus Nederland';
 const description =
@@ -84,18 +85,14 @@ const mainPages = [
 		</section>
 
 		<section>
-			<h2>Contact & vertrouwen</h2>
+			<h2>Contact & juridisch</h2>
 			<ul>
-				{existingTrustPages.map((item) => (
+				{legalNav.map((item) => (
 					<li>
 						<a href={item.href}>{item.label}</a>
 					</li>
 				))}
 			</ul>
-			<p class="html-sitemap__note">
-				Privacybeleid, cookiebeleid, algemene voorwaarden, disclaimer en Over ons zijn nog niet
-				gepubliceerd — daarom staan ze niet in deze sitemap (geen 404-links).
-			</p>
 		</section>
 	</div>
 </BaseLayout>

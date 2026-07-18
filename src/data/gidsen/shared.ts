@@ -304,19 +304,17 @@ export const veelGezochteVragen = [
 	},
 ] as const;
 
-/** Existing legal/trust pages only — never invent 404 URLs. */
+/** Existing legal/trust pages. */
 export const existingTrustPages = [
+	{ label: 'Privacybeleid', href: '/privacybeleid/' },
+	{ label: 'Cookiebeleid', href: '/cookiebeleid/' },
+	{ label: 'Algemene voorwaarden', href: '/algemene-voorwaarden/' },
+	{ label: 'Disclaimer', href: '/disclaimer/' },
 	{ label: 'Contact', href: '/contact/' },
 ] as const;
 
-/** Reported missing — do not link until pages exist. */
-export const missingTrustPages = [
-	'Over ons',
-	'Privacybeleid',
-	'Cookiebeleid',
-	'Algemene voorwaarden',
-	'Disclaimer',
-] as const;
+/** Still optional / not yet published. */
+export const missingTrustPages = ['Over ons'] as const;
 
 export function hubLink(slug: string) {
 	return gidsenPath(slug);

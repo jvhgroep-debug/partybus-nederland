@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideBreadcrumbs from '../../components/guides/GuideBreadcrumbs.astro';
+import type { LegalPageDef } from '../../data/legal/pages';
+import { legalNav } from '../../data/legal/pages';
+import { buildBreadcrumbSchema, buildWebPageSchema } from '../../lib/guides/schema';
+
+interface Props {
+	page: LegalPageDef;
+}
+
+const { page } = Astro.props;
+
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: page.h1 },
+] as const;
+
+const jsonLd = [
+	buildWebPageSchema({
+		name: page.h1,
+		description: page.description,
+		url: page.canonical,
+	}),
+	buildBreadcrumbSchema(breadcrumbs),
+];
+---
+
+<BaseLayout
+	title={page.title}
+	description={page.description}
+	canonical={page.canonical}
+	titleExact={true}
+	ogTitle={page.title}
+	ogDescription={page.description}
+	ogUrl={page.canonical}
+	twitterTitle={page.title}
+	twitterDescription={page.description}
+	jsonLd={jsonLd}
+>
+	<article class="legal-page">
+		<GuideBreadcrumbs items={breadcrumbs} />
+
+		<header class="legal-page__hero section__inner">
+			<p class="section__eyebrow">Juridisch</p>
+			<h1 class="legal-page__title">{page.h1}</h1>
+			<p class="legal-page__lead">{page.lead}</p>
+			<p class="legal-page__meta">Laatst bijgewerkt: {page.updated}</p>
+		</header>
+
+		<div class="legal-page__body section__inner">
+			{
+				page.sections.map((section) => (
+					<section class="legal-page__section" aria-labelledby={`legal-${page.slug}-${section.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40)}`}>
+						<h2 id={`legal-${page.slug}-${section.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40)}`}>
+							{section.title}
+						</h2>
+						{section.paragraphs.map((p) => (
+							<p>{p}</p>
+						))}
+					</section>
+				))
+			}
+
+			<nav class="legal-page__links" aria-label="Gerelateerde pagina’s">
+				<p>
+					<a href="/">Naar homepage</a>
+					{' · '}
+					<a href="/contact/">Contact</a>
+				</p>
+				<ul>
+					{
+						legalNav
+							.filter((item) => item.href !== page.path && item.href !== '/contact/')
+							.map((item) => (
+								<li>
+									<a href={item.href}>{item.label}</a>
+								</li>
+							))
+					}
+				</ul>
+			</nav>
+		</div>
+	</article>
+</BaseLayout>
+
+<style>
+	.legal-page__hero {
+		padding-top: calc(var(--header-height) + 1.25rem);
+		padding-bottom: 1.5rem;
+	}
+
+	.legal-page__title {
+		margin: 0 0 1rem;
+		max-width: 18ch;
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 800;
+		line-height: 1.06;
+		letter-spacing: -0.03em;
+	}
+
+	.legal-page__lead {
+		margin: 0 0 0.75rem;
+		max-width: 42rem;
+		font-size: 1.08rem;
+		line-height: 1.65;
+		color: color-mix(in srgb, var(--color-text) 88%, transparent);
+	}
+
+	.legal-page__meta {
+		margin: 0;
+		font-size: 0.9rem;
+		color: var(--color-text-muted);
+	}
+
+	.legal-page__body {
+		padding-bottom: clamp(3.5rem, 8vw, 5.5rem);
+		max-width: 46rem;
+	}
+
+	.legal-page__section {
+		margin: 0 0 2rem;
+	}
+
+	.legal-page__section h2 {
+		margin: 0 0 0.85rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+		color: var(--color-primary);
+	}
+
+	.legal-page__section p {
+		margin: 0 0 1rem;
+		color: var(--color-text-muted);
+		line-height: 1.75;
+	}
+
+	.legal-page__links {
+		margin-top: 2.5rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--color-primary-line);
+	}
+
+	.legal-page__links p {
+		margin: 0 0 1rem;
+	}
+
+	.legal-page__links a {
+		color: var(--color-primary);
+		font-weight: 600;
+	}
+
+	.legal-page__links ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem 1.1rem;
+	}
+
+	.legal-page__links li a {
+		font-weight: 500;
+		color: var(--color-text-muted);
+	}
+
+	.legal-page__links li a:hover {
+		color: var(--color-primary);
+	}
+</style>

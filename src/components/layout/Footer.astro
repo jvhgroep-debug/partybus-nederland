@@ -1,12 +1,14 @@
 ---
 import { site } from '../../data/settings/site';
-import { popularCities } from '../../data/cities/popular';
 import { publishedCities } from '../../data/cities/registry';
 import { mainNav, primaryCta } from '../../data/settings/navigation';
 import { whatsapp } from '../../data/settings/whatsapp';
 import { hubGuideLinks } from '../../data/gidsen/shared';
 import { gidsenPath } from '../../data/gidsen/registry';
+import { legalNav } from '../../data/legal/pages';
 import Button from '../buttons/Button.astro';
+
+const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
@@ -45,7 +47,7 @@ import Button from '../buttons/Button.astro';
 
 		<div class="site-footer__col">
 			<p class="site-footer__heading">Contact</p>
-			<a href="/contact">Contactpagina</a>
+			<a href="/contact/">Contactpagina</a>
 			<a href={whatsapp.href} target="_blank" rel="noopener noreferrer">WhatsApp {whatsapp.phoneDisplay}</a>
 			<a href={primaryCta.href}>{primaryCta.label}</a>
 			<a href="/#faq">Veelgestelde vragen</a>
@@ -53,7 +55,17 @@ import Button from '../buttons/Button.astro';
 	</div>
 
 	<div class="site-footer__bottom">
-		<p>© {new Date().getFullYear()} {site.companyName}. Alle rechten voorbehouden.</p>
+		<p class="site-footer__copy">© {site.companyName} {year}</p>
+		<nav class="site-footer__legal" aria-label="Juridische informatie">
+			{
+				legalNav.map((item, index) => (
+					<span class="site-footer__legal-item">
+						{index > 0 && <span class="site-footer__sep" aria-hidden="true">·</span>}
+						<a href={item.href}>{item.label}</a>
+					</span>
+				))
+			}
+		</nav>
 	</div>
 </footer>
 
@@ -133,21 +145,74 @@ import Button from '../buttons/Button.astro';
 		transition: color 0.2s var(--ease-out);
 	}
 
-	.site-footer__col a:hover {
+	.site-footer__col a:hover,
+	.site-footer__col a:focus-visible {
 		color: var(--color-text);
 	}
 
 	.site-footer__bottom {
 		width: min(100% - 1.5rem, var(--content-max-width));
 		margin: 3rem auto 0;
-		padding: 1.4rem 0 2rem;
+		padding: 1.5rem 0 2rem;
 		border-top: 1px solid var(--color-primary-line);
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
 		color: var(--color-text-muted);
 		font-size: 0.92rem;
 	}
 
-	.site-footer__bottom p {
+	.site-footer__copy {
 		margin: 0;
-		padding-right: 4.5rem;
+	}
+
+	.site-footer__legal {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.35rem 0.15rem;
+		line-height: 1.6;
+	}
+
+	.site-footer__legal-item {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.15rem;
+	}
+
+	.site-footer__legal a {
+		color: var(--color-text-muted);
+		padding: 0.2rem 0.35rem;
+		border-radius: 0.25rem;
+		transition: color 0.2s var(--ease-out);
+	}
+
+	.site-footer__legal a:hover,
+	.site-footer__legal a:focus-visible {
+		color: var(--color-primary);
+		outline: none;
+	}
+
+	.site-footer__legal a:focus-visible {
+		box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 55%, transparent);
+	}
+
+	.site-footer__sep {
+		color: color-mix(in srgb, var(--color-text-muted) 70%, transparent);
+		user-select: none;
+		padding-inline: 0.15rem;
+	}
+
+	@media (min-width: 800px) {
+		.site-footer__bottom {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1.5rem;
+		}
+
+		.site-footer__legal {
+			justify-content: flex-end;
+		}
 	}
 </style>
