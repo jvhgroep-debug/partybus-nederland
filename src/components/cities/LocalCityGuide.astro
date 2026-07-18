@@ -1,0 +1,164 @@
+---
+import type {
+	LocalCityImages,
+	LocalCityProfile,
+	LocalCitySection,
+} from '../../data/cities/localTypes';
+
+interface Props {
+	profile: LocalCityProfile;
+	images: LocalCityImages;
+}
+
+const { profile, images } = Astro.props;
+
+const sectionImage = (section: LocalCitySection) =>
+	section.imageRole ? images[section.imageRole] : undefined;
+---
+
+<div class="local-city-guide">
+	{
+		profile.sections.map((section, index) => {
+			const image = sectionImage(section);
+			const imagePosition = index % 2 === 0 ? 'left' : 'right';
+
+			return (
+				<section
+					class:list={[
+						'section',
+						'local-city-section',
+						image && 'local-city-section--media',
+						image && `local-city-section--${imagePosition}`,
+					]}
+					aria-labelledby={section.id}
+				>
+					<div class="section__inner local-city-section__inner reveal">
+						{image && (
+							<figure class="local-city-section__visual">
+								<img
+									src={image.src}
+									alt={image.alt}
+									width={image.width}
+									height={image.height}
+									loading="lazy"
+									decoding="async"
+								/>
+							</figure>
+						)}
+						<div class="local-city-section__content">
+							<h2 id={section.id} class="section__title">
+								{section.title}
+							</h2>
+							<div class="local-city-section__copy">
+								{section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+							</div>
+						</div>
+					</div>
+				</section>
+			);
+		})
+	}
+
+	<section class="section local-city-tips" aria-labelledby={`local-tips-${profile.slug}`}>
+		<div class="section__inner">
+			<div class="section__head reveal">
+				<p class="section__eyebrow">Lokale tips</p>
+				<h2 id={`local-tips-${profile.slug}`} class="section__title">
+					Praktische tips voor een partybus in deze stad
+				</h2>
+			</div>
+			<div class="local-city-tips__grid">
+				{
+					profile.tips.map((tip) => (
+						<article class="local-city-tips__card reveal">
+							<h3>{tip.title}</h3>
+							<p>{tip.text}</p>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</div>
+
+<style>
+	.local-city-section__inner {
+		display: grid;
+		gap: clamp(1.5rem, 4vw, 3rem);
+		align-items: center;
+	}
+
+	.local-city-section__content {
+		max-width: 48rem;
+	}
+
+	.local-city-section__copy {
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.local-city-section__copy p {
+		margin: 0;
+		color: var(--color-text-muted);
+		font-size: 1.02rem;
+		line-height: 1.75;
+	}
+
+	.local-city-section__visual {
+		margin: 0;
+		overflow: hidden;
+		aspect-ratio: 16 / 9;
+		border-radius: var(--radius-lg);
+		border: 1px solid var(--color-primary-line);
+		box-shadow: var(--shadow-soft);
+		background: #090909;
+	}
+
+	.local-city-section__visual img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	@media (min-width: 900px) {
+		.local-city-section--media .local-city-section__inner {
+			grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+		}
+
+		.local-city-section--right .local-city-section__visual {
+			order: 2;
+		}
+	}
+
+	.local-city-tips__grid {
+		display: grid;
+		gap: 1rem;
+	}
+
+	@media (min-width: 700px) {
+		.local-city-tips__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	.local-city-tips__card {
+		padding: 1.15rem 1.2rem;
+		border: 1px solid var(--color-primary-line);
+		border-radius: var(--radius-md);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+	}
+
+	.local-city-tips__card h3 {
+		margin: 0 0 0.45rem;
+		font-family: var(--font-display);
+		font-size: 1rem;
+		color: var(--color-primary);
+	}
+
+	.local-city-tips__card p {
+		margin: 0;
+		color: var(--color-text-muted);
+		line-height: 1.65;
+	}
+</style>

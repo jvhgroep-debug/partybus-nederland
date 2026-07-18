@@ -2,13 +2,12 @@ import cityInventory from './cities.json';
 import type { CityPageData } from './types';
 import { whatsapp } from '../settings/whatsapp';
 import {
-	buildDepartureFaqs,
-	buildDepartureIntro,
 	buildDepartureSeo,
 	buildFestivalSection,
 	buildOccasionSection,
 	buildPopularDestinations,
 } from './departureContent';
+import { getLocalCityProfile } from './local';
 
 type InventoryCity = (typeof cityInventory.cities)[number];
 type InventoryCitySeo = InventoryCity & {
@@ -46,10 +45,6 @@ function cityBySlug(slug: string): InventoryCity | undefined {
 	return cityInventory.cities.find((city) => city.slug === slug);
 }
 
-function relatedSlugs(currentSlug: string): string[] {
-	return PILOT_CITY_SLUGS.filter((slug) => slug !== currentSlug).slice(0, 5);
-}
-
 const LOCAL_PICKUP_HINTS: Record<string, readonly string[]> = {
 	amsterdam: ['Amsterdam Centraal', 'Station Sloterdijk', 'Station Zuid', 'Bijlmer ArenA'],
 	rotterdam: ['Rotterdam Centraal', 'het centrum', 'Ahoy', 'Kop van Zuid'],
@@ -84,11 +79,14 @@ export function buildPilotCityPageData(slug: string): CityPageData | null {
 	const cityName = city.city;
 	const landmark = city.landmark;
 	const seo = buildDepartureSeo(cityName);
-	const intro = buildDepartureIntro(cityName);
 	const destinations = buildPopularDestinations(city.slug);
 	const festivals = buildFestivalSection(cityName);
 	const occasions = buildOccasionSection(cityName);
 	const pickups = pickupHintsFor(city.slug, cityName, landmark);
+	const localProfile = getLocalCityProfile(city.slug);
+	if (!localProfile) {
+		throw new Error(`Missing local city profile: ${city.slug}`);
+	}
 
 	return {
 		slug: city.slug,
@@ -100,8 +98,8 @@ export function buildPilotCityPageData(slug: string): CityPageData | null {
 		h1: seo.h1,
 		hero: {
 			subtitle: seo.heroSubtitle,
-			image: '/images/hero-partybus.png',
-			imageAlt: city.imageAlt,
+			image: `/images/cities/${city.slug}/hero.webp`,
+			imageAlt: localProfile.imageAlts.hero,
 			whatsappHref: whatsapp.href,
 			trustItems: [
 				'Gratis offertes vergelijken',
@@ -110,7 +108,12 @@ export function buildPilotCityPageData(slug: string): CityPageData | null {
 				'Ritten door Nederland en België',
 			],
 		},
-		intro,
+		intro: {
+			title: localProfile.intro.title,
+			paragraphs: localProfile.intro.paragraphs,
+			image: `/images/cities/${city.slug}/nightlife.webp`,
+			imageAlt: localProfile.intro.imageAlt,
+		},
 		why: {
 			title: `Waarom vertrekken vanuit ${cityName}?`,
 			lead: `Vanuit ${cityName} regel je groepsritten naar steden, festivals en evenementen.`,
@@ -129,13 +132,14 @@ export function buildPilotCityPageData(slug: string): CityPageData | null {
 			items: [...pickups, 'Hotel of eigen locatie'],
 			note: 'Geef opstap en bestemming mee in je aanvraag voor snellere offertes.',
 		},
-		relatedCitySlugs: relatedSlugs(city.slug),
-		faqs: buildDepartureFaqs(cityName, pickups),
+		localProfile,
+		relatedCitySlugs: localProfile.relatedCitySlugs,
+		faqs: localProfile.faqs,
 		cta: {
 			title: `Ontvang gratis offertes voor een partybus vanuit ${cityName}`,
 			text: `Vertel wanneer je wilt vertrekken, met hoeveel personen en wat je bestemming is. Vergelijk daarna vrijblijvend meerdere opties.`,
 			whatsappHref: whatsapp.href,
-			image: '/images/partybus-arena.png',
+			image: `/images/cities/${city.slug}/destination.webp`,
 		},
 	};
 }
