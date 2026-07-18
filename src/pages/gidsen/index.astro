@@ -3,7 +3,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import GuideBreadcrumbs from '../../components/guides/GuideBreadcrumbs.astro';
 import GuideRelatedLinks from '../../components/guides/GuideRelatedLinks.astro';
 import GuideCta from '../../components/guides/GuideCta.astro';
-import { hubGuideLinks, legacyGuideLinks, veelGezochteVragen, popularDestinations, popularRoutes, popularFestivals } from '../../data/gidsen/shared';
+import Button from '../../components/buttons/Button.astro';
+import {
+	gidsenCategories,
+	guidesByCategory,
+	getHubCardImage,
+	legacyGuideLinks,
+	veelGezochteVragen,
+	popularDestinations,
+	popularRoutes,
+	popularFestivals,
+	hubGuideLinks,
+} from '../../data/gidsen/shared';
 import { gidsenHubMeta, gidsenPath } from '../../data/gidsen/registry';
 import { guideImagePool } from '../../data/guides/guideImages';
 import { buildBreadcrumbSchema, buildWebPageSchema } from '../../lib/guides/schema';
@@ -19,6 +30,13 @@ const jsonLd = [
 	buildWebPageSchema({ name: hub.h1, description: hub.description, url: hub.canonical }),
 	buildBreadcrumbSchema(breadcrumbs),
 ];
+
+const categoriesWithGuides = gidsenCategories
+	.map((category) => ({
+		...category,
+		guides: guidesByCategory(category.id),
+	}))
+	.filter((category) => category.guides.length > 0);
 ---
 
 <BaseLayout
@@ -29,6 +47,10 @@ const jsonLd = [
 	ogTitle={hub.title}
 	ogDescription={hub.description}
 	ogUrl={hub.canonical}
+	ogImage="https://www.partybusnederland.nl/images/hero-partybus.png"
+	twitterTitle={hub.title}
+	twitterDescription={hub.description}
+	twitterImage="https://www.partybusnederland.nl/images/hero-partybus.png"
 	jsonLd={jsonLd}
 >
 	<article class="gidsen-hub">
@@ -38,28 +60,72 @@ const jsonLd = [
 			<p class="section__eyebrow">{hub.eyebrow}</p>
 			<h1 class="gidsen-hub__title">{hub.h1}</h1>
 			<p class="gidsen-hub__lead">{hub.lead}</p>
+			<div class="gidsen-hub__actions">
+				<Button href="/gratis-partybus-offertes-aanvragen/" size="lg">Gratis offertes aanvragen</Button>
+				<a class="btn btn--ghost btn--lg" href="#gidsen-categorieen">Bekijk alle gidsen</a>
+			</div>
+			<p class="gidsen-hub__count">{hubGuideLinks.length} gidsen in {categoriesWithGuides.length} categorieën</p>
 		</header>
 
-		<section class="section" aria-labelledby="gidsen-overzicht">
+		<section class="section" id="gidsen-categorieen" aria-labelledby="gidsen-overzicht">
 			<div class="section__inner">
 				<div class="section__head reveal">
-					<p class="section__eyebrow">Alle gidsen</p>
-					<h2 id="gidsen-overzicht" class="section__title">20 uitgebreide gidsen over partybus huren</h2>
+					<p class="section__eyebrow">Overzicht</p>
+					<h2 id="gidsen-overzicht" class="section__title">Gidsen per onderwerp</h2>
 					<p class="section__lead">
-						Praktische informatie over prijzen, regels, veiligheid, gelegenheden en routes — zonder vaste
-						tarieven of beschikbaarheidsgaranties.
+						Kies een categorie of scroll door alle gidsen. Geen vaste prijzen, geen
+						beschikbaarheidsgaranties — wel praktische informatie om offertes te vergelijken.
 					</p>
 				</div>
-				<div class="gidsen-hub__grid">
+
+				<nav class="gidsen-hub__toc reveal" aria-label="Categorieën">
 					{
-						hubGuideLinks.map((guide) => (
-							<a class="gidsen-hub__card reveal" href={gidsenPath(guide.slug)}>
-								<h3>{guide.label}</h3>
-								<p>{guide.description}</p>
-							</a>
+						categoriesWithGuides.map((category) => (
+							<a href={`#cat-${category.id}`}>{category.label}</a>
 						))
 					}
-				</div>
+				</nav>
+
+				{
+					categoriesWithGuides.map((category) => (
+						<div class="gidsen-hub__category" id={`cat-${category.id}`}>
+							<div class="gidsen-hub__category-head reveal">
+								<h2 class="gidsen-hub__category-title">{category.label}</h2>
+								<p class="gidsen-hub__category-lead">{category.description}</p>
+							</div>
+							<div class="gidsen-hub__grid">
+								{category.guides.map((guide) => {
+									const image = getHubCardImage(guide);
+									return (
+										<article class="gidsen-hub__card reveal">
+											<a class="gidsen-hub__card-link" href={gidsenPath(guide.slug)}>
+												<div class="gidsen-hub__card-media">
+													<img
+														src={image.src}
+														srcset={`${image.src.replace('-1920w.webp', '-640w.webp')} 640w, ${image.src.replace('-1920w.webp', '-960w.webp')} 960w, ${image.src} 1920w`}
+														sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+														alt={image.alt}
+														title={image.title}
+														width={image.width}
+														height={image.height}
+														loading="lazy"
+														decoding="async"
+													/>
+												</div>
+												<div class="gidsen-hub__card-body">
+													<p class="gidsen-hub__card-cat">{category.label}</p>
+													<h3>{guide.label}</h3>
+													<p>{guide.description}</p>
+													<span class="gidsen-hub__card-cta">{guide.linkLabel} →</span>
+												</div>
+											</a>
+										</article>
+									);
+								})}
+							</div>
+						</div>
+					))
+				}
 			</div>
 		</section>
 
@@ -128,11 +194,58 @@ const jsonLd = [
 	}
 
 	.gidsen-hub__lead {
-		margin: 0;
+		margin: 0 0 1.5rem;
 		max-width: 44rem;
 		font-size: 1.08rem;
 		line-height: 1.65;
 		color: color-mix(in srgb, var(--color-text) 88%, transparent);
+	}
+
+	.gidsen-hub__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+	}
+
+	.gidsen-hub__count {
+		margin: 0;
+		font-size: 0.92rem;
+		color: var(--color-text-muted);
+	}
+
+	.gidsen-hub__toc {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.55rem 0.85rem;
+		margin-bottom: 2.5rem;
+	}
+
+	.gidsen-hub__toc a {
+		font-size: 0.92rem;
+		font-weight: 600;
+		color: var(--color-primary);
+	}
+
+	.gidsen-hub__category {
+		margin-bottom: clamp(2.5rem, 6vw, 4rem);
+	}
+
+	.gidsen-hub__category-head {
+		margin-bottom: 1.25rem;
+	}
+
+	.gidsen-hub__category-title {
+		margin: 0 0 0.45rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 3vw, 1.75rem);
+	}
+
+	.gidsen-hub__category-lead {
+		margin: 0;
+		max-width: 40rem;
+		color: var(--color-text-muted);
+		line-height: 1.6;
 	}
 
 	.gidsen-hub__grid {
@@ -153,11 +266,11 @@ const jsonLd = [
 	}
 
 	.gidsen-hub__card {
-		display: block;
-		padding: 1.25rem;
 		border-radius: var(--radius-md);
 		border: 1px solid var(--color-primary-line);
 		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+		overflow: hidden;
+		height: 100%;
 		transition: border-color 0.2s var(--ease-out);
 	}
 
@@ -165,17 +278,71 @@ const jsonLd = [
 		border-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
 	}
 
-	.gidsen-hub__card h3 {
-		margin: 0 0 0.45rem;
-		font-family: var(--font-display);
-		color: var(--color-primary);
-		font-size: 1.05rem;
+	.gidsen-hub__card-link {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		color: inherit;
+		text-decoration: none;
 	}
 
-	.gidsen-hub__card p {
+	.gidsen-hub__card-media {
+		aspect-ratio: 16 / 9;
+		background: #000;
+		overflow: hidden;
+	}
+
+	.gidsen-hub__card-media img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center 45%;
+	}
+
+	.gidsen-hub__card-body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+		padding: 1.15rem 1.2rem 1.25rem;
+		flex: 1;
+	}
+
+	.gidsen-hub__card-cat {
+		margin: 0;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--color-primary);
+	}
+
+	.gidsen-hub__card h3 {
+		margin: 0;
+		font-family: var(--font-display);
+		color: var(--color-text);
+		font-size: 1.08rem;
+	}
+
+	.gidsen-hub__card-body > p:not(.gidsen-hub__card-cat) {
 		margin: 0;
 		color: var(--color-text-muted);
 		line-height: 1.6;
 		font-size: 0.95rem;
+		flex: 1;
+	}
+
+	.gidsen-hub__card-cta {
+		margin-top: 0.35rem;
+		font-size: 0.92rem;
+		font-weight: 600;
+		color: var(--color-primary);
+	}
+
+	@media (max-width: 640px) {
+		.gidsen-hub__actions :global(.btn) {
+			width: 100%;
+			justify-content: center;
+		}
 	}
 </style>

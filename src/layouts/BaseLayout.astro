@@ -44,6 +44,12 @@ const pageTitle = titleExact
 		? site.name
 		: `${title} | ${site.name}`;
 const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
+const pathname = Astro.url.pathname.endsWith('/') || Astro.url.pathname === '/'
+	? Astro.url.pathname || '/'
+	: `${Astro.url.pathname}/`;
+const resolvedCanonical =
+	canonical ??
+	(pathname.includes('404') ? undefined : `https://www.partybusnederland.nl${pathname}`);
 const heroPreload = preloadImage || (isHome ? '/images/hero-partybus.png' : undefined);
 const jsonLdPayload = jsonLd
 	? Array.isArray(jsonLd)
@@ -52,7 +58,7 @@ const jsonLdPayload = jsonLd
 	: [];
 const socialTitle = ogTitle || pageTitle;
 const socialDescription = ogDescription || description;
-const socialUrl = ogUrl || canonical;
+const socialUrl = ogUrl || resolvedCanonical;
 const socialImage = ogImage || heroPreload;
 const twTitle = twitterTitle || socialTitle;
 const twDescription = twitterDescription || socialDescription;
@@ -68,7 +74,7 @@ const twImage = twitterImage || socialImage;
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		{description && <meta name="description" content={description} />}
-		{canonical && <link rel="canonical" href={canonical} />}
+		{resolvedCanonical && <link rel="canonical" href={resolvedCanonical} />}
 		{socialTitle && <meta property="og:title" content={socialTitle} />}
 		{socialDescription && <meta property="og:description" content={socialDescription} />}
 		{socialUrl && <meta property="og:url" content={socialUrl} />}

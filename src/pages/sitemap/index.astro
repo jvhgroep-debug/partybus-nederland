@@ -2,25 +2,26 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { publishedCities } from '../../data/cities/registry';
 import { routePages } from '../../data/routes/routes';
-import { hubGuideLinks, legacyGuideLinks } from '../../data/gidsen/shared';
+import { hubGuideLinks, legacyGuideLinks, existingTrustPages } from '../../data/gidsen/shared';
 import { gidsenPath } from '../../data/gidsen/registry';
 
 const title = 'HTML-sitemap | Partybus Nederland';
-const description = 'Overzicht van alle pagina’s op Partybus Nederland: kennisbank, gidsen, steden en routes.';
+const description =
+	'Overzicht van alle pagina’s op Partybus Nederland: kennisbank, gidsen, steden, routes en contact.';
 const canonical = 'https://www.partybusnederland.nl/sitemap/';
 
 const mainPages = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Kennisbank', href: '/gidsen/' },
-	{ label: 'Contact', href: '/contact/' },
 	{ label: 'Gratis offertes aanvragen', href: '/gratis-partybus-offertes-aanvragen/' },
+	{ label: 'HTML-sitemap', href: '/sitemap/' },
 ];
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical} titleExact={true}>
 	<div class="html-sitemap section__inner">
 		<h1>HTML-sitemap</h1>
-		<p>Overzicht van alle pagina’s in deze website-build.</p>
+		<p>Overzicht van alle pagina’s in deze website-build. Alleen bestaande, bereikbare URL’s.</p>
 
 		<section>
 			<h2>Hoofdpagina’s</h2>
@@ -36,6 +37,9 @@ const mainPages = [
 		<section>
 			<h2>Kennisbank (/gidsen/)</h2>
 			<ul>
+				<li>
+					<a href="/gidsen/">Kennisbank-overzicht</a>
+				</li>
 				{hubGuideLinks.map((guide) => (
 					<li>
 						<a href={gidsenPath(guide.slug)}>{guide.label}</a>
@@ -77,6 +81,21 @@ const mainPages = [
 					</li>
 				))}
 			</ul>
+		</section>
+
+		<section>
+			<h2>Contact & vertrouwen</h2>
+			<ul>
+				{existingTrustPages.map((item) => (
+					<li>
+						<a href={item.href}>{item.label}</a>
+					</li>
+				))}
+			</ul>
+			<p class="html-sitemap__note">
+				Privacybeleid, cookiebeleid, algemene voorwaarden, disclaimer en Over ons zijn nog niet
+				gepubliceerd — daarom staan ze niet in deze sitemap (geen 404-links).
+			</p>
 		</section>
 	</div>
 </BaseLayout>
@@ -128,5 +147,13 @@ const mainPages = [
 
 	.html-sitemap a:hover {
 		color: var(--color-primary);
+	}
+
+	.html-sitemap__note {
+		margin: 1rem 0 0;
+		max-width: 40rem;
+		font-size: 0.92rem;
+		line-height: 1.6;
+		color: var(--color-text-muted);
 	}
 </style>

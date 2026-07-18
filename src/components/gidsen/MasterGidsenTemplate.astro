@@ -35,9 +35,28 @@ const img = guideImagePool;
 
 	{page.visualSections.map((section) => <GuideImageSection {...section} />)}
 
-	<GuideFactorGrid title="Praktische tips" items={page.tips} columns={3} hideHead={true} />
+	{
+		page.tips.length > 0 && (
+			<GuideFactorGrid
+				eyebrow="Tips"
+				title="Praktische tips"
+				lead="Korte aandachtspunten die helpen bij planning en offertevergelijking."
+				items={page.tips}
+				columns={3}
+			/>
+		)
+	}
 
-	<GuideChecklist title="Checklist" items={page.checklist} hideHead={true} />
+	{
+		page.checklist.length > 0 && (
+			<GuideChecklist
+				eyebrow="Checklist"
+				title="Checklist voor je aanvraag"
+				lead="Gebruik deze lijst zodat aanbieders een passende offerte kunnen opstellen."
+				items={page.checklist}
+			/>
+		)
+	}
 
 	<GuideFaqList
 		title="Veelgestelde vragen"
