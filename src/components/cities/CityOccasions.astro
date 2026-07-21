@@ -8,6 +8,15 @@ interface Props {
 }
 
 const { title, lead, items } = Astro.props;
+
+const occasionPaths: Record<string, string> = {
+	Vrijgezellenfeest: '/diensten/partybus-vrijgezellenfeest/',
+	Bruiloft: '/diensten/partybus-bruiloft/',
+	Bedrijfsuitje: '/diensten/partybus-bedrijfsuitje/',
+	Verjaardag: '/diensten/partybus-verjaardag/',
+	Schoolfeest: '/diensten/partybus-schoolfeest/',
+	Gala: '/diensten/partybus-gala/',
+};
 ---
 
 <section class="section" aria-labelledby="city-occ-title">
@@ -21,11 +30,14 @@ const { title, lead, items } = Astro.props;
 			{
 				items.map((item) => (
 					<article class="city-occ__card reveal">
-						<img src={item.image} alt="" width="900" height="600" loading="lazy" decoding="async" />
-						<div class="city-occ__body">
-							<h3>{item.title}</h3>
-							<p>{item.text}</p>
-						</div>
+						<a href={occasionPaths[item.title] ?? '/gratis-partybus-offertes-aanvragen/'}>
+							<img src={item.image} alt="" width="900" height="600" loading="lazy" decoding="async" />
+							<div class="city-occ__body">
+								<h3>{item.title}</h3>
+								<p>{item.text}</p>
+								<span>Bekijk mogelijkheden →</span>
+							</div>
+						</a>
 					</article>
 				))
 			}
@@ -65,6 +77,12 @@ const { title, lead, items } = Astro.props;
 			box-shadow 0.35s var(--ease-out);
 	}
 
+	.city-occ__card > a {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+
 	.city-occ__card:hover {
 		transform: translateY(-3px);
 		box-shadow: var(--shadow-soft);
@@ -91,5 +109,13 @@ const { title, lead, items } = Astro.props;
 		margin: 0;
 		color: var(--color-text-muted);
 		line-height: 1.6;
+	}
+
+	.city-occ__body span {
+		display: inline-block;
+		margin-top: 0.75rem;
+		color: var(--color-primary);
+		font-weight: 700;
+		font-size: 0.9rem;
 	}
 </style>

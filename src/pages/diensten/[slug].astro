@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServicePageTemplate from '../../components/services/ServicePageTemplate.astro';
+import { getServicePage, servicePages } from '../../data/services/pages';
+import {
+	buildBreadcrumbSchema,
+	buildFaqPageSchema,
+	buildWebPageSchema,
+} from '../../lib/guides/schema';
+
+export function getStaticPaths() {
+	return servicePages.map((service) => ({
+		params: { slug: service.slug },
+		props: { slug: service.slug },
+	}));
+}
+
+const slug = Astro.props.slug ?? Astro.params.slug;
+const service = slug ? getServicePage(slug) : undefined;
+
+if (!service) {
+	throw new Error(`Onbekende dienstenpagina: ${slug}`);
+}
+
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Diensten', href: '/#diensten' },
+	{ label: service.eyebrow },
+] as const;
+
+const jsonLd = [
+	buildWebPageSchema({
+		name: service.h1,
+		description: service.metaDescription,
+		url: service.canonical,
+	}),
+	buildBreadcrumbSchema(breadcrumbs),
+	buildFaqPageSchema(service.faqs),
+];
+
+const socialImage = `https://www.partybusnederland.nl${service.image}`;
+---
+
+<BaseLayout
+	title={service.title}
+	description={service.metaDescription}
+	canonical={service.canonical}
+	titleExact={true}
+	preloadImage={service.image}
+	ogTitle={service.title}
+	ogDescription={service.metaDescription}
+	ogUrl={service.canonical}
+	ogImage={socialImage}
+	twitterTitle={service.title}
+	twitterDescription={service.metaDescription}
+	twitterImage={socialImage}
+	jsonLd={jsonLd}
+>
+	<ServicePageTemplate service={service} />
+</BaseLayout>

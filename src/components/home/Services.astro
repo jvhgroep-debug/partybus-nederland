@@ -5,11 +5,11 @@ import { services } from '../../data/settings/services';
 <section id="diensten" class="section services" aria-labelledby="services-title">
 	<div class="section__inner">
 		<div class="section__head reveal">
-			<p class="section__eyebrow">Onze diensten</p>
-			<h2 id="services-title" class="section__title">Voor elk feest de juiste partybus</h2>
+			<p class="section__eyebrow">Partybus per gelegenheid</p>
+			<h2 id="services-title" class="section__title">Vergelijk de juiste partybus voor jullie plannen</h2>
 			<p class="section__lead">
-				Van intieme verjaardag tot groots vrijgezellenfeest: vraag offertes aan die
-				passen bij jouw gelegenheid.
+				Van verjaardag tot bedrijfsuitje: bekijk aandachtspunten per gelegenheid en vraag
+				daarna offertes aan die passen bij jullie route en groep.
 			</p>
 		</div>
 
@@ -17,10 +17,11 @@ import { services } from '../../data/settings/services';
 			{
 				services.map((service) => (
 					<article class="service-card reveal">
+						<a class="service-card__link" href={service.href} aria-label={`Bekijk ${service.title}`}>
 						<div class="service-card__media">
 							<img
 								src={service.image}
-								alt=""
+								alt={`Partybus voor ${service.title.toLowerCase()}`}
 								width="800"
 								height="600"
 								loading="lazy"
@@ -30,7 +31,9 @@ import { services } from '../../data/settings/services';
 						<div class="service-card__body">
 							<h3>{service.title}</h3>
 							<p>{service.description}</p>
+							<span>Bekijk mogelijkheden →</span>
 						</div>
+						</a>
 					</article>
 				))
 			}
@@ -70,6 +73,12 @@ import { services } from '../../data/settings/services';
 			transform 0.4s var(--ease-out),
 			border-color 0.4s var(--ease-out),
 			box-shadow 0.4s var(--ease-out);
+	}
+
+	.service-card__link {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
 	}
 
 	.service-card:hover {
@@ -116,5 +125,13 @@ import { services } from '../../data/settings/services';
 		color: var(--color-text-muted);
 		font-size: 1rem;
 		line-height: 1.65;
+	}
+
+	.service-card__body span {
+		margin-top: auto;
+		padding-top: 0.7rem;
+		color: var(--color-primary);
+		font-weight: 700;
+		font-size: 0.92rem;
 	}
 </style>

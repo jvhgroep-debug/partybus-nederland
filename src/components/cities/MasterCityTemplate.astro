@@ -7,6 +7,11 @@ import CityIntro from './CityIntro.astro';
 import CityDestinations from './CityDestinations.astro';
 import CityActivities from './CityActivities.astro';
 import CityOccasions from './CityOccasions.astro';
+import CityTrustBar from './CityTrustBar.astro';
+import CityWhy from './CityWhy.astro';
+import CityHowItWorks from './CityHowItWorks.astro';
+import CityPickupLocations from './CityPickupLocations.astro';
+import CityConversionBand from './CityConversionBand.astro';
 import CityFaq from './CityFaq.astro';
 import CityRelatedCities from './CityRelatedCities.astro';
 import CityCta from './CityCta.astro';
@@ -25,6 +30,20 @@ interface Props {
 const { city } = Astro.props;
 const relatedCities = getRelatedCities(city.slug, city.relatedCitySlugs);
 const heroImage = resolveCityHeroImage(city.slug);
+const requestSteps = [
+	{
+		title: 'Deel jullie rit',
+		text: `Vul datum, groepsgrootte, opstapplaats in ${city.name}, bestemming en gewenste tijden in.`,
+	},
+	{
+		title: 'Vergelijk voorstellen',
+		text: 'Bekijk prijs, buscapaciteit, faciliteiten en voorwaarden van passende aanbieders naast elkaar.',
+	},
+	{
+		title: 'Kies zelf',
+		text: 'Je aanvraag is vrijblijvend. Jij bepaalt welke aanbieder het beste past en maakt de boeking rechtstreeks rond.',
+	},
+] as const;
 ---
 
 <div class="master-city">
@@ -40,6 +59,8 @@ const heroImage = resolveCityHeroImage(city.slug);
 		trustItems={city.hero.trustItems}
 	/>
 
+	<CityTrustBar items={city.hero.trustItems ?? []} />
+
 	<CityIntro
 		title={city.intro.title}
 		paragraphs={city.intro.paragraphs}
@@ -47,12 +68,27 @@ const heroImage = resolveCityHeroImage(city.slug);
 		imageAlt={city.intro.imageAlt}
 	/>
 
+	<CityWhy title={`Waarom een partybus huren vanuit ${city.name}?`} lead={city.why.lead} items={city.why.items} />
+
+	<CityOccasions title={city.occasions.title} lead={city.occasions.lead} items={city.occasions.items} />
+
+	<CityConversionBand cityName={city.name} whatsappHref={city.cta.whatsappHref} />
+
+	<CityHowItWorks steps={requestSteps} />
+
 	<InfoGuide
 		eyebrow="Informatie"
 		title={`Partybus vanuit ${city.name}: prijzen & tips`}
 		lead={cityInfoLead(city.name)}
 		cards={pricingFactors}
 		checklist={compareChecklist}
+	/>
+
+	<CityPickupLocations
+		title={city.pickup.title}
+		lead={city.pickup.lead}
+		items={city.pickup.items}
+		note={city.pickup.note}
 	/>
 
 	<CityDestinations
@@ -69,8 +105,6 @@ const heroImage = resolveCityHeroImage(city.slug);
 		eyebrow="Festivals"
 	/>
 
-	<CityOccasions title={city.occasions.title} lead={city.occasions.lead} items={city.occasions.items} />
-
 	<InfoGuide
 		eyebrow="Tips"
 		title={`Praktische tips voor een rit vanuit ${city.name}`}
@@ -82,9 +116,13 @@ const heroImage = resolveCityHeroImage(city.slug);
 
 	{relatedCities.length > 0 && <CityRelatedCities cityName={city.name} cities={relatedCities} />}
 
-	<p class="master-city__guide-link section__inner">
-		<a href="/gids/partybus-huren/">Meer lezen in de complete partybus-gids →</a>
-	</p>
+	<nav class="master-city__links section__inner" aria-label="Vervolgstappen">
+		<a href="/gratis-partybus-offertes-aanvragen/">Gratis offertes aanvragen →</a>
+		<a href="/hoe-werkt-het/">Hoe werkt vergelijken? →</a>
+		<a href="/#diensten">Bekijk diensten →</a>
+		<a href="/gids/partybus-huren/">Meer lezen in de partybus-gids →</a>
+		<a href="/kennisbank/">Naar de kennisbank →</a>
+	</nav>
 
 	<CityCta
 		title={city.cta.title}
@@ -105,12 +143,14 @@ const heroImage = resolveCityHeroImage(city.slug);
 		}
 	}
 
-	.master-city__guide-link {
-		margin: 0 0 1rem;
+	.master-city__links {
+		display: grid;
+		gap: 0.65rem;
+		margin: 0 0 1.25rem;
 		padding-bottom: 0;
 	}
 
-	.master-city__guide-link a {
+	.master-city__links a {
 		color: var(--color-primary);
 		font-weight: 700;
 	}

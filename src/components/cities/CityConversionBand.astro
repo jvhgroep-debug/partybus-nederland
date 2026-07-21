@@ -1,0 +1,66 @@
+---
+import Button from '../buttons/Button.astro';
+
+interface Props {
+	cityName: string;
+	whatsappHref: string;
+}
+
+const { cityName, whatsappHref } = Astro.props;
+---
+
+<aside class="city-conversion section__inner reveal" aria-label={`Offertes voor een partybus vanuit ${cityName}`}>
+	<div>
+		<p>Partybus vanuit {cityName} nodig?</p>
+		<strong>Vergelijk gratis meerdere voorstellen voor jullie datum en route.</strong>
+	</div>
+	<div class="city-conversion__actions">
+		<Button href="/gratis-partybus-offertes-aanvragen/">Vergelijk offertes</Button>
+		<Button href={whatsappHref} variant="ghost" target="_blank" rel="noopener noreferrer">WhatsApp</Button>
+	</div>
+</aside>
+
+<style>
+	.city-conversion {
+		margin-block: clamp(1rem, 3vw, 2rem);
+		padding: clamp(1.35rem, 3vw, 2rem);
+		display: grid;
+		gap: 1.25rem;
+		align-items: center;
+		border: 1px solid color-mix(in srgb, var(--color-primary) 52%, transparent);
+		border-radius: var(--radius-lg);
+		background: linear-gradient(120deg, color-mix(in srgb, var(--color-primary) 16%, #080808), #080808);
+	}
+
+	.city-conversion p {
+		margin: 0 0 0.2rem;
+		color: var(--color-primary);
+		font-family: var(--font-display);
+		font-weight: 700;
+	}
+
+	.city-conversion strong {
+		font-family: var(--font-display);
+		font-size: clamp(1.1rem, 2.3vw, 1.45rem);
+		line-height: 1.35;
+	}
+
+	.city-conversion__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+	}
+
+	@media (min-width: 850px) {
+		.city-conversion {
+			grid-template-columns: 1fr auto;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.city-conversion__actions,
+		.city-conversion__actions :global(.btn) {
+			width: 100%;
+		}
+	}
+</style>
