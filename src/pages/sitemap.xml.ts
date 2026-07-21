@@ -24,10 +24,8 @@ export const GET: APIRoute = () => {
 	const paths = new Set<string>([
 		'/',
 		'/gratis-partybus-offertes-aanvragen/',
-		'/bedankt/',
 		'/kennisbank/',
 		'/gidsen/',
-		'/sitemap/',
 		...trustNav.map((item) => item.href),
 		...legalNav.map((item) => item.href),
 		...kennisbankArticles.map((article) => article.path),
