@@ -7,8 +7,8 @@
  * - FROM_EMAIL (verplicht geverifieerde afzender in Resend)
  */
 export const emailSettings = {
-	/** Vast ontvangstadres voor alle offerteaanvragen */
-	inbox: 'jvhgroep@gmail.com',
+	/** Vast ontvangstadres voor alle contact- en offerteaanvragen */
+	inbox: 'info@starlocal.nl',
 
 	/**
 	 * Preview / zonder DNS: Resend testdomein.

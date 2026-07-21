@@ -18,11 +18,16 @@ import QuoteForm from '../forms/QuoteForm.astro';
 		<div class="cta__layout">
 			<div class="cta__content">
 				<p class="section__eyebrow">Klaar om te vergelijken?</p>
-				<h2 id="cta-title" class="section__title">Vraag vandaag nog gratis offertes aan</h2>
+				<h2 id="cta-title" class="section__title">Ontdek welke partybus bij jullie past</h2>
 				<p class="section__lead">
-					Vul je wensen in. Je ontvangt een bevestiging en wij sturen je aanvraag door —
-					vrijblijvend en door heel Nederland.
+					Vul één keer je wensen in en vergelijk reacties van passende aanbieders.
+					Je aanvraag is gratis en je zit nergens aan vast.
 				</p>
+				<ul class="cta__trust">
+					<li>Vergelijk meerdere voorstellen</li>
+					<li>Beschikbaar voor groepen tot 80 personen</li>
+					<li>Ritten door Nederland en België</li>
+				</ul>
 			</div>
 			<div class="cta__form">
 				<QuoteForm sourcePage="/" />
@@ -86,6 +91,22 @@ import QuoteForm from '../forms/QuoteForm.astro';
 
 	.cta__panel .section__title {
 		max-width: 16ch;
+	}
+
+	.cta__trust {
+		margin: 1.4rem 0 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.55rem;
+		color: var(--color-text-muted);
+	}
+
+	.cta__trust li::before {
+		content: '✓';
+		margin-right: 0.55rem;
+		color: var(--color-primary);
+		font-weight: 800;
 	}
 
 	.cta__form {

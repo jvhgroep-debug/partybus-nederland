@@ -1,6 +1,7 @@
 export type InfoCard = {
 	title: string;
 	text: string;
+	href?: string;
 };
 
 /** Shared helpful-content blocks — no fixed prices, no availability promises. */
@@ -55,18 +56,22 @@ export const occasionGuides: InfoCard[] = [
 	{
 		title: 'Festivals',
 		text: 'Plan heen- en terugrit, houd rekening met festivalverkeer en geef bagage- of kampeerwensen door.',
+		href: '/diensten/partybus-festival/',
 	},
 	{
 		title: 'Vrijgezellenfeest',
 		text: 'Combineer meerdere stops in één avond. Spreek van tevoren een vaste verzamelplek af.',
+		href: '/diensten/partybus-vrijgezellenfeest/',
 	},
 	{
 		title: 'Bruiloft',
 		text: 'Kies een representatieve bus en stem timing af tussen ceremonie, receptie en feestlocatie.',
+		href: '/diensten/partybus-bruiloft/',
 	},
 	{
 		title: 'Bedrijfsuitje',
 		text: 'Geef aantal collega’s, dresscode en of er onderweg presentaties of stops gepland zijn.',
+		href: '/diensten/partybus-bedrijfsuitje/',
 	},
 ];
 

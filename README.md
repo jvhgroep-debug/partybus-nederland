@@ -26,7 +26,7 @@ Zie [docs/EMAIL-SETUP.md](docs/EMAIL-SETUP.md) voor Resend + Cloudflare environm
 - `RESEND_API_KEY`
 - `FROM_EMAIL`
 
-Aanvragen gaan naar `jvhgroep@gmail.com` met klantbevestiging.
+Aanvragen gaan naar `info@starlocal.nl` met klantbevestiging.
 
 ## Deploy (Cloudflare Pages)
 

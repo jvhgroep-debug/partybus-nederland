@@ -1,7 +1,13 @@
 ---
 import { popularCities } from '../../data/cities/popular';
+import { getPublishedCity } from '../../data/cities/registry';
 import { primaryCta } from '../../data/settings/navigation';
 import Button from '../buttons/Button.astro';
+
+const cities = popularCities.map((city) => ({
+	...city,
+	path: getPublishedCity(city.slug)?.path ?? primaryCta.href,
+}));
 ---
 
 <section id="steden" class="section cities" aria-labelledby="cities-title">
@@ -17,24 +23,30 @@ import Button from '../buttons/Button.astro';
 
 		<div class="cities__grid">
 			{
-				popularCities.map((city) => (
+				cities.map((city) => (
 					<article class="city-card reveal">
-						<img
-							src={city.image}
-							alt={`Partybus huren in ${city.name}`}
-							width="1200"
-							height="800"
-							loading="lazy"
-							decoding="async"
-						/>
-						<div class="city-card__overlay">
-							<h3>{city.name}</h3>
-							<p>{city.blurb}</p>
-							<Button href={primaryCta.href} class="city-card__btn">Offertes aanvragen</Button>
-						</div>
+						<a class="city-card__link" href={city.path}>
+							<img
+								src={city.image}
+								alt={`Partybus huren in ${city.name}`}
+								width="1200"
+								height="800"
+								loading="lazy"
+								decoding="async"
+							/>
+							<div class="city-card__overlay">
+								<h3>{city.name}</h3>
+								<p>{city.blurb}</p>
+								<span class="city-card__btn btn btn--primary">Bekijk {city.name}</span>
+							</div>
+						</a>
 					</article>
 				))
 			}
+		</div>
+
+		<div class="cities__cta reveal">
+			<Button href={primaryCta.href} size="lg">{primaryCta.label}</Button>
 		</div>
 	</div>
 </section>
@@ -74,6 +86,12 @@ import Button from '../buttons/Button.astro';
 	.city-card:hover {
 		transform: translateY(-5px);
 		box-shadow: var(--shadow-soft);
+	}
+
+	.city-card__link {
+		display: block;
+		height: 100%;
+		min-height: 19rem;
 	}
 
 	.city-card img {
@@ -128,5 +146,18 @@ import Button from '../buttons/Button.astro';
 		min-height: 2.45rem;
 		padding: 0.55rem 1rem;
 		font-size: 0.86rem;
+		pointer-events: none;
+	}
+
+	.cities__cta {
+		margin-top: 1.75rem;
+		display: flex;
+		justify-content: center;
+	}
+
+	@media (max-width: 640px) {
+		.cities__cta :global(.btn) {
+			width: 100%;
+		}
 	}
 </style>

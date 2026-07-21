@@ -20,6 +20,11 @@ import Button from '../components/buttons/Button.astro';
 					Vul je wensen in. Je ontvangt een bevestiging per e-mail en wij zetten je aanvraag door —
 					vrijblijvend en door heel Nederland.
 				</p>
+				<ul class="quote-page__trust">
+					<li>Gratis en zonder boekingsverplichting</li>
+					<li>Vergelijk meerdere aanbieders en voertuigen</li>
+					<li>Beoordeel prijs, capaciteit en voorwaarden</li>
+				</ul>
 				<div class="quote-page__alt">
 					<Button href={whatsapp.href} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
 						Liever WhatsApp?
@@ -59,6 +64,22 @@ import Button from '../components/buttons/Button.astro';
 
 	.quote-page__alt {
 		margin-top: 1.5rem;
+	}
+
+	.quote-page__trust {
+		margin: 1.4rem 0 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.55rem;
+		color: var(--color-text-muted);
+	}
+
+	.quote-page__trust li::before {
+		content: '✓';
+		margin-right: 0.55rem;
+		color: var(--color-primary);
+		font-weight: 800;
 	}
 
 	.quote-page__form {

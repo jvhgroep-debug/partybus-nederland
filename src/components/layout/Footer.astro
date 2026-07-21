@@ -6,6 +6,7 @@ import { whatsapp } from '../../data/settings/whatsapp';
 import { hubGuideLinks } from '../../data/gidsen/shared';
 import { gidsenPath } from '../../data/gidsen/registry';
 import { trustNav, footerLegalNav } from '../../data/trust/pages';
+import { servicePages } from '../../data/services/pages';
 import Button from '../buttons/Button.astro';
 
 const year = new Date().getFullYear();
@@ -34,6 +35,14 @@ const year = new Date().getFullYear();
 				<a href={city.path}>{city.name}</a>
 			))}
 			<a href="/#steden">Alle steden</a>
+		</div>
+
+		<div class="site-footer__col">
+			<p class="site-footer__heading">Diensten</p>
+			{servicePages.slice(0, 6).map((service) => (
+				<a href={service.path}>{service.eyebrow}</a>
+			))}
+			<a href="/#diensten">Alle diensten</a>
 		</div>
 
 		<div class="site-footer__col">
@@ -105,9 +114,9 @@ const year = new Date().getFullYear();
 		}
 	}
 
-	@media (min-width: 960px) {
+	@media (min-width: 1150px) {
 		.site-footer__inner {
-			grid-template-columns: 1.45fr 1fr 1fr 1fr 1fr;
+			grid-template-columns: 1.35fr repeat(5, 1fr);
 			gap: 2.5rem;
 		}
 	}

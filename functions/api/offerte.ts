@@ -23,7 +23,7 @@ interface QuotePayload {
 	website?: string;
 }
 
-const INBOX = 'jvhgroep@gmail.com';
+const INBOX = 'info@starlocal.nl';
 /** Resend testdomein — werkt zonder DNS / zonder partybusnederland.nl */
 const FROM_TEST = 'Partybus Nederland <onboarding@resend.dev>';
 const SUCCESS =
@@ -52,7 +52,7 @@ function escapeHtml(value: string): string {
 
 /**
  * Gebruik geen partybusnederland.nl / mail.* tot DNS gekoppeld is.
- * Resend testdomein werkt met de bestaande API-key.
+ * Geverifieerde Star Local / Resend-afzenders blijven staan.
  */
 function resolveFrom(envFrom?: string): string {
 	const raw = (envFrom || '').trim();
@@ -228,7 +228,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
 	if (!ownerResult.ok) {
 		const hint = isTestDomainRecipientLimit(ownerResult.detail)
-			? ' De Resend-account moet gekoppeld zijn aan jvhgroep@gmail.com om met het testdomein te kunnen mailen.'
+			? ' Koppel een geverifieerd afzenderdomein in Resend (FROM_EMAIL), of voeg info@starlocal.nl toe als toegestaan ontvangstadres.'
 			: '';
 		return json(
 			{

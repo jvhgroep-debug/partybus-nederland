@@ -7,6 +7,7 @@ import { gidsenPath } from '../../data/gidsen/registry';
 import { kennisbankArticles } from '../../data/kennisbank/registry';
 import { legalNav } from '../../data/legal/pages';
 import { trustNav } from '../../data/trust/pages';
+import { servicePages } from '../../data/services/pages';
 
 const title = 'HTML-sitemap | Partybus Nederland';
 const description =
@@ -72,6 +73,17 @@ const mainPages = [
 				{legacyGuideLinks.map((item) => (
 					<li>
 						<a href={item.href}>{item.label}</a>
+					</li>
+				))}
+			</ul>
+		</section>
+
+		<section>
+			<h2>Diensten</h2>
+			<ul>
+				{servicePages.map((service) => (
+					<li>
+						<a href={service.path}>{service.h1}</a>
 					</li>
 				))}
 			</ul>

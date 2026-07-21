@@ -1,4 +1,4 @@
 ﻿User-agent: *
 Allow: /
 
-Sitemap: https://www.partybusnederland.nl/sitemap/
+Sitemap: https://www.partybusnederland.nl/sitemap.xml

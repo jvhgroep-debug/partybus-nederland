@@ -16,8 +16,18 @@ import { occasionGuides } from '../../data/guides/partybusInfo';
 			{
 				occasionGuides.map((item) => (
 					<article class="occasions-guide__card reveal">
-						<h3>{item.title}</h3>
-						<p>{item.text}</p>
+						{item.href ? (
+							<a class="occasions-guide__link" href={item.href}>
+								<h3>{item.title}</h3>
+								<p>{item.text}</p>
+								<span>Bekijk mogelijkheden →</span>
+							</a>
+						) : (
+							<>
+								<h3>{item.title}</h3>
+								<p>{item.text}</p>
+							</>
+						)}
 					</article>
 				))
 			}
@@ -42,10 +52,24 @@ import { occasionGuides } from '../../data/guides/partybusInfo';
 		border-radius: var(--radius-md);
 		border: 1px solid var(--color-primary-line);
 		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+		transition:
+			transform 0.3s var(--ease-out),
+			border-color 0.3s var(--ease-out);
+	}
+
+	.occasions-guide__card:has(.occasions-guide__link):hover {
+		transform: translateY(-3px);
+		border-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
+	}
+
+	.occasions-guide__link {
+		display: grid;
+		gap: 0.45rem;
+		height: 100%;
 	}
 
 	.occasions-guide__card h3 {
-		margin: 0 0 0.45rem;
+		margin: 0;
 		font-family: var(--font-display);
 		color: var(--color-primary);
 	}
@@ -54,5 +78,11 @@ import { occasionGuides } from '../../data/guides/partybusInfo';
 		margin: 0;
 		color: var(--color-text-muted);
 		line-height: 1.65;
+	}
+
+	.occasions-guide__link span {
+		color: var(--color-primary);
+		font-weight: 700;
+		font-size: 0.9rem;
 	}
 </style>

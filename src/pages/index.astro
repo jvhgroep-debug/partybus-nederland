@@ -12,6 +12,7 @@ import Reviews from '../components/home/Reviews.astro';
 import FAQPreview from '../components/home/FAQPreview.astro';
 import KnowledgeHub from '../components/home/KnowledgeHub.astro';
 import CTA from '../components/home/CTA.astro';
+import SafetyAndPartners from '../components/home/SafetyAndPartners.astro';
 import { bookingTips, compareChecklist, pricingFactors } from '../data/guides/partybusInfo';
 import { homeFaqs } from '../data/settings/faq-home';
 
@@ -27,17 +28,47 @@ const faqSchema = {
 		},
 	})),
 };
+
+const organizationSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: 'Partybus Nederland',
+	url: 'https://www.partybusnederland.nl/',
+	description: 'Vergelijkingsplatform voor partybusverhuur in Nederland.',
+	contactPoint: {
+		'@type': 'ContactPoint',
+		contactType: 'customer service',
+		availableLanguage: ['nl'],
+	},
+};
+
+const websiteSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	name: 'Partybus Nederland',
+	url: 'https://www.partybusnederland.nl/',
+	inLanguage: 'nl-NL',
+};
 ---
 
 <BaseLayout
 	title="Partybus huren in Nederland | Informatie, tips & offertes vergelijken"
 	description="Complete informatie over partybus huren in Nederland: prijzen, tips, bestemmingen, festivals en routes. Vergelijk daarna gratis meerdere offertes."
 	titleExact={true}
-	jsonLd={faqSchema}
+	jsonLd={[organizationSchema, websiteSchema, faqSchema]}
 >
-	<Hero />
+	<Hero
+		title="Vergelijk partybussen. Kies de beste rit voor jouw groep."
+		subtitle="Eén gratis aanvraag, meerdere passende offertes. Vergelijk luxe, capaciteit, voorwaarden en prijs — jij kiest zelf."
+		secondaryHref="#werkwijze"
+		secondaryLabel="Zo werkt vergelijken"
+	/>
 	<TrustBar />
 	<Intro />
+	<HowItWorks />
+	<Services />
+	<SafetyAndPartners />
+	<Reviews />
 	<InfoGuide
 		eyebrow="Prijzen & planning"
 		title="Waar hangt de prijs van een partybus van af?"
@@ -45,7 +76,6 @@ const faqSchema = {
 		cards={pricingFactors}
 		checklist={compareChecklist}
 	/>
-	<Services />
 	<PopularCities />
 	<OccasionsGuide />
 	<KnowledgeHub />
@@ -55,8 +85,6 @@ const faqSchema = {
 		lead="Praktische aandachtspunten vóór je boekt — handig voor festivals, stedenritten en groepsfeesten."
 		cards={bookingTips}
 	/>
-	<HowItWorks />
-	<Reviews />
 	<FAQPreview />
 	<CTA />
 </BaseLayout>

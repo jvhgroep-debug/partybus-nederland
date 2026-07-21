@@ -125,7 +125,7 @@ async function sendViaResend(message: EmailMessage, apiKey: string, from: string
 
 /**
  * Verstuurt:
- * 1) interne mail naar jvhgroep@gmail.com
+ * 1) interne mail naar info@starlocal.nl
  * 2) bevestiging naar de klant
  */
 export async function submitQuoteRequest(
