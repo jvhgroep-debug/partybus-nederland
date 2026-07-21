@@ -11,15 +11,14 @@ import {
 } from './departureContent';
 
 type InventoryCity = (typeof cityInventory.cities)[number];
-type InventoryCitySeo = InventoryCity & {
-	seoTitle?: string;
-	metaDescription?: string;
-	heroTitle?: string;
-	heroSubtitle?: string;
-	h1?: string;
-};
 
-export const PILOT_CITY_SLUGS = [
+/** All WordPress city slugs (352) — used for static path generation. */
+export const ALL_CITY_SLUGS = cityInventory.cities.map((city) => city.slug);
+
+/** @deprecated Use ALL_CITY_SLUGS — kept for older imports. */
+export const PILOT_CITY_SLUGS = ALL_CITY_SLUGS;
+
+const MAJOR_CITY_SLUGS = [
 	'amsterdam',
 	'rotterdam',
 	'den-haag',
@@ -30,24 +29,44 @@ export const PILOT_CITY_SLUGS = [
 	'groningen',
 	'nijmegen',
 	'arnhem',
-	'maastricht',
-	'haarlem',
-	'almere',
-	'apeldoorn',
-	'zwolle',
-	'leiden',
-	'dordrecht',
-	'enschede',
-	'amersfoort',
-	'den-bosch',
 ] as const;
 
 function cityBySlug(slug: string): InventoryCity | undefined {
 	return cityInventory.cities.find((city) => city.slug === slug);
 }
 
+/**
+ * Related cities: alphabetische buren + een paar landelijke hubs voor interne links.
+ */
 function relatedSlugs(currentSlug: string): string[] {
-	return PILOT_CITY_SLUGS.filter((slug) => slug !== currentSlug).slice(0, 5);
+	const slugs = ALL_CITY_SLUGS;
+	const index = slugs.indexOf(currentSlug);
+	const selected: string[] = [];
+
+	const push = (slug: string) => {
+		if (!slug || slug === currentSlug || selected.includes(slug)) return;
+		selected.push(slug);
+	};
+
+	if (index >= 0) {
+		for (let offset = 1; selected.length < 3 && offset < slugs.length; offset += 1) {
+			if (index - offset >= 0) push(slugs[index - offset]);
+			if (selected.length >= 3) break;
+			if (index + offset < slugs.length) push(slugs[index + offset]);
+		}
+	}
+
+	for (const major of MAJOR_CITY_SLUGS) {
+		if (selected.length >= 5) break;
+		push(major);
+	}
+
+	for (const slug of slugs) {
+		if (selected.length >= 5) break;
+		push(slug);
+	}
+
+	return selected.slice(0, 5);
 }
 
 const LOCAL_PICKUP_HINTS: Record<string, readonly string[]> = {
@@ -77,23 +96,27 @@ function pickupHintsFor(slug: string, cityName: string, landmark: string): reado
 	return LOCAL_PICKUP_HINTS[slug] ?? [`Station ${cityName}`, `het centrum van ${cityName}`, landmark];
 }
 
-export function buildPilotCityPageData(slug: string): CityPageData | null {
-	const city = cityBySlug(slug) as InventoryCitySeo | undefined;
+/** Shared CityPageData builder for every inventory city (same URL/canonical as WordPress). */
+export function buildCityPageData(slug: string): CityPageData | null {
+	const city = cityBySlug(slug);
 	if (!city) return null;
 
 	const cityName = city.city;
 	const landmark = city.landmark;
 	const seo = buildDepartureSeo(cityName);
-	const intro = buildDepartureIntro(cityName);
+	const intro = buildDepartureIntro(cityName, landmark);
 	const destinations = buildPopularDestinations(city.slug);
 	const festivals = buildFestivalSection(cityName);
 	const occasions = buildOccasionSection(cityName);
 	const pickups = pickupHintsFor(city.slug, cityName, landmark);
+	const path = new URL(city.url).pathname.endsWith('/')
+		? new URL(city.url).pathname
+		: `${new URL(city.url).pathname}/`;
 
 	return {
 		slug: city.slug,
 		name: cityName,
-		path: new URL(city.url).pathname,
+		path,
 		canonical: city.canonical,
 		metaTitle: seo.metaTitle,
 		metaDescription: seo.metaDescription,
@@ -112,12 +135,24 @@ export function buildPilotCityPageData(slug: string): CityPageData | null {
 		},
 		intro,
 		why: {
-			title: `Waarom vertrekken vanuit ${cityName}?`,
-			lead: `Vanuit ${cityName} regel je groepsritten naar steden, festivals en evenementen.`,
+			title: `Waarom een partybus huren vanuit ${cityName}?`,
+			lead: `Eén voertuig, één planning en de feestelijke sfeer begint direct bij het instappen.`,
 			items: [
-				{ title: 'Samen vertrekken', text: 'De hele groep stapt op in of rond jouw stad.', icon: 'group' },
-				{ title: 'Sfeer onderweg', text: 'Muziek en verlichting maken van de rit een feest.', icon: 'party' },
-				{ title: 'Elke bestemming', text: 'Nederland, België, festivals of evenementenlocaties.', icon: 'route' },
+				{
+					title: 'Geen losse taxi’s',
+					text: `De groep reist samen vanaf een afgesproken opstapplaats in of rond ${cityName}.`,
+					icon: 'group',
+				},
+				{
+					title: 'Vergelijk luxe en faciliteiten',
+					text: 'Kies een bus op basis van capaciteit, interieur, muziek, verlichting en voorwaarden.',
+					icon: 'party',
+				},
+				{
+					title: 'Route op maat',
+					text: 'Vraag een enkele rit, retour, meerdere stops of een bestemming over de grens aan.',
+					icon: 'route',
+				},
 			],
 		},
 		locations: destinations,
@@ -139,3 +174,6 @@ export function buildPilotCityPageData(slug: string): CityPageData | null {
 		},
 	};
 }
+
+/** @deprecated Prefer buildCityPageData */
+export const buildPilotCityPageData = buildCityPageData;

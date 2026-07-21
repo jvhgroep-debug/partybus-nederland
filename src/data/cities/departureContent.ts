@@ -51,17 +51,21 @@ export function buildDepartureSeo(cityName: string) {
 		metaTitle: `Partybus huren vanuit ${cityName} | Tips, prijzen & offertes`,
 		metaDescription: `Partybus huren vanuit ${cityName}: informatie over bestemmingen, festivals, kostenfactoren en planning. Vergelijk daarna vrijblijvend meerdere offertes.`,
 		h1: `Partybus huren vanuit ${cityName}`,
-		heroSubtitle: `Informatie over ritten vanuit ${cityName} naar festivals, steden en evenementen — plus vrijblijvend offertes vergelijken.`,
+		heroSubtitle: `Vergelijk gratis partybusaanbieders voor jullie datum, route en groepsgrootte vanuit ${cityName}.`,
 	};
 }
 
-export function buildDepartureIntro(cityName: string) {
+export function buildDepartureIntro(cityName: string, landmark?: string) {
+	const localPickup = landmark
+		? `Denk bijvoorbeeld aan een verzamelpunt bij ${landmark}, het station of het centrum van ${cityName}.`
+		: `Kies een centrale opstapplaats in of rond ${cityName}.`;
+
 	return {
 		title: `Partybus huren vanuit ${cityName}`,
 		paragraphs: [
-			`Vanuit ${cityName} huur je een partybus naar vrijwel iedere bestemming in Nederland en België. Of je nu naar een festival, een andere stad of een evenementenlocatie wilt: de groep vertrekt samen en de sfeer begint al onderweg.`,
-			`Je kiest zelf de opstapplaats in of rond ${cityName} en stemt de eindbestemming af met de aanbieder. Denk aan populaire steden, festivals, Schiphol of een rit over de grens naar België. Op deze pagina vind je bestemmingen, gelegenheden, tips over prijzen en veelgestelde vragen.`,
-			`Er is geen vaste landelijke prijs: datum, route, duur en groepsgrootte (tot max. 80 personen) bepalen de offerte. Via Partybus Nederland vergelijk je vrijblijvend meerdere voorstellen voor jouw rit vanuit ${cityName}.`,
+			`Wil je een partybus huren vanuit ${cityName}? Met één aanvraag bereik je aanbieders die kunnen reageren op jullie datum, route en groepsgrootte. Zo vergelijk je niet alleen de prijs, maar ook het voertuig, de capaciteit, faciliteiten en voorwaarden.`,
+			`Een partybus is geschikt voor onder meer een vrijgezellenfeest, bruiloft, bedrijfsuitje, verjaardag, gala, schoolfeest of festivalrit. ${localPickup} Leg de gewenste bestemming vast en geef aan of een terugrit of meerdere stops nodig zijn.`,
+			`De prijs wordt bepaald door onder andere datum, route, ritduur, wachttijd en groepsgrootte tot maximaal 80 personen. De aanvraag via Partybus Nederland is gratis en vrijblijvend: jij kiest zelf welk voorstel het beste bij jullie plannen past.`,
 		] as const,
 		image: '/images/interior-partybus.png',
 		imageAlt: 'Interieur van een luxe partybus',
@@ -87,7 +91,7 @@ export function buildPopularDestinations(currentSlug: string): {
 
 	return {
 		title: 'Populaire bestemmingen',
-		lead: 'Veelgekozen ritten vanuit jouw vertrekstad. Klik door naar een stedenpagina of vraag direct offertes aan.',
+		lead: 'Voorbeelden van veel aangevraagde routes. De bestemming en exacte opstapplaats bepaal je zelf in de offerteaanvraag.',
 		items,
 	};
 }
@@ -99,7 +103,7 @@ export function buildFestivalSection(cityName: string): {
 } {
 	return {
 		title: `Populaire festivals vanuit ${cityName}`,
-		lead: `Vanuit ${cityName} regel je eenvoudig groepsvervoer naar bekende festivals in Nederland en België.`,
+		lead: `Vergelijk heen- en terugvervoer vanuit ${cityName} naar festivals in Nederland en België.`,
 		items: FESTIVALS.map((festival) => ({ ...festival })),
 	};
 }
@@ -111,7 +115,7 @@ export function buildOccasionSection(cityName: string): {
 } {
 	return {
 		title: `Gelegenheden vanuit ${cityName}`,
-		lead: 'Een partybus past bij feesten en groepsritten — van vrijgezellenavond tot carnaval.',
+		lead: 'Kies jullie gelegenheid en bekijk waar je bij voertuig, route en planning op moet letten.',
 		items: OCCASIONS.map((item, index) => ({
 			title: item.title,
 			text: item.text,
@@ -131,41 +135,40 @@ export function buildDepartureFaqs(cityName: string, pickupLocations: readonly s
 
 	return [
 		{
-			question: `Kan ik vanuit ${cityName} naar een festival rijden?`,
-			answer: `Ja, vanuit ${cityName} kun je een partybus aanvragen naar festivals in Nederland en België. Vermeld het festival, de datum en het aantal personen in je aanvraag.`,
+			question: `Hoe werkt een partybus aanvragen vanuit ${cityName}?`,
+			answer: `Je vult datum, groepsgrootte, opstapplaats in of rond ${cityName}, bestemming en gewenste tijden in. Aanbieders kunnen daarna reageren met een voorstel. Jij vergelijkt vrijblijvend en kiest zelf.`,
 		},
 		{
-			question: 'Kunnen we meerdere opstapplaatsen kiezen?',
+			question: 'Voor hoeveel personen is een partybus geschikt?',
+			answer:
+				'Partybussen zijn geschikt voor kleine en grote groepen, tot maximaal 80 personen. De exacte capaciteit verschilt per aanbieder en voertuig — geef het aantal door in je aanvraag.',
+		},
+		{
+			question: 'Kunnen er meerdere opstapplaatsen worden afgesproken?',
 			answer: `Meerdere opstapplaatsen zijn vaak mogelijk wanneer je dit vooraf afstemt met de aanbieder.${pickupHint} Exacte stops hangen af van route en bereikbaarheid.`,
 		},
 		{
-			question: 'Kan de chauffeur blijven wachten?',
-			answer:
-				'Wachten op locatie is bij veel ritten mogelijk, afhankelijk van duur, bestemming en de voorwaarden van de aanbieder. Geef in je aanvraag aan of je wachttijd nodig hebt.',
+			question: `Kan ik vanuit ${cityName} naar een festival reizen?`,
+			answer: `Ja, vanuit ${cityName} kun je een partybus aanvragen naar festivals in Nederland en België. Vermeld festival, datum, groepsgrootte en of je ook een terugrit nodig hebt.`,
 		},
 		{
-			question: 'Kunnen we naar België rijden?',
+			question: 'Kan een partybus naar België of Duitsland rijden?',
 			answer:
-				'Ritten naar België zijn vaak mogelijk, bijvoorbeeld voor festivals of steden. Vermeld de eindbestemming duidelijk, zodat aanbieders kunnen aangeven wat haalbaar is.',
+				'Grensoverschrijdende ritten zijn bij veel aanbieders mogelijk, bijvoorbeeld naar België of Duitsland. Vermeld de eindbestemming duidelijk, zodat aanbieders kunnen aangeven wat haalbaar is.',
 		},
 		{
-			question: 'Hoeveel personen kunnen mee?',
-			answer:
-				'Partybus Nederland vergelijkt mogelijkheden voor kleine en grote groepen, tot maximaal 80 personen. De exacte capaciteit verschilt per aanbieder en voertuig.',
+			question: 'Waar hangt de prijs vanaf?',
+			answer: `De prijs hangt onder meer af van datum, route, duur, groepsgrootte, opstapplaatsen en type partybus. Er is geen vaste landelijke prijs. Vraag vrijblijvend meerdere offertes aan voor jouw rit vanuit ${cityName}.`,
 		},
 		{
-			question: `Wat kost een rit vanuit ${cityName}?`,
-			answer: `De prijs hangt onder meer af van datum, route, duur, groepsgrootte en type partybus. Vraag vrijblijvend meerdere offertes aan voor jouw rit vanuit ${cityName}.`,
+			question: 'Is een aanvraag vrijblijvend?',
+			answer:
+				'Ja. Een aanvraag via Partybus Nederland is gratis en vrijblijvend. Je zit nergens aan vast totdat je zelf een voorstel accepteert bij een aanbieder.',
 		},
 		{
-			question: 'Hoe lang vooraf reserveren?',
+			question: 'Kunnen heenreis en terugreis samen worden aangevraagd?',
 			answer:
-				'Voor populaire data, weekenden en festivals is vroeg aanvragen verstandig. Beschikbaarheid verschilt per aanbieder en periode.',
-		},
-		{
-			question: 'Is muziek en verlichting inbegrepen?',
-			answer:
-				'Bij de meeste partybussen horen muziek en sfeerverlichting bij de beleving. Exacte opties verschillen per aanbieder — vraag dit mee in de offertevergelijking.',
+				'Ja. Geef beide tijden en locaties door in één aanvraag. Of de bus blijft wachten of later terugkomt, stem je af met de aanbieder.',
 		},
 	];
 }

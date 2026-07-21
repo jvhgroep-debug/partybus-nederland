@@ -1,3 +1,5 @@
+import cityInventory from './cities.json';
+
 export type PublishedCity = {
 	slug: string;
 	name: string;
@@ -5,114 +7,21 @@ export type PublishedCity = {
 };
 
 /**
- * Only cities with a live page belong here.
- * Related-city modules filter against this registry.
+ * All cities with a live Astro page — derived from the WordPress inventory
+ * so URL paths stay identical to www.partybusnederland.nl.
  */
-export const publishedCities: readonly PublishedCity[] = [
-	{
-		slug: 'amsterdam',
-		name: 'Amsterdam',
-		path: '/steden/partybus-huren-amsterdam/',
-	},
-	{
-		slug: 'rotterdam',
-		name: 'Rotterdam',
-		path: '/steden/partybus-huren-rotterdam/',
-	},
-	{
-		slug: 'den-haag',
-		name: 'Den Haag',
-		path: '/steden/partybus-huren-den-haag/',
-	},
-	{
-		slug: 'utrecht',
-		name: 'Utrecht',
-		path: '/steden/partybus-huren-utrecht/',
-	},
-	{
-		slug: 'eindhoven',
-		name: 'Eindhoven',
-		path: '/steden/partybus-huren-eindhoven/',
-	},
-	{
-		slug: 'breda',
-		name: 'Breda',
-		path: '/steden/partybus-huren-breda/',
-	},
-	{
-		slug: 'tilburg',
-		name: 'Tilburg',
-		path: '/steden/partybus-huren-tilburg/',
-	},
-	{
-		slug: 'groningen',
-		name: 'Groningen',
-		path: '/steden/partybus-huren-groningen/',
-	},
-	{
-		slug: 'nijmegen',
-		name: 'Nijmegen',
-		path: '/steden/partybus-huren-nijmegen/',
-	},
-	{
-		slug: 'arnhem',
-		name: 'Arnhem',
-		path: '/steden/partybus-huren-arnhem/',
-	},
-	{
-		slug: 'maastricht',
-		name: 'Maastricht',
-		path: '/steden/partybus-huren-maastricht/',
-	},
-	{
-		slug: 'haarlem',
-		name: 'Haarlem',
-		path: '/steden/partybus-huren-haarlem/',
-	},
-	{
-		slug: 'almere',
-		name: 'Almere',
-		path: '/steden/partybus-huren-almere/',
-	},
-	{
-		slug: 'apeldoorn',
-		name: 'Apeldoorn',
-		path: '/steden/partybus-huren-apeldoorn/',
-	},
-	{
-		slug: 'zwolle',
-		name: 'Zwolle',
-		path: '/steden/partybus-huren-zwolle/',
-	},
-	{
-		slug: 'leiden',
-		name: 'Leiden',
-		path: '/steden/partybus-huren-leiden/',
-	},
-	{
-		slug: 'dordrecht',
-		name: 'Dordrecht',
-		path: '/steden/partybus-huren-dordrecht/',
-	},
-	{
-		slug: 'enschede',
-		name: 'Enschede',
-		path: '/steden/partybus-huren-enschede/',
-	},
-	{
-		slug: 'amersfoort',
-		name: 'Amersfoort',
-		path: '/steden/partybus-huren-amersfoort/',
-	},
-	{
-		slug: 'den-bosch',
-		name: "'s-Hertogenbosch",
-		path: '/steden/partybus-huren-den-bosch/',
-	},
-] as const;
+export const publishedCities: readonly PublishedCity[] = cityInventory.cities.map((city) => ({
+	slug: city.slug,
+	name: city.city,
+	path: new URL(city.url).pathname.endsWith('/')
+		? new URL(city.url).pathname
+		: `${new URL(city.url).pathname}/`,
+}));
+
+const publishedBySlug = new Map(publishedCities.map((city) => [city.slug, city] as const));
 
 export function getPublishedCity(slug: string): PublishedCity | undefined {
-	return publishedCities.find((city) => city.slug === slug);
+	return publishedBySlug.get(slug);
 }
 
 export function getRelatedCities(
@@ -121,11 +30,12 @@ export function getRelatedCities(
 ): PublishedCity[] {
 	const preferred = preferredSlugs
 		.map((slug) => getPublishedCity(slug))
-		.filter((city): city is PublishedCity => Boolean(city) && city.slug !== currentSlug);
+		.filter((city): city is PublishedCity => Boolean(city) && city.slug !== currentSlug)
+		.slice(0, 5);
 
 	if (preferred.length > 0) {
 		return preferred;
 	}
 
-	return publishedCities.filter((city) => city.slug !== currentSlug);
+	return publishedCities.filter((city) => city.slug !== currentSlug).slice(0, 5);
 }

@@ -1,12 +1,12 @@
 import { whatsapp } from '../settings/whatsapp';
 import type { CityPageData } from './types';
-import { buildPilotCityPageData } from './pilotFactory';
+import { buildCityPageData } from './pilotFactory';
 
 /**
  * Amsterdam = Master City Template content.
  * Uses shared departure-city content; URL/canonical stay inventory-based.
  */
-const generated = buildPilotCityPageData('amsterdam');
+const generated = buildCityPageData('amsterdam');
 if (!generated) {
 	throw new Error('Missing Amsterdam inventory data');
 }

@@ -12,4 +12,10 @@ export {
 	buildOccasionSection,
 	buildPopularDestinations,
 } from './departureContent';
+export {
+	ALL_CITY_SLUGS,
+	PILOT_CITY_SLUGS,
+	buildCityPageData,
+	buildPilotCityPageData,
+} from './pilotFactory';
 

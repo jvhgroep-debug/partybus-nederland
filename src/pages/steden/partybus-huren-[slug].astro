@@ -1,12 +1,15 @@
----
+﻿---
 import CityLayout from '../../layouts/CityLayout.astro';
 import MasterCityTemplate from '../../components/cities/MasterCityTemplate.astro';
 import { resolveCityHeroImage } from '../../lib/cityImages';
-import { PILOT_CITY_SLUGS, buildPilotCityPageData } from '../../data/cities/pilotFactory';
+import { ALL_CITY_SLUGS, buildCityPageData } from '../../data/cities/pilotFactory';
 
 export function getStaticPaths() {
-	const staticSlugs = new Set(['amsterdam', 'rotterdam', 'breda']);
-	return PILOT_CITY_SLUGS.filter((slug) => !staticSlugs.has(slug)).map((slug) => ({ params: { slug } }));
+	/** Static city folders keep their own index.astro to preserve existing routes. */
+	const STATIC_CITY_SLUGS = new Set(['amsterdam', 'rotterdam', 'breda']);
+	return ALL_CITY_SLUGS.filter((slug) => !STATIC_CITY_SLUGS.has(slug)).map((slug) => ({
+		params: { slug },
+	}));
 }
 
 const { slug } = Astro.params;
@@ -14,9 +17,9 @@ if (!slug) {
 	throw new Error('Missing city slug');
 }
 
-const city = buildPilotCityPageData(slug);
+const city = buildCityPageData(slug);
 if (!city) {
-	throw new Error(`Unknown pilot city: ${slug}`);
+	throw new Error(`Unknown city: ${slug}`);
 }
 
 const heroImage = resolveCityHeroImage(city.slug);
@@ -54,6 +57,8 @@ const faqLd = {
 		acceptedAnswer: { '@type': 'Answer', text: faq.answer },
 	})),
 };
+
+const ogImage = `https://www.partybusnederland.nl${heroImage.src}`;
 ---
 
 <CityLayout
@@ -61,6 +66,13 @@ const faqLd = {
 	description={city.metaDescription}
 	canonical={city.canonical}
 	preloadImage={heroImage.src}
+	ogTitle={city.metaTitle}
+	ogDescription={city.metaDescription}
+	ogUrl={city.canonical}
+	ogImage={ogImage}
+	twitterTitle={city.metaTitle}
+	twitterDescription={city.metaDescription}
+	twitterImage={ogImage}
 	jsonLd={[webPageLd, breadcrumbLd, faqLd]}
 >
 	<MasterCityTemplate city={city} />

@@ -62,6 +62,8 @@ const faqLd = {
 		},
 	})),
 };
+
+const ogImage = `https://www.partybusnederland.nl${heroImage.src}`;
 ---
 
 <CityLayout
@@ -69,6 +71,13 @@ const faqLd = {
 	description={city.metaDescription}
 	canonical={city.canonical}
 	preloadImage={heroImage.src}
+	ogTitle={city.metaTitle}
+	ogDescription={city.metaDescription}
+	ogUrl={city.canonical}
+	ogImage={ogImage}
+	twitterTitle={city.metaTitle}
+	twitterDescription={city.metaDescription}
+	twitterImage={ogImage}
 	jsonLd={[webPageLd, breadcrumbLd, faqLd]}
 >
 	<MasterCityTemplate city={city} />
