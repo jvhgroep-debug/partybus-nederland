@@ -1,0 +1,91 @@
+---
+import type { TilburgClusterLink } from '../../data/tilburg/clusterPages';
+
+interface Props {
+	links: readonly TilburgClusterLink[];
+	title?: string;
+}
+
+const {
+	links,
+	title = 'Handige links voor Tilburg',
+} = Astro.props;
+---
+
+<section class="section tilburg-nav-links" aria-labelledby="tilburg-nav-links-title">
+	<div class="section__inner">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">Interne links</p>
+			<h2 id="tilburg-nav-links-title" class="section__title">{title}</h2>
+			<p class="section__lead">
+				Navigeer snel terug naar Tilburg, verdiep je in gerelateerde onderwerpen of start direct een offerteaanvraag.
+			</p>
+		</div>
+		<ul class="tilburg-nav-links__grid">
+			{
+				links.map((link) => (
+					<li class="reveal">
+						<a class="tilburg-nav-links__card" href={link.href}>
+							<span class="tilburg-nav-links__label">{link.label}</span>
+							<span class="tilburg-nav-links__arrow" aria-hidden="true">&rarr;</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.tilburg-nav-links__grid {
+		display: grid;
+		gap: 0.85rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	@media (min-width: 640px) {
+		.tilburg-nav-links__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 960px) {
+		.tilburg-nav-links__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.tilburg-nav-links__card {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		min-height: 100%;
+		padding: 1rem 1.15rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-primary-line);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+		color: var(--color-text);
+		text-decoration: none;
+		transition: border-color 0.2s ease, background 0.2s ease;
+	}
+
+	.tilburg-nav-links__card:hover {
+		border-color: color-mix(in srgb, var(--color-primary) 65%, transparent);
+		background: color-mix(in srgb, var(--color-primary) 10%, #090909);
+	}
+
+	.tilburg-nav-links__label {
+		font-weight: 700;
+		line-height: 1.4;
+		color: var(--color-primary);
+	}
+
+	.tilburg-nav-links__arrow {
+		flex-shrink: 0;
+		font-size: 1.1rem;
+		color: var(--color-primary);
+	}
+</style>
