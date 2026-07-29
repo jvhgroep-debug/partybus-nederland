@@ -8,6 +8,7 @@ import { kennisbankArticles } from '../../data/kennisbank/registry';
 import { legalNav } from '../../data/legal/pages';
 import { trustNav } from '../../data/trust/pages';
 import { servicePages } from '../../data/services/pages';
+import { tilburgClusterPagesSteden } from '../../data/tilburg/clusterPagesSteden';
 
 const title = 'HTML-sitemap | Partybus Nederland';
 const description =
@@ -95,6 +96,17 @@ const mainPages = [
 				{publishedCities.map((city) => (
 					<li>
 						<a href={city.path}>Partybus huren {city.name}</a>
+					</li>
+				))}
+			</ul>
+		</section>
+
+		<section>
+			<h2>Tilburg SEO-cluster (/steden/partybus-huren-tilburg/)</h2>
+			<ul>
+				{tilburgClusterPagesSteden.map((page) => (
+					<li>
+						<a href={page.path}>{page.navLabel}</a>
 					</li>
 				))}
 			</ul>

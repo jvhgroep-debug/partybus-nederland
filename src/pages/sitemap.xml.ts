@@ -7,6 +7,7 @@ import { kennisbankArticles } from '../data/kennisbank/registry';
 import { servicePages } from '../data/services/pages';
 import { legalNav } from '../data/legal/pages';
 import { trustNav } from '../data/trust/pages';
+import { tilburgClusterStedenPaths } from '../data/tilburg/clusterPagesSteden';
 
 const SITE = 'https://www.partybusnederland.nl';
 
@@ -34,6 +35,7 @@ export const GET: APIRoute = () => {
 		...servicePages.map((service) => service.path),
 		...publishedCities.map((city) => city.path),
 		...routePages.map((route) => route.path),
+		...tilburgClusterStedenPaths,
 	]);
 
 	const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[

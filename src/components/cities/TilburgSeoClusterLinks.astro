@@ -1,0 +1,53 @@
+---
+import { tilburgClusterPagesSteden } from '../../data/tilburg/clusterPagesSteden';
+---
+
+<section class="section tilburg-cluster" aria-labelledby="tilburg-cluster-title">
+	<div class="section__inner">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">Tilburg verdieping</p>
+			<h2 id="tilburg-cluster-title" class="section__title">Meer Tilburg-pagina's over partybus huren</h2>
+			<p class="section__lead">
+				Nieuwe, specifieke pagina's over feestbus, groepsgrootte, faciliteiten en offertes — allemaal gericht op
+				Tilburg.
+			</p>
+		</div>
+		<ul class="tilburg-cluster__list">
+			{
+				tilburgClusterPagesSteden.map((page) => (
+					<li class="reveal">
+						<a href={page.path}>{page.navLabel}</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.tilburg-cluster__list {
+		display: grid;
+		gap: 0.65rem 1.25rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	@media (min-width: 700px) {
+		.tilburg-cluster__list {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+	@media (min-width: 1000px) {
+		.tilburg-cluster__list {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+	.tilburg-cluster__list a {
+		color: var(--color-primary);
+		font-weight: 700;
+		text-decoration: none;
+	}
+	.tilburg-cluster__list a:hover {
+		text-decoration: underline;
+	}
+</style>

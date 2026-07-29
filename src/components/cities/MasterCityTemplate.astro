@@ -14,6 +14,7 @@ import CityPickupLocations from './CityPickupLocations.astro';
 import CityConversionBand from './CityConversionBand.astro';
 import CityFaq from './CityFaq.astro';
 import CityRelatedCities from './CityRelatedCities.astro';
+import TilburgSeoClusterLinks from './TilburgSeoClusterLinks.astro';
 import CityCta from './CityCta.astro';
 import InfoGuide from '../shared/InfoGuide.astro';
 import {
@@ -113,6 +114,8 @@ const requestSteps = [
 	/>
 
 	<CityFaq items={city.faqs} cityName={city.name} />
+
+	{city.slug === 'tilburg' && <TilburgSeoClusterLinks />}
 
 	{relatedCities.length > 0 && <CityRelatedCities cityName={city.name} cities={relatedCities} />}
 

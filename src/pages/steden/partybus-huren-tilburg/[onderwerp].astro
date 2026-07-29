@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Button from '../../../components/buttons/Button.astro';
+import GuideFaqList from '../../../components/guides/GuideFaqList.astro';
+import GuideCta from '../../../components/guides/GuideCta.astro';
+import {
+	getTilburgClusterPageSteden,
+	tilburgClusterPagesSteden,
+	TILBURG_CITY_HUB,
+	TILBURG_QUOTE_PATH,
+} from '../../../data/tilburg/clusterPagesSteden';
+import {
+	buildBreadcrumbSchema,
+	buildFaqPageSchema,
+	buildWebPageSchema,
+} from '../../../lib/guides/schema';
+
+export function getStaticPaths() {
+	return tilburgClusterPagesSteden.map((page) => ({
+		params: { onderwerp: page.slug },
+	}));
+}
+
+const { onderwerp } = Astro.params;
+if (!onderwerp) throw new Error('Missing Tilburg cluster onderwerp');
+
+const page = getTilburgClusterPageSteden(onderwerp);
+if (!page) throw new Error(`Unknown Tilburg cluster page: ${onderwerp}`);
+
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Partybus huren Tilburg', href: TILBURG_CITY_HUB },
+	{ label: page.navLabel, href: page.path },
+];
+
+const jsonLd = [
+	buildWebPageSchema({
+		name: page.h1,
+		description: page.description,
+		url: page.canonical,
+	}),
+	buildBreadcrumbSchema(breadcrumbs),
+	buildFaqPageSchema(page.faqs),
+];
+---
+
+<BaseLayout
+	title={page.title}
+	description={page.description}
+	canonical={page.canonical}
+	titleExact={true}
+	ogTitle={page.title}
+	ogDescription={page.description}
+	ogUrl={page.canonical}
+	twitterTitle={page.title}
+	twitterDescription={page.description}
+	jsonLd={jsonLd}
+>
+	<article class="tilburg-page">
+		<nav class="tilburg-page__crumbs section__inner" aria-label="Broodkruimels">
+			{
+				breadcrumbs.map((item, index) => (
+					<>
+						{index > 0 && <span aria-hidden="true"> / </span>}
+						{index === breadcrumbs.length - 1 ? (
+							<span>{item.label}</span>
+						) : (
+							<a href={item.href}>{item.label}</a>
+						)}
+					</>
+				))
+			}
+		</nav>
+
+		<header class="section tilburg-page__hero">
+			<div class="section__inner reveal">
+				<p class="section__eyebrow">{page.eyebrow}</p>
+				<h1 class="section__title">{page.h1}</h1>
+				<p class="section__lead">{page.lead}</p>
+				<div class="tilburg-page__actions">
+					<Button href={TILBURG_QUOTE_PATH} size="lg">Gratis offertes aanvragen</Button>
+					<Button href={TILBURG_CITY_HUB} variant="ghost" size="lg">Tilburg-hoofdpagina</Button>
+				</div>
+			</div>
+		</header>
+
+		<section class="section" aria-labelledby="tilburg-content-title">
+			<div class="section__inner tilburg-page__content reveal">
+				<h2 id="tilburg-content-title" class="section__title">Praktische uitleg</h2>
+				{page.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+		</section>
+
+		<section class="section" aria-labelledby="tilburg-links-title">
+			<div class="section__inner reveal">
+				<h2 id="tilburg-links-title" class="section__title">Interne links</h2>
+				<ul class="tilburg-page__links">
+					{
+						page.related.map((link) => (
+							<li>
+								<a href={link.href}>{link.label}</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</section>
+
+		<GuideFaqList
+			eyebrow="FAQ"
+			title={`Veelgestelde vragen over ${page.navLabel.toLowerCase()}`}
+			lead="Korte antwoorden die je helpen een scherpere offerteaanvraag te doen."
+			items={page.faqs}
+		/>
+
+		<GuideCta
+			title="Klaar om partybussen voor Tilburg te vergelijken?"
+			lead="Vul je ritgegevens in en ontvang vrijblijvend voorstellen van passende aanbieders."
+			primaryHref={TILBURG_QUOTE_PATH}
+			primaryLabel="Naar het offerteformulier"
+			showWhatsapp={false}
+		/>
+	</article>
+</BaseLayout>
+
+<style>
+	.tilburg-page__crumbs {
+		padding-top: calc(var(--header-height) + 1.25rem);
+		padding-bottom: 0.5rem;
+		font-size: 0.9rem;
+		color: var(--color-text-muted);
+	}
+
+	.tilburg-page__crumbs a {
+		color: var(--color-primary);
+	}
+
+	.tilburg-page__hero {
+		padding-top: 1.5rem;
+	}
+
+	.tilburg-page__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.5rem;
+	}
+
+	.tilburg-page__content {
+		display: grid;
+		gap: 1rem;
+		max-width: 48rem;
+	}
+
+	.tilburg-page__content p {
+		margin: 0;
+		line-height: 1.75;
+		color: color-mix(in srgb, var(--color-text) 92%, transparent);
+	}
+
+	.tilburg-page__links {
+		display: grid;
+		gap: 0.55rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.tilburg-page__links a {
+		color: var(--color-primary);
+		font-weight: 700;
+	}
+
+	@media (max-width: 640px) {
+		.tilburg-page__actions :global(.btn) {
+			width: 100%;
+		}
+	}
+</style>

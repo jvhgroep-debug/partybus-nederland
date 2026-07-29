@@ -6,7 +6,15 @@ import Button from '../buttons/Button.astro';
 
 <header class="site-header">
 	<div class="site-header__inner">
-		<a class="site-header__brand" href="/">{site.name}</a>
+		<a class="site-header__brand" href="/">
+			<img
+				src="/logo-partybus-nederland.png"
+				alt={site.name}
+				width="160"
+				height="48"
+				decoding="async"
+			/>
+		</a>
 
 		<nav class="site-header__nav" data-nav aria-label="Hoofdnavigatie">
 			{
@@ -92,12 +100,15 @@ import Button from '../buttons/Button.astro';
 	}
 
 	.site-header__brand {
-		font-family: var(--font-display);
-		font-size: clamp(0.95rem, 2.4vw, 1.15rem);
-		font-weight: 800;
-		letter-spacing: 0.02em;
-		color: var(--color-primary);
-		white-space: nowrap;
+		display: inline-flex;
+		align-items: center;
+		line-height: 0;
+	}
+
+	.site-header__brand img {
+		display: block;
+		height: clamp(2rem, 5vw, 2.6rem);
+		width: auto;
 	}
 
 	.site-header__nav {
