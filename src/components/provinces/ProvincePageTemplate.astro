@@ -5,6 +5,7 @@ import {
 	buildPrestigeCoachServiceQuoteHref,
 	buildPrestigeCoachServiceWhatsappHref,
 	prestigeCoachService,
+	prestigeCoachServiceLogo,
 } from '../../data/partners/prestigeCoachService';
 import Button from '../buttons/Button.astro';
 import GuideFaqList from '../guides/GuideFaqList.astro';
@@ -212,7 +213,7 @@ const sectionImages = {
 		</div>
 	</section>
 
-	<ProvincePartnerSection partner={partner} whatsappHref={whatsappHref} />
+	<ProvincePartnerSection partner={partner} whatsappHref={whatsappHref} logo={prestigeCoachServiceLogo} />
 
 	<ProvinceMunicipalityGrid municipalities={municipalities} />
 
