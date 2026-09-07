@@ -5,6 +5,7 @@
  * FROM_EMAIL: optioneel. Partybus-domeinen worden genegeerd tot DNS live is;
  * fallback is Resend testdomein: onboarding@resend.dev
  */
+import { prestigeCoachService } from '../../src/data/partners/prestigeCoachService';
 
 interface Env {
 	RESEND_API_KEY?: string;
@@ -20,6 +21,8 @@ interface QuotePayload {
 	guests?: string;
 	message?: string;
 	sourcePage?: string;
+	partnerId?: string;
+	partnerCity?: string;
 	website?: string;
 }
 
@@ -92,6 +95,17 @@ function validate(raw: unknown):
 	const email = String(body.email ?? '').trim();
 	const phone = String(body.phone ?? '').trim();
 	const city = String(body.city ?? '').trim();
+	const requestedPartnerId = String(body.partnerId ?? '').trim();
+	const partnerId = requestedPartnerId === prestigeCoachService.id
+		? prestigeCoachService.id
+		: undefined;
+	const partnerCity = partnerId
+		? String(body.partnerCity ?? '').trim() || city
+		: undefined;
+	const requestedSourcePage = String(body.sourcePage ?? '').trim();
+	const sourcePage = requestedSourcePage.startsWith('/')
+		? requestedSourcePage.slice(0, 500)
+		: undefined;
 	const fields: string[] = [];
 	if (!name) fields.push('name');
 	if (!email || !EMAIL_RE.test(email)) fields.push('email');
@@ -112,7 +126,9 @@ function validate(raw: unknown):
 			date: String(body.date ?? '').trim() || undefined,
 			guests: String(body.guests ?? '').trim() || undefined,
 			message: String(body.message ?? '').trim() || undefined,
-			sourcePage: String(body.sourcePage ?? '').trim() || undefined,
+			sourcePage,
+			partnerId,
+			partnerCity,
 		},
 	};
 }
@@ -127,6 +143,8 @@ function fieldRows(payload: QuotePayload): Array<[string, string]> {
 	if (payload.date) rows.push(['Datum', payload.date]);
 	if (payload.guests) rows.push(['Aantal gasten', payload.guests]);
 	if (payload.sourcePage) rows.push(['Bronpagina', payload.sourcePage]);
+	if (payload.partnerId) rows.push(['Partner-ID', payload.partnerId]);
+	if (payload.partnerCity) rows.push(['Partnergemeente', payload.partnerCity]);
 	if (payload.message) rows.push(['Bericht', payload.message]);
 	return rows;
 }
@@ -237,6 +255,39 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 			},
 			502,
 		);
+	}
+
+	const partnerLeadEmail = payload.partnerId === prestigeCoachService.id
+		? prestigeCoachService.internalRouting.leadEmail
+		: null;
+
+	if (partnerLeadEmail && partnerLeadEmail.toLowerCase() !== INBOX.toLowerCase()) {
+		const partnerResult = await sendResend(apiKey, from, {
+			to: partnerLeadEmail,
+			subject: `Nieuwe aanvraag via Partybus Nederland – ${payload.partnerCity || payload.city}`,
+			text: `Nieuwe partneraanvraag via Partybus Nederland\n\n${summaryText}`,
+			html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;"><p><strong>Nieuwe partneraanvraag via Partybus Nederland</strong></p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table></div>`,
+			replyTo: payload.email,
+		});
+
+		if (!partnerResult.ok) {
+			if (isTestDomainRecipientLimit(partnerResult.detail)) {
+				await sendResend(apiKey, from, {
+					to: INBOX,
+					subject: `Partnerdoorsturing (preview) – bedoeld voor ${payload.partnerId}`,
+					text: [
+						`De partnerdoorsturing kon door de Resend-testdomeinlimiet niet rechtstreeks worden afgeleverd.`,
+						`Bestemde partner: ${payload.partnerId}`,
+						'',
+						summaryText,
+					].join('\n'),
+					html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;"><p><em>Preview:</em> rechtstreekse partnerdoorsturing is geblokkeerd door de Resend-testdomeinlimiet.</p><p><strong>Bestemde partner:</strong> ${escapeHtml(payload.partnerId || '')}</p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table></div>`,
+					replyTo: payload.email,
+				});
+			} else {
+				return json({ ok: false, error: ERROR_GENERIC }, 502);
+			}
+		}
 	}
 
 	const sameAsInbox = payload.email.toLowerCase() === INBOX.toLowerCase();

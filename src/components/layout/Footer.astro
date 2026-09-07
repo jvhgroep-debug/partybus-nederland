@@ -7,75 +7,141 @@ import { hubGuideLinks } from '../../data/gidsen/shared';
 import { gidsenPath } from '../../data/gidsen/registry';
 import { trustNav, footerLegalNav } from '../../data/trust/pages';
 import { servicePages } from '../../data/services/pages';
+import type { RegionalFooterConfig } from '../../data/settings/regionalFooters';
 import Button from '../buttons/Button.astro';
 
+interface Props {
+	whatsappContact?: {
+		href: string;
+		label: string;
+	};
+	quoteHref?: string;
+	attribution?: {
+		prefix: string;
+		label: string;
+		href: string;
+	};
+	regionalFooter?: RegionalFooterConfig;
+}
+
+const {
+	whatsappContact = {
+		href: whatsapp.href,
+		label: `WhatsApp ${whatsapp.phoneDisplay}`,
+	},
+	quoteHref = primaryCta.href,
+	attribution,
+	regionalFooter,
+} = Astro.props;
 const year = new Date().getFullYear();
+const navigationLinks = regionalFooter?.navigation ?? mainNav;
+const cityLinks = regionalFooter?.locations ?? publishedCities.slice(0, 6).map((city) => ({
+	label: city.name,
+	href: city.path,
+}));
 ---
 
-<footer class="site-footer">
+<footer
+	class:list={['site-footer', regionalFooter?.compact && 'site-footer--regional']}
+	data-footer-region={regionalFooter?.id}
+>
 	<div class="site-footer__inner">
 		<div class="site-footer__brand">
 			<p class="site-footer__name">{site.companyName}</p>
 			<p class="site-footer__text">
 				Complete informatie over partybus huren — tips, bestemmingen en vrijblijvend offertes vergelijken.
 			</p>
-			<Button href={primaryCta.href} class="site-footer__cta">{primaryCta.label}</Button>
+			<Button href={quoteHref} class="site-footer__cta">
+				{regionalFooter?.ctaLabel ?? primaryCta.label}
+			</Button>
 		</div>
 
-		<div class="site-footer__col">
-			<p class="site-footer__heading">Navigatie</p>
-			{mainNav.map((item) => (
-				<a href={item.href}>{item.label}</a>
-			))}
-		</div>
-
-		<div class="site-footer__col">
-			<p class="site-footer__heading">Steden</p>
-			{publishedCities.slice(0, 6).map((city) => (
-				<a href={city.path}>{city.name}</a>
-			))}
-			<a href="/#steden">Alle steden</a>
-		</div>
-
-		<div class="site-footer__col">
-			<p class="site-footer__heading">Diensten</p>
-			{servicePages.slice(0, 6).map((service) => (
-				<a href={service.path}>{service.eyebrow}</a>
-			))}
-			<a href="/#diensten">Alle diensten</a>
-		</div>
-
-		<div class="site-footer__col">
-			<p class="site-footer__heading">Kennisbank</p>
-			{hubGuideLinks.slice(0, 5).map((guide) => (
-				<a href={gidsenPath(guide.slug)}>{guide.label}</a>
-			))}
-			<a href="/gidsen/">Alle gidsen</a>
-			<a href="/sitemap/">Sitemap</a>
-		</div>
-
-		<div class="site-footer__col">
-			<p class="site-footer__heading">Contact</p>
-			<a href="/contact/">Contactpagina</a>
-			<a href={whatsapp.href} target="_blank" rel="noopener noreferrer">WhatsApp {whatsapp.phoneDisplay}</a>
-			<a href={primaryCta.href}>{primaryCta.label}</a>
-			<a href="/over-ons/">Over ons</a>
-		</div>
+		{
+			regionalFooter ? (
+				<>
+					<div class="site-footer__col">
+						<p class="site-footer__heading">{regionalFooter.locationHeading}</p>
+						{cityLinks.map((city) => (
+							<a href={city.href}>{city.label}</a>
+						))}
+					</div>
+					<div class="site-footer__col">
+						<p class="site-footer__heading">Contact / navigatie</p>
+						{navigationLinks.map((item) => (
+							<a href={item.href}>{item.label}</a>
+						))}
+						<a href={whatsappContact.href} target="_blank" rel="noopener noreferrer">{whatsappContact.label}</a>
+					</div>
+				</>
+			) : (
+				<>
+					<div class="site-footer__col">
+						<p class="site-footer__heading">Navigatie</p>
+						{navigationLinks.map((item) => (
+							<a href={item.href}>{item.label}</a>
+						))}
+					</div>
+					<div class="site-footer__col">
+						<p class="site-footer__heading">Steden</p>
+						{cityLinks.map((city) => (
+							<a href={city.href}>{city.label}</a>
+						))}
+						<a href="/#steden">Alle steden</a>
+					</div>
+					<div class="site-footer__col">
+						<p class="site-footer__heading">Diensten</p>
+						{servicePages.slice(0, 6).map((service) => (
+							<a href={service.path}>{service.eyebrow}</a>
+						))}
+						<a href="/#diensten">Alle diensten</a>
+					</div>
+					<div class="site-footer__col">
+						<p class="site-footer__heading">Kennisbank</p>
+						{hubGuideLinks.slice(0, 5).map((guide) => (
+							<a href={gidsenPath(guide.slug)}>{guide.label}</a>
+						))}
+						<a href="/gidsen/">Alle gidsen</a>
+						<a href="/sitemap/">Sitemap</a>
+					</div>
+					<div class="site-footer__col">
+						<p class="site-footer__heading">Contact</p>
+						<a href="/contact/">Contactpagina</a>
+						<a href={whatsappContact.href} target="_blank" rel="noopener noreferrer">{whatsappContact.label}</a>
+						<a href={quoteHref}>{primaryCta.label}</a>
+						<a href="/over-ons/">Over ons</a>
+					</div>
+				</>
+			)
+		}
 	</div>
 
 	<div class="site-footer__bottom">
-		<p class="site-footer__copy">© {site.companyName} {year}</p>
+		<div class="site-footer__credits">
+			<p class="site-footer__copy">© {site.companyName} {year}</p>
+			{
+				attribution && (
+					<p class="site-footer__attribution">
+						{attribution.prefix}{' '}
+						<a href={attribution.href} target="_blank" rel="noopener noreferrer">
+							{attribution.label}
+						</a>
+					</p>
+				)
+			}
+		</div>
 		<div class="site-footer__nav-rows">
-			<nav class="site-footer__legal" aria-label="Over Partybus Nederland">
-				{
-					trustNav.map((item, index) => (
-						<span class="site-footer__legal-item">
-							{index > 0 && <span class="site-footer__sep" aria-hidden="true">·</span>}
-							<a href={item.href}>{item.label}</a>
-						</span>
-					))
-				}
-			</nav>
+			{
+				!regionalFooter && (
+					<nav class="site-footer__legal" aria-label="Over Partybus Nederland">
+						{trustNav.map((item, index) => (
+							<span class="site-footer__legal-item">
+								{index > 0 && <span class="site-footer__sep" aria-hidden="true">·</span>}
+								<a href={item.href}>{item.label}</a>
+							</span>
+						))}
+					</nav>
+				)
+			}
 			<nav class="site-footer__legal" aria-label="Juridische informatie">
 				{
 					footerLegalNav.map((item, index) => (
@@ -100,6 +166,10 @@ const year = new Date().getFullYear();
 		padding-top: clamp(3.5rem, 7vw, 5.25rem);
 	}
 
+	.site-footer--regional {
+		padding-top: clamp(2.25rem, 4vw, 3.4rem);
+	}
+
 	.site-footer__inner {
 		width: min(100% - 1.5rem, var(--content-max-width));
 		margin-inline: auto;
@@ -118,6 +188,11 @@ const year = new Date().getFullYear();
 		.site-footer__inner {
 			grid-template-columns: 1.35fr repeat(5, 1fr);
 			gap: 2.5rem;
+		}
+
+		.site-footer--regional .site-footer__inner {
+			grid-template-columns: 1.3fr 1.15fr 1fr;
+			gap: 2rem;
 		}
 	}
 
@@ -158,6 +233,27 @@ const year = new Date().getFullYear();
 		gap: 0.9rem;
 	}
 
+	.site-footer--regional .site-footer__inner {
+		gap: 1.75rem;
+	}
+
+	.site-footer--regional .site-footer__text {
+		margin-bottom: 0.9rem;
+	}
+
+	.site-footer--regional .site-footer__heading {
+		margin-bottom: 0.65rem;
+	}
+
+	.site-footer--regional .site-footer__col {
+		gap: 0.5rem;
+	}
+
+	.site-footer--regional .site-footer__col a {
+		font-size: 0.94rem;
+		padding-block: 0.05rem;
+	}
+
 	.site-footer__col a {
 		color: var(--color-text-muted);
 		font-size: 1rem;
@@ -183,8 +279,34 @@ const year = new Date().getFullYear();
 		font-size: 0.92rem;
 	}
 
+	.site-footer--regional .site-footer__bottom {
+		margin-top: 2rem;
+		padding-block: 1rem 1.35rem;
+	}
+
 	.site-footer__copy {
 		margin: 0;
+	}
+
+	.site-footer__credits {
+		display: grid;
+		gap: 0.35rem;
+	}
+
+	.site-footer__attribution {
+		margin: 0;
+		font-size: 0.84rem;
+		color: color-mix(in srgb, var(--color-text-muted) 82%, transparent);
+	}
+
+	.site-footer__attribution a {
+		color: var(--color-primary);
+		transition: color 0.2s var(--ease-out);
+	}
+
+	.site-footer__attribution a:hover,
+	.site-footer__attribution a:focus-visible {
+		color: var(--color-text);
 	}
 
 	.site-footer__nav-rows {

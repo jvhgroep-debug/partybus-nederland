@@ -1,6 +1,18 @@
 ---
 import type { CityPageData } from '../../data/cities/types';
-import { getRelatedCities } from '../../data/cities/registry';
+import { getPublishedCity, getRelatedCities } from '../../data/cities/registry';
+import {
+	buildPrestigeCoachServiceQuoteHref,
+	buildPrestigeCoachServiceLocalIntro,
+	buildPrestigeCoachServiceWhatsappHref,
+	prestigeCoachService,
+	prestigeCoachServiceLogo,
+	resolvePrestigeCoachServiceCityMedia,
+} from '../../data/partners/prestigeCoachService';
+import {
+	getNoordBrabantNeighborSlugs,
+	isNoordBrabantMunicipalitySlug,
+} from '../../data/provinces/noordBrabant';
 import { resolveCityHeroImage } from '../../lib/cityImages';
 import CityHero from './CityHero.astro';
 import CityIntro from './CityIntro.astro';
@@ -17,6 +29,7 @@ import CityRelatedCities from './CityRelatedCities.astro';
 import TilburgSeoClusterLinks from './TilburgSeoClusterLinks.astro';
 import CityCta from './CityCta.astro';
 import InfoGuide from '../shared/InfoGuide.astro';
+import ProvincePartnerSection from '../provinces/ProvincePartnerSection.astro';
 import {
 	bookingTips,
 	cityInfoLead,
@@ -29,8 +42,70 @@ interface Props {
 }
 
 const { city } = Astro.props;
-const relatedCities = getRelatedCities(city.slug, city.relatedCitySlugs);
-const heroImage = resolveCityHeroImage(city.slug);
+const isNoordBrabantPartnerCity = isNoordBrabantMunicipalitySlug(city.slug);
+const relatedCitySlugs = isNoordBrabantPartnerCity
+	? getNoordBrabantNeighborSlugs(city.slug)
+	: city.relatedCitySlugs;
+const relatedCities = getRelatedCities(
+	city.slug,
+	relatedCitySlugs,
+	isNoordBrabantPartnerCity ? 6 : 5,
+);
+const defaultHeroImage = resolveCityHeroImage(city.slug);
+const partnerCityMedia = isNoordBrabantPartnerCity
+	? resolvePrestigeCoachServiceCityMedia(city.slug)
+	: null;
+const heroImage = partnerCityMedia?.hero ?? defaultHeroImage;
+const partner = prestigeCoachService.publicProfile;
+const whatsappHref = isNoordBrabantPartnerCity
+	? buildPrestigeCoachServiceWhatsappHref(city.name)
+	: (city.hero.whatsappHref ?? city.cta.whatsappHref);
+const quoteHref = isNoordBrabantPartnerCity
+	? buildPrestigeCoachServiceQuoteHref(city.name, city.path)
+	: '/gratis-partybus-offertes-aanvragen/';
+const localPartnerIntro = isNoordBrabantPartnerCity
+	? buildPrestigeCoachServiceLocalIntro(city.name, city.slug)
+	: null;
+const partnerLocations = isNoordBrabantPartnerCity
+	&& city.slug !== 'breda'
+	&& partnerCityMedia
+	? {
+			title: `Partybus vanuit ${city.name} door heel Noord-Brabant`,
+			lead: `Vanuit ${city.name} met de partybus naar een feest, evenement of andere bestemming in Noord-Brabant? Bekijk relevante gemeenten in de regio.`,
+			items: relatedCitySlugs.map((slug, index) => {
+				const municipality = getPublishedCity(slug);
+				if (!municipality) {
+					throw new Error(`Missing published Noord-Brabant municipality: ${slug}`);
+				}
+
+				return {
+					name: municipality.name,
+					text: `Plan een partybusrit vanuit ${city.name} naar ${municipality.name} voor jullie groep.`,
+					image: partnerCityMedia.gallery[index % partnerCityMedia.gallery.length].src,
+					href: municipality.path,
+				};
+			}),
+		}
+	: city.locations;
+const partnerOccasions = isNoordBrabantPartnerCity
+	&& city.slug !== 'breda'
+	&& partnerCityMedia
+	? city.occasions.items.map((item, index) => ({
+			...item,
+			image: partnerCityMedia.gallery[index % partnerCityMedia.gallery.length].src,
+			infoHref: null,
+		}))
+	: city.occasions.items;
+const introImage = isNoordBrabantPartnerCity
+	&& city.slug !== 'breda'
+	&& partnerCityMedia
+	? partnerCityMedia.gallery[0].src
+	: city.intro.image;
+const ctaImage = isNoordBrabantPartnerCity
+	&& city.slug !== 'breda'
+	&& partnerCityMedia
+	? partnerCityMedia.gallery[1 % partnerCityMedia.gallery.length].src
+	: city.cta.image;
 const requestSteps = [
 	{
 		title: 'Deel jullie rit',
@@ -47,7 +122,7 @@ const requestSteps = [
 ] as const;
 ---
 
-<div class="master-city">
+<div class:list={['master-city', isNoordBrabantPartnerCity && 'master-city--partner']}>
 	<CityHero
 		title={city.h1}
 		subtitle={city.hero.subtitle}
@@ -55,9 +130,13 @@ const requestSteps = [
 		imageAlt={heroImage.alt}
 		imageWidth={heroImage.width}
 		imageHeight={heroImage.height}
-		whatsappHref={city.hero.whatsappHref ?? city.cta.whatsappHref}
-		primaryHref="/gratis-partybus-offertes-aanvragen/"
+		mobileImage={partnerCityMedia?.mobileHero.src}
+		mobileImageWidth={partnerCityMedia?.mobileHero.width}
+		mobileImageHeight={partnerCityMedia?.mobileHero.height}
+		whatsappHref={whatsappHref}
+		primaryHref={quoteHref}
 		trustItems={city.hero.trustItems}
+		partnerMode={isNoordBrabantPartnerCity}
 	/>
 
 	<CityTrustBar items={city.hero.trustItems ?? []} />
@@ -65,15 +144,38 @@ const requestSteps = [
 	<CityIntro
 		title={city.intro.title}
 		paragraphs={city.intro.paragraphs}
-		image={city.intro.image}
+		image={introImage}
 		imageAlt={city.intro.imageAlt}
 	/>
 
 	<CityWhy title={`Waarom een partybus huren vanuit ${city.name}?`} lead={city.why.lead} items={city.why.items} />
 
-	<CityOccasions title={city.occasions.title} lead={city.occasions.lead} items={city.occasions.items} />
+	<CityOccasions
+		title={city.occasions.title}
+		lead={city.occasions.lead}
+		items={partnerOccasions}
+		partnerWhatsappHref={isNoordBrabantPartnerCity ? whatsappHref : undefined}
+	/>
 
-	<CityConversionBand cityName={city.name} whatsappHref={city.cta.whatsappHref} />
+	<CityConversionBand
+		cityName={city.name}
+		whatsappHref={whatsappHref}
+		quoteHref={quoteHref}
+		partnerMode={isNoordBrabantPartnerCity}
+	/>
+
+	{
+		isNoordBrabantPartnerCity && localPartnerIntro && (
+			<ProvincePartnerSection
+				partner={partner}
+				localIntro={localPartnerIntro}
+				provinceHref={prestigeCoachService.provincePath}
+				galleryImages={partnerCityMedia?.gallery}
+				whatsappHref={whatsappHref}
+				logo={prestigeCoachServiceLogo}
+			/>
+		)
+	}
 
 	<CityHowItWorks steps={requestSteps} />
 
@@ -93,9 +195,9 @@ const requestSteps = [
 	/>
 
 	<CityDestinations
-		title={city.locations.title}
-		lead={city.locations.lead}
-		items={city.locations.items}
+		title={partnerLocations.title}
+		lead={partnerLocations.lead}
+		items={partnerLocations.items}
 		eyebrow="Bestemmingen"
 	/>
 
@@ -120,7 +222,7 @@ const requestSteps = [
 	{relatedCities.length > 0 && <CityRelatedCities cityName={city.name} cities={relatedCities} />}
 
 	<nav class="master-city__links section__inner" aria-label="Vervolgstappen">
-		<a href="/gratis-partybus-offertes-aanvragen/">Gratis offertes aanvragen →</a>
+		<a href={quoteHref}>Gratis offertes aanvragen →</a>
 		<a href="/hoe-werkt-het/">Hoe werkt vergelijken? →</a>
 		<a href="/#diensten">Bekijk diensten →</a>
 		<a href="/gids/partybus-huren/">Meer lezen in de partybus-gids →</a>
@@ -130,14 +232,29 @@ const requestSteps = [
 	<CityCta
 		title={city.cta.title}
 		text={city.cta.text}
-		whatsappHref={city.cta.whatsappHref}
-		image={city.cta.image}
-		primaryHref="/gratis-partybus-offertes-aanvragen/"
+		whatsappHref={whatsappHref}
+		image={ctaImage}
+		primaryHref={quoteHref}
+		partnerMode={isNoordBrabantPartnerCity}
 	/>
 </div>
 <style>
 	.master-city :global(.section) {
 		padding-block: clamp(4.75rem, 10vw, 8.25rem);
+	}
+
+	.master-city--partner {
+		--color-background: #10100f;
+		--color-surface: #191813;
+		background: #10100f;
+	}
+
+	.master-city--partner > :global(.section:nth-child(odd)) {
+		background-color: #141310;
+	}
+
+	.master-city--partner > :global(.section:nth-child(even)) {
+		background-color: #1a1915;
 	}
 
 	@media (max-width: 640px) {

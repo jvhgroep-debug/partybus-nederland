@@ -4,6 +4,7 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import WhatsAppFloat from '../components/shared/WhatsAppFloat.astro';
 import { site } from '../data/settings/site';
+import type { RegionalFooterConfig } from '../data/settings/regionalFooters';
 
 interface Props {
 	title?: string;
@@ -20,6 +21,17 @@ interface Props {
 	twitterDescription?: string;
 	twitterImage?: string;
 	jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+	pageWhatsapp?: {
+		href: string;
+		label: string;
+	};
+	pageQuoteHref?: string;
+	footerAttribution?: {
+		prefix: string;
+		label: string;
+		href: string;
+	};
+	regionalFooter?: RegionalFooterConfig;
 }
 
 const {
@@ -37,6 +49,10 @@ const {
 	twitterDescription,
 	twitterImage,
 	jsonLd,
+	pageWhatsapp,
+	pageQuoteHref,
+	footerAttribution,
+	regionalFooter,
 } = Astro.props;
 const pageTitle = titleExact
 	? title
@@ -102,9 +118,14 @@ const twImage = twitterImage || socialImage;
 			<main class="site-main">
 				<slot />
 			</main>
-			<Footer />
+			<Footer
+				whatsappContact={pageWhatsapp}
+				quoteHref={pageQuoteHref}
+				attribution={footerAttribution}
+				regionalFooter={regionalFooter}
+			/>
 		</div>
-		<WhatsAppFloat />
+		<WhatsAppFloat href={pageWhatsapp?.href} label={pageWhatsapp?.label} />
 		<script>
 			const initReveal = () => {
 				const items = document.querySelectorAll('.reveal');

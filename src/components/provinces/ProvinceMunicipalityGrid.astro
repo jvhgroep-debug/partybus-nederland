@@ -1,0 +1,126 @@
+---
+import type { ProvinceMunicipality } from '../../data/provinces/noordBrabant';
+
+interface Props {
+	municipalities: ProvinceMunicipality[];
+}
+
+const { municipalities } = Astro.props;
+---
+
+<section class="section" aria-labelledby="province-municipalities-title">
+	<div class="section__inner">
+		<div class="section__head reveal">
+			<p class="section__eyebrow">Alle gemeenten</p>
+			<h2 id="province-municipalities-title" class="section__title">
+				Partybus huren in alle 56 Brabantse gemeenten
+			</h2>
+			<p class="section__lead">
+				Elke gemeente heeft een eigen pagina met informatie over partybus huren, opstapplaatsen en offertes.
+				Klik op jouw gemeente — de bestaande URL blijft ongewijzigd.
+			</p>
+		</div>
+
+		<ul class="province-municipalities reveal">
+			{municipalities.map((municipality) => (
+				<li>
+					<a class="province-municipalities__link" href={municipality.path}>
+						<span class="province-municipalities__name">{municipality.name}</span>
+						<span class="province-municipalities__arrow" aria-hidden="true">→</span>
+					</a>
+				</li>
+			))}
+		</ul>
+
+		<p class="province-municipalities__count">
+			{municipalities.length} gemeenten in Noord-Brabant
+		</p>
+	</div>
+</section>
+
+<style>
+	.province-municipalities {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.55rem;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+	}
+
+	@media (min-width: 640px) {
+		.province-municipalities {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 960px) {
+		.province-municipalities {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.province-municipalities__link {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		min-height: 100%;
+		padding: 0.95rem 1.1rem;
+		border: 1px solid var(--color-primary-line);
+		border-radius: var(--radius-md);
+		background: color-mix(in srgb, var(--color-primary) 5%, var(--color-surface));
+		box-shadow: var(--shadow-card);
+		text-decoration: none;
+		transition:
+			border-color 0.2s var(--ease-out),
+			background 0.2s var(--ease-out),
+			box-shadow 0.2s var(--ease-out),
+			transform 0.2s var(--ease-out);
+	}
+
+	.province-municipalities__link:link,
+	.province-municipalities__link:visited {
+		background: color-mix(in srgb, var(--color-primary) 5%, var(--color-surface));
+	}
+
+	.province-municipalities__link:hover,
+	.province-municipalities__link:focus-visible {
+		border-color: color-mix(in srgb, var(--color-primary) 65%, transparent);
+		background: color-mix(in srgb, var(--color-primary) 12%, var(--color-surface));
+		box-shadow:
+			var(--shadow-card),
+			0 0 28px color-mix(in srgb, var(--color-primary) 16%, transparent);
+		transform: translateY(-1px);
+	}
+
+	.province-municipalities__name {
+		font-weight: 700;
+		line-height: 1.4;
+		color: var(--color-text);
+	}
+
+	.province-municipalities__link:hover .province-municipalities__name,
+	.province-municipalities__link:focus-visible .province-municipalities__name {
+		color: var(--color-text);
+	}
+
+	.province-municipalities__arrow {
+		flex-shrink: 0;
+		font-size: 1.1rem;
+		line-height: 1;
+		color: var(--color-primary);
+		transition: transform 0.2s var(--ease-out);
+	}
+
+	.province-municipalities__link:hover .province-municipalities__arrow,
+	.province-municipalities__link:focus-visible .province-municipalities__arrow {
+		transform: translateX(2px);
+	}
+
+	.province-municipalities__count {
+		margin: 1.25rem 0 0;
+		font-size: 0.92rem;
+		color: var(--color-text-muted);
+	}
+</style>

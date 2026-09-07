@@ -3,6 +3,14 @@ import CityLayout from '../../layouts/CityLayout.astro';
 import MasterCityTemplate from '../../components/cities/MasterCityTemplate.astro';
 import { resolveCityHeroImage } from '../../lib/cityImages';
 import { ALL_CITY_SLUGS, buildCityPageData } from '../../data/cities/pilotFactory';
+import {
+	buildPrestigeCoachServiceQuoteHref,
+	buildPrestigeCoachServiceWhatsappHref,
+	prestigeCoachService,
+	resolvePrestigeCoachServiceCityMedia,
+} from '../../data/partners/prestigeCoachService';
+import { isNoordBrabantMunicipalitySlug } from '../../data/provinces/noordBrabant';
+import { noordBrabantFooter } from '../../data/settings/regionalFooters';
 
 export function getStaticPaths() {
 	/** Static city folders keep their own index.astro to preserve existing routes. */
@@ -22,7 +30,22 @@ if (!city) {
 	throw new Error(`Unknown city: ${slug}`);
 }
 
-const heroImage = resolveCityHeroImage(city.slug);
+const isNoordBrabantPartnerCity = isNoordBrabantMunicipalitySlug(city.slug);
+const defaultHeroImage = resolveCityHeroImage(city.slug);
+const heroImage = isNoordBrabantPartnerCity
+	? resolvePrestigeCoachServiceCityMedia(city.slug).hero
+	: defaultHeroImage;
+const partnerPageProps = isNoordBrabantPartnerCity
+	? {
+			pageWhatsapp: {
+				href: buildPrestigeCoachServiceWhatsappHref(city.name),
+				label: prestigeCoachService.publicProfile.whatsapp.ariaLabel,
+			},
+			pageQuoteHref: buildPrestigeCoachServiceQuoteHref(city.name, city.path),
+			footerAttribution: prestigeCoachService.footerAttribution,
+			regionalFooter: noordBrabantFooter,
+		}
+	: {};
 
 const webPageLd = {
 	'@context': 'https://schema.org',
@@ -58,7 +81,7 @@ const faqLd = {
 	})),
 };
 
-const ogImage = `https://www.partybusnederland.nl${heroImage.src}`;
+const ogImage = `https://www.partybusnederland.nl${defaultHeroImage.src}`;
 ---
 
 <CityLayout
@@ -74,6 +97,7 @@ const ogImage = `https://www.partybusnederland.nl${heroImage.src}`;
 	twitterDescription={city.metaDescription}
 	twitterImage={ogImage}
 	jsonLd={[webPageLd, breadcrumbLd, faqLd]}
+	{...partnerPageProps}
 >
 	<MasterCityTemplate city={city} />
 </CityLayout>

@@ -1,5 +1,6 @@
 ---
 import { emailSettings } from '../../data/settings/email';
+import { prestigeCoachService } from '../../data/partners/prestigeCoachService';
 
 interface Props {
 	sourcePage?: string;
@@ -9,6 +10,7 @@ interface Props {
 const { sourcePage = '/', compact = false } = Astro.props;
 const successMessage = emailSettings.successMessage;
 const errorMessage = emailSettings.errorMessage;
+const regionalPartnerId = prestigeCoachService.id;
 ---
 
 <div class:list={['quote-form', compact && 'quote-form--compact']} data-quote-form>
@@ -69,14 +71,24 @@ const errorMessage = emailSettings.errorMessage;
 	</form>
 </div>
 
-<script is:inline define:vars={{ successMessage, errorMessage }}>
+<script is:inline define:vars={{ successMessage, errorMessage, regionalPartnerId }}>
 	(function () {
 		const roots = document.querySelectorAll('[data-quote-form]');
+		const query = new URLSearchParams(window.location.search);
+		const requestedPartner = query.get('partner') === regionalPartnerId ? regionalPartnerId : '';
+		const requestedCity = requestedPartner ? String(query.get('city') || '').trim() : '';
+		const requestedSource = requestedPartner ? String(query.get('source') || '').trim() : '';
+
 		roots.forEach(function (root) {
 			const form = root.querySelector('form');
 			const status = root.querySelector('[data-form-status]');
 			const submit = root.querySelector('[type="submit"]');
 			if (!form || !status || !submit) return;
+
+			const cityInput = form.querySelector('[name="city"]');
+			if (requestedCity && cityInput && !cityInput.value) {
+				cityInput.value = requestedCity;
+			}
 
 			function setStatus(type, message) {
 				status.hidden = false;
@@ -97,6 +109,11 @@ const errorMessage = emailSettings.errorMessage;
 
 				const data = new FormData(form);
 				const payload = Object.fromEntries(data.entries());
+				if (requestedPartner) {
+					payload.partnerId = requestedPartner;
+					payload.partnerCity = requestedCity;
+					payload.sourcePage = requestedSource || window.location.pathname;
+				}
 
 				const required = ['name', 'email', 'phone', 'city'];
 				let valid = true;

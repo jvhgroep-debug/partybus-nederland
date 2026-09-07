@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import type { RegionalFooterConfig } from '../data/settings/regionalFooters';
 
 interface Props {
 	title: string;
@@ -15,6 +16,17 @@ interface Props {
 	twitterDescription?: string;
 	twitterImage?: string;
 	jsonLd: Record<string, unknown> | Record<string, unknown>[];
+	pageWhatsapp?: {
+		href: string;
+		label: string;
+	};
+	pageQuoteHref?: string;
+	footerAttribution?: {
+		prefix: string;
+		label: string;
+		href: string;
+	};
+	regionalFooter?: RegionalFooterConfig;
 }
 
 const {
@@ -31,6 +43,10 @@ const {
 	twitterDescription,
 	twitterImage,
 	jsonLd,
+	pageWhatsapp,
+	pageQuoteHref,
+	footerAttribution,
+	regionalFooter,
 } = Astro.props;
 ---
 
@@ -49,6 +65,10 @@ const {
 	twitterImage={twitterImage}
 	titleExact={true}
 	jsonLd={jsonLd}
+	pageWhatsapp={pageWhatsapp}
+	pageQuoteHref={pageQuoteHref}
+	footerAttribution={footerAttribution}
+	regionalFooter={regionalFooter}
 >
 	<slot />
 </BaseLayout>

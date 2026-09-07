@@ -26,6 +26,8 @@ export type CityOccasion = {
 	title: string;
 	text: string;
 	image: string;
+	/** Explicit detail page; null means this occasion has no suitable detail page yet. */
+	infoHref?: string | null;
 };
 
 export type CityRelatedSlug = string;

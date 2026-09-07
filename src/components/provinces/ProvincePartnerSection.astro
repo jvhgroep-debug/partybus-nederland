@@ -1,0 +1,221 @@
+---
+import type { PrestigeCoachServicePublicProfile } from '../../data/partners/prestigeCoachService';
+import type { PartnerImageAsset } from '../../data/partners/partnerMediaDistribution';
+
+interface Props {
+	partner: PrestigeCoachServicePublicProfile;
+	localIntro?: string;
+	provinceHref?: string;
+	galleryImages?: readonly PartnerImageAsset[];
+	whatsappHref?: string;
+	logo?: string;
+}
+
+const { partner, localIntro, provinceHref, galleryImages, whatsappHref, logo } = Astro.props;
+const { name, address, kvk, vatId, whatsapp, media } = partner;
+const displayedLogo = logo ?? media.logo;
+---
+
+<section class="section province-partner" aria-labelledby="province-partner-title">
+	<div class="section__inner province-partner__grid">
+		<div class="province-partner__intro reveal">
+			<p class="section__eyebrow">Partner in Noord-Brabant</p>
+			<h2 id="province-partner-title" class="section__title">{name}</h2>
+			<p class="section__lead">
+				{
+					localIntro
+						? localIntro
+						: `${name} is partner voor partybus huren in heel Noord-Brabant. Vanuit ${address.city} verzorgt dit bedrijf groepsvervoer voor feesten, festivals, bedrijfsuitjes en speciale gelegenheden in alle 56 Brabantse gemeenten.`
+				}
+			</p>
+			<ul class="province-partner__facts">
+				<li>
+					<span>Adres</span>
+					<address>
+						{address.street}<br />
+						{address.postalCode} {address.city}
+					</address>
+				</li>
+				<li><span>KVK</span><strong>{kvk}</strong></li>
+				<li><span>BTW</span><strong>{vatId}</strong></li>
+			</ul>
+			<div class="province-partner__actions">
+				<a class="btn btn--primary btn--lg" href={whatsappHref ?? whatsapp.href} target="_blank" rel="noopener noreferrer">
+					{whatsapp.label}
+				</a>
+				{
+					provinceHref && (
+						<a class="province-partner__province-link" href={provinceHref}>
+							Bekijk Partybus Noord-Brabant →
+						</a>
+					)
+				}
+			</div>
+		</div>
+
+		<div class="province-partner__media reveal">
+			{
+				displayedLogo ? (
+					<img class="province-partner__logo" src={displayedLogo} alt={`${name} logo`} loading="lazy" />
+				) : (
+					<div class="province-partner__logo-slot" data-partner-logo-slot aria-label={`Plaats voor logo ${name}`}>
+						<span class="province-partner__placeholder-label">Logo {name}</span>
+						<span class="province-partner__placeholder-note">Wordt binnenkort toegevoegd</span>
+					</div>
+				)
+			}
+
+			<div class="province-partner__gallery" aria-label="Plaatsen voor busfoto's Prestige Coach Service">
+				{
+					galleryImages && galleryImages.length > 0
+						? galleryImages.map((image) => (
+								<img
+									src={image.src}
+									alt={image.alt}
+									width={image.width}
+									height={image.height}
+									loading="lazy"
+									decoding="async"
+								/>
+							))
+						: media.gallery.length > 0
+						? media.gallery.map((src, index) => (
+								<img src={src} alt={`${name} partybus ${index + 1}`} loading="lazy" />
+							))
+						: [1, 2, 3].map((index) => (
+								<div class="province-partner__photo-slot" data-partner-photo-slot={index}>
+									<span>Busfoto {index}</span>
+									<small>Placeholder</small>
+								</div>
+							))
+				}
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.province-partner {
+		background: linear-gradient(180deg, rgba(124, 58, 237, 0.06) 0%, transparent 100%);
+	}
+
+	.province-partner__grid {
+		display: grid;
+		gap: 2rem;
+		align-items: start;
+	}
+
+	@media (min-width: 960px) {
+		.province-partner__grid {
+			grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+			gap: 2.5rem;
+		}
+	}
+
+	.province-partner__facts {
+		margin: 1.25rem 0 1.5rem;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.province-partner__facts li {
+		display: grid;
+		gap: 0.15rem;
+	}
+
+	.province-partner__facts address {
+		font-style: normal;
+		font-weight: 600;
+	}
+
+	.province-partner__facts span {
+		font-size: 0.82rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--color-text-muted);
+	}
+
+	.province-partner__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.province-partner__province-link {
+		padding: 0.75rem;
+		color: var(--color-primary);
+		font-weight: 700;
+	}
+
+	.province-partner__logo-slot,
+	.province-partner__photo-slot {
+		display: grid;
+		place-content: center;
+		text-align: center;
+		border: 1.5px dashed rgba(124, 58, 237, 0.35);
+		border-radius: 1rem;
+		background: rgba(255, 255, 255, 0.55);
+		color: var(--color-text-muted);
+	}
+
+	.province-partner__logo-slot {
+		min-height: 9rem;
+		padding: 1.25rem;
+		margin-bottom: 1rem;
+	}
+
+	.province-partner__logo {
+		display: block;
+		width: 100%;
+		height: 9rem;
+		margin-bottom: 1rem;
+		padding: 1.25rem;
+		border: 1px solid var(--color-primary-line);
+		border-radius: 1rem;
+		background: var(--color-surface);
+		object-fit: contain;
+	}
+
+	.province-partner__placeholder-label {
+		font-weight: 700;
+		color: var(--color-text);
+	}
+
+	.province-partner__placeholder-note,
+	.province-partner__photo-slot small {
+		font-size: 0.85rem;
+	}
+
+	.province-partner__gallery {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.75rem;
+	}
+
+	.province-partner__photo-slot {
+		min-height: 6.5rem;
+		padding: 0.75rem;
+		gap: 0.25rem;
+	}
+
+	.province-partner__gallery img {
+		width: 100%;
+		height: 6.5rem;
+		border-radius: 1rem;
+		object-fit: cover;
+	}
+
+	.province-partner__photo-slot span {
+		font-size: 0.82rem;
+		font-weight: 600;
+	}
+
+	@media (max-width: 640px) {
+		.province-partner__gallery {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

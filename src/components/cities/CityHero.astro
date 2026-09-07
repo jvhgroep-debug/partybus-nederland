@@ -8,9 +8,13 @@ interface Props {
 	imageAlt: string;
 	imageWidth?: number;
 	imageHeight?: number;
+	mobileImage?: string;
+	mobileImageWidth?: number;
+	mobileImageHeight?: number;
 	whatsappHref: string;
 	primaryHref?: string;
 	trustItems?: readonly string[];
+	partnerMode?: boolean;
 }
 
 const {
@@ -20,24 +24,49 @@ const {
 	imageAlt,
 	imageWidth = 1536,
 	imageHeight = 1024,
+	mobileImage,
+	mobileImageWidth = 900,
+	mobileImageHeight = 1350,
 	whatsappHref,
 	primaryHref = '/gratis-partybus-offertes-aanvragen/',
 	trustItems = [],
+	partnerMode = false,
 } = Astro.props;
 
 const trustIcons = ['compare', 'clock', 'group', 'nl'] as const;
 ---
 
-<section class="city-hero" aria-labelledby="city-hero-title">
+<section class:list={['city-hero', partnerMode && 'city-hero--partner']} aria-labelledby="city-hero-title">
 	<div class="city-hero__media">
-		<img
-			src={image}
-			alt={imageAlt}
-			width={imageWidth}
-			height={imageHeight}
-			fetchpriority="high"
-			decoding="async"
-		/>
+		{
+			mobileImage ? (
+				<picture>
+					<source
+						media="(max-width: 640px)"
+						srcset={mobileImage}
+						width={mobileImageWidth}
+						height={mobileImageHeight}
+					/>
+					<img
+						src={image}
+						alt={imageAlt}
+						width={imageWidth}
+						height={imageHeight}
+						fetchpriority="high"
+						decoding="async"
+					/>
+				</picture>
+			) : (
+				<img
+					src={image}
+					alt={imageAlt}
+					width={imageWidth}
+					height={imageHeight}
+					fetchpriority="high"
+					decoding="async"
+				/>
+			)
+		}
 		<div class="city-hero__veil" aria-hidden="true"></div>
 	</div>
 	<div class="city-hero__content section__inner">
@@ -45,21 +74,34 @@ const trustIcons = ['compare', 'clock', 'group', 'nl'] as const;
 		<h1 id="city-hero-title" class="city-hero__title">{title}</h1>
 		<p class="city-hero__subtitle">{subtitle}</p>
 		<div class="city-hero__actions">
-			<Button href={primaryHref} size="lg">Gratis offertes aanvragen</Button>
-			<a
-				class="btn btn--ghost btn--lg city-hero__wa"
-				href={whatsappHref}
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				<svg class="city-hero__wa-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-					<path
-						fill="currentColor"
-						d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
-					></path>
-				</svg>
-				<span>Direct via WhatsApp</span>
-			</a>
+			{
+				partnerMode ? (
+					<>
+						<Button href={whatsappHref} size="lg" target="_blank" rel="noopener noreferrer">
+							Vraag beschikbaarheid via WhatsApp
+						</Button>
+						<Button href={primaryHref} variant="ghost" size="lg">Gratis offertes aanvragen</Button>
+					</>
+				) : (
+					<>
+						<Button href={primaryHref} size="lg">Gratis offertes aanvragen</Button>
+						<a
+							class="btn btn--ghost btn--lg city-hero__wa"
+							href={whatsappHref}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<svg class="city-hero__wa-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+								<path
+									fill="currentColor"
+									d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+								></path>
+							</svg>
+							<span>Direct via WhatsApp</span>
+						</a>
+					</>
+				)
+			}
 		</div>
 		{
 			trustItems.length > 0 && (
@@ -123,9 +165,14 @@ const trustIcons = ['compare', 'clock', 'group', 'nl'] as const;
 		z-index: -1;
 	}
 
+	.city-hero__media picture,
 	.city-hero__media img {
 		width: 100%;
 		height: 100%;
+		display: block;
+	}
+
+	.city-hero__media img {
 		object-fit: cover;
 		object-position: center 45%;
 	}
@@ -136,6 +183,16 @@ const trustIcons = ['compare', 'clock', 'group', 'nl'] as const;
 		background:
 			radial-gradient(circle at center, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.72) 72%),
 			linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.42) 40%, rgba(0, 0, 0, 0.84) 100%);
+	}
+
+	.city-hero--partner .city-hero__veil {
+		background:
+			radial-gradient(circle at center, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.4) 78%),
+			linear-gradient(180deg, rgba(0, 0, 0, 0.28) 0%, rgba(0, 0, 0, 0.16) 42%, rgba(0, 0, 0, 0.62) 100%);
+	}
+
+	.city-hero--partner .city-hero__content {
+		text-shadow: 0 2px 18px rgba(0, 0, 0, 0.72);
 	}
 
 	.city-hero__content {

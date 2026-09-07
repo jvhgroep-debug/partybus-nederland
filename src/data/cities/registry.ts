@@ -27,15 +27,16 @@ export function getPublishedCity(slug: string): PublishedCity | undefined {
 export function getRelatedCities(
 	currentSlug: string,
 	preferredSlugs: readonly string[] = [],
+	limit = 5,
 ): PublishedCity[] {
 	const preferred = preferredSlugs
 		.map((slug) => getPublishedCity(slug))
 		.filter((city): city is PublishedCity => Boolean(city) && city.slug !== currentSlug)
-		.slice(0, 5);
+		.slice(0, limit);
 
 	if (preferred.length > 0) {
 		return preferred;
 	}
 
-	return publishedCities.filter((city) => city.slug !== currentSlug).slice(0, 5);
+	return publishedCities.filter((city) => city.slug !== currentSlug).slice(0, limit);
 }

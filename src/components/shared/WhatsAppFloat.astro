@@ -1,13 +1,23 @@
 ---
 import { whatsapp } from '../../data/settings/whatsapp';
+
+interface Props {
+	href?: string;
+	label?: string;
+}
+
+const {
+	href = whatsapp.href,
+	label = whatsapp.label,
+} = Astro.props;
 ---
 
 <a
 	class="whatsapp-float"
-	href={whatsapp.href}
+	href={href}
 	target="_blank"
 	rel="noopener noreferrer"
-	aria-label={whatsapp.label}
+	aria-label={label}
 >
 	<svg class="whatsapp-float__icon" viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" focusable="false">
 		<path

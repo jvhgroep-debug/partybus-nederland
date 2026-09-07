@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProvincePageTemplate from '../../../components/provinces/ProvincePageTemplate.astro';
+import {
+	buildPrestigeCoachServiceWhatsappHref,
+	prestigeCoachService,
+} from '../../../data/partners/prestigeCoachService';
+import {
+	getNoordBrabantMunicipalities,
+	noordBrabantProvince,
+} from '../../../data/provinces/noordBrabant';
+import {
+	buildBreadcrumbSchema,
+	buildFaqPageSchema,
+	buildWebPageSchema,
+} from '../../../lib/guides/schema';
+
+const province = noordBrabantProvince;
+const municipalities = getNoordBrabantMunicipalities();
+const partner = prestigeCoachService;
+
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Noord-Brabant', href: province.path },
+] as const;
+
+const jsonLd = [
+	buildWebPageSchema({
+		name: province.h1,
+		description: province.metaDescription,
+		url: province.canonical,
+	}),
+	buildBreadcrumbSchema(breadcrumbs),
+	buildFaqPageSchema(province.faqs),
+];
+
+const heroImage = partner.publicProfile.media.hero ?? province.heroImage;
+const socialImage = `https://www.partybusnederland.nl${heroImage}`;
+---
+
+<BaseLayout
+	title={province.title}
+	description={province.metaDescription}
+	canonical={province.canonical}
+	titleExact={true}
+	preloadImage={heroImage}
+	ogTitle={province.title}
+	ogDescription={province.metaDescription}
+	ogUrl={province.canonical}
+	ogImage={socialImage}
+	twitterTitle={province.title}
+	twitterDescription={province.metaDescription}
+	twitterImage={socialImage}
+	jsonLd={jsonLd}
+	pageWhatsapp={{
+		href: buildPrestigeCoachServiceWhatsappHref('Noord-Brabant'),
+		label: partner.publicProfile.whatsapp.ariaLabel,
+	}}
+	footerAttribution={partner.footerAttribution}
+>
+	<ProvincePageTemplate municipalities={municipalities} />
+</BaseLayout>

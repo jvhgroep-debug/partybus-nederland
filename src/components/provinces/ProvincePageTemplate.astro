@@ -1,0 +1,427 @@
+---
+import type { ProvinceMunicipality } from '../../data/provinces/noordBrabant';
+import { noordBrabantProvince } from '../../data/provinces/noordBrabant';
+import {
+	buildPrestigeCoachServiceQuoteHref,
+	buildPrestigeCoachServiceWhatsappHref,
+	prestigeCoachService,
+} from '../../data/partners/prestigeCoachService';
+import Button from '../buttons/Button.astro';
+import GuideFaqList from '../guides/GuideFaqList.astro';
+import ProvinceMunicipalityGrid from './ProvinceMunicipalityGrid.astro';
+import ProvincePartnerSection from './ProvincePartnerSection.astro';
+
+interface Props {
+	municipalities: ProvinceMunicipality[];
+}
+
+const { municipalities } = Astro.props;
+const province = noordBrabantProvince;
+const partner = prestigeCoachService.publicProfile;
+const quotePath = buildPrestigeCoachServiceQuoteHref('Noord-Brabant', province.path);
+const whatsappHref = buildPrestigeCoachServiceWhatsappHref('Noord-Brabant');
+const sectionImages = {
+	huren: {
+		src: partner.media.gallery[5] ?? partner.media.hero ?? province.heroImage,
+		width: 1200,
+		height: 800,
+		alt: 'Prestige Coach Service partybus tijdens een avondrit',
+	},
+	groepsvervoer: {
+		src: partner.media.gallery[2] ?? partner.media.hero ?? province.heroImage,
+		width: 1600,
+		height: 1067,
+		alt: 'Luxe interieur voor partybus groepsvervoer in Noord-Brabant',
+	},
+	feesten: {
+		src: partner.media.gallery[6] ?? partner.media.hero ?? province.heroImage,
+		width: 1200,
+		height: 800,
+		alt: 'Feestelijke sfeer in een partybus van Prestige Coach Service',
+	},
+	festivals: {
+		src: partner.media.gallery[7] ?? partner.media.hero ?? province.heroImage,
+		width: 1200,
+		height: 904,
+		alt: 'Groep bij een partybus voor festivalvervoer',
+	},
+	bedrijfsfeesten: {
+		src: partner.media.gallery[3] ?? partner.media.hero ?? province.heroImage,
+		width: 1600,
+		height: 1067,
+		alt: 'Premium partybusinterieur voor bedrijfsfeesten en zakelijke ritten',
+	},
+	partijen: {
+		src: partner.media.gallery[4] ?? partner.media.hero ?? province.heroImage,
+		width: 1200,
+		height: 900,
+		alt: 'Partybusinterieur met sfeervolle ledverlichting',
+	},
+} as const;
+---
+
+<article class="province-page">
+	<header class="province-hero">
+		<div class="province-hero__media" aria-hidden="true">
+			<picture>
+				{partner.media.mobile && <source media="(max-width: 640px)" srcset={partner.media.mobile} />}
+				<img
+					src={partner.media.hero ?? province.heroImage}
+					alt=""
+					width="1920"
+					height="1280"
+					fetchpriority="high"
+					decoding="async"
+				/>
+			</picture>
+			<div class="province-hero__veil"></div>
+		</div>
+		<div class="province-hero__content section__inner">
+			<nav class="province-hero__breadcrumbs" aria-label="Broodkruimel">
+				<a href="/">Home</a><span aria-hidden="true">/</span>
+				<a href={province.path} aria-current="page">{province.eyebrow}</a>
+			</nav>
+			<p class="section__eyebrow">Partybus Brabant</p>
+			<h1>{province.h1}</h1>
+			<p>{province.lead}</p>
+			<div class="province-hero__actions">
+				<Button href={whatsappHref} size="lg" target="_blank" rel="noopener noreferrer">
+					Vraag beschikbaarheid via WhatsApp
+				</Button>
+				<Button href={quotePath} variant="ghost" size="lg">Gratis offertes vergelijken</Button>
+			</div>
+			<ul class="province-hero__trust" aria-label="Voordelen">
+				<li>56 Brabantse gemeenten</li>
+				<li>Partybus groepsvervoer Noord-Brabant</li>
+				<li>Vrijblijvend vergelijken</li>
+			</ul>
+		</div>
+	</header>
+
+	<section class="section" aria-labelledby="province-huren-title">
+		<div class="section__inner province-content reveal">
+			<div class="province-content__copy">
+				<h2 id="province-huren-title" class="section__title">{province.sections.huren.title}</h2>
+				{province.sections.huren.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure class="province-content__media">
+				<img
+					src={sectionImages.huren.src}
+					alt={sectionImages.huren.alt}
+					width={sectionImages.huren.width}
+					height={sectionImages.huren.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section province-section--soft" aria-labelledby="province-groepsvervoer-title">
+		<div class="section__inner province-content province-content--reverse reveal">
+			<div class="province-content__copy">
+				<h2 id="province-groepsvervoer-title" class="section__title">{province.sections.groepsvervoer.title}</h2>
+				{province.sections.groepsvervoer.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure class="province-content__media">
+				<img
+					src={sectionImages.groepsvervoer.src}
+					alt={sectionImages.groepsvervoer.alt}
+					width={sectionImages.groepsvervoer.width}
+					height={sectionImages.groepsvervoer.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="province-feesten-title">
+		<div class="section__inner province-content reveal">
+			<div class="province-content__copy">
+				<h2 id="province-feesten-title" class="section__title">{province.sections.feesten.title}</h2>
+				{province.sections.feesten.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure class="province-content__media">
+				<img
+					src={sectionImages.feesten.src}
+					alt={sectionImages.feesten.alt}
+					width={sectionImages.feesten.width}
+					height={sectionImages.feesten.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section province-section--soft" aria-labelledby="province-festivals-title">
+		<div class="section__inner province-content province-content--reverse reveal">
+			<div class="province-content__copy">
+				<h2 id="province-festivals-title" class="section__title">{province.sections.festivals.title}</h2>
+				{province.sections.festivals.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure class="province-content__media">
+				<img
+					src={sectionImages.festivals.src}
+					alt={sectionImages.festivals.alt}
+					width={sectionImages.festivals.width}
+					height={sectionImages.festivals.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="province-bedrijfsfeesten-title">
+		<div class="section__inner province-content reveal">
+			<div class="province-content__copy">
+				<h2 id="province-bedrijfsfeesten-title" class="section__title">{province.sections.bedrijfsfeesten.title}</h2>
+				{province.sections.bedrijfsfeesten.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure class="province-content__media">
+				<img
+					src={sectionImages.bedrijfsfeesten.src}
+					alt={sectionImages.bedrijfsfeesten.alt}
+					width={sectionImages.bedrijfsfeesten.width}
+					height={sectionImages.bedrijfsfeesten.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section province-section--soft" aria-labelledby="province-partijen-title">
+		<div class="section__inner province-content province-content--reverse reveal">
+			<div class="province-content__copy">
+				<h2 id="province-partijen-title" class="section__title">{province.sections.partijen.title}</h2>
+				{province.sections.partijen.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure class="province-content__media">
+				<img
+					src={sectionImages.partijen.src}
+					alt={sectionImages.partijen.alt}
+					width={sectionImages.partijen.width}
+					height={sectionImages.partijen.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<ProvincePartnerSection partner={partner} whatsappHref={whatsappHref} />
+
+	<ProvinceMunicipalityGrid municipalities={municipalities} />
+
+	<section class="section province-cta" aria-labelledby="province-cta-title">
+		<div class="section__inner province-cta__inner reveal">
+			<p class="section__eyebrow">Offerte aanvragen</p>
+			<h2 id="province-cta-title" class="section__title">Partybus Noord-Brabant vergelijken?</h2>
+			<p class="section__lead">
+				Vul één aanvraag in voor partybus huren Brabant. Je ontvangt vrijblijvend meerdere offertes en kiest
+				zelf de aanbieder die past bij route, groep en budget.
+			</p>
+			<div class="province-cta__actions">
+				<Button href={quotePath} size="lg">Gratis offertes aanvragen</Button>
+				<Button href="/contact/" variant="ghost" size="lg">Contact opnemen</Button>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="province-faq-title">
+		<div class="section__inner">
+			<div class="section__head reveal">
+				<p class="section__eyebrow">Veelgestelde vragen</p>
+				<h2 id="province-faq-title" class="section__title">Vragen over partybus huren in Brabant</h2>
+			</div>
+			<GuideFaqList items={province.faqs} />
+		</div>
+	</section>
+</article>
+
+<style>
+	.province-page {
+		--color-background: #10100f;
+		--color-surface: #191813;
+		background: #10100f;
+	}
+
+	.province-page > :global(.section) {
+		background-color: #141310;
+	}
+
+	.province-page > :global(.section:nth-child(even)) {
+		background-color: #1a1915;
+	}
+
+	.province-hero {
+		position: relative;
+		min-height: clamp(28rem, 62vh, 38rem);
+		display: grid;
+		align-items: end;
+		padding-top: calc(var(--header-height) + 1.5rem);
+		overflow: hidden;
+	}
+
+	.province-hero__media {
+		position: absolute;
+		inset: 0;
+	}
+
+	.province-hero__media picture,
+	.province-hero__media img {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.province-hero__media img {
+		object-fit: cover;
+	}
+
+	.province-hero__veil {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(180deg, rgba(8, 7, 10, 0.2) 0%, rgba(8, 7, 10, 0.62) 82%),
+			radial-gradient(circle at 20% 20%, rgba(205, 184, 128, 0.12), transparent 55%);
+	}
+
+	.province-hero__content {
+		position: relative;
+		z-index: 1;
+		padding-bottom: clamp(2.5rem, 6vw, 4rem);
+		color: #fff;
+		text-shadow: 0 2px 18px rgba(0, 0, 0, 0.72);
+	}
+
+	.province-hero__breadcrumbs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		margin-bottom: 1rem;
+		font-size: 0.92rem;
+		color: rgba(255, 255, 255, 0.78);
+	}
+
+	.province-hero__breadcrumbs a {
+		color: inherit;
+	}
+
+	.province-hero h1 {
+		margin: 0 0 1rem;
+		max-width: 14ch;
+		font-family: var(--font-display);
+		font-size: clamp(2.2rem, 5vw, 3.6rem);
+		line-height: 1.05;
+	}
+
+	.province-hero__content > p {
+		margin: 0 0 1.5rem;
+		max-width: 44rem;
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: rgba(255, 255, 255, 0.9);
+	}
+
+	.province-hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.province-hero__trust {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem 1rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-size: 0.92rem;
+		color: rgba(255, 255, 255, 0.82);
+	}
+
+	.province-content {
+		display: grid;
+		gap: clamp(2rem, 5vw, 4.5rem);
+		align-items: center;
+	}
+
+	.province-content__copy {
+		min-width: 0;
+	}
+
+	.province-content__copy p {
+		margin: 0 0 1rem;
+		line-height: 1.75;
+		color: var(--color-text-muted);
+	}
+
+	.province-content__copy p:last-child {
+		margin-bottom: 0;
+	}
+
+	.province-content__media {
+		position: relative;
+		aspect-ratio: 4 / 3;
+		margin: 0;
+		overflow: hidden;
+		border: 1px solid var(--color-primary-line);
+		border-radius: var(--radius-lg);
+		background: var(--color-surface);
+		box-shadow:
+			var(--shadow-card),
+			0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent);
+	}
+
+	.province-content__media img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	@media (min-width: 900px) {
+		.province-content {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		}
+
+		.province-content--reverse .province-content__media {
+			order: -1;
+		}
+
+		.province-content__media {
+			aspect-ratio: 3 / 2;
+		}
+	}
+
+	.province-section--soft {
+		background:
+			linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 5%, transparent), transparent 65%),
+			#1a1915;
+	}
+
+	.province-cta {
+		background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(15, 10, 30, 0.04));
+	}
+
+	.province-cta__inner {
+		text-align: center;
+	}
+
+	.province-cta__inner .section__lead {
+		margin-inline: auto;
+	}
+
+	.province-cta__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+	}
+</style>

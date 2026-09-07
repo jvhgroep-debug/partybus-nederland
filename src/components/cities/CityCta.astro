@@ -7,9 +7,17 @@ interface Props {
 	whatsappHref: string;
 	image: string;
 	primaryHref?: string;
+	partnerMode?: boolean;
 }
 
-const { title, text, whatsappHref, image, primaryHref = '/gratis-partybus-offertes-aanvragen/' } = Astro.props;
+const {
+	title,
+	text,
+	whatsappHref,
+	image,
+	primaryHref = '/gratis-partybus-offertes-aanvragen/',
+	partnerMode = false,
+} = Astro.props;
 ---
 
 <section id="offerte-stad" class="section city-cta" aria-labelledby="city-cta-title">
@@ -23,10 +31,23 @@ const { title, text, whatsappHref, image, primaryHref = '/gratis-partybus-offert
 			<h2 id="city-cta-title" class="section__title">{title}</h2>
 			<p class="section__lead">{text}</p>
 			<div class="city-cta__actions">
-				<Button href={primaryHref} size="lg">Gratis offertes aanvragen</Button>
-				<Button href={whatsappHref} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
-					WhatsApp ons
-				</Button>
+				{
+					partnerMode ? (
+						<>
+							<Button href={whatsappHref} size="lg" target="_blank" rel="noopener noreferrer">
+								Vraag beschikbaarheid via WhatsApp
+							</Button>
+							<Button href={primaryHref} variant="ghost" size="lg">Gratis offertes aanvragen</Button>
+						</>
+					) : (
+						<>
+							<Button href={primaryHref} size="lg">Gratis offertes aanvragen</Button>
+							<Button href={whatsappHref} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
+								WhatsApp ons
+							</Button>
+						</>
+					)
+				}
 			</div>
 		</div>
 	</div>

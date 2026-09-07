@@ -8,6 +8,7 @@ import { kennisbankArticles } from '../../data/kennisbank/registry';
 import { legalNav } from '../../data/legal/pages';
 import { trustNav } from '../../data/trust/pages';
 import { servicePages } from '../../data/services/pages';
+import { provincePages } from '../../data/provinces/registry';
 import { tilburgClusterPagesSteden } from '../../data/tilburg/clusterPagesSteden';
 
 const title = 'HTML-sitemap | Partybus Nederland';
@@ -85,6 +86,17 @@ const mainPages = [
 				{servicePages.map((service) => (
 					<li>
 						<a href={service.path}>{service.h1}</a>
+					</li>
+				))}
+			</ul>
+		</section>
+
+		<section>
+			<h2>Provincies</h2>
+			<ul>
+				{provincePages.map((page) => (
+					<li>
+						<a href={page.path}>{page.h1}</a>
 					</li>
 				))}
 			</ul>
