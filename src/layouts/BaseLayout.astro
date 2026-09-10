@@ -5,6 +5,10 @@ import Footer from '../components/layout/Footer.astro';
 import WhatsAppFloat from '../components/shared/WhatsAppFloat.astro';
 import { site } from '../data/settings/site';
 import type { RegionalFooterConfig } from '../data/settings/regionalFooters';
+import {
+	PARTNER_WHATSAPP_TRACKING_ENDPOINT,
+	type PartnerWhatsappTrackingContext,
+} from '../lib/partnerWhatsappTracking';
 
 interface Props {
 	title?: string;
@@ -32,6 +36,7 @@ interface Props {
 		href: string;
 	};
 	regionalFooter?: RegionalFooterConfig;
+	partnerWhatsappTracking?: PartnerWhatsappTrackingContext;
 }
 
 const {
@@ -53,7 +58,14 @@ const {
 	pageQuoteHref,
 	footerAttribution,
 	regionalFooter,
+	partnerWhatsappTracking,
 } = Astro.props;
+const partnerWhatsappTrackingConfig = partnerWhatsappTracking
+	? {
+			...partnerWhatsappTracking,
+			endpoint: PARTNER_WHATSAPP_TRACKING_ENDPOINT,
+		}
+	: null;
 const pageTitle = titleExact
 	? title
 	: title === site.name
@@ -123,9 +135,25 @@ const twImage = twitterImage || socialImage;
 				quoteHref={pageQuoteHref}
 				attribution={footerAttribution}
 				regionalFooter={regionalFooter}
+				partnerWhatsappTracking={partnerWhatsappTracking}
 			/>
 		</div>
-		<WhatsAppFloat href={pageWhatsapp?.href} label={pageWhatsapp?.label} />
+		<WhatsAppFloat
+			href={pageWhatsapp?.href}
+			label={pageWhatsapp?.label}
+			partnerWhatsappTracking={partnerWhatsappTracking}
+		/>
+		{
+			partnerWhatsappTrackingConfig && (
+				<>
+					<script
+						is:inline
+						set:html={`window.__PARTNER_WHATSAPP_TRACKING__ = ${JSON.stringify(partnerWhatsappTrackingConfig)};`}
+					/>
+					<script src="/scripts/partner-whatsapp-track.js" defer />
+				</>
+			)
+		}
 		<script>
 			const initReveal = () => {
 				const items = document.querySelectorAll('.reveal');

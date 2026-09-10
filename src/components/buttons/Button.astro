@@ -1,4 +1,6 @@
 ---
+import type { PartnerWhatsappButtonType } from '../../lib/partnerWhatsappTracking';
+
 interface Props {
 	href: string;
 	variant?: 'primary' | 'ghost';
@@ -6,6 +8,7 @@ interface Props {
 	class?: string;
 	target?: string;
 	rel?: string;
+	partnerWhatsappButtonType?: PartnerWhatsappButtonType;
 }
 
 const {
@@ -15,6 +18,7 @@ const {
 	class: className,
 	target,
 	rel,
+	partnerWhatsappButtonType,
 } = Astro.props;
 ---
 
@@ -23,6 +27,8 @@ const {
 	href={href}
 	target={target}
 	rel={rel}
+	data-partner-whatsapp={partnerWhatsappButtonType ? 'true' : undefined}
+	data-button-type={partnerWhatsappButtonType}
 >
 	<slot />
 </a>

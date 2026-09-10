@@ -11,6 +11,7 @@ import {
 } from '../../data/partners/prestigeCoachService';
 import { isNoordBrabantMunicipalitySlug } from '../../data/provinces/noordBrabant';
 import { noordBrabantFooter } from '../../data/settings/regionalFooters';
+import { buildNoordBrabantWhatsappTrackingContext } from '../../lib/partnerWhatsappTracking';
 
 export function getStaticPaths() {
 	/** Static city folders keep their own index.astro to preserve existing routes. */
@@ -44,6 +45,12 @@ const partnerPageProps = isNoordBrabantPartnerCity
 			pageQuoteHref: buildPrestigeCoachServiceQuoteHref(city.name, city.path),
 			footerAttribution: prestigeCoachService.footerAttribution,
 			regionalFooter: noordBrabantFooter,
+			partnerWhatsappTracking: buildNoordBrabantWhatsappTrackingContext({
+				municipalitySlug: city.slug,
+				municipalityName: city.name,
+				pagePath: city.path,
+				pageType: 'municipality',
+			}),
 		}
 	: {};
 

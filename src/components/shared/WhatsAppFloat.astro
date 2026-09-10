@@ -1,14 +1,17 @@
 ---
 import { whatsapp } from '../../data/settings/whatsapp';
+import type { PartnerWhatsappTrackingContext } from '../../lib/partnerWhatsappTracking';
 
 interface Props {
 	href?: string;
 	label?: string;
+	partnerWhatsappTracking?: PartnerWhatsappTrackingContext;
 }
 
 const {
 	href = whatsapp.href,
 	label = whatsapp.label,
+	partnerWhatsappTracking,
 } = Astro.props;
 ---
 
@@ -18,6 +21,8 @@ const {
 	target="_blank"
 	rel="noopener noreferrer"
 	aria-label={label}
+	data-partner-whatsapp={partnerWhatsappTracking ? 'true' : undefined}
+	data-button-type={partnerWhatsappTracking ? 'float' : undefined}
 >
 	<svg class="whatsapp-float__icon" viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" focusable="false">
 		<path

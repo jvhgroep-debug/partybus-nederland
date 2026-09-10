@@ -40,7 +40,14 @@ const displayedLogo = logo ?? media.logo;
 				<li><span>BTW</span><strong>{vatId}</strong></li>
 			</ul>
 			<div class="province-partner__actions">
-				<a class="btn btn--primary btn--lg" href={whatsappHref ?? whatsapp.href} target="_blank" rel="noopener noreferrer">
+				<a
+					class="btn btn--primary btn--lg"
+					href={whatsappHref ?? whatsapp.href}
+					target="_blank"
+					rel="noopener noreferrer"
+					data-partner-whatsapp="true"
+					data-button-type="partner-section"
+				>
 					{whatsapp.label}
 				</a>
 				{

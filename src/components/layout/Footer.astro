@@ -8,6 +8,7 @@ import { gidsenPath } from '../../data/gidsen/registry';
 import { trustNav, footerLegalNav } from '../../data/trust/pages';
 import { servicePages } from '../../data/services/pages';
 import type { RegionalFooterConfig } from '../../data/settings/regionalFooters';
+import type { PartnerWhatsappTrackingContext } from '../../lib/partnerWhatsappTracking';
 import Button from '../buttons/Button.astro';
 
 interface Props {
@@ -22,6 +23,7 @@ interface Props {
 		href: string;
 	};
 	regionalFooter?: RegionalFooterConfig;
+	partnerWhatsappTracking?: PartnerWhatsappTrackingContext;
 }
 
 const {
@@ -32,6 +34,7 @@ const {
 	quoteHref = primaryCta.href,
 	attribution,
 	regionalFooter,
+	partnerWhatsappTracking,
 } = Astro.props;
 const year = new Date().getFullYear();
 const navigationLinks = regionalFooter?.navigation ?? mainNav;
@@ -70,7 +73,15 @@ const cityLinks = regionalFooter?.locations ?? publishedCities.slice(0, 6).map((
 						{navigationLinks.map((item) => (
 							<a href={item.href}>{item.label}</a>
 						))}
-						<a href={whatsappContact.href} target="_blank" rel="noopener noreferrer">{whatsappContact.label}</a>
+						<a
+							href={whatsappContact.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							data-partner-whatsapp={partnerWhatsappTracking ? 'true' : undefined}
+							data-button-type={partnerWhatsappTracking ? 'footer' : undefined}
+						>
+							{whatsappContact.label}
+						</a>
 					</div>
 				</>
 			) : (
@@ -106,7 +117,15 @@ const cityLinks = regionalFooter?.locations ?? publishedCities.slice(0, 6).map((
 					<div class="site-footer__col">
 						<p class="site-footer__heading">Contact</p>
 						<a href="/contact/">Contactpagina</a>
-						<a href={whatsappContact.href} target="_blank" rel="noopener noreferrer">{whatsappContact.label}</a>
+						<a
+							href={whatsappContact.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							data-partner-whatsapp={partnerWhatsappTracking ? 'true' : undefined}
+							data-button-type={partnerWhatsappTracking ? 'footer' : undefined}
+						>
+							{whatsappContact.label}
+						</a>
 						<a href={quoteHref}>{primaryCta.label}</a>
 						<a href="/over-ons/">Over ons</a>
 					</div>

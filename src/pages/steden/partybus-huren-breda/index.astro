@@ -10,6 +10,7 @@ import {
 } from '../../../data/partners/prestigeCoachService';
 import { noordBrabantFooter } from '../../../data/settings/regionalFooters';
 import { resolveCityHeroImage } from '../../../lib/cityImages';
+import { buildNoordBrabantWhatsappTrackingContext } from '../../../lib/partnerWhatsappTracking';
 
 const heroImage = resolvePrestigeCoachServiceCityMedia(city.slug).hero;
 const originalHeroImage = resolveCityHeroImage(city.slug);
@@ -89,6 +90,12 @@ const ogImage = `https://www.partybusnederland.nl${originalHeroImage.src}`;
 	pageQuoteHref={buildPrestigeCoachServiceQuoteHref(city.name, city.path)}
 	footerAttribution={prestigeCoachService.footerAttribution}
 	regionalFooter={noordBrabantFooter}
+	partnerWhatsappTracking={buildNoordBrabantWhatsappTrackingContext({
+		municipalitySlug: city.slug,
+		municipalityName: city.name,
+		pagePath: city.path,
+		pageType: 'municipality',
+	})}
 >
 	<MasterCityTemplate city={city} />
 </CityLayout>

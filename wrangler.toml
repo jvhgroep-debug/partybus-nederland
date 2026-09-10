@@ -1,5 +1,12 @@
 # Cloudflare Pages / Workers — optional local wrangler config
 name = "partybus-nederland"
+account_id = "b28570cf21aaad1c2f09a48d99063922"
 compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "./dist"
+
+[[d1_databases]]
+binding = "PARTNER_ANALYTICS"
+database_name = "partybus-partner-analytics"
+database_id = "2364f225-a736-42fe-b7c9-a1fe2498bf7d"
+preview_database_id = "2364f225-a736-42fe-b7c9-a1fe2498bf7d"
