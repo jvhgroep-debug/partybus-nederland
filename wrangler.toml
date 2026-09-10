@@ -1,6 +1,5 @@
 # Cloudflare Pages / Workers — optional local wrangler config
 name = "partybus-nederland"
-account_id = "b28570cf21aaad1c2f09a48d99063922"
 compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "./dist"
