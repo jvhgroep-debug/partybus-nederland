@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import GuideBreadcrumbs from '../../components/guides/GuideBreadcrumbs.astro';
 import GuideCta from '../../components/guides/GuideCta.astro';
 import Button from '../../components/buttons/Button.astro';
+import QuoteForm from '../../components/forms/QuoteForm.astro';
 import { overOnsPage, buildAboutPageSchema, buildOrganizationSchema } from '../../data/trust/pages';
 import { guideImagePool } from '../../data/guides/guideImages';
 import { buildBreadcrumbSchema } from '../../lib/guides/schema';
@@ -39,15 +39,40 @@ const jsonLd = [
 	jsonLd={jsonLd}
 >
 	<article class="trust-page">
-		<GuideBreadcrumbs items={breadcrumbs} />
-
-		<header class="trust-page__hero section__inner">
-			<p class="section__eyebrow">Vertrouwen</p>
-			<h1 class="trust-page__title">{page.h1}</h1>
-			<p class="trust-page__lead">{page.lead}</p>
-			<div class="trust-page__actions">
-				<Button href="/gratis-partybus-offertes-aanvragen/" size="lg">Gratis offertes aanvragen</Button>
-				<a class="btn btn--ghost btn--lg" href="/hoe-werkt-het/">Hoe werkt het?</a>
+		<header class="over-ons-hero">
+			<div class="section__inner over-ons-hero__grid">
+				<div class="over-ons-hero__main">
+					<div class="over-ons-hero__copy">
+						<nav class="over-ons-hero__breadcrumbs" aria-label="Broodkruimel">
+							<a href="/">Home</a>
+							<span aria-hidden="true">/</span>
+							<a href={page.path} aria-current="page">Over ons</a>
+						</nav>
+						<p class="section__eyebrow">Vertrouwen</p>
+						<h1 class="over-ons-hero__title">{page.h1}</h1>
+						<p class="over-ons-hero__lead">{page.lead}</p>
+						<div class="over-ons-hero__actions">
+							<Button href="/gratis-partybus-offertes-aanvragen/" size="lg">
+								Gratis offertes aanvragen
+							</Button>
+							<a class="btn btn--ghost btn--lg" href="/hoe-werkt-het/">Hoe werkt het?</a>
+						</div>
+					</div>
+					<figure class="over-ons-hero__photo">
+						<img
+							src="/images/partybus-verhuur.png"
+							alt="Partybus Nederland"
+							width="1672"
+							height="941"
+							fetchpriority="high"
+							decoding="async"
+						/>
+					</figure>
+				</div>
+				<div id="offerte" class="over-ons-hero__form">
+					<p class="over-ons-hero__form-eyebrow">Offerteaanvraag</p>
+					<QuoteForm sourcePage="/over-ons/" />
+				</div>
 			</div>
 		</header>
 
@@ -122,33 +147,155 @@ const jsonLd = [
 </BaseLayout>
 
 <style>
-	.trust-page__hero {
-		padding-top: calc(var(--header-height) + 1.25rem);
-		padding-bottom: 1.5rem;
+	.trust-page {
+		overflow-x: clip;
 	}
 
-	.trust-page__title {
+	.over-ons-hero {
+		padding-top: calc(var(--header-height) + 1.25rem);
+		padding-bottom: clamp(2rem, 5vw, 3.5rem);
+	}
+
+	.over-ons-hero__grid {
+		display: grid;
+		gap: 1.5rem;
+		min-width: 0;
+	}
+
+	.over-ons-hero__main,
+	.over-ons-hero__copy,
+	.over-ons-hero__photo,
+	.over-ons-hero__form {
+		min-width: 0;
+	}
+
+	.over-ons-hero__main {
+		display: grid;
+		gap: 1.35rem;
+		align-content: start;
+	}
+
+	.over-ons-hero__title {
 		margin: 0 0 1rem;
 		max-width: 16ch;
 		font-family: var(--font-display);
-		font-size: clamp(2rem, 5vw, 3rem);
+		font-size: clamp(2.1rem, 5vw, 3.4rem);
 		font-weight: 800;
-		line-height: 1.06;
+		line-height: 1.08;
 		letter-spacing: -0.03em;
+		color: #141414;
 	}
 
-	.trust-page__lead {
-		margin: 0 0 1.5rem;
-		max-width: 44rem;
-		font-size: 1.08rem;
-		line-height: 1.65;
-		color: color-mix(in srgb, var(--color-text) 88%, transparent);
+	.over-ons-hero__lead {
+		margin: 0 0 1.4rem;
+		max-width: 42rem;
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: #4f4f4b;
 	}
 
-	.trust-page__actions {
+	.over-ons-hero__breadcrumbs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		margin-bottom: 1rem;
+		font-size: 0.92rem;
+		color: #4f4f4b;
+	}
+
+	.over-ons-hero__breadcrumbs a {
+		color: inherit;
+	}
+
+	.over-ons-hero__actions {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.75rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.over-ons-hero__photo {
+		margin: 0;
+		width: 100%;
+		max-width: 36rem;
+		padding: 0.85rem;
+		overflow: hidden;
+		border: 1px solid var(--color-primary-line);
+		border-radius: var(--radius-lg);
+		background: #ffffff;
+		box-shadow: 0 10px 28px rgba(20, 20, 20, 0.06);
+	}
+
+	.over-ons-hero__photo img {
+		display: block;
+		width: 100%;
+		max-height: 24rem;
+		aspect-ratio: 3 / 2;
+		object-fit: cover;
+		object-position: center;
+		border-radius: calc(var(--radius-lg) - 0.4rem);
+		background: #ececea;
+	}
+
+	@media (min-width: 960px) {
+		.over-ons-hero__grid {
+			grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+			align-items: start;
+			gap: 2rem;
+		}
+	}
+
+	.over-ons-hero__form {
+		scroll-margin-top: calc(var(--header-height) + 0.75rem);
+		width: 100%;
+		padding: clamp(1.15rem, 3vw, 1.6rem);
+		border: 1px solid color-mix(in srgb, var(--color-primary) 28%, #e8e4d8);
+		border-radius: var(--radius-lg);
+		background: #fbfaf6;
+		box-shadow: 0 10px 28px rgba(20, 20, 20, 0.06);
+		--color-text: #141414;
+		--color-text-muted: #4f4f4b;
+		color: #141414;
+	}
+
+	.over-ons-hero__form-eyebrow {
+		margin: 0 0 0.85rem;
+		font-family: var(--font-display);
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--color-primary);
+	}
+
+	.over-ons-hero__form :global(.quote-form) {
+		max-width: none;
+	}
+
+	.over-ons-hero__form :global(.quote-form__field) {
+		color: #141414;
+	}
+
+	.over-ons-hero__form :global(.quote-form__field input),
+	.over-ons-hero__form :global(.quote-form__field textarea) {
+		background: #ffffff;
+		color: #141414;
+	}
+
+	.over-ons-hero__form :global(.quote-form__note) {
+		color: #4f4f4b;
+	}
+
+	.over-ons-hero__form :global(.quote-form__status--success) {
+		border: 1px solid color-mix(in srgb, #2e7d32 45%, transparent);
+		background: color-mix(in srgb, #2e7d32 10%, #ffffff);
+		color: #1b5e20;
+	}
+
+	.over-ons-hero__form :global(.quote-form__status--error) {
+		border: 1px solid color-mix(in srgb, #c62828 45%, transparent);
+		background: color-mix(in srgb, #c62828 10%, #ffffff);
+		color: #8a1f1f;
 	}
 
 	.trust-page :global(.section) {
@@ -177,7 +324,7 @@ const jsonLd = [
 	}
 
 	@media (max-width: 640px) {
-		.trust-page__actions :global(.btn) {
+		.over-ons-hero__actions :global(.btn) {
 			width: 100%;
 			justify-content: center;
 		}
