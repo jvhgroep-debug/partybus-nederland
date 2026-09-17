@@ -24,7 +24,7 @@ const {
 	class: className,
 } = Astro.props;
 
-const srcset = buildGuideImageSrcset(image);
+const srcset = image.src.startsWith('/images/guides/') ? buildGuideImageSrcset(image) : undefined;
 ---
 
 <figure class:list={['guide-image', `guide-image--${variant}`, className]}>

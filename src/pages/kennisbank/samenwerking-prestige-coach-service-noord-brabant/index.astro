@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import MasterKennisbankArticle from '../../../components/kennisbank/MasterKennisbankArticle.astro';
+import { samenwerkingPrestigeNoordBrabant } from '../../../data/kennisbank/articles/samenwerkingPrestigeNoordBrabant';
+import {
+	buildArticleSchema,
+	buildBreadcrumbSchema,
+	buildFaqPageSchema,
+} from '../../../lib/guides/schema';
+
+const article = samenwerkingPrestigeNoordBrabant;
+
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Kennisbank', href: '/kennisbank/' },
+	{ label: article.h1 },
+] as const;
+
+const ogImage = `https://www.partybusnederland.nl${article.heroImage.src}`;
+
+const jsonLd = [
+	buildArticleSchema({
+		headline: article.h1,
+		description: article.metaDescription,
+		url: article.canonical,
+		datePublished: '2026-09-17',
+		dateModified: '2026-09-17',
+	}),
+	buildBreadcrumbSchema(breadcrumbs),
+	buildFaqPageSchema(article.faqs),
+];
+---
+
+<BaseLayout
+	title={article.seoTitle}
+	description={article.metaDescription}
+	canonical={article.canonical}
+	titleExact={true}
+	preloadImage={article.heroImage.src}
+	ogTitle={article.seoTitle}
+	ogDescription={article.metaDescription}
+	ogUrl={article.canonical}
+	ogImage={ogImage}
+	twitterTitle={article.seoTitle}
+	twitterDescription={article.metaDescription}
+	twitterImage={ogImage}
+	jsonLd={jsonLd}
+>
+	<MasterKennisbankArticle article={article} />
+</BaseLayout>
