@@ -131,7 +131,7 @@ export const tourgoPartybussen = {
 		name: 'Tourgo Partybussen',
 		website: {
 			href: websiteUrl,
-			label: 'Bezoek website',
+			label: 'Bekijk Tourgo Partybussen',
 		},
 		email,
 		phone: {

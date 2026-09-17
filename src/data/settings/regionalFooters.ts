@@ -9,6 +9,8 @@ export type RegionalFooterConfig = {
 	id: string;
 	compact?: boolean;
 	ctaLabel?: string;
+	ctaHref?: string;
+	brandText?: string;
 	navigation: readonly FooterLink[];
 	locationHeading: string;
 	locations: readonly FooterLink[];
@@ -53,10 +55,13 @@ export const noordBrabantFooter: RegionalFooterConfig = {
 export const zuidHollandFooter: RegionalFooterConfig = {
 	id: 'zuid-holland',
 	compact: true,
-	ctaLabel: 'Gratis offertes',
+	ctaLabel: 'Bekijk Tourgo Partybussen',
+	ctaHref: 'https://www.tourgo.nl/',
+	brandText:
+		'PartybusNederland.nl werkt in Zuid-Holland samen met Tourgo Partybussen. Neem rechtstreeks contact op voor de mogelijkheden.',
 	navigation: [
 		{ label: 'Home', href: '/' },
-		{ label: 'Hoe werkt het', href: '/hoe-werkt-het/' },
+		{ label: 'Partybus Zuid-Holland', href: '/provincies/zuid-holland/' },
 		{ label: 'Over ons', href: '/over-ons/' },
 		{ label: 'Contact', href: '/contact/' },
 	],

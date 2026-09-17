@@ -9,6 +9,19 @@ import {
 	tourgoPartybussenLogo,
 } from '../../data/partners/tourgoPartybussen';
 import {
+	applyTourgoMunicipalityCopy,
+	tourgoBookingTips,
+	tourgoCityInfoLead,
+	tourgoConversionCopy,
+	tourgoHowItWorks,
+	tourgoPlanningChecklist,
+	tourgoPricingCards,
+	tourgoTipsLead,
+	tourgoWebsiteHref,
+	tourgoWebsiteLabel,
+	tourgoWhatsappLabel,
+} from '../../data/partners/tourgoCityCopy';
+import {
 	getZuidHollandNeighborSlugs,
 	isZuidHollandMunicipalitySlug,
 } from '../../data/provinces/zuidHolland';
@@ -28,26 +41,20 @@ import CityRelatedCities from './CityRelatedCities.astro';
 import CityCta from './CityCta.astro';
 import InfoGuide from '../shared/InfoGuide.astro';
 import RegionalPartnerSection from '../partners/RegionalPartnerSection.astro';
-import {
-	bookingTips,
-	cityInfoLead,
-	compareChecklist,
-	pricingFactors,
-} from '../../data/guides/partybusInfo';
 
 interface Props {
 	city: CityPageData;
 }
 
-const { city } = Astro.props;
-if (!isZuidHollandMunicipalitySlug(city.slug)) {
-	throw new Error(`ZuidHollandPartnerCityTemplate used for non-ZH city: ${city.slug}`);
+const { city: incomingCity } = Astro.props;
+if (!isZuidHollandMunicipalitySlug(incomingCity.slug)) {
+	throw new Error(`ZuidHollandPartnerCityTemplate used for non-ZH city: ${incomingCity.slug}`);
 }
+const city = applyTourgoMunicipalityCopy(incomingCity);
 const relatedCities = getRelatedCities(city.slug, getZuidHollandNeighborSlugs(city.slug), 5);
 const partnerCityMedia = resolveTourgoCityMedia(city.slug);
 const heroImage = partnerCityMedia.hero;
 const whatsappHref = buildTourgoWhatsappHref(city.name);
-const quoteHref = '/gratis-partybus-offertes-aanvragen/';
 const localPartnerIntro = buildTourgoLocalIntro(city.name, city.slug);
 const partnerOccasions = city.occasions.items.map((item, index) => ({
 	...item,
@@ -57,20 +64,8 @@ const partnerOccasions = city.occasions.items.map((item, index) => ({
 const introImage = partnerCityMedia.gallery[0].src;
 const ctaImage = partnerCityMedia.gallery[2 % partnerCityMedia.gallery.length].src;
 const partnerGallery = partnerCityMedia.gallery.slice(0, 4);
-const requestSteps = [
-	{
-		title: 'Deel jullie rit',
-		text: `Vul datum, groepsgrootte, opstapplaats in ${city.name}, bestemming en gewenste tijden in.`,
-	},
-	{
-		title: 'Vergelijk voorstellen',
-		text: 'Bekijk prijs, buscapaciteit, faciliteiten en voorwaarden van passende aanbieders naast elkaar.',
-	},
-	{
-		title: 'Kies zelf',
-		text: 'Je aanvraag is vrijblijvend. Jij bepaalt welke aanbieder het beste past en maakt de boeking rechtstreeks rond.',
-	},
-] as const;
+const requestSteps = tourgoHowItWorks(city.name, city.slug);
+const conversionCopy = tourgoConversionCopy(city.name, city.slug);
 ---
 
 <div class="master-city master-city--zh-light zh-partner-page">
@@ -85,9 +80,11 @@ const requestSteps = [
 		mobileImageWidth={partnerCityMedia.mobileHero.width}
 		mobileImageHeight={partnerCityMedia.mobileHero.height}
 		whatsappHref={whatsappHref}
-		primaryHref={quoteHref}
+		primaryHref={tourgoWebsiteHref}
 		trustItems={city.hero.trustItems}
 		partnerMode={true}
+		whatsappLabel={tourgoWhatsappLabel}
+		ghostLabel={tourgoWebsiteLabel}
 	/>
 
 	<CityTrustBar items={city.hero.trustItems ?? []} />
@@ -106,13 +103,18 @@ const requestSteps = [
 		lead={city.occasions.lead}
 		items={partnerOccasions}
 		partnerWhatsappHref={whatsappHref}
+		partnerWhatsappLabel="WhatsApp Tourgo →"
 	/>
 
 	<CityConversionBand
 		cityName={city.name}
 		whatsappHref={whatsappHref}
-		quoteHref={quoteHref}
+		quoteHref={tourgoWebsiteHref}
 		partnerMode={true}
+		eyebrow={conversionCopy.eyebrow}
+		headline={conversionCopy.headline}
+		whatsappLabel={tourgoWhatsappLabel}
+		ghostLabel={tourgoWebsiteLabel}
 	/>
 
 	<RegionalPartnerSection
@@ -125,14 +127,19 @@ const requestSteps = [
 		enableWhatsappTracking={true}
 	/>
 
-	<CityHowItWorks steps={requestSteps} />
+	<CityHowItWorks
+		eyebrow="Contact"
+		title={`Hoe regel je een partybus vanuit ${city.name}?`}
+		steps={requestSteps}
+	/>
 
 	<InfoGuide
 		eyebrow="Informatie"
 		title={`Partybus vanuit ${city.name}: prijzen & tips`}
-		lead={cityInfoLead(city.name)}
-		cards={pricingFactors}
-		checklist={compareChecklist}
+		lead={tourgoCityInfoLead(city.name, city.slug)}
+		cards={tourgoPricingCards}
+		checklist={tourgoPlanningChecklist}
+		checklistTitle="Waar je op let bij Tourgo"
 	/>
 
 	<CityPickupLocations
@@ -159,8 +166,8 @@ const requestSteps = [
 	<InfoGuide
 		eyebrow="Tips"
 		title={`Praktische tips voor een rit vanuit ${city.name}`}
-		lead={`Zo bereid je een partybusrit vanuit ${city.name} goed voor â€” van route tot voorwaarden.`}
-		cards={bookingTips}
+		lead={tourgoTipsLead(city.name, city.slug)}
+		cards={tourgoBookingTips}
 	/>
 
 	<CityFaq items={city.faqs} cityName={city.name} />
@@ -168,11 +175,19 @@ const requestSteps = [
 	{relatedCities.length > 0 && <CityRelatedCities cityName={city.name} cities={relatedCities} />}
 
 	<nav class="master-city__links section__inner" aria-label="Vervolgstappen">
-		<a href={quoteHref}>Gratis offertes aanvragen â†’</a>
-		<a href="/hoe-werkt-het/">Hoe werkt vergelijken? â†’</a>
-		<a href="/#diensten">Bekijk diensten â†’</a>
-		<a href="/gids/partybus-huren/">Meer lezen in de partybus-gids â†’</a>
-		<a href="/kennisbank/">Naar de kennisbank â†’</a>
+		<a
+			href={whatsappHref}
+			target="_blank"
+			rel="noopener noreferrer"
+			data-partner-whatsapp="true"
+			data-button-type="cta"
+		>
+			WhatsApp Tourgo →
+		</a>
+		<a href={tourgoWebsiteHref} target="_blank" rel="noopener noreferrer">Bekijk Tourgo Partybussen →</a>
+		<a href="/provincies/zuid-holland/">Partybus Zuid-Holland →</a>
+		<a href="/gids/partybus-huren/">Meer lezen in de partybus-gids →</a>
+		<a href="/kennisbank/">Naar de kennisbank →</a>
 	</nav>
 
 	<CityCta
@@ -180,7 +195,9 @@ const requestSteps = [
 		text={city.cta.text}
 		whatsappHref={whatsappHref}
 		image={ctaImage}
-		primaryHref={quoteHref}
+		primaryHref={tourgoWebsiteHref}
 		partnerMode={true}
+		whatsappLabel={tourgoWhatsappLabel}
+		ghostLabel={tourgoWebsiteLabel}
 	/>
 </div>

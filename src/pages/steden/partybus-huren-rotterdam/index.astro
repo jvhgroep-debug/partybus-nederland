@@ -1,16 +1,18 @@
 ---
 import CityLayout from '../../../layouts/CityLayout.astro';
 import ZuidHollandPartnerCityTemplate from '../../../components/cities/ZuidHollandPartnerCityTemplate.astro';
-import { rotterdamCity as city } from '../../../data/cities/rotterdam';
+import { rotterdamCity as rotterdamSource } from '../../../data/cities/rotterdam';
 import {
 	buildTourgoWhatsappHref,
 	resolveTourgoCityMedia,
 	tourgoPartybussen,
 } from '../../../data/partners/tourgoPartybussen';
+import { applyTourgoMunicipalityCopy } from '../../../data/partners/tourgoCityCopy';
 import { zuidHollandFooter } from '../../../data/settings/regionalFooters';
 import { resolveCityHeroImage } from '../../../lib/cityImages';
 import { buildZuidHollandWhatsappTrackingContext } from '../../../lib/partnerWhatsappTracking';
 
+const city = applyTourgoMunicipalityCopy(rotterdamSource);
 const heroImage = resolveTourgoCityMedia(city.slug).hero;
 const originalHeroImage = resolveCityHeroImage(city.slug);
 

@@ -19,7 +19,7 @@ interface Props {
 const { municipalities } = Astro.props;
 const province = zuidHollandProvince;
 const partner = tourgoPartybussen.publicProfile;
-const quotePath = '/gratis-partybus-offertes-aanvragen/';
+const websiteHref = partner.website.href;
 const whatsappHref = buildTourgoWhatsappHref('Zuid-Holland');
 const gallery = tourgoPartybussenCityMedia.gallery;
 const sectionImages = {
@@ -66,12 +66,14 @@ const sectionImages = {
 				>
 					WhatsApp Tourgo
 				</Button>
-				<Button href={quotePath} variant="ghost" size="lg">Gratis offertes vergelijken</Button>
+				<Button href={websiteHref} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
+					Bekijk Tourgo Partybussen
+				</Button>
 			</div>
 			<ul class="province-hero__trust" aria-label="Voordelen">
 				<li>{municipalities.length} Zuid-Hollandse gemeenten</li>
 				<li>Partner: Tourgo Partybussen</li>
-				<li>Vrijblijvend vergelijken</li>
+				<li>Rechtstreeks contact met Tourgo</li>
 			</ul>
 		</div>
 	</header>
@@ -228,11 +230,11 @@ const sectionImages = {
 
 	<section class="section" aria-labelledby="province-cta-title">
 		<div class="section__inner zh-province__cta">
-			<p class="section__eyebrow">Offerte aanvragen</p>
-			<h2 id="province-cta-title" class="section__title">Partybus Zuid-Holland vergelijken?</h2>
+			<p class="section__eyebrow">Contact met Tourgo</p>
+			<h2 id="province-cta-title" class="section__title">Partybus huren in Zuid-Holland</h2>
 			<p class="section__lead">
-				Vul één aanvraag in. Je ontvangt vrijblijvend offertes en kiest zelf de aanbieder. Voor directe vragen
-				aan de Zuid-Holland-partner gebruik je WhatsApp Tourgo.
+				PartybusNederland.nl werkt in Zuid-Holland samen met Tourgo Partybussen. Voor een partybus,
+				groepsvervoer of een vraag over de mogelijkheden neem je rechtstreeks contact op met Tourgo.
 			</p>
 			<div class="zh-province__cta-actions">
 				<Button
@@ -244,7 +246,9 @@ const sectionImages = {
 				>
 					WhatsApp Tourgo
 				</Button>
-				<Button href={quotePath} variant="ghost" size="lg">Gratis offertes aanvragen</Button>
+				<Button href={websiteHref} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
+					Bekijk Tourgo Partybussen
+				</Button>
 			</div>
 		</div>
 	</section>

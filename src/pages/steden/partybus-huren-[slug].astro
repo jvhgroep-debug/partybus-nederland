@@ -15,6 +15,7 @@ import {
 	resolveTourgoCityMedia,
 	tourgoPartybussen,
 } from '../../data/partners/tourgoPartybussen';
+import { applyTourgoMunicipalityCopy } from '../../data/partners/tourgoCityCopy';
 import { isNoordBrabantMunicipalitySlug } from '../../data/provinces/noordBrabant';
 import { isZuidHollandMunicipalitySlug } from '../../data/provinces/zuidHolland';
 import { noordBrabantFooter, zuidHollandFooter } from '../../data/settings/regionalFooters';
@@ -36,13 +37,16 @@ if (!slug) {
 	throw new Error('Missing city slug');
 }
 
-const city = buildCityPageData(slug);
-if (!city) {
+const generatedCity = buildCityPageData(slug);
+if (!generatedCity) {
 	throw new Error(`Unknown city: ${slug}`);
 }
 
-const isNoordBrabantPartnerCity = isNoordBrabantMunicipalitySlug(city.slug);
-const isZuidHollandPartnerCity = isZuidHollandMunicipalitySlug(city.slug);
+const isNoordBrabantPartnerCity = isNoordBrabantMunicipalitySlug(generatedCity.slug);
+const isZuidHollandPartnerCity = isZuidHollandMunicipalitySlug(generatedCity.slug);
+const city = isZuidHollandPartnerCity
+	? applyTourgoMunicipalityCopy(generatedCity)
+	: generatedCity;
 const defaultHeroImage = resolveCityHeroImage(city.slug);
 const heroImage = isNoordBrabantPartnerCity
 	? resolvePrestigeCoachServiceCityMedia(city.slug).hero

@@ -224,12 +224,12 @@ export const zuidHollandProvince = {
 	slug: 'zuid-holland',
 	path: '/provincies/zuid-holland/',
 	canonical: 'https://www.partybusnederland.nl/provincies/zuid-holland/',
-	title: 'Partybus Zuid-Holland | Huren, groepsvervoer & offertes vergelijken',
+	title: 'Partybus huren in Zuid-Holland | Tourgo Partybussen',
 	metaDescription:
-		'Partybus huren in Zuid-Holland? Tourgo Partybussen is partner voor feestvervoer in de provincie. Bekijk gemeenten van Rotterdam tot Den Haag en Leiden.',
+		'Partybus huren in Zuid-Holland? PartybusNederland.nl werkt samen met Tourgo Partybussen. Neem rechtstreeks contact op voor groepsvervoer van Rotterdam tot Den Haag en Leiden.',
 	h1: 'Partybus huren in Zuid-Holland',
 	eyebrow: 'Zuid-Holland',
-	lead: 'Van Rotterdam tot Den Haag en van Leiden tot Dordrecht: vergelijk partybus Zuid-Holland voor groepsvervoer, feesten, festivals en zakelijke ritten. Tourgo Partybussen is de regionale partner.',
+	lead: 'PartybusNederland.nl werkt in Zuid-Holland samen met Tourgo Partybussen. Voor een partybus, groepsvervoer of een vraag over de mogelijkheden neem je rechtstreeks contact op met Tourgo.',
 	heroImage: '/images/partners/tourgo-partybussen/tourgo-partybussen-hero.webp',
 	heroImageAlt: 'Tourgo Partybussen partybus voor groepsvervoer in Zuid-Holland',
 	sections: {
@@ -237,8 +237,8 @@ export const zuidHollandProvince = {
 			title: 'Partybus huren in Zuid-Holland',
 			paragraphs: [
 				'Zuid-Holland combineert grote steden, kust, havens en festivals in één compacte provincie. Of je nu vertrekt vanuit Rotterdam, Den Haag, Leiden, Delft of een kleinere gemeente: partybus huren Zuid-Holland begint met een duidelijke route, groepsgrootte en planning.',
-				'Via Partybus Nederland vergelijk je vrijblijvend meerdere aanbieders. Je geeft één keer datum, opstapplaats, bestemming en aantal personen door. Aanbieders reageren met een voorstel: van compacte feestbus tot XXL-groepsvervoer.',
-				'De prijs hangt af van route, ritduur, datum, wachttijd en faciliteiten. Vergelijk niet alleen het totaalbedrag, maar ook capaciteit, muziek, verlichting en voorwaarden.',
+				'PartybusNederland.nl werkt in Zuid-Holland samen met Tourgo Partybussen. Je neemt rechtstreeks contact op: van compacte feestbus tot XXL-groepsvervoer, afgestemd op datum, opstapplaats, bestemming en aantal personen.',
+				'De prijs hangt af van route, ritduur, datum, wachttijd en faciliteiten. Stem met Tourgo ook capaciteit, muziek, verlichting en voorwaarden af, niet alleen het totaalbedrag.',
 			],
 		},
 		groepsvervoer: {
@@ -260,7 +260,7 @@ export const zuidHollandProvince = {
 			title: 'Festivals en lange dagen uit',
 			paragraphs: [
 				'Zuid-Holland ligt gunstig voor festivalvervoer: groepen vertrekken naar evenementen in de provincie, in Brabant, Flevoland of België. Samen aankomen en samen terugrijden voorkomt parkeergedoe.',
-				'Controleer zelf tickets, toegang en officiële buszones. Vermeld in je aanvraag of je bagage, koelboxen of extra stops nodig hebt.',
+				'Controleer zelf tickets, toegang en officiële buszones. Vermeld bij Tourgo of je bagage, koelboxen of extra stops nodig hebt.',
 			],
 		},
 		bedrijfsfeesten: {
@@ -274,7 +274,7 @@ export const zuidHollandProvince = {
 			title: 'Verjaardagen en vrijgezellenfeesten',
 			paragraphs: [
 				'Verjaardagen, vrijgezellenfeesten en jubilea combineren vaak diner, activiteit en uitgaan. Een partybus maakt meerdere stops haalbaar zonder dat de groep uit elkaar valt.',
-				'Populaire routes lopen van woonwijk of hotel naar centrum, feestlocatie of festival. Geef wensen over sfeer en faciliteiten direct mee in je aanvraag.',
+				'Populaire routes lopen van woonwijk of hotel naar centrum, feestlocatie of festival. Geef wensen over sfeer en faciliteiten direct mee als je Tourgo benadert.',
 			],
 		},
 	},
@@ -282,17 +282,17 @@ export const zuidHollandProvince = {
 		{
 			question: 'Kan ik in elke Zuid-Hollandse gemeente een partybus aanvragen?',
 			answer:
-				'Ja. Partybus Nederland heeft bestaande gemeentepagina’s voor alle 50 gemeenten in Zuid-Holland. Kies je gemeente in het overzicht of vraag via het offerteformulier vrijblijvend offertes aan.',
+				'Ja. PartybusNederland.nl heeft bestaande gemeentepagina’s voor alle 50 gemeenten in Zuid-Holland. Kies je gemeente in het overzicht en neem rechtstreeks contact op met Tourgo Partybussen, de partner voor de provincie.',
 		},
 		{
 			question: 'Wie is de partybuspartner voor Zuid-Holland?',
 			answer:
-				'Tourgo Partybussen is de regionale partner voor Zuid-Holland. Je kunt rechtstreeks contact opnemen via WhatsApp of de website van Tourgo bezoeken. Offertes via het formulier behandelen we in een volgende stap.',
+				'Tourgo Partybussen is de partner en aanbieder voor Zuid-Holland. Je neemt rechtstreeks contact op via WhatsApp of de website van Tourgo.',
 		},
 		{
 			question: 'Wat kost partybus huren in Zuid-Holland?',
 			answer:
-				'De prijs hangt af van datum, route, ritduur, wachttijd, groepsgrootte en type bus. Er is geen vaste prijs per provincie. Vergelijk meerdere offertes om prijs, capaciteit en voorwaarden naast elkaar te leggen.',
+				'De prijs hangt af van datum, route, ritduur, wachttijd, groepsgrootte en type bus. Er is geen vaste prijs per provincie. Tourgo geeft de mogelijkheden door op basis van jullie rit.',
 		},
 		{
 			question: 'Gaat de WhatsApp-knop naar Tourgo?',

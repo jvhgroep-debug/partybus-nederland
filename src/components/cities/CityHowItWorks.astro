@@ -6,16 +6,18 @@ interface Step {
 
 interface Props {
 	steps: readonly Step[];
+	eyebrow?: string;
+	title?: string;
 }
 
-const { steps } = Astro.props;
+const { steps, eyebrow = 'Aanvraag', title = 'Hoe werkt een aanvraag?' } = Astro.props;
 ---
 
 <section class="section" aria-labelledby="city-how-title">
 	<div class="section__inner">
 		<div class="section__head reveal">
-			<p class="section__eyebrow">Aanvraag</p>
-			<h2 id="city-how-title" class="section__title">Hoe werkt een aanvraag?</h2>
+			<p class="section__eyebrow">{eyebrow}</p>
+			<h2 id="city-how-title" class="section__title">{title}</h2>
 		</div>
 		<ol class="city-how__grid">
 			{
