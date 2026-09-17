@@ -263,7 +263,7 @@ export const noordBrabantProvince = {
 		'Partybus huren in Noord-Brabant? Vergelijk partybus Brabant voor groepsvervoer, feesten, festivals en bedrijfsuitjes. Offertes voor alle 56 gemeenten in Brabant.',
 	h1: 'Partybus huren in Noord-Brabant',
 	eyebrow: 'Noord-Brabant',
-	lead: 'Van Eindhoven tot Breda en van Tilburg tot Baarle-Nassau: vergelijk partybus Brabant voor groepsvervoer, feesten, festivals en zakelijke ritten. Eén aanvraag, meerdere offertes — in alle 56 Brabantse gemeenten.',
+	lead: 'Van Eindhoven tot Breda en van Tilburg tot Baarle-Nassau: PartybusNederland.nl werkt in Noord-Brabant samen met Prestige Coach Service voor groepsvervoer, feesten, festivals en zakelijke ritten — in alle 56 Brabantse gemeenten.',
 	heroImage: '/images/hero-partybus.png',
 	heroImageAlt: 'Partybus voor groepsvervoer in Noord-Brabant',
 	sections: {
@@ -271,15 +271,15 @@ export const noordBrabantProvince = {
 			title: 'Partybus huren in Noord-Brabant',
 			paragraphs: [
 				'Noord-Brabant is één van de populairste provincies voor groepsritten: grote steden, festivals in Brabant en grensoverschrijdende bestemmingen liggen binnen handbereik via A2, A50, A58 en A59. Of je nu vertrekt vanuit Eindhoven, Breda, Tilburg, Den Bosch of een kleinere gemeente — partybus huren Brabant begint met een duidelijke route, groepsgrootte en planning.',
-				'Via Partybus Nederland vergelijk je vrijblijvend meerdere aanbieders voor partybus Noord-Brabant. Je geeft één keer je datum, opstapplaats, bestemming en aantal personen door. Aanbieders reageren met een voorstel op maat: van compacte feestbus tot luxe groepsvoertuig voor groepen tot maximaal 80 personen.',
-				'De prijs hangt af van route, ritduur, datum, wachttijd en faciliteiten. Vergelijk daarom niet alleen het totaalbedrag, maar ook capaciteit, muziek, verlichting en voorwaarden. Zo kies je een partybus die past bij jullie avond, festivalweekend of zakelijk programma.',
+				'PartybusNederland.nl werkt in Noord-Brabant samen met Prestige Coach Service. Je geeft één keer je datum, opstapplaats, bestemming en aantal personen door. Prestige Coach Service reageert met een voorstel op maat: van compacte feestbus tot luxe groepsvoertuig voor groepen tot maximaal 80 personen.',
+				'De prijs hangt af van route, ritduur, datum, wachttijd en faciliteiten. Stem met Prestige Coach Service ook capaciteit, muziek, verlichting en voorwaarden af, niet alleen het totaalbedrag. Zo sluit de partybus aan bij jullie avond, festivalweekend of zakelijk programma.',
 			],
 		},
 		groepsvervoer: {
 			title: 'Partybus groepsvervoer Noord-Brabant',
 			paragraphs: [
 				'Partybus groepsvervoer Noord-Brabant houdt je gezelschap bij elkaar van vertrek tot thuiskomst. Niemand hoeft als vaste chauffeur op te treden en niemand hoeft te wachten op losse taxi\'s of ingewikkelde ov-combinaties. Dat maakt de formule aantrekkelijk voor vriendengroepen, families, collega\'s en verenigingen.',
-				'Praktisch werkt één centraal verzamelpunt het best: station, centrum of een locatie aan de rand van de gemeente. Geef alle adressen, tussenstops en terugtijden vooraf door. Hoe concreter je aanvraag, hoe sneller je passende offertes ontvangt voor partybus huren Noord-Brabant.',
+				'Praktisch werkt één centraal verzamelpunt het best: station, centrum of een locatie aan de rand van de gemeente. Geef alle adressen, tussenstops en terugtijden vooraf door. Hoe concreter je aanvraag, hoe sneller Prestige Coach Service een passend voorstel kan doen voor partybus huren Noord-Brabant.',
 				'Brabantse groepen reizen regelmatig naar uitgaanslocaties in de Randstad, feestlocaties in Limburg, attracties zoals de Efteling of festivals over de grens. Een partybus maakt zulke ritten overzichtelijk: één voertuig, één contactpersoon, één terugplan.',
 			],
 		},
@@ -308,18 +308,18 @@ export const noordBrabantProvince = {
 			title: 'Verjaardagen en vrijgezellenfeesten',
 			paragraphs: [
 				'Verjaardagen, vrijgezellenfeesten en jubilea in Brabant combineren vaak diner, activiteit en uitgaan op één avond. Een partybus maakt meerdere stops haalbaar zonder dat de groep uit elkaar valt. Vraag vooraf naar capaciteit, muziek en of meerdere opstapplaatsen binnen dezelfde gemeente mogelijk zijn.',
-				'Populaire routes lopen van woonwijk of hotel naar centrum, feestlocatie of festival. Geef wensen over sfeer en faciliteiten direct mee in je aanvraag — dan vergelijk je offertes die echt bij jullie feest passen.',
+				'Populaire routes lopen van woonwijk of hotel naar centrum, feestlocatie of festival. Geef wensen over sfeer en faciliteiten direct mee in je aanvraag — dan kan Prestige Coach Service een voorstel doen dat bij jullie feest past.',
 			],
 		},
 	},
 	faqs: [
 		{
 			question: 'Kan ik in elke Brabantse gemeente een partybus huren?',
-			answer: 'Ja. Partybus Nederland dekt alle 56 gemeenten in Noord-Brabant. Kies je gemeente in het overzicht op deze pagina en vraag daar of via het centrale offerteformulier vrijblijvend offertes aan.',
+			answer: 'Ja. Partybus Nederland dekt alle 56 gemeenten in Noord-Brabant. Kies je gemeente in het overzicht op deze pagina of vul het aanvraagformulier in. Je aanvraag gaat naar Prestige Coach Service.',
 		},
 		{
 			question: 'Wat kost partybus huren in Noord-Brabant?',
-			answer: 'De prijs hangt af van datum, route, ritduur, wachttijd, groepsgrootte en type bus. Er is geen vaste prijs per provincie. Vergelijk meerdere offertes om prijs, capaciteit en voorwaarden naast elkaar te leggen.',
+			answer: 'De prijs hangt af van datum, route, ritduur, wachttijd, groepsgrootte en type bus. Er is geen vaste prijs per provincie. Prestige Coach Service geeft de mogelijkheden door op basis van jullie rit.',
 		},
 		{
 			question: 'Wat is het verschil tussen partybus Brabant en partybus Noord-Brabant?',

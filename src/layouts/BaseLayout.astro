@@ -78,7 +78,7 @@ const pathname = Astro.url.pathname.endsWith('/') || Astro.url.pathname === '/'
 const resolvedCanonical =
 	canonical ??
 	(pathname.includes('404') ? undefined : `https://www.partybusnederland.nl${pathname}`);
-const heroPreload = preloadImage || (isHome ? '/images/hero-partybus.png' : undefined);
+const heroPreload = preloadImage || (isHome ? '/images/partybus-nederland-hero-feest.webp' : undefined);
 const jsonLdPayload = jsonLd
 	? Array.isArray(jsonLd)
 		? jsonLd

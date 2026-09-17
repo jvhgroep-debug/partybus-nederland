@@ -2,10 +2,8 @@
 import type { ProvinceMunicipality } from '../../data/provinces/noordBrabant';
 import { noordBrabantProvince } from '../../data/provinces/noordBrabant';
 import {
-	buildPrestigeCoachServiceQuoteHref,
 	buildPrestigeCoachServiceWhatsappHref,
 	prestigeCoachService,
-	prestigeCoachServiceCityMedia,
 	prestigeCoachServiceLogo,
 } from '../../data/partners/prestigeCoachService';
 import Button from '../buttons/Button.astro';
@@ -21,9 +19,13 @@ interface Props {
 const { municipalities } = Astro.props;
 const province = noordBrabantProvince;
 const partner = prestigeCoachService.publicProfile;
-const quotePath = buildPrestigeCoachServiceQuoteHref('Noord-Brabant', province.path);
 const whatsappHref = buildPrestigeCoachServiceWhatsappHref('Noord-Brabant');
-const heroPhoto = prestigeCoachServiceCityMedia.desktopHeroes[0];
+const heroPhoto = {
+	src: '/images/partybus-nederland-hero-feest.webp',
+	width: 1200,
+	height: 800,
+	alt: 'Feest in een partybus van Prestige Coach Service, met zanger en gasten',
+};
 const sectionImages = {
 	huren: {
 		src: partner.media.gallery[5] ?? partner.media.hero ?? province.heroImage,
@@ -76,7 +78,7 @@ const sectionImages = {
 		trustItems={[
 			'56 Brabantse gemeenten',
 			'Partybus groepsvervoer Noord-Brabant',
-			'Vrijblijvend vergelijken',
+			'Partner: Prestige Coach Service',
 		]}
 		whatsappHref={whatsappHref}
 		whatsappLabel="Vraag beschikbaarheid via WhatsApp"
@@ -86,8 +88,8 @@ const sectionImages = {
 		photo={heroPhoto}
 		sourcePage={province.path}
 		defaultCity="Noord-Brabant"
-		formTitle="Partybus Noord-Brabant vergelijken?"
-		formLead="Vul één aanvraag in voor partybus huren Brabant. Je ontvangt vrijblijvend meerdere offertes en kiest zelf de aanbieder die past bij route, groep en budget."
+		formTitle="Partybus aanvragen in Noord-Brabant?"
+		formLead="Vul je aanvraag in voor partybusvervoer in Noord-Brabant. Je aanvraag wordt doorgestuurd naar onze partner Prestige Coach Service."
 	/>
 
 	<section class="section" aria-labelledby="province-huren-title">
@@ -211,13 +213,13 @@ const sectionImages = {
 	<section class="section province-cta" aria-labelledby="province-cta-title">
 		<div class="section__inner province-cta__inner reveal">
 			<p class="section__eyebrow">Offerte aanvragen</p>
-			<h2 id="province-cta-title" class="section__title">Partybus Noord-Brabant vergelijken?</h2>
+			<h2 id="province-cta-title" class="section__title">Partybus aanvragen in Noord-Brabant?</h2>
 			<p class="section__lead">
-				Vul één aanvraag in voor partybus huren Brabant. Je ontvangt vrijblijvend meerdere offertes en kiest
-				zelf de aanbieder die past bij route, groep en budget.
+				Vul je aanvraag in voor partybusvervoer in Noord-Brabant. Je aanvraag wordt doorgestuurd naar onze
+				partner Prestige Coach Service.
 			</p>
 			<div class="province-cta__actions">
-				<Button href={quotePath} size="lg">Gratis offertes aanvragen</Button>
+				<Button href="#offerte" size="lg">Offerte aanvragen</Button>
 				<Button href="/contact/" variant="ghost" size="lg">Contact opnemen</Button>
 			</div>
 		</div>
@@ -238,6 +240,23 @@ const sectionImages = {
 	.province-page {
 		background: var(--color-background);
 		color: var(--color-text);
+	}
+
+	.province-page :global(img.pq-hero__logo) {
+		width: min(100%, 36rem);
+		max-width: 36rem;
+		height: auto;
+		aspect-ratio: 1015 / 194;
+		padding: 0.7rem 1rem;
+		object-fit: contain;
+		object-position: center;
+		background: #141414;
+		border: 1px solid color-mix(in srgb, var(--color-primary) 40%, #333);
+		box-sizing: border-box;
+	}
+
+	.province-page :global(.pq-hero__photo img) {
+		object-position: center 42%;
 	}
 
 	.province-content {

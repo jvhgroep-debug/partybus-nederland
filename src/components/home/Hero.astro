@@ -18,6 +18,7 @@ interface Props {
 	scrollHref?: string;
 	titleId?: string;
 	imageLoading?: 'eager' | 'lazy';
+	imagePosition?: string;
 }
 
 const {
@@ -35,10 +36,11 @@ const {
 	scrollHref = '#vertrouwen',
 	titleId = 'hero-title',
 	imageLoading,
+	imagePosition,
 } = Astro.props;
 ---
 
-<section class="hero" aria-labelledby={titleId}>
+<section class:list={['hero', image.includes('hero-feest') && 'hero--feest']} aria-labelledby={titleId}>
 	<div class="hero__media" aria-hidden="true">
 		<img
 			src={image}
@@ -48,6 +50,7 @@ const {
 			loading={imageLoading}
 			fetchpriority="high"
 			decoding="async"
+			style={imagePosition ? `object-position: ${imagePosition}` : undefined}
 		/>
 		<div class="hero__veil"></div>
 	</div>
@@ -118,6 +121,12 @@ const {
 		background:
 			radial-gradient(ellipse 58% 52% at 50% 46%, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0.12) 62%, transparent 78%),
 			linear-gradient(180deg, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0.08) 38%, rgba(0, 0, 0, 0.18) 62%, rgba(0, 0, 0, 0.48) 100%);
+	}
+
+	.hero--feest .hero__veil {
+		background:
+			radial-gradient(ellipse 62% 58% at 50% 42%, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.22) 58%, transparent 78%),
+			linear-gradient(180deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0.16) 38%, rgba(0, 0, 0, 0.28) 62%, rgba(0, 0, 0, 0.58) 100%);
 	}
 
 	.hero__content {
@@ -240,6 +249,10 @@ const {
 			background: rgba(0, 0, 0, 0.28);
 			border-color: rgba(255, 255, 255, 0.55);
 			backdrop-filter: blur(6px);
+		}
+
+		.hero--feest .hero__media img {
+			filter: none;
 		}
 	}
 
