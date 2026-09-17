@@ -6,17 +6,32 @@ interface Props {
 	sourcePage?: string;
 	compact?: boolean;
 	defaultCity?: string;
+	/** Only set on explicit Prestige territory forms. Never default this globally. */
+	partnerId?: string;
+	partnerCity?: string;
+	submitLabel?: string;
 }
 
-const { sourcePage = '/', compact = false, defaultCity } = Astro.props;
+const {
+	sourcePage = '/',
+	compact = false,
+	defaultCity,
+	partnerId,
+	partnerCity,
+	submitLabel = 'Gratis offertes aanvragen',
+} = Astro.props;
 const successMessage = emailSettings.successMessage;
 const errorMessage = emailSettings.errorMessage;
-const regionalPartnerId = prestigeCoachService.id;
+const prestigePartnerId = prestigeCoachService.id;
+const configuredPartnerId = partnerId === prestigePartnerId ? prestigePartnerId : '';
+const configuredPartnerCity = configuredPartnerId ? (partnerCity ?? defaultCity ?? '').trim() : '';
 ---
 
 <div class:list={['quote-form', compact && 'quote-form--compact']} data-quote-form>
 	<form class="quote-form__form" novalidate>
 		<input type="hidden" name="sourcePage" value={sourcePage} />
+		{configuredPartnerId && <input type="hidden" name="partnerId" value={configuredPartnerId} />}
+		{configuredPartnerCity && <input type="hidden" name="partnerCity" value={configuredPartnerCity} />}
 		{/* Honeypot — verborgen voor gebruikers */}
 		<label class="quote-form__hp" aria-hidden="true">
 			Website
@@ -64,7 +79,7 @@ const regionalPartnerId = prestigeCoachService.id;
 
 		<div class="quote-form__actions">
 			<button type="submit" class="btn btn--primary btn--lg quote-form__submit">
-				Gratis offertes aanvragen
+				{submitLabel}
 			</button>
 		</div>
 
@@ -72,12 +87,15 @@ const regionalPartnerId = prestigeCoachService.id;
 	</form>
 </div>
 
-<script is:inline define:vars={{ successMessage, errorMessage, regionalPartnerId }}>
+<script is:inline define:vars={{ successMessage, errorMessage, prestigePartnerId, configuredPartnerId, configuredPartnerCity }}>
 	(function () {
 		const roots = document.querySelectorAll('[data-quote-form]');
 		const query = new URLSearchParams(window.location.search);
-		const requestedPartner = query.get('partner') === regionalPartnerId ? regionalPartnerId : '';
-		const requestedCity = requestedPartner ? String(query.get('city') || '').trim() : '';
+		const queryPartner = query.get('partner') === prestigePartnerId ? prestigePartnerId : '';
+		const requestedPartner = configuredPartnerId || queryPartner;
+		const requestedCity = requestedPartner
+			? (configuredPartnerCity || String(query.get('city') || '').trim())
+			: '';
 		const requestedSource = requestedPartner ? String(query.get('source') || '').trim() : '';
 
 		roots.forEach(function (root) {

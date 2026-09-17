@@ -15,7 +15,18 @@ import {
 import { getTilburgClusterVisuals } from '../../../data/tilburg/clusterVisuals';
 import { buildTilburgClusterNavLinks } from '../../../lib/tilburgClusterLinks';
 import { resolveCityHeroImage } from '../../../lib/cityImages';
-import { whatsapp } from '../../../data/settings/whatsapp';
+import {
+	buildPrestigeCoachServiceQuoteHref,
+	buildPrestigeCoachServiceWhatsappHref,
+	prestigeCoachService,
+} from '../../../data/partners/prestigeCoachService';
+import { applyPrestigeTilburgClusterCopy } from '../../../data/partners/prestigeTilburgClusterCopy';
+import {
+	prestigeCtaLabel,
+	prestigeWhatsappLabel,
+} from '../../../data/partners/prestigeCityCopy';
+import { noordBrabantFooter } from '../../../data/settings/regionalFooters';
+import { buildNoordBrabantWhatsappTrackingContext } from '../../../lib/partnerWhatsappTracking';
 import {
 	buildBreadcrumbSchema,
 	buildFaqPageSchema,
@@ -31,11 +42,18 @@ export function getStaticPaths() {
 const { onderwerp } = Astro.params;
 if (!onderwerp) throw new Error('Missing Tilburg cluster onderwerp');
 
-const page = getTilburgClusterPageSteden(onderwerp);
-if (!page) throw new Error(`Unknown Tilburg cluster page: ${onderwerp}`);
+const sourcePage = getTilburgClusterPageSteden(onderwerp);
+if (!sourcePage) throw new Error(`Unknown Tilburg cluster page: ${onderwerp}`);
 
+const page = applyPrestigeTilburgClusterCopy(sourcePage);
+const quoteHref = buildPrestigeCoachServiceQuoteHref('Tilburg', page.path);
+const whatsappHref = buildPrestigeCoachServiceWhatsappHref('Tilburg');
 const visuals = getTilburgClusterVisuals(page.slug);
-const navLinks = buildTilburgClusterNavLinks(page);
+const navLinks = buildTilburgClusterNavLinks(page).map((link) =>
+	link.href === TILBURG_QUOTE_PATH
+		? { href: quoteHref, label: prestigeCtaLabel }
+		: link,
+);
 const heroImage = resolveCityHeroImage('tilburg');
 
 const breadcrumbs = [
@@ -67,6 +85,19 @@ const jsonLd = [
 	twitterTitle={page.title}
 	twitterDescription={page.description}
 	jsonLd={jsonLd}
+	pageWhatsapp={{
+		href: whatsappHref,
+		label: prestigeCoachService.publicProfile.whatsapp.ariaLabel,
+	}}
+	pageQuoteHref={quoteHref}
+	footerAttribution={prestigeCoachService.footerAttribution}
+	regionalFooter={noordBrabantFooter}
+	partnerWhatsappTracking={buildNoordBrabantWhatsappTrackingContext({
+		municipalitySlug: 'tilburg',
+		municipalityName: 'Tilburg',
+		pagePath: page.path,
+		pageType: 'municipality',
+	})}
 >
 	<article class="tilburg-cluster-page">
 		<div class="tilburg-cluster-page__hero-wrap">
@@ -92,12 +123,15 @@ const jsonLd = [
 				imageAlt={heroImage.alt}
 				imageWidth={heroImage.width}
 				imageHeight={heroImage.height}
-				whatsappHref={whatsapp.href}
-				primaryHref={TILBURG_QUOTE_PATH}
+				whatsappHref={whatsappHref}
+				primaryHref={quoteHref}
+				partnerMode={true}
+				whatsappLabel={prestigeWhatsappLabel}
+				ghostLabel={prestigeCtaLabel}
 				trustItems={[
-					'Gratis offertes vergelijken',
+					'Prestige Coach Service, partner Noord-Brabant',
+					'Aanvraag vanuit Tilburg gaat naar deze partner',
 					'Snelle reactie via WhatsApp',
-					'Door heel Nederland',
 					'Vrijblijvend aanvragen',
 				]}
 			/>
@@ -127,7 +161,7 @@ const jsonLd = [
 
 		<CityWhy
 			title={`Voordelen van ${page.navLabel.toLowerCase()}`}
-			lead="Waarom groepen in Tilburg via Partybus Nederland vergelijken."
+			lead="Waarom groepen in Tilburg een partybus aanvragen via Prestige Coach Service."
 			items={visuals.benefits}
 		/>
 
@@ -141,16 +175,18 @@ const jsonLd = [
 		<GuideFaqList
 			eyebrow="FAQ"
 			title={`Veelgestelde vragen over ${page.navLabel.toLowerCase()}`}
-			lead="Korte antwoorden die je helpen een scherpere offerteaanvraag te doen."
+			lead="Korte antwoorden die helpen om de rit met Prestige Coach Service scherp voor te bereiden."
 			items={page.faqs}
 		/>
 
 		<GuideCta
-			title="Klaar om partybussen voor Tilburg te vergelijken?"
-			lead="Vul je ritgegevens in en ontvang vrijblijvend voorstellen van passende aanbieders."
-			primaryHref={TILBURG_QUOTE_PATH}
-			primaryLabel="Naar het offerteformulier"
-			showWhatsapp={false}
+			title="Klaar om een partybus voor Tilburg aan te vragen?"
+			lead="Vul je ritgegevens in. PartybusNederland.nl werkt in Noord-Brabant samen met Prestige Coach Service; een aanvraag vanuit Tilburg gaat naar deze partner."
+			primaryHref={quoteHref}
+			primaryLabel={prestigeCtaLabel}
+			whatsappHref={whatsappHref}
+			whatsappLabel={prestigeWhatsappLabel}
+			showWhatsapp={true}
 		/>
 	</article>
 </BaseLayout>

@@ -59,7 +59,7 @@ const GROUP_VISUALS: Record<
 		benefits: [
 			{ icon: 'party', title: 'Rijdende feestsfeer', text: 'Muziek, licht en een privebus - jullie groep blijft bij elkaar van Tilburg tot de bestemming.' },
 			{ icon: 'group', title: 'Een verzamelpunt', text: 'Spoorzone, centrum of station: kies een duidelijke opstapplek zodat niemand hoeft te zoeken.' },
-			{ icon: 'route', title: 'Route op maat', text: 'Heen, terug of met tussenstops - zet je wensen vast in de aanvraag voor vergelijkbare offertes.' },
+			{ icon: 'route', title: 'Route op maat', text: 'Heen, terug of met tussenstops - zet je wensen vast in de aanvraag bij Prestige Coach Service.' },
 		],
 		attentionPoints: [
 			{ icon: 'clock', title: 'Plan buffer in', text: 'Reken op tien tot vijftien minuten extra rond drukke Tilburgse avonden en evenementen.' },
@@ -73,9 +73,9 @@ const GROUP_VISUALS: Record<
 	},
 	celebration: {
 		benefits: [
-			{ icon: 'party', title: 'Passend bij jullie moment', text: 'Vrijgezellenfeest, verjaardag of gala - vergelijk bussen die passen bij dresscode en groepsgrootte.' },
+			{ icon: 'party', title: 'Passend bij jullie moment', text: 'Vrijgezellenfeest, verjaardag of gala - kies een bus die past bij dresscode en groepsgrootte.' },
 			{ icon: 'group', title: 'Groep bij elkaar', text: 'Iedereen reist tegelijk vanuit Tilburg; geen losse taxis of wachtrijen bij het station.' },
-			{ icon: 'clock', title: 'Tijden vastleggen', text: 'Noteer vertrek, stops en eindtijd zodat aanbieders een passend voorstel kunnen doen.' },
+			{ icon: 'clock', title: 'Tijden vastleggen', text: 'Noteer vertrek, stops en eindtijd zodat Prestige Coach Service een passend voorstel kan doen.' },
 		],
 		attentionPoints: [
 			{ icon: 'route', title: 'Stops expliciet maken', text: 'Foto-stop of horeca-tussenstop? Vermeld duur en locatie in je aanvraag.' },
@@ -121,12 +121,12 @@ const GROUP_VISUALS: Record<
 	},
 	capacity: {
 		benefits: [
-			{ icon: 'size', title: 'Juiste busgrootte', text: 'Vergelijk voertuigen op zitplaatsen en staanplaatsen - passend bij jullie exacte groepsaantal.' },
+			{ icon: 'size', title: 'Juiste busgrootte', text: 'Kies een voertuig op zitplaatsen en staanplaatsen - passend bij jullie exacte groepsaantal.' },
 			{ icon: 'group', title: 'Comfort voor iedereen', text: 'Te klein voelt krap; te groot kan onnodig kosten. Kies de bandbreedte die klopt.' },
 			{ icon: 'route', title: 'Een voertuig', text: 'Een bus houdt de groep bij elkaar in plaats van meerdere autos of taxis.' },
 		],
 		attentionPoints: [
-			{ icon: 'clock', title: 'Vroeg reserveren', text: 'Populaire groepsgroottes zijn snel vol in het weekend - vergelijk op tijd.' },
+			{ icon: 'clock', title: 'Vroeg reserveren', text: 'Populaire groepsgroottes zijn snel vol in het weekend - vraag op tijd aan.' },
 			{ icon: 'party', title: 'Faciliteiten per formaat', text: 'Niet elke bus in deze capaciteit heeft dezelfde bar, DJ-setup of toilet.' },
 			{ icon: 'taxi', title: 'Chauffeur apart', text: 'De bestuurder telt niet mee in jullie passagiersaantal.' },
 		],
@@ -137,8 +137,8 @@ const GROUP_VISUALS: Record<
 	},
 	tier: {
 		benefits: [
-			{ icon: 'party', title: 'Passend niveau', text: 'Luxe, VIP of budget - vergelijk bustypes en faciliteiten naast elkaar voor Tilburg.' },
-			{ icon: 'group', title: 'Transparant vergelijken', text: 'Zelfde briefing naar meerdere aanbieders geeft eerlijke prijs- en kwaliteitsvergelijking.' },
+			{ icon: 'party', title: 'Passend niveau', text: 'Luxe, VIP of budget - bekijk bustypes en faciliteiten die bij jullie Tilburg-rit passen.' },
+			{ icon: 'group', title: 'Duidelijke briefing', text: 'Zelfde feiten in je aanvraag geven Prestige Coach Service een helder beeld van prijs en kwaliteit.' },
 			{ icon: 'route', title: 'Geen verrassingen', text: 'Vraag wat inbegrepen is: chauffeur, brandstof, schoonmaak en eventuele toeslagen.' },
 		],
 		attentionPoints: [
@@ -154,7 +154,7 @@ const GROUP_VISUALS: Record<
 	facility: {
 		benefits: [
 			{ icon: 'party', title: 'Faciliteiten op maat', text: 'Chauffeur, DJ of bar - kies de extras die bij jullie Tilburg-rit passen.' },
-			{ icon: 'group', title: 'Duidelijke briefing', text: 'Beschrijf must-haves in de aanvraag zodat offertes vergelijkbaar blijven.' },
+			{ icon: 'group', title: 'Duidelijke briefing', text: 'Beschrijf must-haves in de aanvraag zodat Prestige Coach Service gericht kan meedenken.' },
 			{ icon: 'route', title: 'Alles geregeld', text: 'Professionele chauffeur plus entertainment houdt de groep ontspannen onderweg.' },
 		],
 		attentionPoints: [
@@ -169,14 +169,14 @@ const GROUP_VISUALS: Record<
 	},
 	quote: {
 		benefits: [
-			{ icon: 'group', title: 'Gratis vergelijken', text: 'Vraag vrijblijvend meerdere offertes aan en kies zelf de beste match voor Tilburg.' },
-			{ icon: 'clock', title: 'Snelle reactie', text: 'Met complete gegevens ontvang je sneller bruikbare voorstellen van aanbieders.' },
+			{ icon: 'group', title: 'Vrijblijvende aanvraag', text: 'Vraag de mogelijkheden aan bij Prestige Coach Service, de partner voor Tilburg en heel Noord-Brabant.' },
+			{ icon: 'clock', title: 'Snelle reactie', text: 'Met complete gegevens kan Prestige Coach Service sneller aangeven wat er mogelijk is.' },
 			{ icon: 'route', title: 'Een formulier', text: 'Datum, route, groepsgrootte en wensen - alles op een plek voor een scherpe aanvraag.' },
 		],
 		attentionPoints: [
-			{ icon: 'size', title: 'Wees specifiek', text: 'Hoe completer je aanvraag, hoe minder heen-en-weer na de eerste offerte.' },
-			{ icon: 'party', title: 'Geen vaste landelijke prijs', text: 'Prijzen hangen af van datum, route en bustype - vergelijking is essentieel.' },
-			{ icon: 'taxi', title: 'Vrijblijvend', text: 'Je zit nergens aan vast tot je bewust een aanbieder kiest en bevestigt.' },
+			{ icon: 'size', title: 'Wees specifiek', text: 'Hoe completer je aanvraag, hoe minder heen-en-weer na het eerste voorstel.' },
+			{ icon: 'party', title: 'Geen vaste landelijke prijs', text: 'Prijzen hangen af van datum, route en bustype - een concrete ritbeschrijving helpt.' },
+			{ icon: 'taxi', title: 'Vrijblijvend', text: 'Je zit nergens aan vast tot je bewust met Prestige Coach Service boekt.' },
 		],
 		kennisbankLink: {
 			href: '/gidsen/partybus-prijzen/',

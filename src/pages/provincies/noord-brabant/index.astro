@@ -15,6 +15,7 @@ import {
 	buildWebPageSchema,
 } from '../../../lib/guides/schema';
 import { buildNoordBrabantWhatsappTrackingContext } from '../../../lib/partnerWhatsappTracking';
+import { noordBrabantFooter } from '../../../data/settings/regionalFooters';
 
 const province = noordBrabantProvince;
 const municipalities = getNoordBrabantMunicipalities();
@@ -57,7 +58,9 @@ const socialImage = `https://www.partybusnederland.nl${heroImage}`;
 		href: buildPrestigeCoachServiceWhatsappHref('Noord-Brabant'),
 		label: partner.publicProfile.whatsapp.ariaLabel,
 	}}
+	pageQuoteHref="#offerte"
 	footerAttribution={partner.footerAttribution}
+	regionalFooter={noordBrabantFooter}
 	partnerWhatsappTracking={buildNoordBrabantWhatsappTrackingContext({
 		municipalitySlug: null,
 		municipalityName: 'Noord-Brabant',

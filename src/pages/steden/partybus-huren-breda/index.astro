@@ -1,7 +1,8 @@
 ---
 import CityLayout from '../../../layouts/CityLayout.astro';
 import MasterCityTemplate from '../../../components/cities/MasterCityTemplate.astro';
-import { bredaCity as city } from '../../../data/cities/breda';
+import { bredaCity as bredaSource } from '../../../data/cities/breda';
+import { applyPrestigeMunicipalityCopy } from '../../../data/partners/prestigeCityCopy';
 import {
 	buildPrestigeCoachServiceQuoteHref,
 	buildPrestigeCoachServiceWhatsappHref,
@@ -12,6 +13,7 @@ import { noordBrabantFooter } from '../../../data/settings/regionalFooters';
 import { resolveCityHeroImage } from '../../../lib/cityImages';
 import { buildNoordBrabantWhatsappTrackingContext } from '../../../lib/partnerWhatsappTracking';
 
+const city = applyPrestigeMunicipalityCopy(bredaSource);
 const heroImage = resolvePrestigeCoachServiceCityMedia(city.slug).hero;
 const originalHeroImage = resolveCityHeroImage(city.slug);
 

@@ -39,7 +39,9 @@ function municipalityLink(slug: string, label?: string): FooterLink {
 export const noordBrabantFooter: RegionalFooterConfig = {
 	id: 'noord-brabant',
 	compact: true,
-	ctaLabel: 'Gratis offertes',
+	ctaLabel: 'Vraag een partybus aan',
+	brandText:
+		'PartybusNederland.nl werkt in Noord-Brabant samen met Prestige Coach Service. Een aanvraag uit Noord-Brabant gaat naar deze partner.',
 	navigation: [
 		{ label: 'Home', href: '/' },
 		{ label: 'Hoe werkt het', href: '/hoe-werkt-het/' },
