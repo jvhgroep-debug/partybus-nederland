@@ -251,17 +251,8 @@ const sectionImages = {
 
 <style>
 	.province-page {
-		--color-background: #10100f;
-		--color-surface: #191813;
-		background: #10100f;
-	}
-
-	.province-page > :global(.section) {
-		background-color: #141310;
-	}
-
-	.province-page > :global(.section:nth-child(even)) {
-		background-color: #1a1915;
+		background: var(--color-background);
+		color: var(--color-text);
 	}
 
 	.province-hero {
@@ -409,11 +400,15 @@ const sectionImages = {
 	.province-section--soft {
 		background:
 			linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 5%, transparent), transparent 65%),
-			#1a1915;
+			var(--color-surface-alt);
 	}
 
 	.province-cta {
-		background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(15, 10, 30, 0.04));
+		background: linear-gradient(
+			135deg,
+			color-mix(in srgb, var(--color-primary) 16%, #ffffff),
+			#ffffff
+		);
 	}
 
 	.province-cta__inner {

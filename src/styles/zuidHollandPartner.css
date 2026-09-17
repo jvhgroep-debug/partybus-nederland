@@ -28,9 +28,25 @@
 	color: #141414;
 }
 
+.zh-partner-page .city-why__card,
+.zh-partner-page .city-trust,
+.zh-partner-page .city-intro,
+.zh-partner-page .city-conversion,
+.zh-partner-page .regional-partner {
+	--color-text: #141414;
+	--color-text-muted: #4f4f4b;
+	color: #141414;
+}
+
 .zh-partner-page .city-why__card {
 	background: #ffffff;
 	box-shadow: 0 10px 28px rgba(20, 20, 20, 0.06);
+}
+
+.zh-partner-page .city-why__card p,
+.zh-partner-page .city-conversion p,
+.zh-partner-page .regional-partner p {
+	color: #4f4f4b;
 }
 
 .zh-partner-page .city-intro__visual {

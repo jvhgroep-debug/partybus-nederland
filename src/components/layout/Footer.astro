@@ -185,9 +185,12 @@ const cityLinks = regionalFooter?.locations ?? publishedCities.slice(0, 6).map((
 	.site-footer {
 		margin-top: auto;
 		border-top: 1px solid var(--color-primary-line);
+		--color-text: var(--color-on-dark);
+		--color-text-muted: var(--color-on-dark-muted);
+		color: var(--color-on-dark);
 		background:
-			linear-gradient(180deg, color-mix(in srgb, var(--color-primary) 8%, transparent), transparent 40%),
-			var(--color-surface);
+			linear-gradient(180deg, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent 40%),
+			var(--color-dark-footer);
 		padding-top: clamp(3.5rem, 7vw, 5.25rem);
 	}
 

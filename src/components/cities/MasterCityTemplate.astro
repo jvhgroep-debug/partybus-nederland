@@ -244,17 +244,8 @@ const requestSteps = [
 	}
 
 	.master-city--partner {
-		--color-background: #10100f;
-		--color-surface: #191813;
-		background: #10100f;
-	}
-
-	.master-city--partner > :global(.section:nth-child(odd)) {
-		background-color: #141310;
-	}
-
-	.master-city--partner > :global(.section:nth-child(even)) {
-		background-color: #1a1915;
+		background: var(--color-background);
+		color: var(--color-text);
 	}
 
 	@media (max-width: 640px) {

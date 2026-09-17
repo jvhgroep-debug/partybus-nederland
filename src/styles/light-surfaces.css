@@ -1,0 +1,114 @@
+/**
+ * PartybusNederland Light Design System
+ * Light page chrome + forced light type on dark surfaces.
+ * Partner data, URLs and copy are not defined here.
+ */
+
+.site-header,
+.site-footer,
+.surface-on-dark {
+	--color-text: var(--color-on-dark);
+	--color-text-muted: var(--color-on-dark-muted);
+	color: var(--color-on-dark);
+}
+
+.hero,
+.city-hero,
+.province-hero,
+.guide-hero,
+.service-hero,
+.tilburg-cluster-page__hero-wrap,
+.cta__panel,
+.city-cta__panel,
+.city-conversion,
+[class*='__card'],
+.info-guide__checklist,
+.city-faq__item,
+.city-pickup__item,
+.guide-faq__item,
+.guide-checklist__list,
+.guide-links__list a,
+.faq-item,
+.how-card,
+.how-page__step,
+.review-card,
+.service-card,
+.service-step,
+.service-related__link,
+.contact__card,
+.quote-page__form,
+.kb-compare__wrap,
+.city-card,
+.zh-muni__link {
+	--color-text: var(--color-on-dark);
+	--color-text-muted: var(--color-on-dark-muted);
+	color: var(--color-on-dark);
+}
+
+.hero p,
+.city-hero p,
+.province-hero p,
+.guide-hero p,
+.service-hero p,
+.cta__panel p,
+.city-cta__panel p,
+.city-conversion p,
+[class*='__card'] p,
+.info-guide__checklist li,
+.city-faq__content p,
+.guide-faq__panel p,
+.guide-checklist__list li,
+.faq-item p,
+.how-card p,
+.how-page__step p,
+.review-card p,
+.contact__card p,
+.contact__card li {
+	color: var(--color-on-dark-muted);
+}
+
+.hero h1,
+.hero h2,
+.city-hero h1,
+.province-hero h1,
+.guide-hero h1,
+.service-hero h1,
+.cta__panel h2,
+.city-cta__panel h2,
+[class*='__card'] h3,
+.info-guide__checklist h3,
+.city-faq__item summary,
+.guide-faq__item summary,
+.faq-item summary,
+.city-related__name,
+.how-page__step h3,
+.service-card h3 {
+	color: var(--color-on-dark);
+}
+
+.hero .btn--ghost,
+.city-hero .btn--ghost,
+.province-hero .btn--ghost,
+.guide-hero .btn--ghost,
+.service-hero .btn--ghost,
+.cta__panel .btn--ghost,
+.city-cta__content .btn--ghost {
+	color: var(--color-on-dark);
+	border-color: color-mix(in srgb, var(--color-on-dark) 48%, transparent);
+}
+
+.site-main .section:nth-of-type(odd):not(.city-hero):not(.guide-hero):not(.service-hero) {
+	background-color: var(--color-surface);
+}
+
+.site-main .section:nth-of-type(even):not(.city-hero):not(.guide-hero):not(.service-hero) {
+	background-color: var(--color-surface-alt);
+}
+
+.hero,
+.city-hero,
+.province-hero,
+.guide-hero,
+.service-hero {
+	background-color: var(--color-dark);
+}
