@@ -1,10 +1,17 @@
 ---
 import CityLayout from '../../../layouts/CityLayout.astro';
-import MasterCityTemplate from '../../../components/cities/MasterCityTemplate.astro';
+import ZuidHollandPartnerCityTemplate from '../../../components/cities/ZuidHollandPartnerCityTemplate.astro';
 import { rotterdamCity as city } from '../../../data/cities/rotterdam';
+import {
+	buildTourgoWhatsappHref,
+	resolveTourgoCityMedia,
+	tourgoPartybussen,
+} from '../../../data/partners/tourgoPartybussen';
 import { resolveCityHeroImage } from '../../../lib/cityImages';
+import { buildZuidHollandWhatsappTrackingContext } from '../../../lib/partnerWhatsappTracking';
 
-const heroImage = resolveCityHeroImage(city.slug);
+const heroImage = resolveTourgoCityMedia(city.slug).hero;
+const originalHeroImage = resolveCityHeroImage(city.slug);
 
 const webPageLd = {
 	'@context': 'https://schema.org',
@@ -58,7 +65,7 @@ const faqLd = {
 	})),
 };
 
-const ogImage = `https://www.partybusnederland.nl${heroImage.src}`;
+const ogImage = `https://www.partybusnederland.nl${originalHeroImage.src}`;
 ---
 
 <CityLayout
@@ -74,6 +81,16 @@ const ogImage = `https://www.partybusnederland.nl${heroImage.src}`;
 	twitterDescription={city.metaDescription}
 	twitterImage={ogImage}
 	jsonLd={[webPageLd, breadcrumbLd, faqLd]}
+	pageWhatsapp={{
+		href: buildTourgoWhatsappHref(city.name),
+		label: tourgoPartybussen.publicProfile.whatsapp.ariaLabel,
+	}}
+	partnerWhatsappTracking={buildZuidHollandWhatsappTrackingContext({
+		municipalitySlug: city.slug,
+		municipalityName: city.name,
+		pagePath: city.path,
+		pageType: 'municipality',
+	})}
 >
-	<MasterCityTemplate city={city} />
+	<ZuidHollandPartnerCityTemplate city={city} />
 </CityLayout>
