@@ -17,6 +17,7 @@ import {
 	tourgoPartybussen,
 } from '../../data/partners/tourgoPartybussen';
 import { applyTourgoMunicipalityCopy } from '../../data/partners/tourgoCityCopy';
+import { applyPrestigeMunicipalityCopy } from '../../data/partners/prestigeCityCopy';
 import {
 	buildPartyBussenWestlandWhatsappHref,
 	partyBussenWestland,
@@ -62,7 +63,9 @@ const city = isZuidHollandPartnerCity
 	? applyTourgoMunicipalityCopy(generatedCity)
 	: isUtrechtPartnerCity
 		? applyPartyBussenWestlandMunicipalityCopy(generatedCity)
-		: generatedCity;
+		: isNoordBrabantPartnerCity
+			? applyPrestigeMunicipalityCopy(generatedCity)
+			: generatedCity;
 const defaultHeroImage = resolveCityHeroImage(city.slug);
 const heroImage = isNoordBrabantPartnerCity
 	? resolvePrestigeCoachServiceCityMedia(city.slug).hero

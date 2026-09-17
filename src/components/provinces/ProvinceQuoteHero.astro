@@ -26,6 +26,9 @@ interface Props {
 	defaultCity: string;
 	formTitle: string;
 	formLead: string;
+	partnerId?: string;
+	partnerCity?: string;
+	submitLabel?: string;
 }
 
 const {
@@ -44,6 +47,9 @@ const {
 	defaultCity,
 	formTitle,
 	formLead,
+	partnerId,
+	partnerCity,
+	submitLabel,
 } = Astro.props;
 ---
 
@@ -106,7 +112,13 @@ const {
 			<p class="pq-hero__form-eyebrow">Offerteaanvraag</p>
 			<h2 class="pq-hero__form-title">{formTitle}</h2>
 			<p class="pq-hero__form-lead">{formLead}</p>
-			<QuoteForm sourcePage={sourcePage} defaultCity={defaultCity} />
+			<QuoteForm
+				sourcePage={sourcePage}
+				defaultCity={defaultCity}
+				partnerId={partnerId}
+				partnerCity={partnerCity}
+				submitLabel={submitLabel}
+			/>
 		</div>
 	</div>
 </header>

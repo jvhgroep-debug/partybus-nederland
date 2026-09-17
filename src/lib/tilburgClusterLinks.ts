@@ -17,7 +17,7 @@ export function buildTilburgClusterNavLinks(page: TilburgClusterPage): TilburgCl
 	};
 	const offerte: TilburgClusterLink = {
 		href: TILBURG_QUOTE_PATH,
-		label: 'Gratis partybus-offertes aanvragen',
+		label: 'Partybus aanvragen',
 	};
 
 	const clusterFromRelated = page.related.filter(
