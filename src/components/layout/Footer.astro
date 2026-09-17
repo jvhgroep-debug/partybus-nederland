@@ -52,9 +52,15 @@ const cityLinks = regionalFooter?.locations ?? publishedCities.slice(0, 6).map((
 		<div class="site-footer__brand">
 			<p class="site-footer__name">{site.companyName}</p>
 			<p class="site-footer__text">
-				Complete informatie over partybus huren — tips, bestemmingen en vrijblijvend offertes vergelijken.
+				{regionalFooter?.brandText
+					?? 'Complete informatie over partybus huren — tips, bestemmingen en vrijblijvend offertes vergelijken.'}
 			</p>
-			<Button href={quoteHref} class="site-footer__cta">
+			<Button
+				href={regionalFooter?.ctaHref ?? quoteHref}
+				class="site-footer__cta"
+				target={regionalFooter?.ctaHref?.startsWith('http') ? '_blank' : undefined}
+				rel={regionalFooter?.ctaHref?.startsWith('http') ? 'noopener noreferrer' : undefined}
+			>
 				{regionalFooter?.ctaLabel ?? primaryCta.label}
 			</Button>
 		</div>

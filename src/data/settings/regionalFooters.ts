@@ -9,6 +9,8 @@ export type RegionalFooterConfig = {
 	id: string;
 	compact?: boolean;
 	ctaLabel?: string;
+	ctaHref?: string;
+	brandText?: string;
 	navigation: readonly FooterLink[];
 	locationHeading: string;
 	locations: readonly FooterLink[];
@@ -47,5 +49,32 @@ export const noordBrabantFooter: RegionalFooterConfig = {
 		municipalityLink('bergen-op-zoom'),
 		municipalityLink('oosterhout'),
 		municipalityLink('etten-leur'),
+	],
+};
+
+export const zuidHollandFooter: RegionalFooterConfig = {
+	id: 'zuid-holland',
+	compact: true,
+	ctaLabel: 'Bekijk Tourgo Partybussen',
+	ctaHref: 'https://www.tourgo.nl/',
+	brandText:
+		'PartybusNederland.nl werkt in Zuid-Holland samen met Tourgo Partybussen. Neem rechtstreeks contact op voor de mogelijkheden.',
+	navigation: [
+		{ label: 'Home', href: '/' },
+		{ label: 'Partybus Zuid-Holland', href: '/provincies/zuid-holland/' },
+		{ label: 'Over ons', href: '/over-ons/' },
+		{ label: 'Contact', href: '/contact/' },
+	],
+	locationHeading: 'Zuid-Holland',
+	locations: [
+		{ label: 'Partybus Zuid-Holland', href: '/provincies/zuid-holland/' },
+		municipalityLink('rotterdam'),
+		municipalityLink('den-haag'),
+		municipalityLink('leiden'),
+		municipalityLink('delft'),
+		municipalityLink('dordrecht'),
+		municipalityLink('gouda'),
+		municipalityLink('zoetermeer'),
+		municipalityLink('schiedam'),
 	],
 };

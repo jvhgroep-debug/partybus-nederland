@@ -1,4 +1,5 @@
 import { prestigeCoachService } from '../data/partners/prestigeCoachService';
+import { tourgoPartybussen } from '../data/partners/tourgoPartybussen';
 
 export const PARTNER_WHATSAPP_BUTTON_TYPES = [
 	'hero',
@@ -43,6 +44,22 @@ export function buildNoordBrabantWhatsappTrackingContext(input: {
 	return {
 		partnerId: prestigeCoachService.id,
 		provinceSlug: prestigeCoachService.provinceSlug,
+		municipalitySlug: input.municipalitySlug,
+		municipalityName: input.municipalityName,
+		pagePath: input.pagePath,
+		pageType: input.pageType,
+	};
+}
+
+export function buildZuidHollandWhatsappTrackingContext(input: {
+	municipalitySlug: string | null;
+	municipalityName: string;
+	pagePath: string;
+	pageType: PartnerWhatsappPageType;
+}): PartnerWhatsappTrackingContext {
+	return {
+		partnerId: tourgoPartybussen.id,
+		provinceSlug: tourgoPartybussen.provinceSlug,
 		municipalitySlug: input.municipalitySlug,
 		municipalityName: input.municipalityName,
 		pagePath: input.pagePath,

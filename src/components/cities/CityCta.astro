@@ -8,6 +8,8 @@ interface Props {
 	image: string;
 	primaryHref?: string;
 	partnerMode?: boolean;
+	whatsappLabel?: string;
+	ghostLabel?: string;
 }
 
 const {
@@ -17,7 +19,10 @@ const {
 	image,
 	primaryHref = '/gratis-partybus-offertes-aanvragen/',
 	partnerMode = false,
+	whatsappLabel = 'Vraag beschikbaarheid via WhatsApp',
+	ghostLabel = 'Gratis offertes aanvragen',
 } = Astro.props;
+const primaryIsExternal = primaryHref.startsWith('http');
 ---
 
 <section id="offerte-stad" class="section city-cta" aria-labelledby="city-cta-title">
@@ -41,9 +46,17 @@ const {
 								rel="noopener noreferrer"
 								partnerWhatsappButtonType="cta"
 							>
-								Vraag beschikbaarheid via WhatsApp
+								{whatsappLabel}
 							</Button>
-							<Button href={primaryHref} variant="ghost" size="lg">Gratis offertes aanvragen</Button>
+							<Button
+								href={primaryHref}
+								variant="ghost"
+								size="lg"
+								target={primaryIsExternal ? '_blank' : undefined}
+								rel={primaryIsExternal ? 'noopener noreferrer' : undefined}
+							>
+								{ghostLabel}
+							</Button>
 						</>
 					) : (
 						<>

@@ -1,6 +1,7 @@
 ﻿---
 import CityLayout from '../../layouts/CityLayout.astro';
 import MasterCityTemplate from '../../components/cities/MasterCityTemplate.astro';
+import ZuidHollandPartnerCityTemplate from '../../components/cities/ZuidHollandPartnerCityTemplate.astro';
 import { resolveCityHeroImage } from '../../lib/cityImages';
 import { ALL_CITY_SLUGS, buildCityPageData } from '../../data/cities/pilotFactory';
 import {
@@ -9,9 +10,19 @@ import {
 	prestigeCoachService,
 	resolvePrestigeCoachServiceCityMedia,
 } from '../../data/partners/prestigeCoachService';
+import {
+	buildTourgoWhatsappHref,
+	resolveTourgoCityMedia,
+	tourgoPartybussen,
+} from '../../data/partners/tourgoPartybussen';
+import { applyTourgoMunicipalityCopy } from '../../data/partners/tourgoCityCopy';
 import { isNoordBrabantMunicipalitySlug } from '../../data/provinces/noordBrabant';
-import { noordBrabantFooter } from '../../data/settings/regionalFooters';
-import { buildNoordBrabantWhatsappTrackingContext } from '../../lib/partnerWhatsappTracking';
+import { isZuidHollandMunicipalitySlug } from '../../data/provinces/zuidHolland';
+import { noordBrabantFooter, zuidHollandFooter } from '../../data/settings/regionalFooters';
+import {
+	buildNoordBrabantWhatsappTrackingContext,
+	buildZuidHollandWhatsappTrackingContext,
+} from '../../lib/partnerWhatsappTracking';
 
 export function getStaticPaths() {
 	/** Static city folders keep their own index.astro to preserve existing routes. */
@@ -26,16 +37,22 @@ if (!slug) {
 	throw new Error('Missing city slug');
 }
 
-const city = buildCityPageData(slug);
-if (!city) {
+const generatedCity = buildCityPageData(slug);
+if (!generatedCity) {
 	throw new Error(`Unknown city: ${slug}`);
 }
 
-const isNoordBrabantPartnerCity = isNoordBrabantMunicipalitySlug(city.slug);
+const isNoordBrabantPartnerCity = isNoordBrabantMunicipalitySlug(generatedCity.slug);
+const isZuidHollandPartnerCity = isZuidHollandMunicipalitySlug(generatedCity.slug);
+const city = isZuidHollandPartnerCity
+	? applyTourgoMunicipalityCopy(generatedCity)
+	: generatedCity;
 const defaultHeroImage = resolveCityHeroImage(city.slug);
 const heroImage = isNoordBrabantPartnerCity
 	? resolvePrestigeCoachServiceCityMedia(city.slug).hero
-	: defaultHeroImage;
+	: isZuidHollandPartnerCity
+		? resolveTourgoCityMedia(city.slug).hero
+		: defaultHeroImage;
 const partnerPageProps = isNoordBrabantPartnerCity
 	? {
 			pageWhatsapp: {
@@ -52,7 +69,21 @@ const partnerPageProps = isNoordBrabantPartnerCity
 				pageType: 'municipality',
 			}),
 		}
-	: {};
+	: isZuidHollandPartnerCity
+		? {
+				pageWhatsapp: {
+					href: buildTourgoWhatsappHref(city.name),
+					label: tourgoPartybussen.publicProfile.whatsapp.ariaLabel,
+				},
+				regionalFooter: zuidHollandFooter,
+				partnerWhatsappTracking: buildZuidHollandWhatsappTrackingContext({
+					municipalitySlug: city.slug,
+					municipalityName: city.name,
+					pagePath: city.path,
+					pageType: 'municipality',
+				}),
+			}
+		: {};
 
 const webPageLd = {
 	'@context': 'https://schema.org',
@@ -106,5 +137,5 @@ const ogImage = `https://www.partybusnederland.nl${defaultHeroImage.src}`;
 	jsonLd={[webPageLd, breadcrumbLd, faqLd]}
 	{...partnerPageProps}
 >
-	<MasterCityTemplate city={city} />
+	{isZuidHollandPartnerCity ? <ZuidHollandPartnerCityTemplate city={city} /> : <MasterCityTemplate city={city} />}
 </CityLayout>

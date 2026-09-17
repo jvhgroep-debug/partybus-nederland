@@ -4,6 +4,7 @@
  * Env: PARTNER_ANALYTICS (D1 binding)
  */
 import { prestigeCoachService } from '../../src/data/partners/prestigeCoachService';
+import { tourgoPartybussen } from '../../src/data/partners/tourgoPartybussen';
 import {
 	isPartnerWhatsappButtonType,
 	PARTNER_WHATSAPP_BUTTON_TYPES,
@@ -16,8 +17,11 @@ interface Env {
 
 type ClickPayload = PartnerWhatsappClickPayload;
 
-const ALLOWED_PARTNERS = new Set([prestigeCoachService.id]);
-const ALLOWED_PROVINCES = new Set([prestigeCoachService.provinceSlug]);
+const ALLOWED_PARTNERS = new Set([prestigeCoachService.id, tourgoPartybussen.id]);
+const ALLOWED_PROVINCES = new Set([
+	prestigeCoachService.provinceSlug,
+	tourgoPartybussen.provinceSlug,
+]);
 const MAX_FIELD_LENGTH = 240;
 
 function noContent(): Response {

@@ -6,9 +6,10 @@ interface Props {
 	lead?: string;
 	items: readonly CityOccasion[];
 	partnerWhatsappHref?: string;
+	partnerWhatsappLabel?: string;
 }
 
-const { title, lead, items, partnerWhatsappHref } = Astro.props;
+const { title, lead, items, partnerWhatsappHref, partnerWhatsappLabel = 'Vraag via WhatsApp →' } = Astro.props;
 
 const occasionPaths: Record<string, string> = {
 	Vrijgezellenfeest: '/diensten/partybus-vrijgezellenfeest/',
@@ -51,7 +52,7 @@ const occasionPaths: Record<string, string> = {
 											data-partner-whatsapp="true"
 											data-button-type="occasions"
 										>
-											Vraag via WhatsApp →
+											{partnerWhatsappLabel}
 										</a>
 										{infoHref && (
 											<a class="city-occ__info-link" href={infoHref}>

@@ -1,4 +1,5 @@
 import { noordBrabantProvince } from './noordBrabant';
+import { zuidHollandProvince } from './zuidHolland';
 
 export type ProvincePageMeta = {
 	slug: string;
@@ -9,6 +10,9 @@ export type ProvincePageMeta = {
 	h1: string;
 };
 
-export const provincePages: readonly ProvincePageMeta[] = [noordBrabantProvince];
+export const provincePages: readonly ProvincePageMeta[] = [
+	noordBrabantProvince,
+	zuidHollandProvince,
+];
 
 export const provincePaths: readonly string[] = provincePages.map((page) => page.path);

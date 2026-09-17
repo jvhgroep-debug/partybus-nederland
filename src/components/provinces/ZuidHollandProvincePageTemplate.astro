@@ -1,0 +1,447 @@
+---
+import type { ProvinceMunicipality } from '../../data/provinces/zuidHolland';
+import { zuidHollandProvince } from '../../data/provinces/zuidHolland';
+import {
+	buildTourgoWhatsappHref,
+	tourgoPartybussen,
+	tourgoPartybussenCityMedia,
+	tourgoPartybussenLogo,
+} from '../../data/partners/tourgoPartybussen';
+import '../../styles/zuidHollandPartner.css';
+import Button from '../buttons/Button.astro';
+import GuideFaqList from '../guides/GuideFaqList.astro';
+import RegionalPartnerSection from '../partners/RegionalPartnerSection.astro';
+
+interface Props {
+	municipalities: ProvinceMunicipality[];
+}
+
+const { municipalities } = Astro.props;
+const province = zuidHollandProvince;
+const partner = tourgoPartybussen.publicProfile;
+const websiteHref = partner.website.href;
+const whatsappHref = buildTourgoWhatsappHref('Zuid-Holland');
+const gallery = tourgoPartybussenCityMedia.gallery;
+const sectionImages = {
+	huren: gallery[0],
+	groepsvervoer: gallery[2],
+	feesten: gallery[3],
+	festivals: gallery[5],
+	bedrijfsfeesten: gallery[1],
+	partijen: gallery[4],
+} as const;
+---
+
+<article class="zh-partner-page zh-province">
+	<header class="province-hero">
+		<div class="province-hero__media" aria-hidden="true">
+			<picture>
+				{partner.media.mobile && <source media="(max-width: 640px)" srcset={partner.media.mobile} />}
+				<img
+					src={partner.media.hero ?? province.heroImage}
+					alt=""
+					width="1920"
+					height="1280"
+					fetchpriority="high"
+					decoding="async"
+				/>
+			</picture>
+			<div class="province-hero__veil"></div>
+		</div>
+		<div class="province-hero__content section__inner">
+			<nav class="province-hero__breadcrumbs" aria-label="Broodkruimel">
+				<a href="/">Home</a><span aria-hidden="true">/</span>
+				<a href={province.path} aria-current="page">{province.eyebrow}</a>
+			</nav>
+			<p class="section__eyebrow">Partybus Zuid-Holland</p>
+			<h1>{province.h1}</h1>
+			<p>{province.lead}</p>
+			<div class="province-hero__actions">
+				<Button
+					href={whatsappHref}
+					size="lg"
+					target="_blank"
+					rel="noopener noreferrer"
+					partnerWhatsappButtonType="province-hero"
+				>
+					WhatsApp Tourgo
+				</Button>
+				<Button href={websiteHref} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
+					Bekijk Tourgo Partybussen
+				</Button>
+			</div>
+			<ul class="province-hero__trust" aria-label="Voordelen">
+				<li>{municipalities.length} Zuid-Hollandse gemeenten</li>
+				<li>Partner: Tourgo Partybussen</li>
+				<li>Rechtstreeks contact met Tourgo</li>
+			</ul>
+		</div>
+	</header>
+
+	<section class="section" aria-labelledby="province-huren-title">
+		<div class="section__inner zh-province__content">
+			<div>
+				<h2 id="province-huren-title" class="section__title">{province.sections.huren.title}</h2>
+				{province.sections.huren.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure>
+				<img
+					src={sectionImages.huren.src}
+					alt={sectionImages.huren.alt}
+					width={sectionImages.huren.width}
+					height={sectionImages.huren.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="province-groepsvervoer-title">
+		<div class="section__inner zh-province__content zh-province__content--reverse">
+			<div>
+				<h2 id="province-groepsvervoer-title" class="section__title">{province.sections.groepsvervoer.title}</h2>
+				{province.sections.groepsvervoer.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure>
+				<img
+					src={sectionImages.groepsvervoer.src}
+					alt={sectionImages.groepsvervoer.alt}
+					width={sectionImages.groepsvervoer.width}
+					height={sectionImages.groepsvervoer.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="province-feesten-title">
+		<div class="section__inner zh-province__content">
+			<div>
+				<h2 id="province-feesten-title" class="section__title">{province.sections.feesten.title}</h2>
+				{province.sections.feesten.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure>
+				<img
+					src={sectionImages.feesten.src}
+					alt={sectionImages.feesten.alt}
+					width={sectionImages.feesten.width}
+					height={sectionImages.feesten.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="province-festivals-title">
+		<div class="section__inner zh-province__content zh-province__content--reverse">
+			<div>
+				<h2 id="province-festivals-title" class="section__title">{province.sections.festivals.title}</h2>
+				{province.sections.festivals.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure>
+				<img
+					src={sectionImages.festivals.src}
+					alt={sectionImages.festivals.alt}
+					width={sectionImages.festivals.width}
+					height={sectionImages.festivals.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="province-bedrijfsfeesten-title">
+		<div class="section__inner zh-province__content">
+			<div>
+				<h2 id="province-bedrijfsfeesten-title" class="section__title">{province.sections.bedrijfsfeesten.title}</h2>
+				{province.sections.bedrijfsfeesten.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure>
+				<img
+					src={sectionImages.bedrijfsfeesten.src}
+					alt={sectionImages.bedrijfsfeesten.alt}
+					width={sectionImages.bedrijfsfeesten.width}
+					height={sectionImages.bedrijfsfeesten.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="province-partijen-title">
+		<div class="section__inner zh-province__content zh-province__content--reverse">
+			<div>
+				<h2 id="province-partijen-title" class="section__title">{province.sections.partijen.title}</h2>
+				{province.sections.partijen.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure>
+				<img
+					src={sectionImages.partijen.src}
+					alt={sectionImages.partijen.alt}
+					width={sectionImages.partijen.width}
+					height={sectionImages.partijen.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<RegionalPartnerSection
+		eyebrow="Onze partybuspartner voor Zuid-Holland"
+		partner={partner}
+		galleryImages={gallery.slice(0, 4)}
+		whatsappHref={whatsappHref}
+		logo={tourgoPartybussenLogo}
+		enableWhatsappTracking={true}
+	/>
+
+	<section class="section" aria-labelledby="province-municipalities-title">
+		<div class="section__inner">
+			<div class="section__head">
+				<p class="section__eyebrow">Alle gemeenten</p>
+				<h2 id="province-municipalities-title" class="section__title">
+					Partybus huren in alle {municipalities.length} Zuid-Hollandse gemeenten
+				</h2>
+				<p class="section__lead">
+					Elke gemeente heeft een eigen bestaande pagina. De URL’s blijven ongewijzigd.
+				</p>
+			</div>
+			<ul class="zh-muni">
+				{
+					municipalities.map((municipality) => (
+						<li>
+							<a class="zh-muni__link" href={municipality.path}>
+								<span>{municipality.name}</span>
+								<span aria-hidden="true">→</span>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+			<p class="zh-muni__count">{municipalities.length} gemeenten in Zuid-Holland</p>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="province-cta-title">
+		<div class="section__inner zh-province__cta">
+			<p class="section__eyebrow">Contact met Tourgo</p>
+			<h2 id="province-cta-title" class="section__title">Partybus huren in Zuid-Holland</h2>
+			<p class="section__lead">
+				PartybusNederland.nl werkt in Zuid-Holland samen met Tourgo Partybussen. Voor een partybus,
+				groepsvervoer of een vraag over de mogelijkheden neem je rechtstreeks contact op met Tourgo.
+			</p>
+			<div class="zh-province__cta-actions">
+				<Button
+					href={whatsappHref}
+					size="lg"
+					target="_blank"
+					rel="noopener noreferrer"
+					partnerWhatsappButtonType="cta"
+				>
+					WhatsApp Tourgo
+				</Button>
+				<Button href={websiteHref} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
+					Bekijk Tourgo Partybussen
+				</Button>
+			</div>
+		</div>
+	</section>
+
+	<GuideFaqList title="Vragen over partybus huren in Zuid-Holland" items={province.faqs} />
+</article>
+
+<style>
+	.zh-province {
+		background: #f6f5f2;
+	}
+
+	.province-hero {
+		position: relative;
+		min-height: clamp(28rem, 62vh, 38rem);
+		display: grid;
+		align-items: end;
+		padding-top: calc(var(--header-height) + 1.5rem);
+		overflow: hidden;
+	}
+
+	.province-hero__media {
+		position: absolute;
+		inset: 0;
+	}
+
+	.province-hero__media picture,
+	.province-hero__media img {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.province-hero__media img {
+		object-fit: cover;
+	}
+
+	.province-hero__veil {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(180deg, rgba(8, 7, 10, 0.2) 0%, rgba(8, 7, 10, 0.62) 82%),
+			radial-gradient(circle at 20% 20%, rgba(205, 184, 128, 0.12), transparent 55%);
+	}
+
+	.province-hero__content {
+		position: relative;
+		z-index: 1;
+		padding-bottom: clamp(2.5rem, 6vw, 4rem);
+		color: #f7f5f0;
+		text-shadow: 0 2px 18px rgba(0, 0, 0, 0.72);
+	}
+
+	.province-hero__breadcrumbs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		margin-bottom: 1rem;
+		font-size: 0.92rem;
+		color: rgba(247, 245, 240, 0.82);
+	}
+
+	.province-hero__breadcrumbs a {
+		color: inherit;
+	}
+
+	.province-hero h1 {
+		margin: 0 0 1rem;
+		max-width: 14ch;
+		font-family: var(--font-display);
+		font-size: clamp(2.2rem, 5vw, 3.6rem);
+		line-height: 1.05;
+		color: #f7f5f0;
+	}
+
+	.province-hero__content > p {
+		margin: 0 0 1.5rem;
+		max-width: 44rem;
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: #ebe6da;
+	}
+
+	.province-hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.province-hero__trust {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem 1rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-size: 0.92rem;
+		color: rgba(247, 245, 240, 0.88);
+	}
+
+	.zh-province__content {
+		display: grid;
+		gap: clamp(2rem, 5vw, 4.5rem);
+		align-items: center;
+	}
+
+	.zh-province__content p {
+		margin: 0 0 1rem;
+		line-height: 1.75;
+		color: #4f4f4b;
+	}
+
+	.zh-province__content p:last-child {
+		margin-bottom: 0;
+	}
+
+	.zh-province__content figure {
+		margin: 0;
+		overflow: hidden;
+		border: 1px solid var(--color-primary-line);
+		border-radius: var(--radius-lg);
+		aspect-ratio: 4 / 3;
+		background: #ffffff;
+	}
+
+	.zh-province__content img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	@media (min-width: 900px) {
+		.zh-province__content {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		}
+
+		.zh-province__content--reverse figure {
+			order: -1;
+		}
+	}
+
+	.zh-muni {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.55rem;
+	}
+
+	@media (min-width: 640px) {
+		.zh-muni {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 960px) {
+		.zh-muni {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.zh-muni__link {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		padding: 0.95rem 1.1rem;
+		border: 1px solid var(--color-primary-line);
+		border-radius: var(--radius-md);
+		background: color-mix(in srgb, var(--color-primary) 5%, #090909);
+		font-weight: 700;
+	}
+
+	.zh-muni__count {
+		margin: 1.25rem 0 0;
+		color: #4f4f4b;
+		font-size: 0.92rem;
+	}
+
+	.zh-province__cta {
+		text-align: center;
+	}
+
+	.zh-province__cta .section__lead {
+		margin-inline: auto;
+	}
+
+	.zh-province__cta-actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+	}
+</style>

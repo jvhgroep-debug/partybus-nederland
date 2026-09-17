@@ -6,6 +6,10 @@ interface Props {
 	whatsappHref: string;
 	quoteHref?: string;
 	partnerMode?: boolean;
+	eyebrow?: string;
+	headline?: string;
+	whatsappLabel?: string;
+	ghostLabel?: string;
 }
 
 const {
@@ -13,13 +17,18 @@ const {
 	whatsappHref,
 	quoteHref = '/gratis-partybus-offertes-aanvragen/',
 	partnerMode = false,
+	eyebrow = `Partybus vanuit ${cityName} nodig?`,
+	headline = 'Vergelijk gratis meerdere voorstellen voor jullie datum en route.',
+	whatsappLabel = 'Direct aanvragen via WhatsApp',
+	ghostLabel = 'Gratis offertes aanvragen',
 } = Astro.props;
+const quoteIsExternal = quoteHref.startsWith('http');
 ---
 
-<aside class="city-conversion section__inner reveal" aria-label={`Offertes voor een partybus vanuit ${cityName}`}>
+<aside class="city-conversion section__inner reveal" aria-label={`Partybus vanuit ${cityName}`}>
 	<div>
-		<p>Partybus vanuit {cityName} nodig?</p>
-		<strong>Vergelijk gratis meerdere voorstellen voor jullie datum en route.</strong>
+		<p>{eyebrow}</p>
+		<strong>{headline}</strong>
 	</div>
 	<div class="city-conversion__actions">
 		{
@@ -31,9 +40,16 @@ const {
 						rel="noopener noreferrer"
 						partnerWhatsappButtonType="conversion-band"
 					>
-						Direct aanvragen via WhatsApp
+						{whatsappLabel}
 					</Button>
-					<Button href={quoteHref} variant="ghost">Gratis offertes aanvragen</Button>
+					<Button
+						href={quoteHref}
+						variant="ghost"
+						target={quoteIsExternal ? '_blank' : undefined}
+						rel={quoteIsExternal ? 'noopener noreferrer' : undefined}
+					>
+						{ghostLabel}
+					</Button>
 				</>
 			) : (
 				<>

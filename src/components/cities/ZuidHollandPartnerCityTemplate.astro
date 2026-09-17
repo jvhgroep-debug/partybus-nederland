@@ -1,0 +1,203 @@
+﻿---
+import type { CityPageData } from '../../data/cities/types';
+import { getRelatedCities } from '../../data/cities/registry';
+import {
+	buildTourgoLocalIntro,
+	buildTourgoWhatsappHref,
+	resolveTourgoCityMedia,
+	tourgoPartybussen,
+	tourgoPartybussenLogo,
+} from '../../data/partners/tourgoPartybussen';
+import {
+	applyTourgoMunicipalityCopy,
+	tourgoBookingTips,
+	tourgoCityInfoLead,
+	tourgoConversionCopy,
+	tourgoHowItWorks,
+	tourgoPlanningChecklist,
+	tourgoPricingCards,
+	tourgoTipsLead,
+	tourgoWebsiteHref,
+	tourgoWebsiteLabel,
+	tourgoWhatsappLabel,
+} from '../../data/partners/tourgoCityCopy';
+import {
+	getZuidHollandNeighborSlugs,
+	isZuidHollandMunicipalitySlug,
+} from '../../data/provinces/zuidHolland';
+import '../../styles/zuidHollandPartner.css';
+import CityHero from './CityHero.astro';
+import CityIntro from './CityIntro.astro';
+import CityDestinations from './CityDestinations.astro';
+import CityActivities from './CityActivities.astro';
+import CityOccasions from './CityOccasions.astro';
+import CityTrustBar from './CityTrustBar.astro';
+import CityWhy from './CityWhy.astro';
+import CityHowItWorks from './CityHowItWorks.astro';
+import CityPickupLocations from './CityPickupLocations.astro';
+import CityConversionBand from './CityConversionBand.astro';
+import CityFaq from './CityFaq.astro';
+import CityRelatedCities from './CityRelatedCities.astro';
+import CityCta from './CityCta.astro';
+import InfoGuide from '../shared/InfoGuide.astro';
+import RegionalPartnerSection from '../partners/RegionalPartnerSection.astro';
+
+interface Props {
+	city: CityPageData;
+}
+
+const { city: incomingCity } = Astro.props;
+if (!isZuidHollandMunicipalitySlug(incomingCity.slug)) {
+	throw new Error(`ZuidHollandPartnerCityTemplate used for non-ZH city: ${incomingCity.slug}`);
+}
+const city = applyTourgoMunicipalityCopy(incomingCity);
+const relatedCities = getRelatedCities(city.slug, getZuidHollandNeighborSlugs(city.slug), 5);
+const partnerCityMedia = resolveTourgoCityMedia(city.slug);
+const heroImage = partnerCityMedia.hero;
+const whatsappHref = buildTourgoWhatsappHref(city.name);
+const localPartnerIntro = buildTourgoLocalIntro(city.name, city.slug);
+const partnerOccasions = city.occasions.items.map((item, index) => ({
+	...item,
+	image: partnerCityMedia.gallery[index % partnerCityMedia.gallery.length].src,
+	infoHref: null,
+}));
+const introImage = partnerCityMedia.gallery[0].src;
+const ctaImage = partnerCityMedia.gallery[2 % partnerCityMedia.gallery.length].src;
+const partnerGallery = partnerCityMedia.gallery.slice(0, 4);
+const requestSteps = tourgoHowItWorks(city.name, city.slug);
+const conversionCopy = tourgoConversionCopy(city.name, city.slug);
+---
+
+<div class="master-city master-city--zh-light zh-partner-page">
+	<CityHero
+		title={city.h1}
+		subtitle={city.hero.subtitle}
+		image={heroImage.src}
+		imageAlt={heroImage.alt}
+		imageWidth={heroImage.width}
+		imageHeight={heroImage.height}
+		mobileImage={partnerCityMedia.mobileHero.src}
+		mobileImageWidth={partnerCityMedia.mobileHero.width}
+		mobileImageHeight={partnerCityMedia.mobileHero.height}
+		whatsappHref={whatsappHref}
+		primaryHref={tourgoWebsiteHref}
+		trustItems={city.hero.trustItems}
+		partnerMode={true}
+		whatsappLabel={tourgoWhatsappLabel}
+		ghostLabel={tourgoWebsiteLabel}
+	/>
+
+	<CityTrustBar items={city.hero.trustItems ?? []} />
+
+	<CityIntro
+		title={city.intro.title}
+		paragraphs={city.intro.paragraphs}
+		image={introImage}
+		imageAlt={city.intro.imageAlt}
+	/>
+
+	<CityWhy title={`Waarom een partybus huren vanuit ${city.name}?`} lead={city.why.lead} items={city.why.items} />
+
+	<CityOccasions
+		title={city.occasions.title}
+		lead={city.occasions.lead}
+		items={partnerOccasions}
+		partnerWhatsappHref={whatsappHref}
+		partnerWhatsappLabel="WhatsApp Tourgo →"
+	/>
+
+	<CityConversionBand
+		cityName={city.name}
+		whatsappHref={whatsappHref}
+		quoteHref={tourgoWebsiteHref}
+		partnerMode={true}
+		eyebrow={conversionCopy.eyebrow}
+		headline={conversionCopy.headline}
+		whatsappLabel={tourgoWhatsappLabel}
+		ghostLabel={tourgoWebsiteLabel}
+	/>
+
+	<RegionalPartnerSection
+		eyebrow="Onze partybuspartner voor Zuid-Holland"
+		partner={tourgoPartybussen.publicProfile}
+		localIntro={localPartnerIntro}
+		galleryImages={partnerGallery}
+		whatsappHref={whatsappHref}
+		logo={tourgoPartybussenLogo}
+		enableWhatsappTracking={true}
+	/>
+
+	<CityHowItWorks
+		eyebrow="Contact"
+		title={`Hoe regel je een partybus vanuit ${city.name}?`}
+		steps={requestSteps}
+	/>
+
+	<InfoGuide
+		eyebrow="Informatie"
+		title={`Partybus vanuit ${city.name}: prijzen & tips`}
+		lead={tourgoCityInfoLead(city.name, city.slug)}
+		cards={tourgoPricingCards}
+		checklist={tourgoPlanningChecklist}
+		checklistTitle="Waar je op let bij Tourgo"
+	/>
+
+	<CityPickupLocations
+		title={city.pickup.title}
+		lead={city.pickup.lead}
+		items={city.pickup.items}
+		note={city.pickup.note}
+	/>
+
+	<CityDestinations
+		title={city.locations.title}
+		lead={city.locations.lead}
+		items={city.locations.items}
+		eyebrow="Bestemmingen"
+	/>
+
+	<CityActivities
+		title={city.activities.title}
+		lead={city.activities.lead}
+		items={city.activities.items}
+		eyebrow="Festivals"
+	/>
+
+	<InfoGuide
+		eyebrow="Tips"
+		title={`Praktische tips voor een rit vanuit ${city.name}`}
+		lead={tourgoTipsLead(city.name, city.slug)}
+		cards={tourgoBookingTips}
+	/>
+
+	<CityFaq items={city.faqs} cityName={city.name} />
+
+	{relatedCities.length > 0 && <CityRelatedCities cityName={city.name} cities={relatedCities} />}
+
+	<nav class="master-city__links section__inner" aria-label="Vervolgstappen">
+		<a
+			href={whatsappHref}
+			target="_blank"
+			rel="noopener noreferrer"
+			data-partner-whatsapp="true"
+			data-button-type="cta"
+		>
+			WhatsApp Tourgo →
+		</a>
+		<a href={tourgoWebsiteHref} target="_blank" rel="noopener noreferrer">Bekijk Tourgo Partybussen →</a>
+		<a href="/provincies/zuid-holland/">Partybus Zuid-Holland →</a>
+		<a href="/gids/partybus-huren/">Meer lezen in de partybus-gids →</a>
+		<a href="/kennisbank/">Naar de kennisbank →</a>
+	</nav>
+
+	<CityCta
+		title={city.cta.title}
+		text={city.cta.text}
+		whatsappHref={whatsappHref}
+		image={ctaImage}
+		primaryHref={tourgoWebsiteHref}
+		partnerMode={true}
+		whatsappLabel={tourgoWhatsappLabel}
+		ghostLabel={tourgoWebsiteLabel}
+	/>
+</div>

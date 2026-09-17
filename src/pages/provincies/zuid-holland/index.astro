@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ZuidHollandProvincePageTemplate from '../../../components/provinces/ZuidHollandProvincePageTemplate.astro';
+import {
+	buildTourgoWhatsappHref,
+	tourgoPartybussen,
+} from '../../../data/partners/tourgoPartybussen';
+import {
+	getZuidHollandMunicipalities,
+	zuidHollandProvince,
+} from '../../../data/provinces/zuidHolland';
+import { zuidHollandFooter } from '../../../data/settings/regionalFooters';
+import {
+	buildBreadcrumbSchema,
+	buildFaqPageSchema,
+	buildWebPageSchema,
+} from '../../../lib/guides/schema';
+import { buildZuidHollandWhatsappTrackingContext } from '../../../lib/partnerWhatsappTracking';
+
+const province = zuidHollandProvince;
+const municipalities = getZuidHollandMunicipalities();
+const partner = tourgoPartybussen;
+
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Zuid-Holland', href: province.path },
+] as const;
+
+const jsonLd = [
+	buildWebPageSchema({
+		name: province.h1,
+		description: province.metaDescription,
+		url: province.canonical,
+	}),
+	buildBreadcrumbSchema(breadcrumbs),
+	buildFaqPageSchema(province.faqs),
+];
+
+const heroImage = partner.publicProfile.media.hero ?? province.heroImage;
+const socialImage = `https://www.partybusnederland.nl${heroImage}`;
+---
+
+<BaseLayout
+	title={province.title}
+	description={province.metaDescription}
+	canonical={province.canonical}
+	titleExact={true}
+	preloadImage={heroImage}
+	ogTitle={province.title}
+	ogDescription={province.metaDescription}
+	ogUrl={province.canonical}
+	ogImage={socialImage}
+	twitterTitle={province.title}
+	twitterDescription={province.metaDescription}
+	twitterImage={socialImage}
+	jsonLd={jsonLd}
+	pageWhatsapp={{
+		href: buildTourgoWhatsappHref('Zuid-Holland'),
+		label: partner.publicProfile.whatsapp.ariaLabel,
+	}}
+	regionalFooter={zuidHollandFooter}
+	partnerWhatsappTracking={buildZuidHollandWhatsappTrackingContext({
+		municipalitySlug: null,
+		municipalityName: 'Zuid-Holland',
+		pagePath: province.path,
+		pageType: 'province',
+	})}
+>
+	<ZuidHollandProvincePageTemplate municipalities={municipalities} />
+</BaseLayout>
