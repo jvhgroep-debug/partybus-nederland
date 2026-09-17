@@ -1,12 +1,13 @@
 ---
 import { site } from '../../data/settings/site';
-import { publishedCities } from '../../data/cities/registry';
 import { mainNav, primaryCta } from '../../data/settings/navigation';
 import { whatsapp } from '../../data/settings/whatsapp';
 import { hubGuideLinks } from '../../data/gidsen/shared';
 import { gidsenPath } from '../../data/gidsen/registry';
 import { trustNav, footerLegalNav } from '../../data/trust/pages';
 import { servicePages } from '../../data/services/pages';
+import { noordBrabantProvince } from '../../data/provinces/noordBrabant';
+import { zuidHollandProvince } from '../../data/provinces/zuidHolland';
 import type { RegionalFooterConfig } from '../../data/settings/regionalFooters';
 import type { PartnerWhatsappTrackingContext } from '../../lib/partnerWhatsappTracking';
 import Button from '../buttons/Button.astro';
@@ -38,10 +39,11 @@ const {
 } = Astro.props;
 const year = new Date().getFullYear();
 const navigationLinks = regionalFooter?.navigation ?? mainNav;
-const cityLinks = regionalFooter?.locations ?? publishedCities.slice(0, 6).map((city) => ({
-	label: city.name,
-	href: city.path,
-}));
+const regionalLocationLinks = regionalFooter?.locations ?? [];
+const provinceLinks = [
+	{ label: noordBrabantProvince.eyebrow, href: noordBrabantProvince.path },
+	{ label: zuidHollandProvince.eyebrow, href: zuidHollandProvince.path },
+];
 ---
 
 <footer
@@ -70,8 +72,8 @@ const cityLinks = regionalFooter?.locations ?? publishedCities.slice(0, 6).map((
 				<>
 					<div class="site-footer__col">
 						<p class="site-footer__heading">{regionalFooter.locationHeading}</p>
-						{cityLinks.map((city) => (
-							<a href={city.href}>{city.label}</a>
+						{regionalLocationLinks.map((location) => (
+							<a href={location.href}>{location.label}</a>
 						))}
 					</div>
 					<div class="site-footer__col">
@@ -99,11 +101,10 @@ const cityLinks = regionalFooter?.locations ?? publishedCities.slice(0, 6).map((
 						))}
 					</div>
 					<div class="site-footer__col">
-						<p class="site-footer__heading">Steden</p>
-						{cityLinks.map((city) => (
-							<a href={city.href}>{city.label}</a>
+						<p class="site-footer__heading">Provincies</p>
+						{provinceLinks.map((province) => (
+							<a href={province.href}>{province.label}</a>
 						))}
-						<a href="/#steden">Alle steden</a>
 					</div>
 					<div class="site-footer__col">
 						<p class="site-footer__heading">Diensten</p>
