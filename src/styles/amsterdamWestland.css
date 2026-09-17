@@ -1,0 +1,65 @@
+/**
+ * Amsterdam / Party Bussen Westland landing page only.
+ * Dark cards keep Light Design System on-dark body text.
+ * Does not apply to Utrecht municipalities, Tourgo, or Prestige.
+ */
+.amsterdam-westland.zh-partner-page .city-why__card,
+.amsterdam-westland.zh-partner-page .city-how__card,
+.amsterdam-westland.zh-partner-page .info-guide__card,
+.amsterdam-westland.zh-partner-page .info-guide__checklist,
+.amsterdam-westland.zh-partner-page .city-pickup__item,
+.amsterdam-westland.zh-partner-page .city-act__card,
+.amsterdam-westland.zh-partner-page .city-faq__item,
+.amsterdam-westland.zh-partner-page .city-occ__card,
+.amsterdam-westland.zh-partner-page .city-dest__card,
+.amsterdam-westland.zh-partner-page .city-related__card,
+.amsterdam-westland.zh-partner-page .city-cta__panel,
+.amsterdam-westland.zh-partner-page .city-conversion,
+.amsterdam-westland.zh-partner-page .ams-area__card,
+.amsterdam-westland.zh-partner-page .ams-venue__card {
+	--color-text: var(--color-on-dark);
+	--color-text-muted: var(--color-on-dark-muted);
+	color: var(--color-on-dark);
+}
+
+.amsterdam-westland.zh-partner-page .city-why__card p,
+.amsterdam-westland.zh-partner-page .city-how__card p,
+.amsterdam-westland.zh-partner-page .info-guide__card p,
+.amsterdam-westland.zh-partner-page .info-guide__checklist li,
+.amsterdam-westland.zh-partner-page .city-act__card p,
+.amsterdam-westland.zh-partner-page .city-faq__content p,
+.amsterdam-westland.zh-partner-page .city-occ__body p,
+.amsterdam-westland.zh-partner-page .city-dest__body p,
+.amsterdam-westland.zh-partner-page .city-occ__info-link,
+.amsterdam-westland.zh-partner-page .city-cta__panel .section__lead,
+.amsterdam-westland.zh-partner-page .ams-area__card p,
+.amsterdam-westland.zh-partner-page .ams-venue__card p {
+	color: var(--color-on-dark-muted);
+}
+
+.amsterdam-westland.zh-partner-page .city-conversion strong,
+.amsterdam-westland.zh-partner-page .city-how__card h3,
+.amsterdam-westland.zh-partner-page .city-faq__item summary,
+.amsterdam-westland.zh-partner-page .city-related__name,
+.amsterdam-westland.zh-partner-page .city-pickup__item,
+.amsterdam-westland.zh-partner-page .city-cta__panel .section__title {
+	color: var(--color-on-dark);
+}
+
+.amsterdam-westland.zh-partner-page .city-why__card h3,
+.amsterdam-westland.zh-partner-page .info-guide__card h3,
+.amsterdam-westland.zh-partner-page .info-guide__checklist h3,
+.amsterdam-westland.zh-partner-page .city-act__card h3,
+.amsterdam-westland.zh-partner-page .city-occ__body h3,
+.amsterdam-westland.zh-partner-page .city-dest__body h3,
+.amsterdam-westland.zh-partner-page .city-related__cta,
+.amsterdam-westland.zh-partner-page .ams-area__card h3,
+.amsterdam-westland.zh-partner-page .ams-venue__card h3 {
+	color: var(--color-primary);
+}
+
+.amsterdam-westland.zh-partner-page .city-conversion .btn--ghost,
+.amsterdam-westland.zh-partner-page .city-cta__content .btn--ghost {
+	color: var(--color-on-dark);
+	border-color: color-mix(in srgb, var(--color-on-dark) 48%, transparent);
+}

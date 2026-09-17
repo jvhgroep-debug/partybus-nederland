@@ -1,0 +1,282 @@
+---
+import type { CityPageData } from '../../data/cities/types';
+import {
+	buildPartyBussenWestlandWhatsappHref,
+	partyBussenWestland,
+	partyBussenWestlandLogo,
+	partyBussenWestlandWebsiteHref,
+	partyBussenWestlandWebsiteLabel,
+	partyBussenWestlandWhatsappLabel,
+} from '../../data/partners/partyBussenWestland';
+import {
+	amsterdamWestlandAreas,
+	amsterdamWestlandHero,
+	amsterdamWestlandHowItWorks,
+	amsterdamWestlandMedia,
+	amsterdamWestlandPagePath,
+	amsterdamWestlandPartnerIntro,
+	amsterdamWestlandVenues,
+	applyAmsterdamWestlandCopy,
+} from '../../data/partners/amsterdamPartyBussenWestland';
+import '../../styles/zuidHollandPartner.css';
+import '../../styles/amsterdamWestland.css';
+import CityIntro from './CityIntro.astro';
+import CityOccasions from './CityOccasions.astro';
+import CityTrustBar from './CityTrustBar.astro';
+import CityWhy from './CityWhy.astro';
+import CityHowItWorks from './CityHowItWorks.astro';
+import CityPickupLocations from './CityPickupLocations.astro';
+import CityConversionBand from './CityConversionBand.astro';
+import CityFaq from './CityFaq.astro';
+import CityCta from './CityCta.astro';
+import RegionalPartnerSection from '../partners/RegionalPartnerSection.astro';
+import AmsterdamPartnerHero from '../partners/AmsterdamPartnerHero.astro';
+
+interface Props {
+	city: CityPageData;
+}
+
+const { city: incomingCity } = Astro.props;
+if (incomingCity.slug !== 'amsterdam' || incomingCity.path !== amsterdamWestlandPagePath) {
+	throw new Error('AmsterdamPartyBussenWestlandTemplate is only for /steden/partybus-huren-amsterdam/');
+}
+
+const city = applyAmsterdamWestlandCopy(incomingCity);
+const whatsappHref = buildPartyBussenWestlandWhatsappHref(city.name);
+const partnerGallery = amsterdamWestlandMedia.gallery.slice(0, 6);
+---
+
+<div class="master-city master-city--zh-light zh-partner-page amsterdam-westland">
+	<AmsterdamPartnerHero
+		breadcrumbs={[
+			{ label: 'Home', href: '/' },
+			{ label: 'Steden', href: '/#steden' },
+			{ label: city.name, href: city.path, current: true },
+		]}
+		eyebrow={amsterdamWestlandHero.eyebrow}
+		title={amsterdamWestlandHero.title}
+		lead={amsterdamWestlandHero.lead}
+		trustItems={city.hero.trustItems ?? []}
+		whatsappHref={whatsappHref}
+		whatsappButtonType="hero"
+		photo={amsterdamWestlandMedia.hero}
+		sourcePage={city.path}
+		defaultCity={city.name}
+		formTitle={amsterdamWestlandHero.formTitle}
+		formLead={amsterdamWestlandHero.formLead}
+	/>
+
+	<CityTrustBar items={city.hero.trustItems ?? []} />
+
+	<section class="section ams-areas" aria-labelledby="ams-areas-title">
+		<div class="section__inner">
+			<div class="section__head reveal">
+				<p class="section__eyebrow">Amsterdam</p>
+				<h2 id="ams-areas-title" class="section__title">Stadsdelen en opstapgebieden</h2>
+				<p class="section__lead">
+					Van Centrum tot Zuidoost: kies een verzamelpunt dat voor de groep logisch is. De exacte halte
+					stem je af met Party Bussen Westland.
+				</p>
+			</div>
+			<div class="ams-areas__grid">
+				{
+					amsterdamWestlandAreas.map((area) => (
+						<article class="ams-area__card reveal">
+							<h3>{area.name}</h3>
+							<p>{area.text}</p>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<CityIntro
+		title={city.intro.title}
+		paragraphs={city.intro.paragraphs}
+		image={amsterdamWestlandMedia.intro.src}
+		imageAlt={city.intro.imageAlt}
+	/>
+
+	<CityWhy title={city.why.title} lead={city.why.lead} items={city.why.items} />
+
+	<CityOccasions
+		title={city.occasions.title}
+		lead={city.occasions.lead}
+		items={city.occasions.items}
+		partnerWhatsappHref={whatsappHref}
+		partnerWhatsappLabel="Direct contact via WhatsApp →"
+	/>
+
+	<section class="section ams-venues" aria-labelledby="ams-venues-title">
+		<div class="section__inner">
+			<div class="section__head reveal">
+				<p class="section__eyebrow">Evenementen</p>
+				<h2 id="ams-venues-title" class="section__title">Partybus voor evenementen in Amsterdam</h2>
+				<p class="section__lead">
+					Bekende locaties als bestemming of nabije verzamelplek. Geen vaste halte per gebouw: de rit
+					stem je af op jullie programma.
+				</p>
+			</div>
+			<div class="ams-venues__grid">
+				{
+					amsterdamWestlandVenues.map((venue) => (
+						<article class="ams-venue__card reveal">
+							<h3>{venue.name}</h3>
+							<p>{venue.text}</p>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<CityConversionBand
+		cityName={city.name}
+		whatsappHref={whatsappHref}
+		quoteHref={partyBussenWestlandWebsiteHref}
+		partnerMode={true}
+		eyebrow="Amsterdam"
+		headline="Plan de rit via WhatsApp of bekijk de bussen"
+		whatsappLabel={partyBussenWestlandWhatsappLabel}
+		ghostLabel={partyBussenWestlandWebsiteLabel}
+	/>
+
+	<RegionalPartnerSection
+		eyebrow="Onze partner voor Amsterdam"
+		partner={partyBussenWestland.publicProfile}
+		localIntro={amsterdamWestlandPartnerIntro}
+		galleryImages={partnerGallery}
+		whatsappHref={whatsappHref}
+		logo={partyBussenWestlandLogo}
+		enableWhatsappTracking={true}
+	/>
+
+	<CityHowItWorks
+		eyebrow="Contact"
+		title="Hoe regel je een partybus in Amsterdam?"
+		steps={amsterdamWestlandHowItWorks}
+	/>
+
+	<CityPickupLocations
+		title={city.pickup.title}
+		lead={city.pickup.lead}
+		items={city.pickup.items}
+		note={city.pickup.note}
+	/>
+
+	<CityFaq items={city.faqs} cityName={city.name} />
+
+	<nav class="master-city__links section__inner" aria-label="Vervolgstappen">
+		<a
+			href={whatsappHref}
+			target="_blank"
+			rel="noopener noreferrer"
+			data-partner-whatsapp="true"
+			data-button-type="cta"
+		>
+			Direct contact via WhatsApp →
+		</a>
+		<a href={partyBussenWestlandWebsiteHref} target="_blank" rel="noopener noreferrer">Bekijk de partybussen →</a>
+		<a href="/gids/partybus-huren/">Meer lezen in de partybus-gids →</a>
+		<a href="/kennisbank/">Naar de kennisbank →</a>
+	</nav>
+
+	<CityCta
+		title={city.cta.title}
+		text={city.cta.text}
+		whatsappHref={whatsappHref}
+		image={amsterdamWestlandMedia.cta.src}
+		primaryHref={partyBussenWestlandWebsiteHref}
+		partnerMode={true}
+		whatsappLabel={partyBussenWestlandWhatsappLabel}
+		ghostLabel={partyBussenWestlandWebsiteLabel}
+	/>
+</div>
+
+<style>
+	.amsterdam-westland {
+		overflow-x: clip;
+	}
+
+	.ams-areas__grid,
+	.ams-venues__grid {
+		display: grid;
+		gap: 1rem;
+		min-width: 0;
+	}
+
+	.ams-area__card,
+	.ams-venue__card {
+		min-width: 0;
+		padding: 1.15rem 1.2rem;
+		border: 1px solid var(--color-primary-line);
+		border-radius: var(--radius-lg);
+		background: #090909;
+	}
+
+	.ams-area__card h3,
+	.ams-venue__card h3 {
+		margin: 0 0 0.55rem;
+		font-family: var(--font-display);
+		font-size: 1.15rem;
+	}
+
+	.ams-area__card p,
+	.ams-venue__card p {
+		margin: 0;
+		font-size: 0.98rem;
+		line-height: 1.65;
+	}
+
+	@media (min-width: 700px) {
+		.ams-areas__grid,
+		.ams-venues__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.ams-areas__grid,
+		.ams-venues__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.amsterdam-westland :global(.city-intro__visual) {
+		aspect-ratio: 320 / 213;
+	}
+
+	.amsterdam-westland :global(.city-intro__visual img),
+	.amsterdam-westland :global(.city-occ__card img),
+	.amsterdam-westland :global(.city-cta__panel img) {
+		object-fit: cover;
+		object-position: center;
+	}
+
+	.amsterdam-westland :global(.regional-partner__gallery) {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1rem;
+	}
+
+	.amsterdam-westland :global(.regional-partner__gallery img) {
+		width: 100%;
+		height: auto;
+		max-height: 22rem;
+		aspect-ratio: 320 / 213;
+		object-fit: cover;
+	}
+
+	@media (min-width: 640px) {
+		.amsterdam-westland :global(.regional-partner__gallery) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	.amsterdam-westland :global(.master-city__links) {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.85rem 1.25rem;
+		padding-bottom: 2rem;
+	}
+</style>

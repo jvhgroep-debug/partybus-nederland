@@ -1,0 +1,319 @@
+---
+import {
+	partyBussenWestlandLogo,
+	partyBussenWestlandWhatsappLabel,
+} from '../../data/partners/partyBussenWestland';
+import type { PartnerImageAsset } from '../../data/partners/partnerMediaDistribution';
+import type { PartnerWhatsappButtonType } from '../../lib/partnerWhatsappTracking';
+import Button from '../buttons/Button.astro';
+import QuoteForm from '../forms/QuoteForm.astro';
+
+type HeroBreadcrumb = {
+	label: string;
+	href: string;
+	current?: boolean;
+};
+
+interface Props {
+	breadcrumbs: readonly HeroBreadcrumb[];
+	eyebrow: string;
+	title: string;
+	lead: string;
+	trustItems: readonly string[];
+	whatsappHref: string;
+	whatsappButtonType?: PartnerWhatsappButtonType;
+	photo: PartnerImageAsset;
+	sourcePage: string;
+	defaultCity: string;
+	formTitle: string;
+	formLead: string;
+}
+
+const {
+	breadcrumbs,
+	eyebrow,
+	title,
+	lead,
+	trustItems,
+	whatsappHref,
+	whatsappButtonType = 'hero',
+	photo,
+	sourcePage,
+	defaultCity,
+	formTitle,
+	formLead,
+} = Astro.props;
+---
+
+<header class="ams-hero">
+	<div class="section__inner ams-hero__grid">
+		<div class="ams-hero__copy">
+			<nav class="ams-hero__breadcrumbs" aria-label="Broodkruimel">
+				{
+					breadcrumbs.map((item, index) => (
+						<>
+							{index > 0 && <span aria-hidden="true">/</span>}
+							<a href={item.href} aria-current={item.current ? 'page' : undefined}>
+								{item.label}
+							</a>
+						</>
+					))
+				}
+			</nav>
+			<p class="section__eyebrow">{eyebrow}</p>
+			<h1>{title}</h1>
+			<p>{lead}</p>
+			<ul class="ams-hero__trust" aria-label="Voordelen">
+				{trustItems.map((item) => <li>{item}</li>)}
+			</ul>
+		</div>
+
+		<div class="ams-hero__media">
+			<img
+				class="ams-hero__logo"
+				src={partyBussenWestlandLogo}
+				alt="Logo Party Bussen Westland"
+				width="480"
+				height="160"
+			/>
+			<figure class="ams-hero__photo">
+				<img
+					src={photo.src}
+					alt={photo.alt}
+					width={photo.width}
+					height={photo.height}
+					fetchpriority="high"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+
+		<div class="ams-hero__actions">
+			<Button
+				href={whatsappHref}
+				size="lg"
+				target="_blank"
+				rel="noopener noreferrer"
+				partnerWhatsappButtonType={whatsappButtonType}
+			>
+				{partyBussenWestlandWhatsappLabel}
+			</Button>
+		</div>
+
+		<div id="offerte" class="ams-hero__form">
+			<p class="ams-hero__form-eyebrow">Offerteaanvraag</p>
+			<h2 class="ams-hero__form-title">{formTitle}</h2>
+			<p class="ams-hero__form-lead">{formLead}</p>
+			<QuoteForm sourcePage={sourcePage} defaultCity={defaultCity} />
+		</div>
+	</div>
+</header>
+
+<style>
+	.ams-hero {
+		padding-top: calc(var(--header-height) + 1.25rem);
+		padding-bottom: clamp(2rem, 5vw, 3.5rem);
+		background: #111111;
+		color: #f7f5f0;
+	}
+
+	.ams-hero__grid {
+		display: grid;
+		grid-template-areas:
+			'copy'
+			'media'
+			'actions'
+			'form';
+		gap: 1.5rem;
+		min-width: 0;
+	}
+
+	.ams-hero__copy,
+	.ams-hero__media,
+	.ams-hero__actions,
+	.ams-hero__form {
+		min-width: 0;
+	}
+
+	.ams-hero__copy {
+		grid-area: copy;
+	}
+
+	.ams-hero__media {
+		grid-area: media;
+		display: grid;
+		justify-items: stretch;
+		gap: 1rem;
+	}
+
+	.ams-hero__actions {
+		grid-area: actions;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.ams-hero__form {
+		grid-area: form;
+	}
+
+	.ams-hero__copy h1 {
+		margin: 0 0 1rem;
+		max-width: 16ch;
+		font-family: var(--font-display);
+		font-size: clamp(2.1rem, 5vw, 3.4rem);
+		line-height: 1.08;
+		color: #f7f5f0;
+	}
+
+	.ams-hero__copy > p {
+		margin: 0 0 1.4rem;
+		max-width: 42rem;
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: #ebe6da;
+	}
+
+	.ams-hero__breadcrumbs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		margin-bottom: 1rem;
+		font-size: 0.92rem;
+		color: rgba(247, 245, 240, 0.82);
+	}
+
+	.ams-hero__breadcrumbs a {
+		color: inherit;
+	}
+
+	.ams-hero__trust {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem 1rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-size: 0.92rem;
+		color: rgba(247, 245, 240, 0.88);
+	}
+
+	.ams-hero__logo {
+		display: block;
+		width: min(100%, 16rem);
+		height: auto;
+		justify-self: start;
+		padding: 0.85rem 1rem;
+		border: 1px solid color-mix(in srgb, var(--color-primary) 28%, #333);
+		border-radius: 1rem;
+		background: #ffffff;
+		object-fit: contain;
+	}
+
+	.ams-hero__photo {
+		margin: 0;
+		width: 100%;
+		max-width: 36rem;
+		padding: 0.85rem;
+		overflow: hidden;
+		border: 1px solid var(--color-primary-line);
+		border-radius: var(--radius-lg);
+		background: #ffffff;
+		box-shadow: 0 10px 28px rgba(20, 20, 20, 0.06);
+	}
+
+	.ams-hero__photo img {
+		display: block;
+		width: 100%;
+		max-height: 24rem;
+		aspect-ratio: 320 / 213;
+		object-fit: cover;
+		object-position: center;
+		border-radius: calc(var(--radius-lg) - 0.4rem);
+	}
+
+	@media (min-width: 960px) {
+		.ams-hero__grid {
+			grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+			grid-template-areas:
+				'copy form'
+				'actions form'
+				'media form';
+			align-items: start;
+			gap: 1.35rem 2rem;
+		}
+
+		.ams-hero__form {
+			align-self: start;
+		}
+	}
+
+	.ams-hero__form {
+		scroll-margin-top: calc(var(--header-height) + 0.75rem);
+		width: 100%;
+		padding: clamp(1.15rem, 3vw, 1.6rem);
+		border: 1px solid color-mix(in srgb, var(--color-primary) 28%, #e8e4d8);
+		border-radius: var(--radius-lg);
+		background: #fbfaf6;
+		box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+		--color-text: #141414;
+		--color-text-muted: #4f4f4b;
+		color: #141414;
+	}
+
+	.ams-hero__form-eyebrow {
+		margin: 0 0 0.55rem;
+		font-family: var(--font-display);
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--color-primary);
+	}
+
+	.ams-hero__form-title {
+		margin: 0 0 0.65rem;
+		max-width: 16ch;
+		font-family: var(--font-display);
+		font-size: clamp(1.45rem, 3vw, 1.85rem);
+		line-height: 1.15;
+		color: #141414;
+	}
+
+	.ams-hero__form-lead {
+		margin: 0 0 1.15rem;
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: #4f4f4b;
+	}
+
+	.ams-hero__form :global(.quote-form) {
+		max-width: none;
+	}
+
+	.ams-hero__form :global(.quote-form__field) {
+		color: #141414;
+	}
+
+	.ams-hero__form :global(.quote-form__field input),
+	.ams-hero__form :global(.quote-form__field textarea) {
+		background: #ffffff;
+		color: #141414;
+	}
+
+	.ams-hero__form :global(.quote-form__note) {
+		color: #4f4f4b;
+	}
+
+	.ams-hero__form :global(.quote-form__status--success) {
+		border: 1px solid color-mix(in srgb, #2e7d32 45%, transparent);
+		background: color-mix(in srgb, #2e7d32 10%, #ffffff);
+		color: #1b5e20;
+	}
+
+	.ams-hero__form :global(.quote-form__status--error) {
+		border: 1px solid color-mix(in srgb, #c62828 45%, transparent);
+		background: color-mix(in srgb, #c62828 10%, #ffffff);
+		color: #8a1f1f;
+	}
+</style>
