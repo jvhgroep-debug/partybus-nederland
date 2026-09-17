@@ -130,3 +130,29 @@ export const utrechtFooter: RegionalFooterConfig = {
 		},
 	},
 };
+
+const partyBussenWestlandFooterPartner = utrechtFooter.partner;
+
+export const amsterdamFooter: RegionalFooterConfig = {
+	id: 'amsterdam',
+	compact: true,
+	ctaLabel: 'Direct contact via WhatsApp',
+	ctaHref: 'https://wa.me/31610628733',
+	brandText:
+		'PartybusNederland.nl werkt in Amsterdam samen met Party Bussen Westland. Het bedrijf is gevestigd in Naaldwijk. Neem rechtstreeks contact op voor informatie of beschikbaarheid.',
+	navigation: [
+		{ label: 'Home', href: '/' },
+		{ label: 'Partybus Amsterdam', href: '/steden/partybus-huren-amsterdam/' },
+		{ label: 'Over ons', href: '/over-ons/' },
+		{ label: 'Contact', href: '/contact/' },
+	],
+	locationHeading: 'Amsterdam',
+	locations: [
+		{ label: 'Partybus Amsterdam', href: '/steden/partybus-huren-amsterdam/' },
+		{ label: 'Partybus Utrecht', href: '/provincies/utrecht/' },
+		municipalityLink('utrecht'),
+		municipalityLink('amersfoort'),
+		municipalityLink('nieuwegein'),
+	],
+	partner: partyBussenWestlandFooterPartner,
+};

@@ -5,7 +5,10 @@
  */
 import { prestigeCoachService } from '../../src/data/partners/prestigeCoachService';
 import { tourgoPartybussen } from '../../src/data/partners/tourgoPartybussen';
-import { partyBussenWestland } from '../../src/data/partners/partyBussenWestland';
+import {
+	partyBussenWestland,
+	partyBussenWestlandTerritory,
+} from '../../src/data/partners/partyBussenWestland';
 import {
 	isPartnerWhatsappButtonType,
 	PARTNER_WHATSAPP_BUTTON_TYPES,
@@ -27,6 +30,7 @@ const ALLOWED_PROVINCES = new Set([
 	prestigeCoachService.provinceSlug,
 	tourgoPartybussen.provinceSlug,
 	partyBussenWestland.provinceSlug,
+	...partyBussenWestlandTerritory.extraMunicipalities.map((item) => item.provinceSlug),
 ]);
 const MAX_FIELD_LENGTH = 240;
 
