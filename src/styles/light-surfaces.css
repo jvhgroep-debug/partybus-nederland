@@ -21,6 +21,7 @@
 .cta__panel,
 .city-cta__panel,
 .city-conversion,
+.assurance__partners,
 [class*='__card'],
 .info-guide__checklist,
 .city-faq__item,
@@ -53,6 +54,7 @@
 .cta__panel p,
 .city-cta__panel p,
 .city-conversion p,
+.assurance__partners .section__lead,
 [class*='__card'] p,
 .info-guide__checklist li,
 .city-faq__content p,
@@ -75,6 +77,7 @@
 .service-hero h1,
 .cta__panel h2,
 .city-cta__panel h2,
+.assurance__partners h2,
 [class*='__card'] h3,
 .info-guide__checklist h3,
 .city-faq__item summary,
@@ -92,9 +95,16 @@
 .guide-hero .btn--ghost,
 .service-hero .btn--ghost,
 .cta__panel .btn--ghost,
-.city-cta__content .btn--ghost {
+.city-cta__content .btn--ghost,
+.assurance__partners .btn--ghost {
 	color: var(--color-on-dark);
 	border-color: color-mix(in srgb, var(--color-on-dark) 48%, transparent);
+}
+
+.assurance__partners .btn--ghost:hover,
+.assurance__partners .btn--ghost:focus-visible {
+	color: var(--color-primary);
+	border-color: var(--color-primary);
 }
 
 .site-main .section:nth-of-type(odd):not(.city-hero):not(.guide-hero):not(.service-hero) {
