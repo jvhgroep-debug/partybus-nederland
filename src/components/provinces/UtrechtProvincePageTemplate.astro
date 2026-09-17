@@ -1,0 +1,348 @@
+---
+import type { ProvinceMunicipality } from '../../data/provinces/utrecht';
+import { utrechtProvince } from '../../data/provinces/utrecht';
+import {
+	buildPartyBussenWestlandWhatsappHref,
+	partyBussenWestland,
+	partyBussenWestlandLogo,
+	partyBussenWestlandOfficialWebps,
+} from '../../data/partners/partyBussenWestland';
+import '../../styles/zuidHollandPartner.css';
+import GuideFaqList from '../guides/GuideFaqList.astro';
+import RegionalPartnerSection from '../partners/RegionalPartnerSection.astro';
+import UtrechtPartnerHero from '../partners/UtrechtPartnerHero.astro';
+import ProvinceMunicipalityGrid from './ProvinceMunicipalityGrid.astro';
+
+interface Props {
+	municipalities: ProvinceMunicipality[];
+}
+
+const { municipalities } = Astro.props;
+const province = utrechtProvince;
+const partner = partyBussenWestland.publicProfile;
+const whatsappHref = buildPartyBussenWestlandWhatsappHref('provincie Utrecht');
+const photos = {
+	hero: partyBussenWestlandOfficialWebps[0],
+	touringcar: partyBussenWestlandOfficialWebps[1],
+	minibus: partyBussenWestlandOfficialWebps[3],
+	lounge: partyBussenWestlandOfficialWebps[5],
+	koelkast: partyBussenWestlandOfficialWebps[7],
+	stoelen: partyBussenWestlandOfficialWebps[8],
+	interieur: partyBussenWestlandOfficialWebps[9],
+	tafel: partyBussenWestlandOfficialWebps[17],
+} as const;
+const gallery = [
+	photos.hero,
+	photos.touringcar,
+	photos.minibus,
+	photos.lounge,
+	photos.interieur,
+	photos.stoelen,
+	photos.koelkast,
+	photos.tafel,
+] as const;
+const sectionImages = {
+	huren: photos.hero,
+	groepsvervoer: photos.touringcar,
+	feesten: photos.lounge,
+	festivals: photos.minibus,
+	bedrijfsfeesten: photos.interieur,
+	partijen: photos.tafel,
+} as const;
+---
+
+<article class="zh-partner-page ut-province">
+	<UtrechtPartnerHero
+		breadcrumbs={[
+			{ label: 'Home', href: '/' },
+			{ label: province.eyebrow, href: province.path, current: true },
+		]}
+		eyebrow="Partybus provincie Utrecht"
+		title={province.h1}
+		lead={province.lead}
+		trustItems={[
+			`${municipalities.length} gemeenten in provincie Utrecht`,
+			'Partner: Party Bussen Westland',
+			'Rechtstreeks WhatsApp-contact',
+		]}
+		whatsappHref={whatsappHref}
+		whatsappButtonType="province-hero"
+		photo={photos.hero}
+		sourcePage={province.path}
+		defaultCity="Utrecht"
+		formTitle="Offerte aanvragen voor een partybus in Utrecht"
+		formLead="Vul je wensen in. PartybusNederland.nl werkt in provincie Utrecht samen met Party Bussen Westland."
+	/>
+
+	<section class="section" aria-labelledby="province-huren-title">
+		<div class="section__inner ut-split">
+			<div>
+				<h2 id="province-huren-title" class="section__title">{province.sections.huren.title}</h2>
+				{province.sections.huren.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure class="ut-photo">
+				<img
+					src={sectionImages.huren.src}
+					alt={sectionImages.huren.alt}
+					width={sectionImages.huren.width}
+					height={sectionImages.huren.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="province-groepsvervoer-title">
+		<div class="section__inner ut-split ut-split--reverse">
+			<div>
+				<h2 id="province-groepsvervoer-title" class="section__title">{province.sections.groepsvervoer.title}</h2>
+				{province.sections.groepsvervoer.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure class="ut-photo">
+				<img
+					src={sectionImages.groepsvervoer.src}
+					alt={sectionImages.groepsvervoer.alt}
+					width={sectionImages.groepsvervoer.width}
+					height={sectionImages.groepsvervoer.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="province-feesten-title">
+		<div class="section__inner ut-split">
+			<div>
+				<h2 id="province-feesten-title" class="section__title">{province.sections.feesten.title}</h2>
+				{province.sections.feesten.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure class="ut-photo">
+				<img
+					src={sectionImages.feesten.src}
+					alt={sectionImages.feesten.alt}
+					width={sectionImages.feesten.width}
+					height={sectionImages.feesten.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="province-festivals-title">
+		<div class="section__inner ut-split ut-split--reverse">
+			<div>
+				<h2 id="province-festivals-title" class="section__title">{province.sections.festivals.title}</h2>
+				{province.sections.festivals.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure class="ut-photo">
+				<img
+					src={sectionImages.festivals.src}
+					alt={sectionImages.festivals.alt}
+					width={sectionImages.festivals.width}
+					height={sectionImages.festivals.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="province-bedrijfsfeesten-title">
+		<div class="section__inner ut-split">
+			<div>
+				<h2 id="province-bedrijfsfeesten-title" class="section__title">{province.sections.bedrijfsfeesten.title}</h2>
+				{province.sections.bedrijfsfeesten.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure class="ut-photo">
+				<img
+					src={sectionImages.bedrijfsfeesten.src}
+					alt={sectionImages.bedrijfsfeesten.alt}
+					width={sectionImages.bedrijfsfeesten.width}
+					height={sectionImages.bedrijfsfeesten.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="province-partijen-title">
+		<div class="section__inner ut-split ut-split--reverse">
+			<div>
+				<h2 id="province-partijen-title" class="section__title">{province.sections.partijen.title}</h2>
+				{province.sections.partijen.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+			<figure class="ut-photo">
+				<img
+					src={sectionImages.partijen.src}
+					alt={sectionImages.partijen.alt}
+					width={sectionImages.partijen.width}
+					height={sectionImages.partijen.height}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+		</div>
+	</section>
+
+	<RegionalPartnerSection
+		eyebrow="Onze partner voor provincie Utrecht"
+		partner={partner}
+		galleryImages={gallery.slice(0, 6)}
+		whatsappHref={whatsappHref}
+		logo={partyBussenWestlandLogo}
+		enableWhatsappTracking={true}
+	/>
+
+	<section class="section" aria-labelledby="province-gallery-title">
+		<div class="section__inner">
+			<div class="section__head">
+				<p class="section__eyebrow">Officiële foto's</p>
+				<h2 id="province-gallery-title" class="section__title">De bussen van Party Bussen Westland</h2>
+				<p class="section__lead">
+					Partybus, touringcar, minibus, lounge, stoelen, tafel en koelkast — rechtstreeks van Party Bussen Westland.
+				</p>
+			</div>
+			<ul class="ut-gallery">
+				{
+					gallery.map((image) => (
+						<li>
+							<figure class="ut-photo">
+								<img
+									src={image.src}
+									alt={image.alt}
+									width={image.width}
+									height={image.height}
+									loading="lazy"
+									decoding="async"
+								/>
+							</figure>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</section>
+
+	<ProvinceMunicipalityGrid
+		municipalities={municipalities}
+		title="Partybus huren per gemeente in Utrecht"
+		lead="Elke gemeente heeft een bestaande pagina. De URL’s blijven ongewijzigd."
+		countLabel={`${municipalities.length} gemeenten in provincie Utrecht`}
+	/>
+
+	<GuideFaqList title="Vragen over partybus huren in provincie Utrecht" items={province.faqs} />
+</article>
+
+<style>
+	.ut-province {
+		background: #f6f5f2;
+	}
+
+	.ut-photo {
+		margin: 0;
+		width: 100%;
+		max-width: 36rem;
+		padding: 0.85rem;
+		overflow: hidden;
+		border: 1px solid var(--color-primary-line);
+		border-radius: var(--radius-lg);
+		background: #ffffff;
+		box-shadow: 0 10px 28px rgba(20, 20, 20, 0.06);
+	}
+
+	.ut-photo img {
+		display: block;
+		width: 100%;
+		max-height: 24rem;
+		aspect-ratio: 320 / 213;
+		object-fit: cover;
+		object-position: center;
+		border-radius: calc(var(--radius-lg) - 0.4rem);
+	}
+
+	.ut-split {
+		display: grid;
+		gap: clamp(1.5rem, 4vw, 3rem);
+		align-items: center;
+		min-width: 0;
+	}
+
+	.ut-split > * {
+		min-width: 0;
+	}
+
+	.ut-split p {
+		margin: 0 0 1rem;
+		line-height: 1.75;
+		color: #4f4f4b;
+	}
+
+	.ut-split p:last-child {
+		margin-bottom: 0;
+	}
+
+	@media (min-width: 900px) {
+		.ut-split {
+			grid-template-columns: minmax(0, 1fr) minmax(20rem, 36rem);
+		}
+
+		.ut-split--reverse .ut-photo {
+			order: -1;
+		}
+	}
+
+	.ut-gallery {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.ut-gallery .ut-photo {
+		width: 100%;
+		max-width: 36rem;
+		margin-inline: auto;
+	}
+
+	@media (min-width: 640px) {
+		.ut-gallery {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.ut-gallery .ut-photo {
+			max-width: none;
+			margin-inline: 0;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.ut-gallery {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.ut-province :global(.regional-partner__gallery) {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1rem;
+	}
+
+	.ut-province :global(.regional-partner__gallery img) {
+		width: 100%;
+		height: auto;
+		max-height: 22rem;
+		aspect-ratio: 320 / 213;
+		object-fit: cover;
+	}
+
+	@media (min-width: 640px) {
+		.ut-province :global(.regional-partner__gallery) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+</style>

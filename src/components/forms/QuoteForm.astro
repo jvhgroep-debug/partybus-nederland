@@ -5,9 +5,10 @@ import { prestigeCoachService } from '../../data/partners/prestigeCoachService';
 interface Props {
 	sourcePage?: string;
 	compact?: boolean;
+	defaultCity?: string;
 }
 
-const { sourcePage = '/', compact = false } = Astro.props;
+const { sourcePage = '/', compact = false, defaultCity } = Astro.props;
 const successMessage = emailSettings.successMessage;
 const errorMessage = emailSettings.errorMessage;
 const regionalPartnerId = prestigeCoachService.id;
@@ -40,7 +41,7 @@ const regionalPartnerId = prestigeCoachService.id;
 
 			<label class="quote-form__field">
 				<span>Stad / locatie <abbr title="verplicht">*</abbr></span>
-				<input type="text" name="city" required autocomplete="address-level2" placeholder="Bijv. Amsterdam" />
+				<input type="text" name="city" required autocomplete="address-level2" placeholder="Bijv. Amsterdam" value={defaultCity ?? ''} />
 			</label>
 
 			<label class="quote-form__field">

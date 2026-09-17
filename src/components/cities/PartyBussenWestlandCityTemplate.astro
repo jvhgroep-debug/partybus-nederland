@@ -1,0 +1,235 @@
+---
+import type { CityPageData } from '../../data/cities/types';
+import { getRelatedCities } from '../../data/cities/registry';
+import {
+	buildPartyBussenWestlandLocalIntro,
+	buildPartyBussenWestlandWhatsappHref,
+	partyBussenWestland,
+	partyBussenWestlandLogo,
+	partyBussenWestlandWebsiteHref,
+	partyBussenWestlandWebsiteLabel,
+	partyBussenWestlandWhatsappLabel,
+	resolvePartyBussenWestlandCityMedia,
+} from '../../data/partners/partyBussenWestland';
+import {
+	applyPartyBussenWestlandMunicipalityCopy,
+	westlandBookingTips,
+	westlandCityInfoLead,
+	westlandConversionCopy,
+	westlandHowItWorks,
+	westlandPlanningChecklist,
+	westlandPricingCards,
+	westlandTipsLead,
+} from '../../data/partners/partyBussenWestlandCityCopy';
+import {
+	getUtrechtNeighborSlugs,
+	isUtrechtMunicipalitySlug,
+	utrechtProvince,
+} from '../../data/provinces/utrecht';
+import '../../styles/zuidHollandPartner.css';
+import '../../styles/westlandCity.css';
+import CityIntro from './CityIntro.astro';
+import CityDestinations from './CityDestinations.astro';
+import CityActivities from './CityActivities.astro';
+import CityOccasions from './CityOccasions.astro';
+import CityTrustBar from './CityTrustBar.astro';
+import CityWhy from './CityWhy.astro';
+import CityHowItWorks from './CityHowItWorks.astro';
+import CityPickupLocations from './CityPickupLocations.astro';
+import CityConversionBand from './CityConversionBand.astro';
+import CityFaq from './CityFaq.astro';
+import CityRelatedCities from './CityRelatedCities.astro';
+import CityCta from './CityCta.astro';
+import InfoGuide from '../shared/InfoGuide.astro';
+import RegionalPartnerSection from '../partners/RegionalPartnerSection.astro';
+import UtrechtPartnerHero from '../partners/UtrechtPartnerHero.astro';
+
+interface Props {
+	city: CityPageData;
+}
+
+const { city: incomingCity } = Astro.props;
+if (!isUtrechtMunicipalitySlug(incomingCity.slug)) {
+	throw new Error(`PartyBussenWestlandCityTemplate used for non-Utrecht city: ${incomingCity.slug}`);
+}
+const city = applyPartyBussenWestlandMunicipalityCopy(incomingCity);
+const relatedCities = getRelatedCities(city.slug, getUtrechtNeighborSlugs(incomingCity.slug), 5);
+const partnerCityMedia = resolvePartyBussenWestlandCityMedia(city.slug);
+const whatsappHref = buildPartyBussenWestlandWhatsappHref(city.name);
+const localPartnerIntro = buildPartyBussenWestlandLocalIntro(city.name);
+const partnerOccasions = city.occasions.items.map((item, index) => ({
+	...item,
+	image: partnerCityMedia.gallery[index % partnerCityMedia.gallery.length].src,
+	infoHref: null,
+}));
+const introImage = partnerCityMedia.gallery[0].src;
+const ctaImage = partnerCityMedia.gallery[Math.min(2, partnerCityMedia.gallery.length - 1)].src;
+const partnerGallery = partnerCityMedia.gallery.slice(0, 4);
+const requestSteps = westlandHowItWorks(city.name, city.slug);
+const conversionCopy = westlandConversionCopy(city.name, city.slug);
+---
+
+<div class="master-city master-city--zh-light zh-partner-page westland-city">
+	<UtrechtPartnerHero
+		breadcrumbs={[
+			{ label: 'Home', href: '/' },
+			{ label: utrechtProvince.eyebrow, href: utrechtProvince.path },
+			{ label: city.name, href: city.path, current: true },
+		]}
+		eyebrow={`Partybus ${city.name}`}
+		title={`Partybus huren in ${city.name}`}
+		lead={city.hero.subtitle}
+		trustItems={city.hero.trustItems ?? []}
+		whatsappHref={whatsappHref}
+		whatsappButtonType="hero"
+		photo={partnerCityMedia.hero}
+		sourcePage={city.path}
+		defaultCity={city.name}
+		formTitle={`Offerte aanvragen voor een partybus in ${city.name}`}
+		formLead={`Vul je wensen in. PartybusNederland.nl werkt in provincie Utrecht samen met Party Bussen Westland.`}
+	/>
+
+	<CityTrustBar items={city.hero.trustItems ?? []} />
+
+	<CityIntro
+		title={city.intro.title}
+		paragraphs={city.intro.paragraphs}
+		image={introImage}
+		imageAlt={city.intro.imageAlt}
+	/>
+
+	<CityWhy title={`Waarom een partybus huren vanuit ${city.name}?`} lead={city.why.lead} items={city.why.items} />
+
+	<CityOccasions
+		title={city.occasions.title}
+		lead={city.occasions.lead}
+		items={partnerOccasions}
+		partnerWhatsappHref={whatsappHref}
+		partnerWhatsappLabel="Direct contact via WhatsApp →"
+	/>
+
+	<CityConversionBand
+		cityName={city.name}
+		whatsappHref={whatsappHref}
+		quoteHref={partyBussenWestlandWebsiteHref}
+		partnerMode={true}
+		eyebrow={conversionCopy.eyebrow}
+		headline={conversionCopy.headline}
+		whatsappLabel={partyBussenWestlandWhatsappLabel}
+		ghostLabel={partyBussenWestlandWebsiteLabel}
+	/>
+
+	<RegionalPartnerSection
+		eyebrow="Onze partner voor provincie Utrecht"
+		partner={partyBussenWestland.publicProfile}
+		localIntro={localPartnerIntro}
+		galleryImages={partnerGallery}
+		whatsappHref={whatsappHref}
+		logo={partyBussenWestlandLogo}
+		enableWhatsappTracking={true}
+	/>
+
+	<CityHowItWorks
+		eyebrow="Contact"
+		title={`Hoe regel je een partybus vanuit ${city.name}?`}
+		steps={requestSteps}
+	/>
+
+	<InfoGuide
+		eyebrow="Informatie"
+		title={`Partybus vanuit ${city.name}: prijzen & tips`}
+		lead={westlandCityInfoLead(city.name, city.slug)}
+		cards={westlandPricingCards}
+		checklist={westlandPlanningChecklist}
+		checklistTitle="Waar je op let bij Party Bussen Westland"
+	/>
+
+	<CityPickupLocations
+		title={city.pickup.title}
+		lead={city.pickup.lead}
+		items={city.pickup.items}
+		note={city.pickup.note}
+	/>
+
+	<CityDestinations
+		title={city.locations.title}
+		lead={city.locations.lead}
+		items={city.locations.items}
+		eyebrow="Bestemmingen"
+	/>
+
+	<CityActivities
+		title={city.activities.title}
+		lead={city.activities.lead}
+		items={city.activities.items}
+		eyebrow="Festivals"
+	/>
+
+	<InfoGuide
+		eyebrow="Tips"
+		title={`Praktische tips voor een rit vanuit ${city.name}`}
+		lead={westlandTipsLead(city.name, city.slug)}
+		cards={westlandBookingTips}
+	/>
+
+	<CityFaq items={city.faqs} cityName={city.name} />
+
+	{relatedCities.length > 0 && <CityRelatedCities cityName={city.name} cities={relatedCities} />}
+
+	<nav class="master-city__links section__inner" aria-label="Vervolgstappen">
+		<a
+			href={whatsappHref}
+			target="_blank"
+			rel="noopener noreferrer"
+			data-partner-whatsapp="true"
+			data-button-type="cta"
+		>
+			Direct contact via WhatsApp →
+		</a>
+		<a href={partyBussenWestlandWebsiteHref} target="_blank" rel="noopener noreferrer">Bekijk de partybussen →</a>
+		<a href={utrechtProvince.path}>Partybus Utrecht →</a>
+		<a href="/gids/partybus-huren/">Meer lezen in de partybus-gids →</a>
+		<a href="/kennisbank/">Naar de kennisbank →</a>
+	</nav>
+
+	<CityCta
+		title={city.cta.title}
+		text={city.cta.text}
+		whatsappHref={whatsappHref}
+		image={ctaImage}
+		primaryHref={partyBussenWestlandWebsiteHref}
+		partnerMode={true}
+		whatsappLabel={partyBussenWestlandWhatsappLabel}
+		ghostLabel={partyBussenWestlandWebsiteLabel}
+	/>
+</div>
+
+<style>
+	.westland-city :global(.city-intro__visual) {
+		aspect-ratio: 320 / 213;
+	}
+
+	.westland-city :global(.city-intro__visual img) {
+		object-fit: cover;
+		object-position: center;
+	}
+
+	.westland-city :global(.regional-partner__gallery) {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1rem;
+	}
+
+	.westland-city :global(.regional-partner__gallery img) {
+		width: 100%;
+		height: auto;
+		max-height: 22rem;
+		aspect-ratio: 320 / 213;
+		object-fit: cover;
+	}
+
+	@media (min-width: 640px) {
+		.westland-city :global(.regional-partner__gallery) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+</style>

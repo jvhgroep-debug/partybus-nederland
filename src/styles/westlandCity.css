@@ -1,0 +1,59 @@
+/**
+ * Utrecht / Party Bussen Westland municipality pages only.
+ * Dark cards keep Light Design System on-dark body text.
+ * Does not apply to Tourgo, Prestige, Amsterdam, or /provincies/utrecht/.
+ */
+.westland-city.zh-partner-page .city-why__card,
+.westland-city.zh-partner-page .city-how__card,
+.westland-city.zh-partner-page .info-guide__card,
+.westland-city.zh-partner-page .info-guide__checklist,
+.westland-city.zh-partner-page .city-pickup__item,
+.westland-city.zh-partner-page .city-act__card,
+.westland-city.zh-partner-page .city-faq__item,
+.westland-city.zh-partner-page .city-occ__card,
+.westland-city.zh-partner-page .city-dest__card,
+.westland-city.zh-partner-page .city-related__card,
+.westland-city.zh-partner-page .city-cta__panel,
+.westland-city.zh-partner-page .city-conversion {
+	--color-text: var(--color-on-dark);
+	--color-text-muted: var(--color-on-dark-muted);
+	color: var(--color-on-dark);
+}
+
+.westland-city.zh-partner-page .city-why__card p,
+.westland-city.zh-partner-page .city-how__card p,
+.westland-city.zh-partner-page .info-guide__card p,
+.westland-city.zh-partner-page .info-guide__checklist li,
+.westland-city.zh-partner-page .city-act__card p,
+.westland-city.zh-partner-page .city-faq__content p,
+.westland-city.zh-partner-page .city-occ__body p,
+.westland-city.zh-partner-page .city-dest__body p,
+.westland-city.zh-partner-page .city-occ__info-link,
+.westland-city.zh-partner-page .city-cta__panel .section__lead {
+	color: var(--color-on-dark-muted);
+}
+
+.westland-city.zh-partner-page .city-conversion strong,
+.westland-city.zh-partner-page .city-how__card h3,
+.westland-city.zh-partner-page .city-faq__item summary,
+.westland-city.zh-partner-page .city-related__name,
+.westland-city.zh-partner-page .city-pickup__item,
+.westland-city.zh-partner-page .city-cta__panel .section__title {
+	color: var(--color-on-dark);
+}
+
+.westland-city.zh-partner-page .city-why__card h3,
+.westland-city.zh-partner-page .info-guide__card h3,
+.westland-city.zh-partner-page .info-guide__checklist h3,
+.westland-city.zh-partner-page .city-act__card h3,
+.westland-city.zh-partner-page .city-occ__body h3,
+.westland-city.zh-partner-page .city-dest__body h3,
+.westland-city.zh-partner-page .city-related__cta {
+	color: var(--color-primary);
+}
+
+.westland-city.zh-partner-page .city-conversion .btn--ghost,
+.westland-city.zh-partner-page .city-cta__content .btn--ghost {
+	color: var(--color-on-dark);
+	border-color: color-mix(in srgb, var(--color-on-dark) 48%, transparent);
+}

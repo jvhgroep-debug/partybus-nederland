@@ -5,6 +5,7 @@
  */
 import { prestigeCoachService } from '../../src/data/partners/prestigeCoachService';
 import { tourgoPartybussen } from '../../src/data/partners/tourgoPartybussen';
+import { partyBussenWestland } from '../../src/data/partners/partyBussenWestland';
 import {
 	isPartnerWhatsappButtonType,
 	PARTNER_WHATSAPP_BUTTON_TYPES,
@@ -17,10 +18,15 @@ interface Env {
 
 type ClickPayload = PartnerWhatsappClickPayload;
 
-const ALLOWED_PARTNERS = new Set([prestigeCoachService.id, tourgoPartybussen.id]);
+const ALLOWED_PARTNERS = new Set([
+	prestigeCoachService.id,
+	tourgoPartybussen.id,
+	partyBussenWestland.id,
+]);
 const ALLOWED_PROVINCES = new Set([
 	prestigeCoachService.provinceSlug,
 	tourgoPartybussen.provinceSlug,
+	partyBussenWestland.provinceSlug,
 ]);
 const MAX_FIELD_LENGTH = 240;
 

@@ -1,11 +1,22 @@
 ---
-import type { ProvinceMunicipality } from '../../data/provinces/noordBrabant';
+type MunicipalityLink = {
+	name: string;
+	path: string;
+};
 
 interface Props {
-	municipalities: ProvinceMunicipality[];
+	municipalities: MunicipalityLink[];
+	title?: string;
+	lead?: string;
+	countLabel?: string;
 }
 
-const { municipalities } = Astro.props;
+const {
+	municipalities,
+	title = 'Partybus huren in alle 56 Brabantse gemeenten',
+	lead = 'Elke gemeente heeft een eigen pagina met informatie over partybus huren, opstapplaatsen en offertes. Klik op jouw gemeente — de bestaande URL blijft ongewijzigd.',
+	countLabel = `${municipalities.length} gemeenten in Noord-Brabant`,
+} = Astro.props;
 ---
 
 <section class="section" aria-labelledby="province-municipalities-title">
@@ -13,11 +24,10 @@ const { municipalities } = Astro.props;
 		<div class="section__head reveal">
 			<p class="section__eyebrow">Alle gemeenten</p>
 			<h2 id="province-municipalities-title" class="section__title">
-				Partybus huren in alle 56 Brabantse gemeenten
+				{title}
 			</h2>
 			<p class="section__lead">
-				Elke gemeente heeft een eigen pagina met informatie over partybus huren, opstapplaatsen en offertes.
-				Klik op jouw gemeente — de bestaande URL blijft ongewijzigd.
+				{lead}
 			</p>
 		</div>
 
@@ -33,7 +43,7 @@ const { municipalities } = Astro.props;
 		</ul>
 
 		<p class="province-municipalities__count">
-			{municipalities.length} gemeenten in Noord-Brabant
+			{countLabel}
 		</p>
 	</div>
 </section>
@@ -97,12 +107,12 @@ const { municipalities } = Astro.props;
 	.province-municipalities__name {
 		font-weight: 700;
 		line-height: 1.4;
-		color: var(--color-text);
+		color: #141414;
 	}
 
 	.province-municipalities__link:hover .province-municipalities__name,
 	.province-municipalities__link:focus-visible .province-municipalities__name {
-		color: var(--color-text);
+		color: #141414;
 	}
 
 	.province-municipalities__arrow {
