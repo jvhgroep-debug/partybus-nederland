@@ -11,6 +11,7 @@ import '../../styles/zuidHollandPartner.css';
 import Button from '../buttons/Button.astro';
 import GuideFaqList from '../guides/GuideFaqList.astro';
 import RegionalPartnerSection from '../partners/RegionalPartnerSection.astro';
+import ProvinceQuoteHero from './ProvinceQuoteHero.astro';
 
 interface Props {
 	municipalities: ProvinceMunicipality[];
@@ -22,6 +23,7 @@ const partner = tourgoPartybussen.publicProfile;
 const websiteHref = partner.website.href;
 const whatsappHref = buildTourgoWhatsappHref('Zuid-Holland');
 const gallery = tourgoPartybussenCityMedia.gallery;
+const heroPhoto = tourgoPartybussenCityMedia.desktopHeroes[0];
 const sectionImages = {
 	huren: gallery[0],
 	groepsvervoer: gallery[2],
@@ -33,50 +35,41 @@ const sectionImages = {
 ---
 
 <article class="zh-partner-page zh-province">
-	<header class="province-hero">
-		<div class="province-hero__media" aria-hidden="true">
-			<picture>
-				{partner.media.mobile && <source media="(max-width: 640px)" srcset={partner.media.mobile} />}
-				<img
-					src={partner.media.hero ?? province.heroImage}
-					alt=""
-					width="1920"
-					height="1280"
-					fetchpriority="high"
-					decoding="async"
-				/>
-			</picture>
-			<div class="province-hero__veil"></div>
-		</div>
-		<div class="province-hero__content section__inner">
-			<nav class="province-hero__breadcrumbs" aria-label="Broodkruimel">
-				<a href="/">Home</a><span aria-hidden="true">/</span>
-				<a href={province.path} aria-current="page">{province.eyebrow}</a>
-			</nav>
-			<p class="section__eyebrow">Partybus Zuid-Holland</p>
-			<h1>{province.h1}</h1>
-			<p>{province.lead}</p>
-			<div class="province-hero__actions">
-				<Button
-					href={whatsappHref}
-					size="lg"
-					target="_blank"
-					rel="noopener noreferrer"
-					partnerWhatsappButtonType="province-hero"
-				>
-					WhatsApp Tourgo
-				</Button>
-				<Button href={websiteHref} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
-					Bekijk Tourgo Partybussen
-				</Button>
-			</div>
-			<ul class="province-hero__trust" aria-label="Voordelen">
-				<li>{municipalities.length} Zuid-Hollandse gemeenten</li>
-				<li>Partner: Tourgo Partybussen</li>
-				<li>Rechtstreeks contact met Tourgo</li>
-			</ul>
-		</div>
-	</header>
+	<ProvinceQuoteHero
+		breadcrumbs={[
+			{ label: 'Home', href: '/' },
+			{ label: province.eyebrow, href: province.path, current: true },
+		]}
+		eyebrow="Partybus Zuid-Holland"
+		title={province.h1}
+		lead={province.lead}
+		trustItems={[
+			`${municipalities.length} Zuid-Hollandse gemeenten`,
+			'Partner: Tourgo Partybussen',
+			'Rechtstreeks contact met Tourgo',
+		]}
+		whatsappHref={whatsappHref}
+		whatsappLabel="WhatsApp Tourgo"
+		whatsappButtonType="province-hero"
+		logo={tourgoPartybussenLogo}
+		logoAlt={`${partner.name} logo`}
+		photo={heroPhoto}
+		sourcePage={province.path}
+		defaultCity="Zuid-Holland"
+		formTitle="Partybus huren in Zuid-Holland"
+		formLead="PartybusNederland.nl werkt in Zuid-Holland samen met Tourgo Partybussen. Voor een partybus, groepsvervoer of een vraag over de mogelijkheden neem je rechtstreeks contact op met Tourgo."
+	>
+		<Button
+			slot="extra-actions"
+			href={websiteHref}
+			variant="ghost"
+			size="lg"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			Bekijk Tourgo Partybussen
+		</Button>
+	</ProvinceQuoteHero>
 
 	<section class="section" aria-labelledby="province-huren-title">
 		<div class="section__inner zh-province__content">
@@ -259,95 +252,6 @@ const sectionImages = {
 <style>
 	.zh-province {
 		background: #f6f5f2;
-	}
-
-	.province-hero {
-		position: relative;
-		min-height: clamp(28rem, 62vh, 38rem);
-		display: grid;
-		align-items: end;
-		padding-top: calc(var(--header-height) + 1.5rem);
-		overflow: hidden;
-	}
-
-	.province-hero__media {
-		position: absolute;
-		inset: 0;
-	}
-
-	.province-hero__media picture,
-	.province-hero__media img {
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
-
-	.province-hero__media img {
-		object-fit: cover;
-	}
-
-	.province-hero__veil {
-		position: absolute;
-		inset: 0;
-		background:
-			linear-gradient(180deg, rgba(8, 7, 10, 0.2) 0%, rgba(8, 7, 10, 0.62) 82%),
-			radial-gradient(circle at 20% 20%, rgba(205, 184, 128, 0.12), transparent 55%);
-	}
-
-	.province-hero__content {
-		position: relative;
-		z-index: 1;
-		padding-bottom: clamp(2.5rem, 6vw, 4rem);
-		color: #f7f5f0;
-		text-shadow: 0 2px 18px rgba(0, 0, 0, 0.72);
-	}
-
-	.province-hero__breadcrumbs {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.45rem;
-		margin-bottom: 1rem;
-		font-size: 0.92rem;
-		color: rgba(247, 245, 240, 0.82);
-	}
-
-	.province-hero__breadcrumbs a {
-		color: inherit;
-	}
-
-	.province-hero h1 {
-		margin: 0 0 1rem;
-		max-width: 14ch;
-		font-family: var(--font-display);
-		font-size: clamp(2.2rem, 5vw, 3.6rem);
-		line-height: 1.05;
-		color: #f7f5f0;
-	}
-
-	.province-hero__content > p {
-		margin: 0 0 1.5rem;
-		max-width: 44rem;
-		font-size: 1.05rem;
-		line-height: 1.7;
-		color: #ebe6da;
-	}
-
-	.province-hero__actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.75rem;
-		margin-bottom: 1.25rem;
-	}
-
-	.province-hero__trust {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.65rem 1rem;
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		font-size: 0.92rem;
-		color: rgba(247, 245, 240, 0.88);
 	}
 
 	.zh-province__content {
