@@ -30,8 +30,10 @@ export type KennisbankArticle = {
 	lead: string;
 	heroImage: GuideImageAsset;
 	ctaImage: GuideImageAsset;
+	heroPrimaryHref?: string;
+	heroPrimaryLabel?: string;
 	sections: readonly KennisbankSection[];
-	comparison: {
+	comparison?: {
 		title: string;
 		lead: string;
 		rows: readonly ComparisonRow[];
@@ -49,6 +51,11 @@ export type KennisbankArticle = {
 	cta: {
 		title: string;
 		lead: string;
+		primaryHref?: string;
+		primaryLabel?: string;
+		whatsappHref?: string;
+		whatsappLabel?: string;
+		onDark?: boolean;
 	};
 	relatedLinks: readonly GuideLink[];
 	cityLinks: readonly GuideLink[];

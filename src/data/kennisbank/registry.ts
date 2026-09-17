@@ -1,8 +1,12 @@
 import type { KennisbankArticle } from './types';
 import { partybusHurenCompleteGids } from './articles/partybusHurenCompleteGids';
+import { samenwerkingPrestigeNoordBrabant } from './articles/samenwerkingPrestigeNoordBrabant';
 
 /** Registry for Star Local pSEO Suite — kennisbank master articles. */
-export const kennisbankArticles: readonly KennisbankArticle[] = [partybusHurenCompleteGids];
+export const kennisbankArticles: readonly KennisbankArticle[] = [
+	partybusHurenCompleteGids,
+	samenwerkingPrestigeNoordBrabant,
+];
 
 export function getKennisbankArticle(slug: string): KennisbankArticle | undefined {
 	return kennisbankArticles.find((article) => article.slug === slug);

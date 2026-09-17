@@ -17,6 +17,8 @@ interface Props {
 }
 
 const { article } = Astro.props;
+const heroPrimaryHref = article.heroPrimaryHref ?? '/gratis-partybus-offertes-aanvragen/';
+const heroPrimaryLabel = article.heroPrimaryLabel ?? 'Gratis offertes aanvragen';
 
 const imageMap: Record<string, GuideImageAsset> = {
 	opstapplaats: guideImagePool.opstapplaats,
@@ -45,7 +47,7 @@ const renderedSections = article.sections.map((section) => {
 		...section,
 		image,
 		position,
-		showComparison: section.id === compareAfterId,
+		showComparison: Boolean(article.comparison) && section.id === compareAfterId,
 	};
 });
 ---
@@ -58,8 +60,8 @@ const renderedSections = article.sections.map((section) => {
 		<h1 class="kb-article__title">{article.h1}</h1>
 		<p class="kb-article__lead">{article.lead}</p>
 		<div class="kb-article__actions">
-			<a class="btn btn--primary btn--lg" href="/gratis-partybus-offertes-aanvragen/">
-				Gratis offertes aanvragen
+			<a class="btn btn--primary btn--lg" href={heroPrimaryHref}>
+				{heroPrimaryLabel}
 			</a>
 			<a class="btn btn--ghost btn--lg" href="/kennisbank/">Alle kennisbankartikelen</a>
 		</div>
@@ -109,7 +111,7 @@ const renderedSections = article.sections.map((section) => {
 						</div>
 					</section>
 				)}
-				{section.showComparison && (
+				{section.showComparison && article.comparison && (
 					<ComparisonTable
 						title={article.comparison.title}
 						lead={article.comparison.lead}
@@ -157,14 +159,20 @@ const renderedSections = article.sections.map((section) => {
 	/>
 </article>
 
-<GuideCta
-	eyebrow={article.eyebrow}
-	title={article.cta.title}
-	lead={article.cta.lead}
-	titleId="kb-cta"
-	image={article.ctaImage}
-	showWhatsapp={false}
-/>
+<div class:list={[article.cta.onDark && 'kb-cta-on-dark']}>
+	<GuideCta
+		eyebrow={article.eyebrow}
+		title={article.cta.title}
+		lead={article.cta.lead}
+		titleId="kb-cta"
+		image={article.ctaImage}
+		primaryHref={article.cta.primaryHref}
+		primaryLabel={article.cta.primaryLabel}
+		whatsappHref={article.cta.whatsappHref}
+		whatsappLabel={article.cta.whatsappLabel}
+		showWhatsapp={Boolean(article.cta.whatsappHref)}
+	/>
+</div>
 
 <style>
 	.kb-article :global(.section) {
@@ -236,5 +244,59 @@ const renderedSections = article.sections.map((section) => {
 	.kb-article__more a {
 		color: var(--color-primary);
 		font-weight: 600;
+	}
+
+	.kb-cta-on-dark :global(.guide-cta) {
+		--color-text: #f7f5f0;
+		--color-text-muted: #ebe6da;
+		color: #f7f5f0;
+	}
+
+	.kb-cta-on-dark :global(.guide-cta__eyebrow) {
+		color: var(--color-primary);
+	}
+
+	.kb-cta-on-dark :global(.guide-cta__title) {
+		color: #f7f5f0;
+	}
+
+	.kb-cta-on-dark :global(.guide-cta__lead) {
+		color: rgba(247, 245, 240, 0.88);
+	}
+
+	.kb-cta-on-dark :global(.btn--primary) {
+		color: #111;
+	}
+
+	.kb-cta-on-dark :global(.btn--ghost) {
+		background: #1a5c4a;
+		color: #f7f5f0;
+		border-color: color-mix(in srgb, #25d366 28%, #1a5c4a);
+	}
+
+	.kb-cta-on-dark :global(.btn--ghost:hover),
+	.kb-cta-on-dark :global(.btn--ghost:focus-visible) {
+		background: #166b54;
+		color: #fff;
+		border-color: #25d366;
+	}
+
+	.kb-cta-on-dark :global(.guide-image--cta .guide-image__frame) {
+		min-height: 14rem;
+		aspect-ratio: 16 / 9;
+	}
+
+	.kb-cta-on-dark :global(.guide-image--cta img) {
+		width: 100%;
+		height: 100%;
+		max-width: none;
+		object-fit: cover;
+		object-position: center 40%;
+	}
+
+	@media (max-width: 640px) {
+		.kb-cta-on-dark :global(.guide-image--cta .guide-image__frame) {
+			min-height: 12rem;
+		}
 	}
 </style>
