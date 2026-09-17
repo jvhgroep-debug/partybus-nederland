@@ -183,6 +183,8 @@ const requestSteps = [
 		--color-surface: #ffffff;
 		--color-text: #141414;
 		--color-text-muted: #4f4f4b;
+		--zh-on-dark: #f7f5f0;
+		--zh-on-dark-muted: #ebe6da;
 		background: var(--color-background);
 		color: var(--color-text);
 	}
@@ -199,9 +201,10 @@ const requestSteps = [
 		background-color: #f0efeb;
 	}
 
-	.master-city--zh-light :global(.city-trust-bar) {
+	.master-city--zh-light :global(.city-trust) {
 		background: #ffffff;
-		border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 18%, #e6e6e2);
+		border-block: 1px solid color-mix(in srgb, var(--color-primary) 18%, #e6e6e2);
+		color: #141414;
 	}
 
 	.master-city--zh-light :global(.city-why__card) {
@@ -213,17 +216,85 @@ const requestSteps = [
 		background: #ececea;
 	}
 
-	.master-city--zh-light :global(.city-conversion-band) {
+	.master-city--zh-light :global(.city-conversion) {
 		background: linear-gradient(
 			135deg,
 			color-mix(in srgb, var(--color-primary) 16%, #ffffff),
 			#ffffff
 		);
-		border-block: 1px solid color-mix(in srgb, var(--color-primary) 20%, #ececea);
+		border: 1px solid color-mix(in srgb, var(--color-primary) 20%, #ececea);
+		color: #141414;
+	}
+
+	.master-city--zh-light :global(.city-conversion strong) {
+		color: #141414;
 	}
 
 	.master-city--zh-light :global(.city-cta) {
 		background: #ffffff;
+	}
+
+	.master-city--zh-light :global(.city-hero),
+	.master-city--zh-light :global(.city-cta__panel) {
+		--color-text: var(--zh-on-dark);
+		--color-text-muted: var(--zh-on-dark-muted);
+		color: var(--zh-on-dark);
+	}
+
+	.master-city--zh-light :global(.info-guide__card),
+	.master-city--zh-light :global(.info-guide__checklist),
+	.master-city--zh-light :global(.city-pickup__item),
+	.master-city--zh-light :global(.city-how__card),
+	.master-city--zh-light :global(.city-act__card),
+	.master-city--zh-light :global(.city-faq__item),
+	.master-city--zh-light :global(.city-occ__card),
+	.master-city--zh-light :global(.city-dest__card),
+	.master-city--zh-light :global(.city-related__card) {
+		--color-text: var(--zh-on-dark);
+		--color-text-muted: var(--zh-on-dark-muted);
+		color: var(--zh-on-dark);
+	}
+
+	.master-city--zh-light :global(.info-guide__card p),
+	.master-city--zh-light :global(.info-guide__checklist li),
+	.master-city--zh-light :global(.city-how__card p),
+	.master-city--zh-light :global(.city-act__card p),
+	.master-city--zh-light :global(.city-faq__content p),
+	.master-city--zh-light :global(.city-occ__body p),
+	.master-city--zh-light :global(.city-dest__body p) {
+		color: var(--zh-on-dark-muted);
+	}
+
+	.master-city--zh-light :global(.info-guide__card h3),
+	.master-city--zh-light :global(.info-guide__checklist h3),
+	.master-city--zh-light :global(.city-how__card h3),
+	.master-city--zh-light :global(.city-faq__item summary),
+	.master-city--zh-light :global(.city-related__name) {
+		color: var(--zh-on-dark);
+	}
+
+	.master-city--zh-light :global(.city-pickup__item) {
+		font-weight: 700;
+	}
+
+	.master-city--zh-light :global(.city-occ__info-link) {
+		color: var(--zh-on-dark-muted);
+	}
+
+	.master-city--zh-light :global(.city-hero .btn--ghost),
+	.master-city--zh-light :global(.city-cta__content .btn--ghost) {
+		color: var(--zh-on-dark);
+		border-color: color-mix(in srgb, var(--zh-on-dark) 48%, transparent);
+	}
+
+	.master-city--zh-light :global(.regional-partner) {
+		--color-text: #141414;
+		--color-text-muted: #4f4f4b;
+		color: #141414;
+	}
+
+	.master-city--zh-light :global(.regional-partner__facts a) {
+		color: #141414;
 	}
 
 	@media (max-width: 640px) {
@@ -241,7 +312,7 @@ const requestSteps = [
 	}
 
 	.master-city__links a {
-		color: var(--color-primary);
+		color: #8a7340;
 		font-weight: 700;
 	}
 </style>
