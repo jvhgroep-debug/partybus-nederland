@@ -49,3 +49,27 @@ export const noordBrabantFooter: RegionalFooterConfig = {
 		municipalityLink('etten-leur'),
 	],
 };
+
+export const zuidHollandFooter: RegionalFooterConfig = {
+	id: 'zuid-holland',
+	compact: true,
+	ctaLabel: 'Gratis offertes',
+	navigation: [
+		{ label: 'Home', href: '/' },
+		{ label: 'Hoe werkt het', href: '/hoe-werkt-het/' },
+		{ label: 'Over ons', href: '/over-ons/' },
+		{ label: 'Contact', href: '/contact/' },
+	],
+	locationHeading: 'Zuid-Holland',
+	locations: [
+		{ label: 'Partybus Zuid-Holland', href: '/provincies/zuid-holland/' },
+		municipalityLink('rotterdam'),
+		municipalityLink('den-haag'),
+		municipalityLink('leiden'),
+		municipalityLink('delft'),
+		municipalityLink('dordrecht'),
+		municipalityLink('gouda'),
+		municipalityLink('zoetermeer'),
+		municipalityLink('schiedam'),
+	],
+};

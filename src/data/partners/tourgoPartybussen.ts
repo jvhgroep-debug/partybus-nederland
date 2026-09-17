@@ -1,4 +1,4 @@
-import { ZUID_HOLLAND_TOURGO_TEST_SLUGS } from '../provinces/zuidHolland';
+import { ZUID_HOLLAND_MUNICIPALITY_SLUGS } from '../provinces/zuidHolland';
 import {
 	resolvePartnerCityMedia,
 	type PartnerCityMediaConfig,
@@ -125,7 +125,8 @@ export const tourgoPartybussenCityMedia = {
 export const tourgoPartybussen = {
 	id: 'tourgo',
 	provinceSlug: 'zuid-holland',
-	coverage: 'Zuid-Holland (testfase: Rotterdam)',
+	provincePath: '/provincies/zuid-holland/',
+	coverage: 'Heel Zuid-Holland',
 	publicProfile: {
 		name: 'Tourgo Partybussen',
 		website: {
@@ -179,8 +180,8 @@ export function buildTourgoQuoteHref(cityName: string, sourcePath: string): stri
 }
 
 export function resolveTourgoCityMedia(citySlug: string) {
-	const cityIndex = ZUID_HOLLAND_TOURGO_TEST_SLUGS.indexOf(
-		citySlug as (typeof ZUID_HOLLAND_TOURGO_TEST_SLUGS)[number],
+	const cityIndex = ZUID_HOLLAND_MUNICIPALITY_SLUGS.indexOf(
+		citySlug as (typeof ZUID_HOLLAND_MUNICIPALITY_SLUGS)[number],
 	);
 
 	return resolvePartnerCityMedia(tourgoPartybussenCityMedia, citySlug, cityIndex);

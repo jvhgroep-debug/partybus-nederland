@@ -1,4 +1,4 @@
----
+﻿---
 import type { CityPageData } from '../../data/cities/types';
 import { getRelatedCities } from '../../data/cities/registry';
 import {
@@ -8,6 +8,11 @@ import {
 	tourgoPartybussen,
 	tourgoPartybussenLogo,
 } from '../../data/partners/tourgoPartybussen';
+import {
+	getZuidHollandNeighborSlugs,
+	isZuidHollandMunicipalitySlug,
+} from '../../data/provinces/zuidHolland';
+import '../../styles/zuidHollandPartner.css';
 import CityHero from './CityHero.astro';
 import CityIntro from './CityIntro.astro';
 import CityDestinations from './CityDestinations.astro';
@@ -35,7 +40,10 @@ interface Props {
 }
 
 const { city } = Astro.props;
-const relatedCities = getRelatedCities(city.slug, city.relatedCitySlugs, 5);
+if (!isZuidHollandMunicipalitySlug(city.slug)) {
+	throw new Error(`ZuidHollandPartnerCityTemplate used for non-ZH city: ${city.slug}`);
+}
+const relatedCities = getRelatedCities(city.slug, getZuidHollandNeighborSlugs(city.slug), 5);
 const partnerCityMedia = resolveTourgoCityMedia(city.slug);
 const heroImage = partnerCityMedia.hero;
 const whatsappHref = buildTourgoWhatsappHref(city.name);
@@ -65,7 +73,7 @@ const requestSteps = [
 ] as const;
 ---
 
-<div class="master-city master-city--zh-light">
+<div class="master-city master-city--zh-light zh-partner-page">
 	<CityHero
 		title={city.h1}
 		subtitle={city.hero.subtitle}
@@ -151,7 +159,7 @@ const requestSteps = [
 	<InfoGuide
 		eyebrow="Tips"
 		title={`Praktische tips voor een rit vanuit ${city.name}`}
-		lead={`Zo bereid je een partybusrit vanuit ${city.name} goed voor — van route tot voorwaarden.`}
+		lead={`Zo bereid je een partybusrit vanuit ${city.name} goed voor â€” van route tot voorwaarden.`}
 		cards={bookingTips}
 	/>
 
@@ -160,11 +168,11 @@ const requestSteps = [
 	{relatedCities.length > 0 && <CityRelatedCities cityName={city.name} cities={relatedCities} />}
 
 	<nav class="master-city__links section__inner" aria-label="Vervolgstappen">
-		<a href={quoteHref}>Gratis offertes aanvragen →</a>
-		<a href="/hoe-werkt-het/">Hoe werkt vergelijken? →</a>
-		<a href="/#diensten">Bekijk diensten →</a>
-		<a href="/gids/partybus-huren/">Meer lezen in de partybus-gids →</a>
-		<a href="/kennisbank/">Naar de kennisbank →</a>
+		<a href={quoteHref}>Gratis offertes aanvragen â†’</a>
+		<a href="/hoe-werkt-het/">Hoe werkt vergelijken? â†’</a>
+		<a href="/#diensten">Bekijk diensten â†’</a>
+		<a href="/gids/partybus-huren/">Meer lezen in de partybus-gids â†’</a>
+		<a href="/kennisbank/">Naar de kennisbank â†’</a>
 	</nav>
 
 	<CityCta
@@ -176,143 +184,3 @@ const requestSteps = [
 		partnerMode={true}
 	/>
 </div>
-
-<style>
-	.master-city--zh-light {
-		--color-background: #f6f5f2;
-		--color-surface: #ffffff;
-		--color-text: #141414;
-		--color-text-muted: #4f4f4b;
-		--zh-on-dark: #f7f5f0;
-		--zh-on-dark-muted: #ebe6da;
-		background: var(--color-background);
-		color: var(--color-text);
-	}
-
-	.master-city--zh-light :global(.section) {
-		padding-block: clamp(4.75rem, 10vw, 8.25rem);
-	}
-
-	.master-city--zh-light > :global(.section:nth-child(odd)) {
-		background-color: #ffffff;
-	}
-
-	.master-city--zh-light > :global(.section:nth-child(even)) {
-		background-color: #f0efeb;
-	}
-
-	.master-city--zh-light :global(.city-trust) {
-		background: #ffffff;
-		border-block: 1px solid color-mix(in srgb, var(--color-primary) 18%, #e6e6e2);
-		color: #141414;
-	}
-
-	.master-city--zh-light :global(.city-why__card) {
-		background: #ffffff;
-		box-shadow: 0 10px 28px rgba(20, 20, 20, 0.06);
-	}
-
-	.master-city--zh-light :global(.city-intro__visual) {
-		background: #ececea;
-	}
-
-	.master-city--zh-light :global(.city-conversion) {
-		background: linear-gradient(
-			135deg,
-			color-mix(in srgb, var(--color-primary) 16%, #ffffff),
-			#ffffff
-		);
-		border: 1px solid color-mix(in srgb, var(--color-primary) 20%, #ececea);
-		color: #141414;
-	}
-
-	.master-city--zh-light :global(.city-conversion strong) {
-		color: #141414;
-	}
-
-	.master-city--zh-light :global(.city-cta) {
-		background: #ffffff;
-	}
-
-	.master-city--zh-light :global(.city-hero),
-	.master-city--zh-light :global(.city-cta__panel) {
-		--color-text: var(--zh-on-dark);
-		--color-text-muted: var(--zh-on-dark-muted);
-		color: var(--zh-on-dark);
-	}
-
-	.master-city--zh-light :global(.info-guide__card),
-	.master-city--zh-light :global(.info-guide__checklist),
-	.master-city--zh-light :global(.city-pickup__item),
-	.master-city--zh-light :global(.city-how__card),
-	.master-city--zh-light :global(.city-act__card),
-	.master-city--zh-light :global(.city-faq__item),
-	.master-city--zh-light :global(.city-occ__card),
-	.master-city--zh-light :global(.city-dest__card),
-	.master-city--zh-light :global(.city-related__card) {
-		--color-text: var(--zh-on-dark);
-		--color-text-muted: var(--zh-on-dark-muted);
-		color: var(--zh-on-dark);
-	}
-
-	.master-city--zh-light :global(.info-guide__card p),
-	.master-city--zh-light :global(.info-guide__checklist li),
-	.master-city--zh-light :global(.city-how__card p),
-	.master-city--zh-light :global(.city-act__card p),
-	.master-city--zh-light :global(.city-faq__content p),
-	.master-city--zh-light :global(.city-occ__body p),
-	.master-city--zh-light :global(.city-dest__body p) {
-		color: var(--zh-on-dark-muted);
-	}
-
-	.master-city--zh-light :global(.info-guide__card h3),
-	.master-city--zh-light :global(.info-guide__checklist h3),
-	.master-city--zh-light :global(.city-how__card h3),
-	.master-city--zh-light :global(.city-faq__item summary),
-	.master-city--zh-light :global(.city-related__name) {
-		color: var(--zh-on-dark);
-	}
-
-	.master-city--zh-light :global(.city-pickup__item) {
-		font-weight: 700;
-	}
-
-	.master-city--zh-light :global(.city-occ__info-link) {
-		color: var(--zh-on-dark-muted);
-	}
-
-	.master-city--zh-light :global(.city-hero .btn--ghost),
-	.master-city--zh-light :global(.city-cta__content .btn--ghost) {
-		color: var(--zh-on-dark);
-		border-color: color-mix(in srgb, var(--zh-on-dark) 48%, transparent);
-	}
-
-	.master-city--zh-light :global(.regional-partner) {
-		--color-text: #141414;
-		--color-text-muted: #4f4f4b;
-		color: #141414;
-	}
-
-	.master-city--zh-light :global(.regional-partner__facts a) {
-		color: #141414;
-	}
-
-	@media (max-width: 640px) {
-		.master-city--zh-light :global(.section) {
-			padding-block: clamp(3.5rem, 14vw, 5rem);
-		}
-	}
-
-	.master-city__links {
-		display: grid;
-		gap: 0.65rem;
-		margin: 0 0 1.25rem;
-		padding-bottom: 0;
-		background: #ffffff;
-	}
-
-	.master-city__links a {
-		color: #8a7340;
-		font-weight: 700;
-	}
-</style>
