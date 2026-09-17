@@ -1,10 +1,19 @@
 ---
 import type { PartnerImageAsset } from '../../data/partners/partnerMediaDistribution';
-import type { TourgoPartybussenPublicProfile } from '../../data/partners/tourgoPartybussen';
+
+type RegionalPartnerProfile = {
+	name: string;
+	website: { href: string; label: string };
+	email: string;
+	phone: { display: string; href: string };
+	whatsapp: { href: string; label: string };
+	media: { logo: string | null; gallery: readonly string[] };
+	intro?: string;
+};
 
 interface Props {
 	eyebrow: string;
-	partner: TourgoPartybussenPublicProfile;
+	partner: RegionalPartnerProfile;
 	localIntro?: string;
 	galleryImages?: readonly PartnerImageAsset[];
 	whatsappHref?: string;

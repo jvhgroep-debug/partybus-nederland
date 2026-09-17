@@ -8,6 +8,7 @@ import { trustNav, footerLegalNav } from '../../data/trust/pages';
 import { servicePages } from '../../data/services/pages';
 import { noordBrabantProvince } from '../../data/provinces/noordBrabant';
 import { zuidHollandProvince } from '../../data/provinces/zuidHolland';
+import { utrechtProvince } from '../../data/provinces/utrecht';
 import type { RegionalFooterConfig } from '../../data/settings/regionalFooters';
 import type { PartnerWhatsappTrackingContext } from '../../lib/partnerWhatsappTracking';
 import Button from '../buttons/Button.astro';
@@ -40,9 +41,17 @@ const {
 const year = new Date().getFullYear();
 const navigationLinks = regionalFooter?.navigation ?? mainNav;
 const regionalLocationLinks = regionalFooter?.locations ?? [];
+const regionalPartner = regionalFooter?.partner;
+const footerCtaHref =
+	regionalFooter?.ctaHref?.startsWith('https://wa.me/') && whatsappContact.href.includes('wa.me')
+		? whatsappContact.href
+		: (regionalFooter?.ctaHref ?? quoteHref);
+const footerCtaIsExternal = Boolean(footerCtaHref.startsWith('http'));
+const footerCtaIsWhatsapp = footerCtaHref.startsWith('https://wa.me/');
 const provinceLinks = [
 	{ label: noordBrabantProvince.eyebrow, href: noordBrabantProvince.path },
 	{ label: zuidHollandProvince.eyebrow, href: zuidHollandProvince.path },
+	{ label: utrechtProvince.eyebrow, href: utrechtProvince.path },
 ];
 ---
 
@@ -52,16 +61,64 @@ const provinceLinks = [
 >
 	<div class="site-footer__inner">
 		<div class="site-footer__brand">
-			<p class="site-footer__name">{site.companyName}</p>
+			{
+				regionalPartner?.logo ? (
+					<img
+						class="site-footer__logo"
+						src={regionalPartner.logo}
+						alt={`Logo ${regionalPartner.name}`}
+						width="320"
+						height="107"
+					/>
+				) : null
+			}
+			<p class="site-footer__name">{regionalPartner?.name ?? site.companyName}</p>
 			<p class="site-footer__text">
 				{regionalFooter?.brandText
 					?? 'Complete informatie over partybus huren — tips, bestemmingen en vrijblijvend offertes vergelijken.'}
 			</p>
+			{
+				regionalPartner && (
+					<ul class="site-footer__partner-facts">
+						{regionalPartner.phone && (
+							<li>
+								<span>Telefoon</span>
+								<a href={regionalPartner.phone.href}>{regionalPartner.phone.display}</a>
+							</li>
+						)}
+						{regionalPartner.email && (
+							<li>
+								<span>E-mail</span>
+								<a href={`mailto:${regionalPartner.email}`}>{regionalPartner.email}</a>
+							</li>
+						)}
+						{regionalPartner.address && (
+							<li>
+								<span>Adres</span>
+								<address>
+									{regionalPartner.address.street}
+									<br />
+									{regionalPartner.address.postalCode} {regionalPartner.address.city}
+								</address>
+							</li>
+						)}
+						{regionalPartner.website && (
+							<li>
+								<span>Website</span>
+								<a href={regionalPartner.website.href} target="_blank" rel="noopener noreferrer">
+									{regionalPartner.website.label}
+								</a>
+							</li>
+						)}
+					</ul>
+				)
+			}
 			<Button
-				href={regionalFooter?.ctaHref ?? quoteHref}
+				href={footerCtaHref}
 				class="site-footer__cta"
-				target={regionalFooter?.ctaHref?.startsWith('http') ? '_blank' : undefined}
-				rel={regionalFooter?.ctaHref?.startsWith('http') ? 'noopener noreferrer' : undefined}
+				target={footerCtaIsExternal ? '_blank' : undefined}
+				rel={footerCtaIsExternal ? 'noopener noreferrer' : undefined}
+				partnerWhatsappButtonType={footerCtaIsWhatsapp && partnerWhatsappTracking ? 'footer' : undefined}
 			>
 				{regionalFooter?.ctaLabel ?? primaryCta.label}
 			</Button>
@@ -230,6 +287,54 @@ const provinceLinks = [
 		font-family: var(--font-display);
 		font-size: 1.3rem;
 		font-weight: 800;
+		color: var(--color-primary);
+	}
+
+	.site-footer__logo {
+		display: block;
+		width: min(100%, 14.5rem);
+		height: auto;
+		margin: 0 0 1rem;
+		padding: 0.7rem 0.9rem;
+		border: 1px solid color-mix(in srgb, var(--color-primary) 38%, #333);
+		border-radius: 0.9rem;
+		background: #ffffff;
+		object-fit: contain;
+	}
+
+	.site-footer__partner-facts {
+		margin: 0 0 1.15rem;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.7rem;
+	}
+
+	.site-footer__partner-facts li {
+		display: grid;
+		gap: 0.12rem;
+	}
+
+	.site-footer__partner-facts span {
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--color-primary);
+	}
+
+	.site-footer__partner-facts a,
+	.site-footer__partner-facts address {
+		margin: 0;
+		font-style: normal;
+		font-size: 0.98rem;
+		line-height: 1.5;
+		overflow-wrap: anywhere;
+		color: var(--color-on-dark);
+	}
+
+	.site-footer__partner-facts a:hover,
+	.site-footer__partner-facts a:focus-visible {
 		color: var(--color-primary);
 	}
 

@@ -1,6 +1,7 @@
 ﻿---
 import CityLayout from '../../layouts/CityLayout.astro';
 import MasterCityTemplate from '../../components/cities/MasterCityTemplate.astro';
+import PartyBussenWestlandCityTemplate from '../../components/cities/PartyBussenWestlandCityTemplate.astro';
 import ZuidHollandPartnerCityTemplate from '../../components/cities/ZuidHollandPartnerCityTemplate.astro';
 import { resolveCityHeroImage } from '../../lib/cityImages';
 import { ALL_CITY_SLUGS, buildCityPageData } from '../../data/cities/pilotFactory';
@@ -16,11 +17,23 @@ import {
 	tourgoPartybussen,
 } from '../../data/partners/tourgoPartybussen';
 import { applyTourgoMunicipalityCopy } from '../../data/partners/tourgoCityCopy';
+import {
+	buildPartyBussenWestlandWhatsappHref,
+	partyBussenWestland,
+	resolvePartyBussenWestlandCityMedia,
+} from '../../data/partners/partyBussenWestland';
+import { applyPartyBussenWestlandMunicipalityCopy } from '../../data/partners/partyBussenWestlandCityCopy';
 import { isNoordBrabantMunicipalitySlug } from '../../data/provinces/noordBrabant';
+import { isUtrechtMunicipalitySlug } from '../../data/provinces/utrecht';
 import { isZuidHollandMunicipalitySlug } from '../../data/provinces/zuidHolland';
-import { noordBrabantFooter, zuidHollandFooter } from '../../data/settings/regionalFooters';
+import {
+	noordBrabantFooter,
+	utrechtFooter,
+	zuidHollandFooter,
+} from '../../data/settings/regionalFooters';
 import {
 	buildNoordBrabantWhatsappTrackingContext,
+	buildPartyBussenWestlandWhatsappTrackingContext,
 	buildZuidHollandWhatsappTrackingContext,
 } from '../../lib/partnerWhatsappTracking';
 
@@ -44,15 +57,20 @@ if (!generatedCity) {
 
 const isNoordBrabantPartnerCity = isNoordBrabantMunicipalitySlug(generatedCity.slug);
 const isZuidHollandPartnerCity = isZuidHollandMunicipalitySlug(generatedCity.slug);
+const isUtrechtPartnerCity = isUtrechtMunicipalitySlug(generatedCity.slug);
 const city = isZuidHollandPartnerCity
 	? applyTourgoMunicipalityCopy(generatedCity)
-	: generatedCity;
+	: isUtrechtPartnerCity
+		? applyPartyBussenWestlandMunicipalityCopy(generatedCity)
+		: generatedCity;
 const defaultHeroImage = resolveCityHeroImage(city.slug);
 const heroImage = isNoordBrabantPartnerCity
 	? resolvePrestigeCoachServiceCityMedia(city.slug).hero
 	: isZuidHollandPartnerCity
 		? resolveTourgoCityMedia(city.slug).hero
-		: defaultHeroImage;
+		: isUtrechtPartnerCity
+			? resolvePartyBussenWestlandCityMedia(city.slug).hero
+			: defaultHeroImage;
 const partnerPageProps = isNoordBrabantPartnerCity
 	? {
 			pageWhatsapp: {
@@ -83,7 +101,22 @@ const partnerPageProps = isNoordBrabantPartnerCity
 					pageType: 'municipality',
 				}),
 			}
-		: {};
+		: isUtrechtPartnerCity
+			? {
+					pageWhatsapp: {
+						href: buildPartyBussenWestlandWhatsappHref(city.name),
+						label: partyBussenWestland.publicProfile.whatsapp.ariaLabel,
+					},
+					regionalFooter: utrechtFooter,
+					partnerWhatsappTracking: buildPartyBussenWestlandWhatsappTrackingContext({
+						municipalitySlug: city.slug,
+						municipalityName: city.name,
+						municipalityProvinceSlug: 'utrecht',
+						pagePath: city.path,
+						pageType: 'municipality',
+					}),
+				}
+			: {};
 
 const webPageLd = {
 	'@context': 'https://schema.org',
@@ -137,5 +170,13 @@ const ogImage = `https://www.partybusnederland.nl${defaultHeroImage.src}`;
 	jsonLd={[webPageLd, breadcrumbLd, faqLd]}
 	{...partnerPageProps}
 >
-	{isZuidHollandPartnerCity ? <ZuidHollandPartnerCityTemplate city={city} /> : <MasterCityTemplate city={city} />}
+	{
+		isZuidHollandPartnerCity ? (
+			<ZuidHollandPartnerCityTemplate city={city} />
+		) : isUtrechtPartnerCity ? (
+			<PartyBussenWestlandCityTemplate city={city} />
+		) : (
+			<MasterCityTemplate city={city} />
+		)
+	}
 </CityLayout>

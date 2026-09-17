@@ -14,6 +14,14 @@ export type RegionalFooterConfig = {
 	navigation: readonly FooterLink[];
 	locationHeading: string;
 	locations: readonly FooterLink[];
+	partner?: {
+		name: string;
+		logo?: string;
+		email?: string;
+		phone?: { display: string; href: string };
+		address?: { street: string; postalCode: string; city: string };
+		website?: { href: string; label: string };
+	};
 };
 
 function municipalityLink(slug: string, label?: string): FooterLink {
@@ -77,4 +85,48 @@ export const zuidHollandFooter: RegionalFooterConfig = {
 		municipalityLink('zoetermeer'),
 		municipalityLink('schiedam'),
 	],
+};
+
+export const utrechtFooter: RegionalFooterConfig = {
+	id: 'utrecht',
+	compact: true,
+	ctaLabel: 'Direct contact via WhatsApp',
+	ctaHref: 'https://wa.me/31610628733',
+	brandText:
+		'PartybusNederland.nl werkt in provincie Utrecht samen met Party Bussen Westland. Neem rechtstreeks contact op voor informatie of beschikbaarheid.',
+	navigation: [
+		{ label: 'Home', href: '/' },
+		{ label: 'Partybus Utrecht', href: '/provincies/utrecht/' },
+		{ label: 'Over ons', href: '/over-ons/' },
+		{ label: 'Contact', href: '/contact/' },
+	],
+	locationHeading: 'Utrecht',
+	locations: [
+		{ label: 'Partybus Utrecht', href: '/provincies/utrecht/' },
+		municipalityLink('utrecht'),
+		municipalityLink('amersfoort'),
+		municipalityLink('nieuwegein'),
+		municipalityLink('veenendaal'),
+		municipalityLink('zeist'),
+		municipalityLink('woerden'),
+		municipalityLink('houten'),
+	],
+	partner: {
+		name: 'Party Bussen Westland',
+		logo: '/images/partners/party-bussen-westland/party-bussen-westland-logo.png',
+		email: 'info@partybussenwestland.nl',
+		phone: {
+			display: '0174 352241',
+			href: 'tel:+31174352241',
+		},
+		address: {
+			street: 'Ambachtstraat 6B',
+			postalCode: '2671 CN',
+			city: 'Naaldwijk',
+		},
+		website: {
+			href: 'https://partybussenwestland.nl/',
+			label: 'partybussenwestland.nl',
+		},
+	},
 };

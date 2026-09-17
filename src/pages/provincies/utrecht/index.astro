@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import UtrechtProvincePageTemplate from '../../../components/provinces/UtrechtProvincePageTemplate.astro';
+import {
+	buildPartyBussenWestlandWhatsappHref,
+	partyBussenWestland,
+} from '../../../data/partners/partyBussenWestland';
+import {
+	getUtrechtMunicipalities,
+	utrechtProvince,
+} from '../../../data/provinces/utrecht';
+import {
+	buildBreadcrumbSchema,
+	buildFaqPageSchema,
+	buildWebPageSchema,
+} from '../../../lib/guides/schema';
+import { utrechtFooter } from '../../../data/settings/regionalFooters';
+import { buildPartyBussenWestlandWhatsappTrackingContext } from '../../../lib/partnerWhatsappTracking';
+
+const province = utrechtProvince;
+const municipalities = getUtrechtMunicipalities();
+const partner = partyBussenWestland;
+
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Utrecht', href: province.path },
+] as const;
+
+const jsonLd = [
+	buildWebPageSchema({
+		name: province.h1,
+		description: province.metaDescription,
+		url: province.canonical,
+	}),
+	buildBreadcrumbSchema(breadcrumbs),
+	buildFaqPageSchema(province.faqs),
+];
+
+const heroImage = partner.publicProfile.media.hero ?? province.heroImage;
+const socialImage = `https://www.partybusnederland.nl${heroImage}`;
+---
+
+<BaseLayout
+	title={province.title}
+	description={province.metaDescription}
+	canonical={province.canonical}
+	titleExact={true}
+	preloadImage={heroImage}
+	ogTitle={province.title}
+	ogDescription={province.metaDescription}
+	ogUrl={province.canonical}
+	ogImage={socialImage}
+	twitterTitle={province.title}
+	twitterDescription={province.metaDescription}
+	twitterImage={socialImage}
+	jsonLd={jsonLd}
+	pageWhatsapp={{
+		href: buildPartyBussenWestlandWhatsappHref('provincie Utrecht'),
+		label: partner.publicProfile.whatsapp.ariaLabel,
+	}}
+	regionalFooter={utrechtFooter}
+	partnerWhatsappTracking={buildPartyBussenWestlandWhatsappTrackingContext({
+		municipalitySlug: null,
+		municipalityName: 'Utrecht',
+		municipalityProvinceSlug: 'utrecht',
+		pagePath: province.path,
+		pageType: 'province',
+	})}
+>
+	<UtrechtProvincePageTemplate municipalities={municipalities} />
+</BaseLayout>
