@@ -5,7 +5,10 @@
  * FROM_EMAIL: optioneel. Partybus-domeinen worden genegeerd tot DNS live is;
  * fallback is Resend testdomein: onboarding@resend.dev
  */
-import { prestigeCoachService } from '../../src/data/partners/prestigeCoachService';
+import {
+	resolveQuotePartnerId,
+	resolveQuotePartnerLeadEmail,
+} from '../../src/lib/quotePartnerRouting';
 
 interface Env {
 	RESEND_API_KEY?: string;
@@ -95,10 +98,7 @@ function validate(raw: unknown):
 	const email = String(body.email ?? '').trim();
 	const phone = String(body.phone ?? '').trim();
 	const city = String(body.city ?? '').trim();
-	const requestedPartnerId = String(body.partnerId ?? '').trim();
-	const partnerId = requestedPartnerId === prestigeCoachService.id
-		? prestigeCoachService.id
-		: undefined;
+	const partnerId = resolveQuotePartnerId(body.partnerId) || undefined;
 	const partnerCity = partnerId
 		? String(body.partnerCity ?? '').trim() || city
 		: undefined;
@@ -257,9 +257,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 		);
 	}
 
-	const partnerLeadEmail = payload.partnerId === prestigeCoachService.id
-		? prestigeCoachService.internalRouting.leadEmail
-		: null;
+	const partnerLeadEmail = resolveQuotePartnerLeadEmail(payload.partnerId);
 
 	if (partnerLeadEmail && partnerLeadEmail.toLowerCase() !== INBOX.toLowerCase()) {
 		const partnerResult = await sendResend(apiKey, from, {

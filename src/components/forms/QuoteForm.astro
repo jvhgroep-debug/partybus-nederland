@@ -1,12 +1,12 @@
 ---
 import { emailSettings } from '../../data/settings/email';
-import { prestigeCoachService } from '../../data/partners/prestigeCoachService';
+import { QUOTE_PARTNER_IDS, resolveQuotePartnerId } from '../../lib/quotePartnerRouting';
 
 interface Props {
 	sourcePage?: string;
 	compact?: boolean;
 	defaultCity?: string;
-	/** Only set on explicit Prestige territory forms. Never default this globally. */
+	/** Only set on an explicit allowlisted partner form. Never default this globally. */
 	partnerId?: string;
 	partnerCity?: string;
 	submitLabel?: string;
@@ -22,8 +22,8 @@ const {
 } = Astro.props;
 const successMessage = emailSettings.successMessage;
 const errorMessage = emailSettings.errorMessage;
-const prestigePartnerId = prestigeCoachService.id;
-const configuredPartnerId = partnerId === prestigePartnerId ? prestigePartnerId : '';
+const allowedPartnerIds = [...QUOTE_PARTNER_IDS];
+const configuredPartnerId = resolveQuotePartnerId(partnerId);
 const configuredPartnerCity = configuredPartnerId ? (partnerCity ?? defaultCity ?? '').trim() : '';
 ---
 
@@ -87,11 +87,12 @@ const configuredPartnerCity = configuredPartnerId ? (partnerCity ?? defaultCity 
 	</form>
 </div>
 
-<script is:inline define:vars={{ successMessage, errorMessage, prestigePartnerId, configuredPartnerId, configuredPartnerCity }}>
+<script is:inline define:vars={{ successMessage, errorMessage, allowedPartnerIds, configuredPartnerId, configuredPartnerCity }}>
 	(function () {
 		const roots = document.querySelectorAll('[data-quote-form]');
 		const query = new URLSearchParams(window.location.search);
-		const queryPartner = query.get('partner') === prestigePartnerId ? prestigePartnerId : '';
+		const queryPartnerRaw = String(query.get('partner') || '').trim();
+		const queryPartner = allowedPartnerIds.indexOf(queryPartnerRaw) !== -1 ? queryPartnerRaw : '';
 		const requestedPartner = configuredPartnerId || queryPartner;
 		const requestedCity = requestedPartner
 			? (configuredPartnerCity || String(query.get('city') || '').trim())

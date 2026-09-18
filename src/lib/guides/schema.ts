@@ -71,6 +71,7 @@ export function buildArticleSchema(opts: {
 	url: string;
 	datePublished?: string;
 	dateModified?: string;
+	image?: string;
 }) {
 	return {
 		'@context': 'https://schema.org',
@@ -95,5 +96,6 @@ export function buildArticleSchema(opts: {
 			'@type': 'WebPage',
 			'@id': opts.url,
 		},
+		...(opts.image ? { image: opts.image } : {}),
 	};
 }

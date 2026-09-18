@@ -1,11 +1,13 @@
 import type { KennisbankArticle } from './types';
 import { partybusHurenCompleteGids } from './articles/partybusHurenCompleteGids';
 import { samenwerkingPrestigeNoordBrabant } from './articles/samenwerkingPrestigeNoordBrabant';
+import { samenwerkingTourgoZuidHolland } from './articles/samenwerkingTourgoZuidHolland';
 
 /** Registry for Star Local pSEO Suite — kennisbank master articles. */
 export const kennisbankArticles: readonly KennisbankArticle[] = [
 	partybusHurenCompleteGids,
 	samenwerkingPrestigeNoordBrabant,
+	samenwerkingTourgoZuidHolland,
 ];
 
 export function getKennisbankArticle(slug: string): KennisbankArticle | undefined {
