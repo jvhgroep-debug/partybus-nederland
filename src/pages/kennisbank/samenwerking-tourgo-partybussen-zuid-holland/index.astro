@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import MasterKennisbankArticle from '../../../components/kennisbank/MasterKennisbankArticle.astro';
+import QuoteForm from '../../../components/forms/QuoteForm.astro';
+import { samenwerkingTourgoZuidHolland } from '../../../data/kennisbank/articles/samenwerkingTourgoZuidHolland';
+import { tourgoPartybussen } from '../../../data/partners/tourgoPartybussen';
+import {
+	buildArticleSchema,
+	buildBreadcrumbSchema,
+	buildFaqPageSchema,
+} from '../../../lib/guides/schema';
+
+const article = samenwerkingTourgoZuidHolland;
+
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Kennisbank', href: '/kennisbank/' },
+	{ label: article.h1 },
+] as const;
+
+const ogImage = `https://www.partybusnederland.nl${article.heroImage.src}`;
+
+const jsonLd = [
+	buildArticleSchema({
+		headline: article.h1,
+		description: article.metaDescription,
+		url: article.canonical,
+		datePublished: '2026-09-18',
+		dateModified: '2026-09-18',
+		image: ogImage,
+	}),
+	buildBreadcrumbSchema(breadcrumbs),
+	buildFaqPageSchema(article.faqs),
+];
+---
+
+<BaseLayout
+	title={article.seoTitle}
+	description={article.metaDescription}
+	canonical={article.canonical}
+	titleExact={true}
+	preloadImage={article.heroImage.src}
+	ogTitle={article.seoTitle}
+	ogDescription={article.metaDescription}
+	ogUrl={article.canonical}
+	ogImage={ogImage}
+	twitterTitle={article.seoTitle}
+	twitterDescription={article.metaDescription}
+	twitterImage={ogImage}
+	jsonLd={jsonLd}
+>
+	<MasterKennisbankArticle
+		article={article}
+		formEyebrow="Aanvraag"
+		formTitle="Partybus aanvragen in Zuid-Holland"
+		formLead="PartybusNederland.nl werkt in Zuid-Holland samen met Tourgo Partybussen. Vul je gegevens in; de aanvraag gaat naar deze partner."
+	>
+		<QuoteForm
+			slot="heroForm"
+			sourcePage="/kennisbank/samenwerking-tourgo-partybussen-zuid-holland/"
+			defaultCity="Zuid-Holland"
+			partnerId={tourgoPartybussen.id}
+			partnerCity="Zuid-Holland"
+			submitLabel="Partybus aanvragen"
+		/>
+	</MasterKennisbankArticle>
+</BaseLayout>
