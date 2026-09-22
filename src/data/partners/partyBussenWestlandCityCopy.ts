@@ -1,6 +1,7 @@
 import type { CityFaq, CityPageData, CityWhyItem } from '../cities/types';
 import type { InfoCard } from '../guides/partybusInfo';
 import { partyBussenWestland } from './partyBussenWestland';
+import { applyUtrechtWestlandHubCopy } from './utrechtPartyBussenWestlandHubCopy';
 
 const partnerName = partyBussenWestland.publicProfile.name;
 
@@ -138,7 +139,8 @@ function rewriteFaqs(cityName: string, slug: string, faqs: readonly CityFaq[]): 
 
 /**
  * Commercial partner copy for Utrecht municipality pages.
- * SEO title, meta description, h1, path and canonical stay unchanged.
+ * SEO title, meta description, h1, path and canonical stay unchanged,
+ * except the existing Utrecht city hub, which has its own override.
  * Unique local pickup, destinations, activities and remaining FAQ copy stay in place.
  */
 export function applyPartyBussenWestlandMunicipalityCopy(city: CityPageData): CityPageData {
@@ -163,7 +165,7 @@ export function applyPartyBussenWestlandMunicipalityCopy(city: CityPageData): Ci
 		`Geef datum, opstap in ${name} en bestemming door. ${partnerName} bekijkt welk voertuig en welke timing bij jullie groep passen.`,
 	]);
 
-	return {
+	const westlandCity: CityPageData = {
 		...city,
 		hero: {
 			...city.hero,
@@ -250,6 +252,9 @@ export function applyPartyBussenWestlandMunicipalityCopy(city: CityPageData): Ci
 			]),
 		},
 	};
+
+	if (slug === 'utrecht') return applyUtrechtWestlandHubCopy(westlandCity);
+	return westlandCity;
 }
 
 export function westlandHowItWorks(cityName: string, slug: string) {
