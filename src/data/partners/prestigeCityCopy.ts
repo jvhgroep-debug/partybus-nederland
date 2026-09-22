@@ -1,6 +1,7 @@
 import type { CityFaq, CityPageData, CityWhyItem } from '../cities/types';
 import type { InfoCard } from '../guides/partybusInfo';
 import { prestigeCoachService } from './prestigeCoachService';
+import { applyPrestigeBredaHubCopy } from './prestigeBredaHubCopy';
 import { applyPrestigeTilburgHubCopy } from './prestigeTilburgHubCopy';
 
 const partnerName = prestigeCoachService.publicProfile.name;
@@ -252,7 +253,9 @@ export function applyPrestigeMunicipalityCopy(city: CityPageData): CityPageData 
 		},
 	};
 
-	return slug === 'tilburg' ? applyPrestigeTilburgHubCopy(prestigeCity) : prestigeCity;
+	if (slug === 'tilburg') return applyPrestigeTilburgHubCopy(prestigeCity);
+	if (slug === 'breda') return applyPrestigeBredaHubCopy(prestigeCity);
+	return prestigeCity;
 }
 
 export function prestigeHowItWorks(cityName: string, slug: string) {
