@@ -1,6 +1,7 @@
 import type { CityFaq, CityPageData, CityWhyItem } from '../cities/types';
 import type { InfoCard } from '../guides/partybusInfo';
 import { applyDenHaagTourgoHubCopy } from './denHaagTourgoHubCopy';
+import { applyRotterdamTourgoHubCopy } from './rotterdamTourgoHubCopy';
 import { tourgoPartybussen } from './tourgoPartybussen';
 
 const partnerName = tourgoPartybussen.publicProfile.name;
@@ -276,6 +277,7 @@ export function applyTourgoMunicipalityCopy(city: CityPageData): CityPageData {
 	};
 
 	if (slug === 'den-haag') return applyDenHaagTourgoHubCopy(tourgoCity);
+	if (slug === 'rotterdam') return applyRotterdamTourgoHubCopy(tourgoCity);
 	return tourgoCity;
 }
 
