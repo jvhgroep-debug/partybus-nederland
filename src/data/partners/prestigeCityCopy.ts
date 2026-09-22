@@ -1,6 +1,7 @@
 import type { CityFaq, CityPageData, CityWhyItem } from '../cities/types';
 import type { InfoCard } from '../guides/partybusInfo';
 import { prestigeCoachService } from './prestigeCoachService';
+import { applyPrestigeTilburgHubCopy } from './prestigeTilburgHubCopy';
 
 const partnerName = prestigeCoachService.publicProfile.name;
 
@@ -156,7 +157,7 @@ export function applyPrestigeMunicipalityCopy(city: CityPageData): CityPageData 
 		`Geef datum, opstap in ${name} en bestemming door. ${partnerName} bekijkt welk voertuig en welke timing bij jullie groep passen.`,
 	]);
 
-	return {
+	const prestigeCity: CityPageData = {
 		...city,
 		metaTitle: `Partybus huren vanuit ${name} | ${partnerName}`,
 		metaDescription: pick(`${slug}-meta`, [
@@ -250,6 +251,8 @@ export function applyPrestigeMunicipalityCopy(city: CityPageData): CityPageData 
 			]),
 		},
 	};
+
+	return slug === 'tilburg' ? applyPrestigeTilburgHubCopy(prestigeCity) : prestigeCity;
 }
 
 export function prestigeHowItWorks(cityName: string, slug: string) {
