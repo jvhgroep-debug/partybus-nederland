@@ -1,5 +1,6 @@
 import type { CityFaq, CityPageData, CityWhyItem } from '../cities/types';
 import type { InfoCard } from '../guides/partybusInfo';
+import { applyDenHaagTourgoHubCopy } from './denHaagTourgoHubCopy';
 import { tourgoPartybussen } from './tourgoPartybussen';
 
 const partnerName = tourgoPartybussen.publicProfile.name;
@@ -188,7 +189,7 @@ export function applyTourgoMunicipalityCopy(city: CityPageData): CityPageData {
 		`Geef datum, opstap in ${name} en bestemming door. Tourgo bekijkt welk voertuig en welke timing bij jullie groep passen.`,
 	]);
 
-	return {
+	const tourgoCity: CityPageData = {
 		...city,
 		metaTitle: `Partybus huren vanuit ${name} | ${partnerName}`,
 		metaDescription: pick(`${slug}-meta`, [
@@ -273,6 +274,9 @@ export function applyTourgoMunicipalityCopy(city: CityPageData): CityPageData {
 			]),
 		},
 	};
+
+	if (slug === 'den-haag') return applyDenHaagTourgoHubCopy(tourgoCity);
+	return tourgoCity;
 }
 
 export function tourgoHowItWorks(cityName: string, slug: string) {
