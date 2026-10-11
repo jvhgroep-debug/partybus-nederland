@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { generalProvinces } from '../../data/provinces/general';
+import { getPublishedCity } from '../../data/cities/registry';
+import { buildBreadcrumbSchema, buildWebPageSchema, buildFaqPageSchema } from '../../lib/guides/schema';
+import GuideFaqList from '../../components/guides/GuideFaqList.astro';
+import Button from '../../components/buttons/Button.astro';
+export function getStaticPaths() { return generalProvinces.map(province => ({ params: { slug: province.slug }, props: { province } })); }
+const { province } = Astro.props;
+const cities = province.citySlugs.map(getPublishedCity).filter(Boolean);
+const faqs = [
+ { question: `Wat kost een partybus in ${province.name}?`, answer: 'Er is geen vaste provincieprijs. De datum, groepsgrootte, kilometers, ritduur, wachttijd en voorzieningen bepalen het voorstel. Vraag offertes aan met dezelfde route en controleer wat inbegrepen is.' },
+ { question: 'Kunnen we op meerdere plekken instappen?', answer: 'Geef alle gewenste opstapadressen en de volgorde bij de aanvraag door. De vervoerder beoordeelt de bereikbaarheid en verwerkt de extra afstand en tijd in het voorstel.' },
+ { question: 'Is de terugrit inbegrepen?', answer: 'Alleen wanneer dit in het voorstel staat. Vermeld de gewenste terugreistijd, bestemming en eventuele afzetadressen en laat deze schriftelijk bevestigen.' },
+ { question: 'Hoe boek ik een partybus?', answer: 'Via Partybus Nederland vraag je gratis en vrijblijvend offertes aan. Beschikbaarheid en uitvoering hangen af van de aanbieder. Na het vergelijken maak je de boeking en betaling rechtstreeks met de gekozen vervoerder rond.' },
+];
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Provincies', href: '/provincies/' }, { label: province.name, href: province.path }];
+const jsonLd = [buildWebPageSchema({ name: province.h1, description: province.metaDescription, url: province.canonical }), buildBreadcrumbSchema(breadcrumbs), buildFaqPageSchema(faqs)];
+---
+<BaseLayout title={province.title} description={province.metaDescription} canonical={province.canonical} titleExact={true} jsonLd={jsonLd}>
+ <article class="region section__inner">
+  <nav aria-label="Broodkruimelnavigatie"><a href="/">Home</a> / <a href="/provincies/">Provincies</a> / <span aria-current="page">{province.name}</span></nav>
+  <header><p class="section__eyebrow">Vertrekplaatsen & routeadvies</p><h1>{province.h1}</h1><p>{province.localIntro}</p><Button href="/gratis-partybus-offertes-aanvragen/" size="lg">Gratis offertes aanvragen</Button></header>
+  <section><h2>Vertrekplaatsen in {province.name}</h2><p>Bekijk hieronder een selectie van plaatsen met een eigen vertrekpagina. Ook voor andere adressen in de provincie kun je een aanvraag indienen; de aanbieder bevestigt of de rit mogelijk is.</p><ul class="region__cities">{cities.map(city => <li><a href={city!.path}>Partybus vanuit {city!.name}</a></li>)}</ul></section>
+  <section><h2>Route en opstapplaats afstemmen</h2><p>{province.routeAdvice}</p><p>Vermeld het volledige vertrekadres, de bestemming, alle tussenstops en de gewenste vertrek- en terugreistijd. Houd verzamelen, instappen en eventuele bagage apart van de rijtijd. Spreek met de vervoerder af waar de bus veilig kan stoppen; een station, parkeerplaats of herkenningspunt is niet automatisch een toegestane halte.</p></section>
+  <section><h2>Prijzen en voertuigen vergelijken</h2><p>Vergelijk voorstellen op dezelfde groepsgrootte en route. Controleer de toegestane capaciteit, zitplaatsen en gewenste voorzieningen, zoals muziek of verlichting. Vraag ook welke kilometerkosten, wachttijd en overige kosten in de totaalprijs zitten. Voorzieningen en huisregels verschillen per bus.</p><p>Een datum of voertuig is pas vastgelegd nadat de aanbieder de boeking heeft bevestigd. Spreek rechtstreeks af hoe wijzigingen, annulering, betaling en eventuele extra stops worden verwerkt.</p><a href="/gids/partybus-kosten/">Lees meer over kostenfactoren</a> · <a href="/gidsen/opstapplaatsen/">Tips voor een geschikte opstapplaats</a></section>
+  <section><h2>Gegevens voor jullie aanvraag</h2><ul><li>Datum, aantal deelnemers en contactpersoon.</li><li>Alle vertrekadressen en het adres van de bestemming.</li><li>Vertrektijd, aankomsttijd en gewenste terugrit.</li><li>Tussenstops, bagage en gewenste voorzieningen.</li></ul><Button href="/gratis-partybus-offertes-aanvragen/">Vraag vrijblijvend offertes aan</Button></section>
+ </article>
+ <GuideFaqList title={`Veelgestelde vragen over partybus huren in ${province.name}`} items={faqs} />
+</BaseLayout>
+<style>
+.region { padding-top: calc(var(--header-height) + 2rem); padding-bottom: 3rem; max-width: 1100px; }
+.region header, .region section { margin-block: 3rem; }
+.region h1 { font-size: clamp(2rem, 5vw, 3.7rem); line-height: 1.15; }
+.region h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+.region p, .region li { line-height: 1.8; }
+.region a { color: var(--color-primary); }
+.region__cities { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; padding-left: 1.3rem; }
+</style>

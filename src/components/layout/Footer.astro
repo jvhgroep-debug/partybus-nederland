@@ -7,9 +7,7 @@ import { hubGuideLinks } from '../../data/gidsen/shared';
 import { gidsenPath } from '../../data/gidsen/registry';
 import { trustNav, footerLegalNav } from '../../data/trust/pages';
 import { servicePages } from '../../data/services/pages';
-import { noordBrabantProvince } from '../../data/provinces/noordBrabant';
-import { zuidHollandProvince } from '../../data/provinces/zuidHolland';
-import { utrechtProvince } from '../../data/provinces/utrecht';
+import { provincePages } from '../../data/provinces/registry';
 import type { RegionalFooterConfig } from '../../data/settings/regionalFooters';
 import type { PartnerWhatsappTrackingContext } from '../../lib/partnerWhatsappTracking';
 import Button from '../buttons/Button.astro';
@@ -49,11 +47,7 @@ const footerCtaHref =
 		: (regionalFooter?.ctaHref ?? quoteHref);
 const footerCtaIsExternal = Boolean(footerCtaHref.startsWith('http'));
 const footerCtaIsWhatsapp = footerCtaHref.startsWith('https://wa.me/');
-const provinceLinks = [
-	{ label: noordBrabantProvince.eyebrow, href: noordBrabantProvince.path },
-	{ label: zuidHollandProvince.eyebrow, href: zuidHollandProvince.path },
-	{ label: utrechtProvince.eyebrow, href: utrechtProvince.path },
-];
+const provinceLinks = provincePages.map(province => ({ label: province.h1.replace('Partybus huren in ', ''), href: province.path }));
 ---
 
 <footer
@@ -160,6 +154,7 @@ const provinceLinks = [
 					</div>
 					<div class="site-footer__col">
 						<p class="site-footer__heading">Provincies</p>
+<a href="/provincies/">Alle provincies</a>
 						{provinceLinks.map((province) => (
 							<a href={province.href}>{province.label}</a>
 						))}

@@ -28,6 +28,7 @@ export const GET: APIRoute = () => {
 		'/gratis-partybus-offertes-aanvragen/',
 		'/kennisbank/',
 		'/gidsen/',
+		'/provincies/',
 		...trustNav.map((item) => item.href),
 		...legalNav.map((item) => item.href),
 		...kennisbankArticles.map((article) => article.path),

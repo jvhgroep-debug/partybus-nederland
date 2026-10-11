@@ -1,4 +1,5 @@
 ---
+import { getGeneralProvinceForCity } from '../../data/provinces/general';
 import LocalDepartureNotes from "./LocalDepartureNotes.astro";
 import type { CityPageData } from '../../data/cities/types';
 import { getPublishedCity, getRelatedCities } from '../../data/cities/registry';
@@ -56,6 +57,7 @@ interface Props {
 }
 
 const { city: incomingCity } = Astro.props;
+const generalProvince = getGeneralProvinceForCity(incomingCity.slug);
 const isNoordBrabantPartnerCity = isNoordBrabantMunicipalitySlug(incomingCity.slug);
 const city = isNoordBrabantPartnerCity ? applyPrestigeMunicipalityCopy(incomingCity) : incomingCity;
 const relatedCitySlugs = isNoordBrabantPartnerCity
@@ -226,6 +228,7 @@ const conversionCopy = isNoordBrabantPartnerCity
 	/>
 
 	<LocalDepartureNotes slug={city.slug} />
+	{generalProvince && <section class="section"><div class="section__inner"><h2>Route plannen vanuit {city.name} in {generalProvince.name}</h2><p>{generalProvince.localIntro}</p><p>{generalProvince.routeAdvice}</p><a href={generalProvince.path}>Bekijk vertrekplaatsen en routeadvies in {generalProvince.name} →</a></div></section>}
 
 	<CityPickupLocations
 		title={city.pickup.title}
@@ -279,6 +282,8 @@ const conversionCopy = isNoordBrabantPartnerCity
 				<>
 					<a href={quoteHref}>Gratis offertes aanvragen →</a>
 					<a href="/hoe-werkt-het/">Hoe werkt vergelijken? →</a>
+{generalProvince && <a href={generalProvince.path}>Partybus in {generalProvince.name} →</a>}
+<a href="/provincies/">Alle provincies →</a>
 					<a href="/#diensten">Bekijk diensten →</a>
 					<a href="/gids/partybus-huren/">Meer lezen in de partybus-gids →</a>
 					<a href="/kennisbank/">Naar de kennisbank →</a>

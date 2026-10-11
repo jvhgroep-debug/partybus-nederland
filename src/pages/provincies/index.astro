@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { provincePages } from '../../data/provinces/registry';
+---
+<BaseLayout title="Partybus huren per provincie | Partybus Nederland" description="Bekijk partybusvervoer in alle twaalf provincies. Kies je vertrekregio voor lokale plaatsen, routeadvies en een vrijblijvende aanvraag." canonical="https://www.partybusnederland.nl/provincies/" titleExact={true}>
+ <main class="provinces section__inner"><h1>Partybus huren per provincie</h1><p>Kies de provincie waar jullie groep vertrekt. Op de regiopagina vind je plaatsen, praktische informatie en de aanvraagmogelijkheden voor jullie rit.</p><ul>{provincePages.map(province => <li><a href={province.path}>{province.h1}</a></li>)}</ul><p>Beschikbaarheid, prijs en voertuig worden voor jullie datum en route door de aanbieder bevestigd.</p><a href="/gratis-partybus-offertes-aanvragen/">Gratis offertes aanvragen</a></main>
+</BaseLayout>
+<style>.provinces { padding-top: calc(var(--header-height) + 3rem); padding-bottom: 4rem; } ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-block: 2rem; } a { color: var(--color-primary); } p { max-width: 75ch; line-height: 1.8; }</style>

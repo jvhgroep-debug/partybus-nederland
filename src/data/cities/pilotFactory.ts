@@ -1,3 +1,4 @@
+import { getGeneralProvinceForCity } from '../provinces/general';
 import cityInventory from './cities.json';
 import type { CityPageData } from './types';
 import { whatsapp } from '../settings/whatsapp';
@@ -39,6 +40,8 @@ function cityBySlug(slug: string): InventoryCity | undefined {
  * Related cities: alphabetische buren + een paar landelijke hubs voor interne links.
  */
 function relatedSlugs(currentSlug: string): string[] {
+	const region = getGeneralProvinceForCity(currentSlug);
+	if (region) return region.citySlugs.filter(slug => slug !== currentSlug).slice(0, 5);
 	const slugs = ALL_CITY_SLUGS;
 	const index = slugs.indexOf(currentSlug);
 	const selected: string[] = [];
@@ -93,7 +96,7 @@ const LOCAL_PICKUP_HINTS: Record<string, readonly string[]> = {
 };
 
 function pickupHintsFor(slug: string, cityName: string, landmark: string): readonly string[] {
-	return LOCAL_PICKUP_HINTS[slug] ?? [`Station ${cityName}`, `het centrum van ${cityName}`, landmark];
+	return LOCAL_PICKUP_HINTS[slug] ?? [`Een afgesproken verzamelpunt in ${cityName}`, `Een bereikbaar adres in ${cityName}`, landmark];
 }
 
 /** Shared CityPageData builder for every inventory city (same URL/canonical as WordPress). */
@@ -128,7 +131,7 @@ export function buildCityPageData(slug: string): CityPageData | null {
 			whatsappHref: whatsapp.href,
 			trustItems: [
 				'Gratis offertes vergelijken',
-				'Reactie binnen 24 uur',
+				'Vrijblijvende aanvraag',
 				'Geschikt voor groepen tot 80 personen',
 				'Ritten door Nederland en België',
 			],

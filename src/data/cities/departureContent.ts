@@ -48,8 +48,8 @@ const OCCASIONS: readonly { title: string; text: string }[] = [
 
 export function buildDepartureSeo(cityName: string) {
 	return {
-		metaTitle: `Partybus huren vanuit ${cityName} | Tips, prijzen & offertes`,
-		metaDescription: `Partybus huren vanuit ${cityName}: informatie over bestemmingen, festivals, kostenfactoren en planning. Vergelijk daarna vrijblijvend meerdere offertes.`,
+		metaTitle: `Partybus huren vanuit ${cityName} | Offertes`,
+		metaDescription: `Partybus huren vanuit ${cityName}? Bekijk routeadvies en kostenfactoren. Vergelijk gratis offertes voor jullie datum, bestemming en groep.`,
 		h1: `Partybus huren vanuit ${cityName}`,
 		heroSubtitle: `Vergelijk gratis partybusaanbieders voor jullie datum, route en groepsgrootte vanuit ${cityName}.`,
 	};
@@ -57,7 +57,7 @@ export function buildDepartureSeo(cityName: string) {
 
 export function buildDepartureIntro(cityName: string, landmark?: string) {
 	const localPickup = landmark
-		? `Denk bijvoorbeeld aan een verzamelpunt bij ${landmark}, het station of het centrum van ${cityName}.`
+		? `Bespreek een verzamelpunt in of rond ${cityName}; ${landmark} kan dienen als herkenningspunt. De vervoerder bevestigt de bereikbare en toegestane opstapplaats.`
 		: `Kies een centrale opstapplaats in of rond ${cityName}.`;
 
 	return {
