@@ -1,0 +1,14 @@
+---
+import { localDepartureNotes } from '../../data/partners/localDepartureNotes';
+interface Props { slug: string; }
+const note = localDepartureNotes[Astro.props.slug];
+---
+{note && <section class="section" aria-labelledby="local-departure-title">
+ <div class="section__inner">
+  <p class="section__eyebrow">Lokale ritplanning</p>
+  <h2 class="section__title" id="local-departure-title">{note.title}</h2>
+  <div class="local-departure-copy">{note.paragraphs.map(paragraph => <p>{paragraph}</p>)}</div>
+  <p><a href={note.source} target="_blank" rel="noopener noreferrer">Meer informatie over de gemeente →</a></p>
+ </div>
+</section>}
+<style>.local-departure-copy { max-width: 76ch; line-height: 1.75; } .local-departure-copy p + p { margin-top: 1rem; }</style>

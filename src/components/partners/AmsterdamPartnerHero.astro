@@ -1,4 +1,5 @@
 ---
+import PartnerImage from "../shared/PartnerImage.astro";
 import {
 	partyBussenWestlandLogo,
 	partyBussenWestlandWhatsappLabel,
@@ -69,7 +70,7 @@ const {
 		</div>
 
 		<div class="ams-hero__media">
-			<img
+			<PartnerImage
 				class="ams-hero__logo"
 				src={partyBussenWestlandLogo}
 				alt="Logo Party Bussen Westland"
@@ -77,7 +78,7 @@ const {
 				height="160"
 			/>
 			<figure class="ams-hero__photo">
-				<img
+				<PartnerImage
 					src={photo.src}
 					alt={photo.alt}
 					width={photo.width}

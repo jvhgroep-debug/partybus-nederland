@@ -1,4 +1,5 @@
 ---
+import LocalDepartureNotes from "./LocalDepartureNotes.astro";
 import type { CityPageData } from '../../data/cities/types';
 import { getPublishedCity, getRelatedCities } from '../../data/cities/registry';
 import {
@@ -223,6 +224,8 @@ const conversionCopy = isNoordBrabantPartnerCity
 		checklist={isNoordBrabantPartnerCity ? prestigePlanningChecklist : compareChecklist}
 		checklistTitle={isNoordBrabantPartnerCity ? prestigeChecklistTitle : undefined}
 	/>
+
+	<LocalDepartureNotes slug={city.slug} />
 
 	<CityPickupLocations
 		title={city.pickup.title}

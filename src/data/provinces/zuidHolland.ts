@@ -226,7 +226,7 @@ export const zuidHollandProvince = {
 	canonical: 'https://www.partybusnederland.nl/provincies/zuid-holland/',
 	title: 'Partybus huren in Zuid-Holland | Tourgo Partybussen',
 	metaDescription:
-		'Partybus huren in Zuid-Holland? PartybusNederland.nl werkt samen met Tourgo Partybussen. Neem rechtstreeks contact op voor groepsvervoer van Rotterdam tot Den Haag en Leiden.',
+		'Partybus huren in Zuid-Holland via Tourgo Partybussen. Bekijk 50 gemeenten en vraag rechtstreeks naar beschikbaarheid, groepsvervoer en een offerte.',
 	h1: 'Partybus huren in Zuid-Holland',
 	eyebrow: 'Zuid-Holland',
 	lead: 'PartybusNederland.nl werkt in Zuid-Holland samen met Tourgo Partybussen. Voor een partybus, groepsvervoer of een vraag over de mogelijkheden neem je rechtstreeks contact op met Tourgo.',

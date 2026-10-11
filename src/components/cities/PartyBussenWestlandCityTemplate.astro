@@ -1,4 +1,5 @@
 ---
+import LocalDepartureNotes from "./LocalDepartureNotes.astro";
 import type { CityPageData } from '../../data/cities/types';
 import { getRelatedCities } from '../../data/cities/registry';
 import {
@@ -143,6 +144,8 @@ const conversionCopy = westlandConversionCopy(city.name, city.slug);
 		checklist={westlandPlanningChecklist}
 		checklistTitle="Waar je op let bij Party Bussen Westland"
 	/>
+
+	<LocalDepartureNotes slug={city.slug} />
 
 	<CityPickupLocations
 		title={city.pickup.title}

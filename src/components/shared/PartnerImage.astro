@@ -1,0 +1,7 @@
+---
+import { partnerImageAttributes } from '../../lib/partnerImages';
+interface Props { src: string; alt: string; [key: string]: unknown; }
+const { src, alt, ...attributes } = Astro.props;
+const responsive = partnerImageAttributes(src);
+---
+<img {...responsive} {...attributes} src={src} alt={alt} width={responsive.width ?? attributes.width} height={responsive.height ?? attributes.height} decoding="async" />

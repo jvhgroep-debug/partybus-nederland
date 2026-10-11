@@ -1,4 +1,5 @@
 ---
+import PartnerImage from "../shared/PartnerImage.astro";
 import type { PartnerImageAsset } from '../../data/partners/partnerMediaDistribution';
 
 type RegionalPartnerProfile = {
@@ -33,6 +34,9 @@ const {
 
 const { name, website, email, phone, whatsapp, media, intro } = partner;
 const displayedLogo = logo ?? media.logo;
+const collaborationPath = name === 'Party Bussen Westland'
+ ? '/kennisbank/samenwerking-party-bussen-westland-utrecht-amsterdam/'
+ : '/kennisbank/samenwerking-tourgo-partybussen-zuid-holland/';
 ---
 
 <section class="section regional-partner" aria-labelledby="regional-partner-title">
@@ -51,6 +55,7 @@ const displayedLogo = logo ?? media.logo;
 					<a href={`mailto:${email}`}>{email}</a>
 				</li>
 			</ul>
+			<p><a href={collaborationPath}>Lees over onze samenwerking met {name} →</a></p>
 			<div class="regional-partner__actions">
 				<a
 					class="btn btn--primary btn--lg"
@@ -71,7 +76,7 @@ const displayedLogo = logo ?? media.logo;
 		<div class="regional-partner__media reveal">
 			{
 				displayedLogo ? (
-					<img class="regional-partner__logo" src={displayedLogo} alt={`${name} logo`} loading="lazy" />
+					<PartnerImage class="regional-partner__logo" src={displayedLogo} alt={`${name} logo`} loading="lazy" />
 				) : null
 			}
 
@@ -80,7 +85,7 @@ const displayedLogo = logo ?? media.logo;
 					galleryImages && galleryImages.length > 0
 						? galleryImages.map((image) => (
 								<figure class="regional-partner__figure">
-									<img
+									<PartnerImage
 										src={image.src}
 										alt={image.alt}
 										width={image.width}
@@ -92,7 +97,7 @@ const displayedLogo = logo ?? media.logo;
 							))
 						: media.gallery.map((src, index) => (
 								<figure class="regional-partner__figure">
-									<img src={src} alt={`${name} partybus ${index + 1}`} loading="lazy" />
+									<PartnerImage src={src} alt={`${name} partybus ${index + 1}`} loading="lazy" />
 								</figure>
 							))
 				}

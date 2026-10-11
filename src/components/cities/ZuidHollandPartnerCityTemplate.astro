@@ -1,4 +1,5 @@
 ﻿---
+import LocalDepartureNotes from "./LocalDepartureNotes.astro";
 import type { CityPageData } from '../../data/cities/types';
 import { getRelatedCities } from '../../data/cities/registry';
 import {
@@ -141,6 +142,8 @@ const conversionCopy = tourgoConversionCopy(city.name, city.slug);
 		checklist={tourgoPlanningChecklist}
 		checklistTitle="Waar je op let bij Tourgo"
 	/>
+
+	<LocalDepartureNotes slug={city.slug} />
 
 	<CityPickupLocations
 		title={city.pickup.title}

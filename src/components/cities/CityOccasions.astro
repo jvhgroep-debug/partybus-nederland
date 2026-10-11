@@ -1,4 +1,5 @@
 ---
+import PartnerImage from "../shared/PartnerImage.astro";
 import type { CityOccasion } from '../../data/cities/types';
 
 interface Props {
@@ -39,7 +40,7 @@ const occasionPaths: Record<string, string> = {
 						<article class:list={['city-occ__card', partnerWhatsappHref && 'city-occ__card--partner', 'reveal']}>
 						{partnerWhatsappHref ? (
 							<>
-								<img src={item.image} alt="" width="900" height="600" loading="lazy" decoding="async" />
+								<PartnerImage src={item.image} alt="" width="900" height="600" loading="lazy" decoding="async" />
 								<div class="city-occ__body">
 									<h3>{item.title}</h3>
 									<p>{item.text}</p>
@@ -64,7 +65,7 @@ const occasionPaths: Record<string, string> = {
 							</>
 						) : (
 							<a href={occasionPaths[item.title] ?? '/gratis-partybus-offertes-aanvragen/'}>
-							<img src={item.image} alt="" width="900" height="600" loading="lazy" decoding="async" />
+							<PartnerImage src={item.image} alt="" width="900" height="600" loading="lazy" decoding="async" />
 							<div class="city-occ__body">
 								<h3>{item.title}</h3>
 								<p>{item.text}</p>

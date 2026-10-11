@@ -35,3 +35,6 @@ _*.jpg
 .wrangler/
 .dev.vars
 
+
+# Responsive partner variants generated before each build
+public/images/partners/responsive/

@@ -1,4 +1,5 @@
 ---
+import PartnerImage from "../shared/PartnerImage.astro";
 import type { PrestigeCoachServicePublicProfile } from '../../data/partners/prestigeCoachService';
 import type { PartnerImageAsset } from '../../data/partners/partnerMediaDistribution';
 
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const { partner, localIntro, provinceHref, galleryImages, whatsappHref, logo } = Astro.props;
-const { name, address, kvk, vatId, whatsapp, media } = partner;
+const { name, address, kvk, vatId, whatsapp, media, website } = partner;
 const displayedLogo = logo ?? media.logo;
 ---
 
@@ -39,6 +40,7 @@ const displayedLogo = logo ?? media.logo;
 				<li><span>KVK</span><strong>{kvk}</strong></li>
 				<li><span>BTW</span><strong>{vatId}</strong></li>
 			</ul>
+			<p><a href="/kennisbank/samenwerking-prestige-coach-service-noord-brabant/">Lees over onze samenwerking met Prestige Coach Service →</a></p>
 			<div class="province-partner__actions">
 				<a
 					class="btn btn--primary btn--lg"
@@ -50,6 +52,7 @@ const displayedLogo = logo ?? media.logo;
 				>
 					{whatsapp.label}
 				</a>
+				<a class="btn btn--ghost btn--lg" href={website.href} target="_blank" rel="noopener noreferrer">{website.label}</a>
 				{
 					provinceHref && (
 						<a class="province-partner__province-link" href={provinceHref}>
@@ -63,7 +66,7 @@ const displayedLogo = logo ?? media.logo;
 		<div class="province-partner__media reveal">
 			{
 				displayedLogo ? (
-					<img class="province-partner__logo" src={displayedLogo} alt={`${name} logo`} loading="lazy" />
+					<PartnerImage class="province-partner__logo" src={displayedLogo} alt={`${name} logo`} loading="lazy" />
 				) : (
 					<div class="province-partner__logo-slot" data-partner-logo-slot aria-label={`Plaats voor logo ${name}`}>
 						<span class="province-partner__placeholder-label">Logo {name}</span>
@@ -76,7 +79,7 @@ const displayedLogo = logo ?? media.logo;
 				{
 					galleryImages && galleryImages.length > 0
 						? galleryImages.map((image) => (
-								<img
+								<PartnerImage
 									src={image.src}
 									alt={image.alt}
 									width={image.width}
@@ -87,7 +90,7 @@ const displayedLogo = logo ?? media.logo;
 							))
 						: media.gallery.length > 0
 						? media.gallery.map((src, index) => (
-								<img src={src} alt={`${name} partybus ${index + 1}`} loading="lazy" />
+								<PartnerImage src={src} alt={`${name} partybus ${index + 1}`} loading="lazy" />
 							))
 						: [1, 2, 3].map((index) => (
 								<div class="province-partner__photo-slot" data-partner-photo-slot={index}>

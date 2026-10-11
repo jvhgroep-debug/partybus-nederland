@@ -1,4 +1,5 @@
 ---
+import PartnerImage from "../shared/PartnerImage.astro";
 import Button from '../buttons/Button.astro';
 
 interface Props {
@@ -28,7 +29,7 @@ const primaryIsExternal = primaryHref.startsWith('http');
 <section id="offerte-stad" class="section city-cta" aria-labelledby="city-cta-title">
 	<div class="city-cta__panel section__inner reveal">
 		<div class="city-cta__media" aria-hidden="true">
-			<img src={image} alt="" width="1672" height="941" loading="lazy" decoding="async" />
+			<PartnerImage src={image} alt="" width="1672" height="941" loading="lazy" decoding="async" />
 			<div class="city-cta__veil"></div>
 		</div>
 		<div class="city-cta__content">

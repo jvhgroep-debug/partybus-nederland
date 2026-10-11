@@ -1,4 +1,5 @@
 ---
+import { partnerImageAttributes } from '../lib/partnerImages';
 import '../styles/global.css';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
@@ -79,6 +80,7 @@ const resolvedCanonical =
 	canonical ??
 	(pathname.includes('404') ? undefined : `https://www.partybusnederland.nl${pathname}`);
 const heroPreload = preloadImage || (isHome ? '/images/partybus-nederland-hero-feest.webp' : undefined);
+const heroResponsive = heroPreload ? partnerImageAttributes(heroPreload) : {};
 const jsonLdPayload = jsonLd
 	? Array.isArray(jsonLd)
 		? jsonLd
@@ -116,7 +118,7 @@ const twImage = twitterImage || socialImage;
 			href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
 			rel="stylesheet"
 		/>
-		{heroPreload && <link rel="preload" as="image" href={heroPreload} fetchpriority="high" />}
+		{heroPreload && <link rel="preload" as="image" href={heroPreload} imagesrcset={heroResponsive.srcset} imagesizes={heroResponsive.sizes} fetchpriority="high" />}
 		<title>{pageTitle}</title>
 		{
 			jsonLdPayload.map((item) => (

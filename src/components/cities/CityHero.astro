@@ -1,4 +1,6 @@
 ---
+import { partnerImageAttributes } from '../../lib/partnerImages';
+import PartnerImage from "../shared/PartnerImage.astro";
 import Button from '../buttons/Button.astro';
 
 interface Props {
@@ -48,11 +50,12 @@ const trustIcons = ['compare', 'clock', 'group', 'nl'] as const;
 				<picture>
 					<source
 						media="(max-width: 640px)"
-						srcset={mobileImage}
+						srcset={partnerImageAttributes(mobileImage).srcset ?? mobileImage}
+						sizes={partnerImageAttributes(mobileImage).sizes}
 						width={mobileImageWidth}
 						height={mobileImageHeight}
 					/>
-					<img
+					<PartnerImage
 						src={image}
 						alt={imageAlt}
 						width={imageWidth}
@@ -62,7 +65,7 @@ const trustIcons = ['compare', 'clock', 'group', 'nl'] as const;
 					/>
 				</picture>
 			) : (
-				<img
+				<PartnerImage
 					src={image}
 					alt={imageAlt}
 					width={imageWidth}

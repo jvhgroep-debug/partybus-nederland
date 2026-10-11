@@ -115,7 +115,7 @@ export const utrechtProvince = {
 	canonical: 'https://www.partybusnederland.nl/provincies/utrecht/',
 	title: 'Partybus huren in Utrecht | Party Bussen Westland',
 	metaDescription:
-		'Partybus huren in provincie Utrecht? PartybusNederland.nl werkt samen met Party Bussen Westland. Rechtstreeks contact voor groepsvervoer vanuit Utrecht, Amersfoort, Nieuwegein, Zeist en de rest van de provincie.',
+		'Partybus huren in Utrecht via Party Bussen Westland. Bekijk de gemeentepagina’s en neem direct contact op voor beschikbaarheid en een offerte.',
 	h1: 'Partybus huren in Utrecht',
 	eyebrow: 'Utrecht',
 	lead: 'PartybusNederland.nl werkt in de provincie Utrecht samen met Party Bussen Westland. Voor een partybus, groepsvervoer of een vraag over beschikbaarheid neem je rechtstreeks contact op via WhatsApp.',

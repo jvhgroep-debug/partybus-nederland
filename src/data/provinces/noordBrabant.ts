@@ -260,7 +260,7 @@ export const noordBrabantProvince = {
 	canonical: 'https://www.partybusnederland.nl/provincies/noord-brabant/',
 	title: 'Partybus huren in Noord-Brabant | Prestige Coach Service',
 	metaDescription:
-		'Partybus huren in Noord-Brabant? PartybusNederland.nl werkt in Noord-Brabant samen met Prestige Coach Service. Een aanvraag gaat naar deze partner — in alle 56 Brabantse gemeenten.',
+		'Partybus huren in Noord-Brabant via Prestige Coach Service. Bekijk alle 56 gemeenten en neem direct contact op voor beschikbaarheid en een offerte.',
 	h1: 'Partybus huren in Noord-Brabant',
 	eyebrow: 'Noord-Brabant',
 	lead: 'Van Eindhoven tot Breda en van Tilburg tot Baarle-Nassau: PartybusNederland.nl werkt in Noord-Brabant samen met Prestige Coach Service voor groepsvervoer, feesten, festivals en zakelijke ritten — in alle 56 Brabantse gemeenten.',

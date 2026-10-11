@@ -139,6 +139,7 @@ export const prestigeCoachService = {
 	coverage: 'Heel Noord-Brabant',
 	publicProfile: {
 		name: 'Prestige Coach Service',
+		website: { href: 'https://limobus.nl/', label: 'Bekijk Prestige Coach Service / Limobus' },
 		address: {
 			street: 'Oordeelsestraat 7c',
 			postalCode: '5111 PA',

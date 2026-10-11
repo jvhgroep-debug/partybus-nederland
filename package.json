@@ -13,7 +13,8 @@
     "build:guide-images": "node scripts/build-guide-images.mjs",
     "validate:gidsen": "node scripts/validate-gidsen-wordcount.mjs",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "prebuild": "node scripts/build-partner-images.mjs"
   },
   "dependencies": {
     "astro": "^7.0.9"
