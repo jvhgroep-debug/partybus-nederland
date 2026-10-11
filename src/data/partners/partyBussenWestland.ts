@@ -1,3 +1,4 @@
+import { buildPartnerWhatsappHref } from '../../lib/partnerWhatsappMessage';
 import { UTRECHT_MUNICIPALITY_SLUGS } from '../provinces/utrecht';
 import {
 	coversMunicipalitySlug,
@@ -151,9 +152,7 @@ export const partyBussenWestland = {
 		},
 		whatsapp: {
 			phone: whatsappPhone,
-			href: `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(
-				'Hallo Party Bussen Westland,\n\nIk kom via PartybusNederland.nl en wil graag informatie over partybus huren.',
-			)}`,
+			href: buildPartnerWhatsappHref(whatsappPhone, 'Party Bussen Westland', 'Utrecht / Amsterdam'),
 			label: 'WhatsApp Party Bussen Westland',
 			ariaLabel: 'WhatsApp Party Bussen Westland',
 		},
@@ -189,10 +188,7 @@ export function coversPartyBussenWestlandMunicipality(
 }
 
 export function buildPartyBussenWestlandWhatsappHref(cityName: string): string {
-	const message =
-		`Hallo, ik kom via PartybusNederland.nl en wil graag informatie over een partybus vanuit ${cityName}.`;
-
-	return `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(message)}`;
+	return buildPartnerWhatsappHref(whatsappPhone, 'Party Bussen Westland', cityName);
 }
 
 export function resolvePartyBussenWestlandCityMedia(citySlug: string) {

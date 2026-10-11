@@ -1,3 +1,4 @@
+import { buildPartnerWhatsappHref } from '../../lib/partnerWhatsappMessage';
 import { NOORD_BRABANT_MUNICIPALITY_SLUGS } from '../provinces/noordBrabant';
 import {
 	resolvePartnerCityMedia,
@@ -12,8 +13,6 @@ export type PartnerMedia = {
 };
 
 const whatsappPhone = '31629041798';
-const whatsappMessage =
-	'Hallo Prestige Coach Service,\n\nIk wil graag informatie over partybus huren in Noord-Brabant.';
 const mediaBasePath = '/images/partners/prestige-coach-service';
 export const prestigeCoachServiceLogo = `${mediaBasePath}/prestige-coach-service-logo.svg`;
 
@@ -149,7 +148,7 @@ export const prestigeCoachService = {
 		vatId: 'NL004898384B50',
 		whatsapp: {
 			phone: whatsappPhone,
-			href: `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(whatsappMessage)}`,
+			href: buildPartnerWhatsappHref(whatsappPhone, 'Prestige Coach Service', 'Noord-Brabant'),
 			label: 'Direct contact via WhatsApp',
 			ariaLabel: 'WhatsApp Prestige Coach Service',
 		},
@@ -183,10 +182,7 @@ export type PrestigeCoachServicePublicProfile =
 	(typeof prestigeCoachService)['publicProfile'];
 
 export function buildPrestigeCoachServiceWhatsappHref(cityName: string): string {
-	const message =
-		`Hallo, ik kom via PartybusNederland.nl en wil graag informatie over een partybus vanuit ${cityName}.`;
-
-	return `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(message)}`;
+	return buildPartnerWhatsappHref(whatsappPhone, 'Prestige Coach Service', cityName);
 }
 
 export function buildPrestigeCoachServiceQuoteHref(

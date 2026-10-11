@@ -1,3 +1,4 @@
+import { buildPartnerWhatsappHref } from '../../lib/partnerWhatsappMessage';
 import { ZUID_HOLLAND_MUNICIPALITY_SLUGS } from '../provinces/zuidHolland';
 import {
 	resolvePartnerCityMedia,
@@ -140,9 +141,7 @@ export const tourgoPartybussen = {
 		},
 		whatsapp: {
 			phone: whatsappPhone,
-			href: `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(
-				'Hallo Tourgo Partybussen,\n\nIk kom via PartybusNederland.nl en wil graag informatie over partybus huren in Zuid-Holland.',
-			)}`,
+			href: buildPartnerWhatsappHref(whatsappPhone, 'Tourgo Partybussen', 'Zuid-Holland'),
 			label: 'WhatsApp Tourgo',
 			ariaLabel: 'WhatsApp Tourgo Partybussen',
 		},
@@ -163,10 +162,7 @@ export const tourgoPartybussen = {
 export type TourgoPartybussenPublicProfile = (typeof tourgoPartybussen)['publicProfile'];
 
 export function buildTourgoWhatsappHref(cityName: string): string {
-	const message =
-		`Hallo, ik kom via PartybusNederland.nl en wil graag informatie over een partybus vanuit ${cityName} (Zuid-Holland).`;
-
-	return `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(message)}`;
+	return buildPartnerWhatsappHref(whatsappPhone, 'Tourgo Partybussen', cityName);
 }
 
 export function buildTourgoQuoteHref(cityName: string, sourcePath: string): string {
