@@ -30,6 +30,7 @@ interface QuotePayload {
 }
 
 const INBOX = 'info@starlocal.nl';
+const ZEELAND_INBOX = 'info@stagelokaal.nl';
 /** Resend testdomein — werkt zonder DNS / zonder partybusnederland.nl */
 const FROM_TEST = 'Partybus Nederland <onboarding@resend.dev>';
 const SUCCESS =
@@ -227,6 +228,8 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 		);
 	}
 
+	// Zeeland enquiries are handled by the site owner, who forwards them manually.
+	const inbox = payload.partnerId === 'startransfer' ? ZEELAND_INBOX : INBOX;
 	const rows = fieldRows(payload);
 	const summaryText = rows.map(([k, v]) => `${k}: ${v}`).join('\n');
 	const summaryHtml = rows
@@ -237,7 +240,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 		.join('');
 
 	const ownerResult = await sendResend(apiKey, from, {
-		to: INBOX,
+		to: inbox,
 		subject: 'Nieuwe offerteaanvraag – Partybus Nederland',
 		text: `Nieuwe aanvraag via Partybus Nederland\n\n${summaryText}`,
 		html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;"><p><strong>Nieuwe offerteaanvraag</strong></p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table></div>`,
@@ -246,7 +249,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
 	if (!ownerResult.ok) {
 		const hint = isTestDomainRecipientLimit(ownerResult.detail)
-			? ' Koppel een geverifieerd afzenderdomein in Resend (FROM_EMAIL), of voeg info@starlocal.nl toe als toegestaan ontvangstadres.'
+			? ` Koppel een geverifieerd afzenderdomein in Resend (FROM_EMAIL), of voeg ${inbox} toe als toegestaan ontvangstadres.`
 			: '';
 		return json(
 			{
@@ -259,7 +262,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
 	const partnerLeadEmail = resolveQuotePartnerLeadEmail(payload.partnerId);
 
-	if (partnerLeadEmail && partnerLeadEmail.toLowerCase() !== INBOX.toLowerCase()) {
+	if (partnerLeadEmail && partnerLeadEmail.toLowerCase() !== inbox.toLowerCase()) {
 		const partnerResult = await sendResend(apiKey, from, {
 			to: partnerLeadEmail,
 			subject: `Nieuwe aanvraag via Partybus Nederland – ${payload.partnerCity || payload.city}`,
@@ -271,7 +274,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 		if (!partnerResult.ok) {
 			if (isTestDomainRecipientLimit(partnerResult.detail)) {
 				await sendResend(apiKey, from, {
-					to: INBOX,
+					to: inbox,
 					subject: `Partnerdoorsturing (preview) – bedoeld voor ${payload.partnerId}`,
 					text: [
 						`De partnerdoorsturing kon door de Resend-testdomeinlimiet niet rechtstreeks worden afgeleverd.`,
@@ -288,7 +291,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 		}
 	}
 
-	const sameAsInbox = payload.email.toLowerCase() === INBOX.toLowerCase();
+	const sameAsInbox = payload.email.toLowerCase() === inbox.toLowerCase();
 
 	if (!sameAsInbox) {
 		const customerResult = await sendResend(apiKey, from, {
@@ -307,14 +310,14 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 				'Het team van Partybus Nederland',
 			].join('\n'),
 			html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;max-width:560px;"><p>Hoi ${escapeHtml(payload.name)},</p><p>Bedankt voor je aanvraag bij <strong>Partybus Nederland</strong>.</p><p>We hebben je bericht goed ontvangen en gaan ermee aan de slag.</p><p><strong>Samenvatting</strong></p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table><p style="margin-top:24px;">Met vriendelijke groet,<br>Het team van Partybus Nederland</p></div>`,
-			replyTo: INBOX,
+			replyTo: inbox,
 		});
 
 		if (!customerResult.ok) {
 			if (isTestDomainRecipientLimit(customerResult.detail)) {
 				// Testdomein: klantmail naar derden geblokkeerd → stuur bevestigingskopie naar inbox
 				await sendResend(apiKey, from, {
-					to: INBOX,
+					to: inbox,
 					subject: `Klantbevestiging (preview) – bedoeld voor ${payload.email}`,
 					text: [
 						`Kon de bevestiging niet naar ${payload.email} sturen (Resend-testdomeinlimiet).`,
@@ -336,7 +339,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 	} else {
 		// Zelfde inbox: aparte bevestigingsmail naast de internmelding
 		const confirmResult = await sendResend(apiKey, from, {
-			to: INBOX,
+			to: inbox,
 			subject: 'Bedankt voor je aanvraag bij Partybus Nederland',
 			text: [
 				`Hoi ${payload.name},`,
@@ -351,7 +354,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 				'Het team van Partybus Nederland',
 			].join('\n'),
 			html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;max-width:560px;"><p>Hoi ${escapeHtml(payload.name)},</p><p>Bedankt voor je aanvraag bij <strong>Partybus Nederland</strong>.</p><p>We hebben je bericht goed ontvangen en gaan ermee aan de slag.</p><p><strong>Samenvatting</strong></p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table><p style="margin-top:24px;">Met vriendelijke groet,<br>Het team van Partybus Nederland</p></div>`,
-			replyTo: INBOX,
+			replyTo: inbox,
 		});
 
 		if (!confirmResult.ok) {
