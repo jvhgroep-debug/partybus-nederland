@@ -1,3 +1,4 @@
+import { samenwerkingStarTransferZeeland } from './articles/samenwerkingStarTransferZeeland';
 import { samenwerkingWestland } from './articles/samenwerkingWestland';
 import type { KennisbankArticle } from './types';
 import { partybusHurenCompleteGids } from './articles/partybusHurenCompleteGids';
@@ -6,6 +7,7 @@ import { samenwerkingTourgoZuidHolland } from './articles/samenwerkingTourgoZuid
 
 /** Registry for Star Local pSEO Suite — kennisbank master articles. */
 export const kennisbankArticles: readonly KennisbankArticle[] = [
+	samenwerkingStarTransferZeeland,
 	partybusHurenCompleteGids,
 	samenwerkingWestland,
 	samenwerkingPrestigeNoordBrabant,

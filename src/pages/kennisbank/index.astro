@@ -65,7 +65,7 @@ const jsonLd = [
 									<div class="kb-hub__card-media">
 										<img
 											src={article.heroImage.src}
-											srcset={`${article.heroImage.src.replace('-1920w.webp', '-640w.webp')} 640w, ${article.heroImage.src.replace('-1920w.webp', '-960w.webp')} 960w, ${article.heroImage.src} 1920w`}
+											srcset={article.heroImage.src.includes('-1920w.webp') ? `${article.heroImage.src.replace('-1920w.webp', '-640w.webp')} 640w, ${article.heroImage.src.replace('-1920w.webp', '-960w.webp')} 960w, ${article.heroImage.src} 1920w` : undefined}
 											sizes="(min-width: 800px) 40vw, 100vw"
 											alt={article.heroImage.alt}
 											title={article.heroImage.title}

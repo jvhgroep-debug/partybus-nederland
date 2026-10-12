@@ -1,0 +1,9 @@
+---
+import PartnerImage from '../shared/PartnerImage.astro';
+import {starTransferPhotos} from '../../data/partners/starTransfer';
+interface Props {festival?:string;}
+const {festival}=Astro.props;
+const images=starTransferPhotos.slice(7,10);
+---
+<section class="festival-feeling"><div class="copy"><p class="section__eyebrow">Samen onderweg met StarTransfer</p><h2>Het festivalgevoel begint in de partybus</h2><p>{festival?`Met je groep naar ${festival}: de rit hoort bij jullie festivaldag.`:'Met je groep naar het festival: de rit hoort bij jullie festivaldag.'} Bekijk de DJ-opstelling, de zitplaatsen en de lounge op de echte StarTransfer-foto’s. Bespreek bij je aanvraag welke bus en voorzieningen bij jullie groep passen.</p></div><div class="photos">{images.map(photo=><figure><PartnerImage src={photo.src} alt={photo.alt} loading="lazy" sizes="(max-width:640px) 100vw, (max-width:900px) 50vw, 33vw" /><figcaption>{photo.alt}</figcaption></figure>)}</div></section>
+<style>.festival-feeling{padding:1.5rem;margin-block:2rem;background:var(--color-surface-alt);border:1px solid var(--color-primary-line);border-radius:1rem}.copy h2{font-size:clamp(1.6rem,3vw,2.4rem)}.copy p{line-height:1.85;max-width:85ch}.photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem;margin-top:1.5rem}figure{margin:0}.photos img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:.7rem}figcaption{font-size:.85rem;padding-top:.5rem}@media(max-width:900px){.photos{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:640px){.photos{grid-template-columns:1fr}.festival-feeling{padding:1rem}}</style>

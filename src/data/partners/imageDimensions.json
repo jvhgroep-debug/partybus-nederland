@@ -182,5 +182,17 @@
   "/images/partners/startransfer/vip-buiten.webp": {
     "width": 1000,
     "height": 735
+  },
+  "/images/partners/startransfer/dj-opstelling.webp": {
+    "width": 1125,
+    "height": 722
+  },
+  "/images/partners/startransfer/vip-interieur.webp": {
+    "width": 1000,
+    "height": 750
+  },
+  "/images/partners/startransfer/vip-lounge.webp": {
+    "width": 960,
+    "height": 720
   }
 }

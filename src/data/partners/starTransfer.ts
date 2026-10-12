@@ -11,6 +11,9 @@ export const starTransferPhotos=[
  {src:`${base}/experience-interieur.webp`,alt:'Interieur van The Experience van StarTransfer'},
  {src:`${base}/experience-lounge.webp`,alt:'VIP-lounge van The Experience van StarTransfer'},
  {src:`${base}/vip-buiten.webp`,alt:'StarTransfer V.I.P. bus van buiten'},
+ {src:`${base}/dj-opstelling.webp`,alt:'DJ-opstelling in de StarTransfer partybus'},
+ {src:`${base}/vip-interieur.webp`,alt:'Zitplaatsen en interieur van de StarTransfer V.I.P. bus'},
+ {src:`${base}/vip-lounge.webp`,alt:'Lounge met sfeerverlichting in de StarTransfer partybus'},
 ];
 export const starTransfer={id:'startransfer',provinceSlug:'zeeland',publicProfile:{name:'StarTransfer',website:{href:'https://startransfer.nl/',label:'Bekijk StarTransfer'},email:'info@startransfer.nl',phone:{display:'010 381 08 00',href:'tel:+31103810800'},address:{street:'Fokkerstraat 521',postalCode:'3125 BD',city:'Schiedam'},whatsapp:{phone:'31684002350',temporary:true,ariaLabel:'WhatsApp-aanvraag voor StarTransfer via Partybus Nederland'}},internalRouting:{leadEmail:'info@startransfer.nl'}} as const;
 export function buildStarTransferWhatsappHref(departure='Zeeland'){return buildPartnerWhatsappHref(starTransfer.publicProfile.whatsapp.phone,'StarTransfer — aanvraag via Partybus Nederland',departure);}
