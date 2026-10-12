@@ -1,3 +1,4 @@
+import { starTransfer } from '../data/partners/starTransfer';
 import { prestigeCoachService } from '../data/partners/prestigeCoachService';
 import { tourgoPartybussen } from '../data/partners/tourgoPartybussen';
 import {
@@ -98,3 +99,5 @@ export function buildPartyBussenWestlandWhatsappTrackingContext(input: {
 }
 
 export const PARTNER_WHATSAPP_TRACKING_ENDPOINT = '/api/partner-whatsapp-click';
+
+export function buildStarTransferWhatsappTrackingContext(input:{municipalitySlug:string|null;municipalityName:string;pagePath:string;pageType:PartnerWhatsappPageType}):PartnerWhatsappTrackingContext {return {partnerId:starTransfer.id,provinceSlug:starTransfer.provinceSlug,...input};}

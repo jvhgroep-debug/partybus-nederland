@@ -3,6 +3,8 @@
  *
  * Env: PARTNER_ANALYTICS (D1 binding)
  */
+import {starTransfer} from '../../src/data/partners/starTransfer';
+import {zeelandMunicipalities} from '../../src/data/provinces/zeeland';
 import { prestigeCoachService } from '../../src/data/partners/prestigeCoachService';
 import { tourgoPartybussen } from '../../src/data/partners/tourgoPartybussen';
 import {
@@ -22,11 +24,13 @@ interface Env {
 type ClickPayload = PartnerWhatsappClickPayload;
 
 const ALLOWED_PARTNERS = new Set([
+	starTransfer.id,
 	prestigeCoachService.id,
 	tourgoPartybussen.id,
 	partyBussenWestland.id,
 ]);
 const ALLOWED_PROVINCES = new Set([
+	starTransfer.provinceSlug,
 	prestigeCoachService.provinceSlug,
 	tourgoPartybussen.provinceSlug,
 	partyBussenWestland.provinceSlug,
@@ -65,6 +69,12 @@ function validatePayload(raw: unknown): ClickPayload | null {
 
 	if (!ALLOWED_PARTNERS.has(partnerId)) return null;
 	if (!ALLOWED_PROVINCES.has(provinceSlug)) return null;
+	if(partnerId===starTransfer.id){
+		if(provinceSlug!=='zeeland')return null;
+		const knownCity=zeelandMunicipalities.find(city=>city.slug===municipalitySlug);
+		if(municipalitySlug&&(!knownCity||knownCity.path!==pagePath))return null;
+		if(!municipalitySlug&&!['/provincies/zeeland/','/kennisbank/samenwerking-startransfer-zeeland/'].includes(pagePath)&&!pagePath.startsWith('/provincies/zeeland/festivals/'))return null;
+	}
 	if (!municipalityName || !pagePath.startsWith('/') || !pagePath.endsWith('/')) return null;
 	if (pageType !== 'municipality' && pageType !== 'province') return null;
 	if (!isPartnerWhatsappButtonType(buttonType)) return null;
