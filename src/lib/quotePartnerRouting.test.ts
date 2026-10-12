@@ -123,4 +123,4 @@ test('existing pages do not get an automatic Tourgo partnerId', () => {
 	assert.match(blog, /submitLabel="Partybus aanvragen"/);
 });
 
-test('StarTransfer enquiries route to the owner for manual forwarding',()=>{assert.equal(resolveQuotePartnerId('startransfer'),'startransfer');assert.equal(resolveQuotePartnerLeadEmail('startransfer'),'info@stagelokaal.nl');assert.equal(resolveQuotePartnerLeadEmail('unknown'),null);});
+test('StarTransfer enquiries route to the owner for manual forwarding',()=>{assert.equal(resolveQuotePartnerId('startransfer'),'startransfer');assert.equal(resolveQuotePartnerLeadEmail('startransfer'),'info@starlocal.nl');assert.equal(resolveQuotePartnerLeadEmail('unknown'),null);});

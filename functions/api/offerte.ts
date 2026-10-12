@@ -30,7 +30,6 @@ interface QuotePayload {
 }
 
 const INBOX = 'info@starlocal.nl';
-const ZEELAND_INBOX = 'info@stagelokaal.nl';
 /** Resend testdomein — werkt zonder DNS / zonder partybusnederland.nl */
 const FROM_TEST = 'Partybus Nederland <onboarding@resend.dev>';
 const SUCCESS =
@@ -229,7 +228,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 	}
 
 	// Zeeland enquiries are handled by the site owner, who forwards them manually.
-	const inbox = payload.partnerId === 'startransfer' ? ZEELAND_INBOX : INBOX;
+	const inbox = INBOX;
 	const rows = fieldRows(payload);
 	const summaryText = rows.map(([k, v]) => `${k}: ${v}`).join('\n');
 	const summaryHtml = rows
