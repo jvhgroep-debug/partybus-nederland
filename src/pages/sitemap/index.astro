@@ -13,6 +13,8 @@ import { tilburgClusterPagesSteden } from '../../data/tilburg/clusterPagesSteden
 
 import { festivals } from '../../data/festivals/registry';
 
+import { zuidHollandFestivals } from '../../data/festivals/zuidHolland';
+
 const title = 'HTML-sitemap | Partybus Nederland';
 const description =
 	'Overzicht van alle pagina’s op Partybus Nederland: kennisbank, gidsen, steden, routes en contact.';
@@ -84,9 +86,9 @@ const mainPages = [
 			</ul>
 		</section>
 
-		<section><h2>Festivalvervoer met Prestige</h2><p><a href='/festivals/'>Alle festivalbestemmingen</a></p><ul>{festivals.map(festival => <li><a href={festival.path}>Partybus naar {festival.name}</a></li>)}</ul></section>
+		<section><h2>Festivalvervoer vanuit Noord-Brabant met Prestige</h2><p><a href='/festivals/'>Alle festivalbestemmingen</a></p><ul>{festivals.map(festival => <li><a href={festival.path}>Partybus naar {festival.name}</a></li>)}</ul></section>
 		<section>
-			<h2>Diensten</h2>
+			<h2>Festivalvervoer vanuit Zuid-Holland met Tourgo</h2><p><a href="/provincies/zuid-holland/festivals/">Alle festivalbestemmingen vanuit Zuid-Holland</a></p><ul>{zuidHollandFestivals.map(festival => <li><a href={festival.path}>Partybus naar {festival.name} vanuit Zuid-Holland</a></li>)}</ul></section><section><h2>Diensten</h2>
 			<ul>
 				{servicePages.map((service) => (
 					<li>

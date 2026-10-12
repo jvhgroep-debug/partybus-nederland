@@ -12,6 +12,8 @@ import { tilburgClusterStedenPaths } from '../data/tilburg/clusterPagesSteden';
 
 import { festivals } from '../data/festivals/registry';
 
+import { zuidHollandFestivals } from '../data/festivals/zuidHolland';
+
 const SITE = 'https://www.partybusnederland.nl';
 
 function loc(path: string): string {
@@ -32,6 +34,8 @@ export const GET: APIRoute = () => {
 		'/gidsen/',
 		'/provincies/',
 		'/festivals/',
+		'/provincies/zuid-holland/festivals/',
+		...zuidHollandFestivals.map(festival => festival.path),
 		...festivals.map(festival => festival.path),
 		'/provincies/noord-brabant/festivals-2026-2027/',
 		...trustNav.map((item) => item.href),
