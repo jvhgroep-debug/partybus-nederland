@@ -1,0 +1,31 @@
+---
+import Button from '../buttons/Button.astro';
+interface Props { festivals: readonly {name:string}[]; href:string; }
+const {festivals,href} = Astro.props;
+---
+<fieldset class="festival-whatsapp-picker"><legend>Kies je festival voor het WhatsApp-bericht</legend><p>Vink je festival aan en klik op de knop. Je keuze gaat mee naar de vervoerder. In WhatsApp zijn de vakjes bewerkbare tekst.</p><details><summary>Bekijk en selecteer festivals</summary><div class="choices">{festivals.map(festival => <label><input type="checkbox" name="festival-choice" value={festival.name} /><span>{festival.name}</span></label>)}</div></details><p class="selection" aria-live="polite">Nog geen festival gekozen. Het bericht bevat de volledige festivallijst.</p><Button href={href} target="_blank" rel="noopener noreferrer" partnerWhatsappButtonType="cta">Vraag je festivalrit aan via WhatsApp</Button></fieldset>
+<script>
+function initializePicker() {
+ const picker=document.querySelector('.festival-whatsapp-picker');
+ if (!picker) return;
+ const status=picker.querySelector('.selection');
+ const marker='Festival waarvoor ik vervoer wil boeken: \n';
+ const links=Array.from(document.querySelectorAll<HTMLAnchorElement>('a[href^="https://wa.me/"]')).filter(link=>(new URL(link.href).searchParams.get('text')||'').includes(marker)).map(link=>({link,original:link.href}));
+ function update() {
+  const selected=Array.from(picker!.querySelectorAll<HTMLInputElement>('input:checked')).map(input=>input.value);
+  for(const {link,original} of links) {
+   const url=new URL(original);
+   let text=url.searchParams.get('text')||'';
+   if(selected.length) {
+    text=text.replace(marker,'Festival waarvoor ik vervoer wil boeken: '+selected.join(' / ')+'\n');
+    for(const name of selected) text=text.replace('☐ '+name,'☑ '+name);
+   }
+   url.searchParams.set('text',text);link.href=url.toString();
+  }
+  if(status) status.textContent=selected.length?'Gekozen: '+selected.join(', ')+'. Deze keuze staat klaar in WhatsApp.':'Nog geen festival gekozen. Het bericht bevat de volledige festivallijst.';
+ }
+ picker.addEventListener('change',update);window.addEventListener('pageshow',update);update();
+}
+initializePicker();
+</script>
+<style>.festival-whatsapp-picker{margin-block:2rem;padding:1.5rem;border:1px solid var(--color-primary-line);border-radius:1rem}.festival-whatsapp-picker legend{font-size:1.2rem;font-weight:700}.festival-whatsapp-picker p{line-height:1.7}.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.75rem;padding-block:1rem}.choices label{display:flex;align-items:center;gap:.7rem;padding:.8rem;border:1px solid var(--color-primary-line);border-radius:.5rem;cursor:pointer}.choices input{width:1.25rem;height:1.25rem;accent-color:var(--color-primary)}summary{cursor:pointer;font-weight:700}.choices label:has(input:checked){outline:2px solid var(--color-primary)}.choices label:focus-within{outline:2px solid var(--color-primary);outline-offset:3px}</style>
