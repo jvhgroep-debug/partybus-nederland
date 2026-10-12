@@ -7,6 +7,7 @@ import { zeelandFestivals as festivals, starTransferFestivalWhatsapp as festival
 import { starTransferLogo, starTransferPhotos, zeelandFooter } from '../../../../data/partners/starTransfer';
 import BookingForm from '../../../../components/startransfer/BookingForm.astro';
 import FestivalFeeling from '../../../../components/startransfer/FestivalFeeling.astro';
+import PhotoHeader from '../../../../components/startransfer/PhotoHeader.astro';
 
 
 import { buildBreadcrumbSchema, buildFaqPageSchema, buildWebPageSchema } from '../../../../lib/guides/schema';
@@ -25,10 +26,7 @@ const faqs = [
 const related = festivals.filter(item => item.slug !== festival.slug).sort((a,b)=>Number(b.province === festival.province)-Number(a.province === festival.province)).slice(0,6);
 ---
 <BaseLayout title={title} titleExact={true} description={description} canonical={canonical} ogImage={`https://www.partybusnederland.nl${festival.hero.src}`} preloadImage={festival.hero.src} pageQuoteHref="#boek-je-rit" pageWhatsapp={{href,label:`Boek je rit voor ${festival.name} bij StarTransfer`}} regionalFooter={zeelandFooter} jsonLd={[buildWebPageSchema({name:title,description,url:canonical}),buildBreadcrumbSchema([{label:'Home',href:'/'},{label:'Festivalvervoer',href:'/provincies/zeeland/festivals/'},{label:festival.name,href:festival.path}]),buildFaqPageSchema(faqs)]}>
- <header class="festival-hero">
-  <PartnerImage class="festival-hero__photo" src={festival.hero.src} alt={festival.hero.alt} loading="eager" fetchpriority="high" sizes="100vw" />
-  <div class="section__inner"><nav aria-label="Broodkruimelnavigatie"><a href="/">Home</a> / <a href="/provincies/zeeland/festivals/">Festivals</a> / <span aria-current="page">{festival.name}</span></nav><img class="partner-logo" src={starTransferLogo} alt="StarTransfer"  /><p class="section__eyebrow">Onze vervoerspartner voor Zeeland</p><h1>Partybus naar {festival.name} vanuit Zeeland en terug</h1><p>Samen naar {festival.name} in {festival.location}, samen weer naar huis. Vraag jullie heenrit, terugrit of complete groepsreis aan bij StarTransfer. WhatsApp loopt voorlopig via Partybus Nederland.</p><Button href={href} target="_blank" rel="noopener noreferrer" partnerWhatsappButtonType="province-hero">Boek hier je rit</Button><p class="small">Aanvraag via WhatsApp · prijs en beschikbaarheid rechtstreeks afspreken</p></div>
- </header>
+ <PhotoHeader title={`Partybus naar ${festival.name} vanuit Zeeland en terug`} lead={`Samen naar ${festival.name} in ${festival.location}, samen weer naar huis. Vraag jullie heenrit, terugrit of complete groepsreis aan bij StarTransfer. WhatsApp loopt voorlopig via Partybus Nederland.`} photo={festival.hero} breadcrumbs={[{label:'Home',href:'/'},{label:'Festivals vanuit Zeeland',href:'/provincies/zeeland/festivals/'},{label:festival.name}]}><Button href={href} target="_blank" rel="noopener noreferrer" partnerWhatsappButtonType="province-hero">Boek hier je rit</Button><Button href="#boek-je-rit" variant="ghost">Vul het aanvraagformulier in</Button></PhotoHeader>
  <div class="section__inner content">
   {festival.date && <section><h2>Festivaldatum</h2><p>{festival.date}</p></section>}
   <section><h2>Met je groep vanuit Zeeland naar {festival.name}</h2><p>Vertrekken jullie vanuit Middelburg, Vlissingen, Goes, Terneuzen of een andere Zeeuwse plaats? StarTransfer is onze partner voor groepsvervoer vanuit Zeeland. Je kunt een partybusrit naar {festival.name} aanvragen en de terugreis direct meenemen in dezelfde afspraak.</p><p>{festival.tip}</p><p>Laat weten hoeveel mensen meegaan en of jullie één centraal opstappunt of meerdere adressen hebben. StarTransfer bespreekt de route, het geschikte voertuig en de totaalprijs met jullie. Voor {festival.name} in {festival.province} wordt de bestemming afgestemd op de locatie van jullie gekozen editie.</p><a href={festival.source} target="_blank" rel="noopener noreferrer">Officiële informatie over {festival.name} ↗</a></section>
