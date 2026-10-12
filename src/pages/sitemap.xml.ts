@@ -16,6 +16,8 @@ import { zuidHollandFestivals } from '../data/festivals/zuidHolland';
 
 import { utrechtFestivals } from '../data/festivals/utrecht';
 
+import { amsterdamFestivals } from '../data/festivals/amsterdam';
+
 const SITE = 'https://www.partybusnederland.nl';
 
 function loc(path: string): string {
@@ -36,6 +38,8 @@ export const GET: APIRoute = () => {
 		'/gidsen/',
 		'/provincies/',
 		'/festivals/',
+		'/steden/partybus-huren-amsterdam/festivals/',
+		...amsterdamFestivals.map(festival => festival.path),
 		'/provincies/utrecht/festivals/',
 		...utrechtFestivals.map(festival => festival.path),
 		'/provincies/zuid-holland/festivals/',

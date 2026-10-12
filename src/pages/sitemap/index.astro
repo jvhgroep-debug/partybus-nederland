@@ -17,6 +17,8 @@ import { zuidHollandFestivals } from '../../data/festivals/zuidHolland';
 
 import { utrechtFestivals } from '../../data/festivals/utrecht';
 
+import { amsterdamFestivals } from '../../data/festivals/amsterdam';
+
 const title = 'HTML-sitemap | Partybus Nederland';
 const description =
 	'Overzicht van alle pagina’s op Partybus Nederland: kennisbank, gidsen, steden, routes en contact.';
@@ -90,7 +92,7 @@ const mainPages = [
 
 		<section><h2>Festivalvervoer vanuit Noord-Brabant met Prestige</h2><p><a href='/festivals/'>Alle festivalbestemmingen</a></p><ul>{festivals.map(festival => <li><a href={festival.path}>Partybus naar {festival.name}</a></li>)}</ul></section>
 		<section>
-			<h2>Festivalvervoer vanuit Zuid-Holland met Tourgo</h2><p><a href="/provincies/zuid-holland/festivals/">Alle festivalbestemmingen vanuit Zuid-Holland</a></p><ul>{zuidHollandFestivals.map(festival => <li><a href={festival.path}>Partybus naar {festival.name} vanuit Zuid-Holland</a></li>)}</ul></section><section><h2>Festivalvervoer vanuit Utrecht met Party Bussen Westland</h2><p><a href="/provincies/utrecht/festivals/">Alle festivalbestemmingen vanuit Utrecht</a></p><ul>{utrechtFestivals.map(festival => <li><a href={festival.path}>Partybus naar {festival.name} vanuit Utrecht</a></li>)}</ul></section><section><h2>Diensten</h2>
+			<h2>Festivalvervoer vanuit Zuid-Holland met Tourgo</h2><p><a href="/provincies/zuid-holland/festivals/">Alle festivalbestemmingen vanuit Zuid-Holland</a></p><ul>{zuidHollandFestivals.map(festival => <li><a href={festival.path}>Partybus naar {festival.name} vanuit Zuid-Holland</a></li>)}</ul></section><section><h2>Festivalvervoer vanuit Utrecht met Party Bussen Westland</h2><p><a href="/provincies/utrecht/festivals/">Alle festivalbestemmingen vanuit Utrecht</a></p><ul>{utrechtFestivals.map(festival => <li><a href={festival.path}>Partybus naar {festival.name} vanuit Utrecht</a></li>)}</ul></section><section><h2>Festivalvervoer vanuit Amsterdam met Party Bussen Westland</h2><p><a href="/steden/partybus-huren-amsterdam/festivals/">Alle festivalbestemmingen vanuit Amsterdam</a></p><ul>{amsterdamFestivals.map(festival => <li><a href={festival.path}>Partybus naar {festival.name} vanuit Amsterdam</a></li>)}</ul></section><section><h2>Diensten</h2>
 			<ul>
 				{servicePages.map((service) => (
 					<li>
