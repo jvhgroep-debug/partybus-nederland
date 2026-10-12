@@ -29,6 +29,7 @@ export const GET: APIRoute = () => {
 		'/kennisbank/',
 		'/gidsen/',
 		'/provincies/',
+		'/provincies/noord-brabant/festivals-2026-2027/',
 		...trustNav.map((item) => item.href),
 		...legalNav.map((item) => item.href),
 		...kennisbankArticles.map((article) => article.path),
