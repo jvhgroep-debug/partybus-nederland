@@ -10,6 +10,8 @@ import { trustNav } from '../data/trust/pages';
 import { provincePaths } from '../data/provinces/registry';
 import { tilburgClusterStedenPaths } from '../data/tilburg/clusterPagesSteden';
 
+import { festivals } from '../data/festivals/registry';
+
 const SITE = 'https://www.partybusnederland.nl';
 
 function loc(path: string): string {
@@ -29,6 +31,8 @@ export const GET: APIRoute = () => {
 		'/kennisbank/',
 		'/gidsen/',
 		'/provincies/',
+		'/festivals/',
+		...festivals.map(festival => festival.path),
 		'/provincies/noord-brabant/festivals-2026-2027/',
 		...trustNav.map((item) => item.href),
 		...legalNav.map((item) => item.href),
