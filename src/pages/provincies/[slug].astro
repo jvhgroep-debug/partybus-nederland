@@ -5,7 +5,7 @@ import { getPublishedCity } from '../../data/cities/registry';
 import { buildBreadcrumbSchema, buildWebPageSchema, buildFaqPageSchema } from '../../lib/guides/schema';
 import GuideFaqList from '../../components/guides/GuideFaqList.astro';
 import Button from '../../components/buttons/Button.astro';
-export function getStaticPaths() { return generalProvinces.map(province => ({ params: { slug: province.slug }, props: { province } })); }
+export function getStaticPaths() { return generalProvinces.filter(province=>province.slug!=='zeeland').map(province => ({ params: { slug: province.slug }, props: { province } })); }
 const { province } = Astro.props;
 const cities = province.citySlugs.map(getPublishedCity).filter(Boolean);
 const faqs = [

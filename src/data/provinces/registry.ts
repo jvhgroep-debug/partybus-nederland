@@ -1,3 +1,4 @@
+import { zeelandProvince } from './zeeland';
 import { generalProvinces } from './general';
 import { noordBrabantProvince } from './noordBrabant';
 import { zuidHollandProvince } from './zuidHolland';
@@ -16,7 +17,8 @@ export const provincePages: readonly ProvincePageMeta[] = [
 	noordBrabantProvince,
 	zuidHollandProvince,
 	utrechtProvince,
-	...generalProvinces,
+	zeelandProvince,
+	...generalProvinces.filter(province=>province.slug!=='zeeland'),
 ];
 
 export const provincePaths: readonly string[] = provincePages.map((page) => page.path);

@@ -1,0 +1,6 @@
+---
+import RegionPage from '../../../components/startransfer/RegionPage.astro';
+import {zeelandMunicipalities} from '../../../data/provinces/zeeland';
+const city=zeelandMunicipalities.find(city=>city.slug==='middelburg-z')!;
+---
+<RegionPage city={city} />

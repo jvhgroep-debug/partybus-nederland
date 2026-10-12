@@ -150,5 +150,37 @@
   "/images/partners/tourgo-partybussen/tourgo-partybussen-xl.webp": {
     "width": 1600,
     "height": 780
+  },
+  "/images/partners/startransfer/logo.png": {
+    "width": 150,
+    "height": 90
+  },
+  "/images/partners/startransfer/partybus-buiten.webp": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/images/partners/startransfer/partybus-interieur.webp": {
+    "width": 472,
+    "height": 847
+  },
+  "/images/partners/startransfer/partybus-interieur-2.webp": {
+    "width": 472,
+    "height": 873
+  },
+  "/images/partners/startransfer/experience-buiten.webp": {
+    "width": 1140,
+    "height": 475
+  },
+  "/images/partners/startransfer/experience-interieur.webp": {
+    "width": 1140,
+    "height": 475
+  },
+  "/images/partners/startransfer/experience-lounge.webp": {
+    "width": 1140,
+    "height": 475
+  },
+  "/images/partners/startransfer/vip-buiten.webp": {
+    "width": 1000,
+    "height": 735
   }
 }

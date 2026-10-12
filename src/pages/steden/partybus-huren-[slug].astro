@@ -1,4 +1,4 @@
-﻿---
+---
 import CityLayout from '../../layouts/CityLayout.astro';
 import MasterCityTemplate from '../../components/cities/MasterCityTemplate.astro';
 import PartyBussenWestlandCityTemplate from '../../components/cities/PartyBussenWestlandCityTemplate.astro';
@@ -40,7 +40,7 @@ import {
 
 export function getStaticPaths() {
 	/** Static city folders keep their own index.astro to preserve existing routes. */
-	const STATIC_CITY_SLUGS = new Set(['amsterdam', 'rotterdam', 'breda']);
+	const STATIC_CITY_SLUGS = new Set(['amsterdam', 'rotterdam', 'breda','borsele','goes','hulst','kapelle','middelburg-z','noord-beveland','reimerswaal','schouwen-duiveland','sluis','terneuzen','tholen','veere','vlissingen']);
 	return ALL_CITY_SLUGS.filter((slug) => !STATIC_CITY_SLUGS.has(slug)).map((slug) => ({
 		params: { slug },
 	}));

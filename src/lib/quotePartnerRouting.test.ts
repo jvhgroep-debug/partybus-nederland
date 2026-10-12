@@ -18,8 +18,8 @@ function readSrc(relativePath: string) {
 	return readFileSync(join(root, relativePath), 'utf8');
 }
 
-test('allowlist is explicit Prestige + Tourgo only', () => {
-	assert.deepEqual([...QUOTE_PARTNER_IDS], ['prestige-coach-service', 'tourgo']);
+test('allowlist contains the three configured quote partners', () => {
+	assert.deepEqual([...QUOTE_PARTNER_IDS], ['prestige-coach-service', 'tourgo', 'startransfer']);
 });
 
 test('A. partnerId=prestige-coach-service selects Prestige', () => {
@@ -122,3 +122,5 @@ test('existing pages do not get an automatic Tourgo partnerId', () => {
 	assert.match(blog, /partnerCity="Zuid-Holland"/);
 	assert.match(blog, /submitLabel="Partybus aanvragen"/);
 });
+
+test('StarTransfer enquiries route only to the configured Zeeland partner',()=>{assert.equal(resolveQuotePartnerId('startransfer'),'startransfer');assert.equal(resolveQuotePartnerLeadEmail('startransfer'),'info@startransfer.nl');assert.equal(resolveQuotePartnerLeadEmail('unknown'),null);});
