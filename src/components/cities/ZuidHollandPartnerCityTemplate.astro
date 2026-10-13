@@ -1,4 +1,5 @@
-﻿---
+---
+import { applySeoPhaseOne } from '../../data/cities/seoPhaseOne';
 import LocalDepartureNotes from "./LocalDepartureNotes.astro";
 import type { CityPageData } from '../../data/cities/types';
 import { getRelatedCities } from '../../data/cities/registry';
@@ -51,7 +52,7 @@ const { city: incomingCity } = Astro.props;
 if (!isZuidHollandMunicipalitySlug(incomingCity.slug)) {
 	throw new Error(`ZuidHollandPartnerCityTemplate used for non-ZH city: ${incomingCity.slug}`);
 }
-const city = applyTourgoMunicipalityCopy(incomingCity);
+const city = applySeoPhaseOne(applyTourgoMunicipalityCopy(incomingCity));
 const relatedCities = getRelatedCities(city.slug, getZuidHollandNeighborSlugs(city.slug), 5);
 const partnerCityMedia = resolveTourgoCityMedia(city.slug);
 const heroImage = partnerCityMedia.hero;

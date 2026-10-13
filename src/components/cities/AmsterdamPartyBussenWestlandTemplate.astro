@@ -1,4 +1,5 @@
 ---
+import { applySeoPhaseOne } from '../../data/cities/seoPhaseOne';
 import type { CityPageData } from '../../data/cities/types';
 import {
 	buildPartyBussenWestlandWhatsappHref,
@@ -41,7 +42,7 @@ if (incomingCity.slug !== 'amsterdam' || incomingCity.path !== amsterdamWestland
 	throw new Error('AmsterdamPartyBussenWestlandTemplate is only for /steden/partybus-huren-amsterdam/');
 }
 
-const city = applyAmsterdamWestlandCopy(incomingCity);
+const city = applySeoPhaseOne(applyAmsterdamWestlandCopy(incomingCity));
 const whatsappHref = buildPartyBussenWestlandWhatsappHref(city.name);
 const partnerGallery = amsterdamWestlandMedia.gallery.slice(0, 6);
 ---

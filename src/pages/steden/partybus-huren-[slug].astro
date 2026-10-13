@@ -1,4 +1,5 @@
 ---
+import { applySeoPhaseOne } from '../../data/cities/seoPhaseOne';
 import CityLayout from '../../layouts/CityLayout.astro';
 import MasterCityTemplate from '../../components/cities/MasterCityTemplate.astro';
 import PartyBussenWestlandCityTemplate from '../../components/cities/PartyBussenWestlandCityTemplate.astro';
@@ -59,13 +60,13 @@ if (!generatedCity) {
 const isNoordBrabantPartnerCity = isNoordBrabantMunicipalitySlug(generatedCity.slug);
 const isZuidHollandPartnerCity = isZuidHollandMunicipalitySlug(generatedCity.slug);
 const isUtrechtPartnerCity = isUtrechtMunicipalitySlug(generatedCity.slug);
-const city = isZuidHollandPartnerCity
+const city = applySeoPhaseOne(isZuidHollandPartnerCity
 	? applyTourgoMunicipalityCopy(generatedCity)
 	: isUtrechtPartnerCity
 		? applyPartyBussenWestlandMunicipalityCopy(generatedCity)
 		: isNoordBrabantPartnerCity
 			? applyPrestigeMunicipalityCopy(generatedCity)
-			: generatedCity;
+			: generatedCity);
 const defaultHeroImage = resolveCityHeroImage(city.slug);
 const heroImage = isNoordBrabantPartnerCity
 	? resolvePrestigeCoachServiceCityMedia(city.slug).hero
