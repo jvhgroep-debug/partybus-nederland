@@ -136,3 +136,7 @@ Opdracht Johan: bestaande Breda-pagina sterk verbeteren. Branch `seo/breda-verst
 
 Volgende stap: Cloudflare-preview en productie controleren; vervolgens Breda na 28 volledige dagen volgen op relevante klikken, vertoningen en CTR. Mobiele/CWV- en mailafleveringsbeperkingen uit de audit blijven gelden.
 
+
+### Breda daadwerkelijk gepubliceerd
+
+Voorstel #5 gemerged als `8b4f80eefd4352f110031adf5a2425ae740fe848`. Cloudflare-productiedeploy `d1463528-b7ba-4c92-a81b-45d01c1ab161` geslaagd. Live browsercontrole op 13 oktober bevestigt de nieuwe Breda-title, lokale prijs-/planningssectie, 13 FAQ’s en nul ontbrekende afbeeldingen op `https://www.partybusnederland.nl/steden/partybus-huren-breda/`. Previewcontrole bevestigt openende FAQ en regionale partnerofferteknoppen. Geen echte aanvraag verzonden. Dit is bewijs van publicatie, geen bewijs van hogere Googleposities.
