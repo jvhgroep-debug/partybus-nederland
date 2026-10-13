@@ -120,3 +120,19 @@ Productiecontrole van redirects, acht extra Brabantse plaatsen, vier partnerform
 Aanvullende headercorrectie uit voorstel #3 is gemerged als `e06bc7308943b1f1d6417743ff1e9b0f544cc28d`. Cloudflare-productiedeploy `55c3b2f3-51e3-481b-a27d-f52ceccb22b8` is geslaagd. Live browsercontrole bevestigt op Utrecht twee regionale offerteknoppen (desktop/mobiel) met `partner=party-bussen-westland` en de juiste bronpagina. Geen ontbrekende afbeeldingen op de gecontroleerde pagina. Geen offerte of WhatsApp-bericht verzonden.
 
 De technische herstelversie staat online. Sitemap opnieuw geaccepteerd, nog pending bij Google. Overige open beperkingen hierboven blijven gelden. Deze laatste documentatie-update wijzigt geen websitecode.
+
+## 13 oktober 2026 — Breda versterken
+
+Opdracht Johan: bestaande Breda-pagina sterk verbeteren. Branch `seo/breda-versterken-2026-10-13`. Alleen GSC van PartybusNederland.nl gebruikt; Breda-pagina gefilterd, laatste 28 afgeronde dagen (13 september–10 oktober). Geen ruwe zoekstatistieken in GitHub opgeslagen.
+
+- Zoekintentie: partybus huren Breda, feestbus huren Breda, discobus Breda; titel, description en lokale inhoud daarop afgestemd.
+- Algemene SEO-overlay overschreef Breda-hubcopy; Breda behoudt voortaan zijn eigen lokale inhoud. Zichtbare copy en JSON-LD komen uit dezelfde data.
+- Uitleg over vertrekgebieden, meerdere stops, groepsgrootte, prijsfactoren, heen-/terugreis en voorzieningen. Bestaande route- en informatiepagina’s intern gekoppeld.
+- Praktische offertelijst en partner-CTA’s toegevoegd. Geen verzonnen tarieven, busbeschikbaarheid, lokale vestiging of nieuwe klantreviews.
+- 13 zichtbare FAQ-vragen/antwoorden exact gelijk aan FAQ-schema; Service-schema met Breda als werkgebied en werkelijke partneradres in Baarle-Nassau.
+- Social sharing gebruikt de bestaande Prestige-hero van de pagina. Bestaande partnerbeelden, nummer +31 6 29041798, formulier/API en offerte-ID behouden.
+- Build: 577 pagina’s. SEO/link/assetchecks en diff-check geslaagd. Alleen de gegenereerde Breda-HTML verschilt; de overige 576 HTML-bestanden zijn byte-identiek aan de voorafgaande build.
+- Geen nieuwe pagina’s, externe testaanvragen of berichten. Publicatie wordt apart geverifieerd; Google-effect pas na voldoende meettijd beoordelen.
+
+Volgende stap: Cloudflare-preview en productie controleren; vervolgens Breda na 28 volledige dagen volgen op relevante klikken, vertoningen en CTR. Mobiele/CWV- en mailafleveringsbeperkingen uit de audit blijven gelden.
+

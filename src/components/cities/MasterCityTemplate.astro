@@ -228,6 +228,7 @@ const conversionCopy = isNoordBrabantPartnerCity
 		checklistTitle={isNoordBrabantPartnerCity ? prestigeChecklistTitle : undefined}
 	/>
 
+	<slot name="local-planning" />
 	<LocalDepartureNotes slug={city.slug} />
 	{generalProvince && <section class="section"><div class="section__inner"><h2>Route plannen vanuit {city.name} in {generalProvince.name}</h2><p>{generalProvince.localIntro}</p><p>{generalProvince.routeAdvice}</p><a href={generalProvince.path}>Bekijk vertrekplaatsen en routeadvies in {generalProvince.name} →</a></div></section>}
 

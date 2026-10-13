@@ -17,6 +17,8 @@ const localCopy: Record<string, { context: string; planning: string; term: strin
 
 /** Content-only overlay: preserves routes, partner routing, images, forms and WhatsApp URLs. */
 export function applySeoPhaseOne(city: CityPageData): CityPageData {
+  // Breda has a complete local hub; keep its visible copy and schema in sync.
+  if (city.slug === 'breda') return city;
   const copy = localCopy[city.slug];
   if (!copy) return city;
   const question = `Wat kost een ${copy.term} vanuit ${city.name}?`;
