@@ -151,3 +151,7 @@ Opdracht Johan: bezoekers laten aangeven dat zij via onze site komen, hun naam o
 - Prestige-nummer +31 6 29041798 en offerte-/e-mailroutes behouden; andere pagina’s niet gewijzigd. Zonder JavaScript blijft de bestaande WhatsApp-link werken.
 - Build 577 pagina’s; SEO/link/assetchecks en diff-check geslaagd. Geen bericht verstuurd. Preview en publicatie apart te verifiëren.
 
+
+### WhatsApp-keuze Breda live bevestigd
+
+Voorstel #7 gemerged als `40099f2ab7bb3ea7f14722e9aa249fee2d83333f`. Cloudflare-productiedeploy `fab283ce-76fb-4c56-8afa-7ba8f6506dab` geslaagd. Browsercontrole op eigen domein: Prestige-knop opent keuzevenster, naamveld ingevuld met fictieve testnaam, festivalkeuze geselecteerd en venster gesloten. Niet doorgegaan naar WhatsApp en geen bericht verstuurd. De ingevulde naam verschijnt in het conceptbericht, niet automatisch als WhatsApp-profielnaam.
