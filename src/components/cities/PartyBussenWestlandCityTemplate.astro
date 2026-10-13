@@ -113,7 +113,7 @@ const conversionCopy = westlandConversionCopy(city.name, city.slug);
 	<CityConversionBand
 		cityName={city.name}
 		whatsappHref={whatsappHref}
-		quoteHref={partyBussenWestlandWebsiteHref}
+		quoteHref={"/gratis-partybus-offertes-aanvragen/?" + new URLSearchParams({partner: "party-bussen-westland", city: city.name, source: city.path}).toString()}
 		partnerMode={true}
 		eyebrow={conversionCopy.eyebrow}
 		headline={conversionCopy.headline}

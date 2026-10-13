@@ -29,7 +29,7 @@ export const pricingGuideSeo = {
 	description:
 		'Ontdek waar de prijs van een partybus vanaf hangt. Lees over route, uren, groepsgrootte, wachttijd en handige bespaartips.',
 	canonical: 'https://www.partybusnederland.nl/gids/partybus-kosten/',
-	ogImage: 'https://www.partybusnederland.nl/images/hero-partybus.png',
+	ogImage: 'https://www.partybusnederland.nl/images/hero-partybus.webp',
 	h1: 'Wat kost een partybus huren?',
 	eyebrow: 'GIDS',
 	lead: 'De prijs van een partybus hangt af van meerdere factoren: route, uren, datum, groepsgrootte en extra’s. Op deze pagina leggen we uit waar je op let — zonder vaste of misleidende tarieven.',

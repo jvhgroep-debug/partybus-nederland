@@ -2,6 +2,7 @@ import type { CityPageData } from './types';
 
 // Selected by GSC impressions, 13 September–10 October 2026. Raw analytics are kept out of the repository.
 const localCopy: Record<string, { context: string; planning: string; term: string }> = {
+  dordrecht: { term: 'feestbus', context: 'Deze pagina gaat over vertrek vanuit Dordrecht, bijvoorbeeld bij Dordrecht Centraal of een eigen adres op het Eiland van Dordrecht. Tourgo Partybussen bespreekt het vertrekadres en de bestemming met jullie groep.', planning: 'Komt de groep uit Stadspolders, Dubbeldam of het centrum, kies dan een gezamenlijk verzamelpunt in Dordrecht. Een opstap in Alblasserdam, Sliedrecht of Molenlanden is een afzonderlijke stop: vermeld die expliciet in de aanvraag.' },
   rotterdam: { term: 'discobus', context: 'Een feestbus vanuit Rotterdam kan jullie groep naar een concert, bedrijfsfeest of festival brengen. Vertrek je bij Rotterdam Centraal, Ahoy of vanaf de Kop van Zuid? Geef het adres en de gewenste vertrektijd door aan Tourgo Partybussen.', planning: 'Bij een concert in Ahoy spreek je zowel de heenrit als het ophaalmoment na afloop af. Kies samen met de vervoerder een bereikbare verzamelplek; een genoemd gebied is geen gereserveerde bushalte.' },
   amsterdam: { term: 'discobus', context: 'Een feestbus huren vanuit Amsterdam begint met een gezamenlijk vertrekpunt. Voor groepen uit Centrum, Sloterdijk of Zuidoost bespreek je met Party Bussen Westland waar iedereen kan instappen en waar de rit eindigt.', planning: 'Bij een evenement rond de ArenA is het handig om een herkenbaar verzamelpunt en een contactpersoon af te spreken. Deel de locatie en eindtijd van het evenement; de vervoerder bevestigt waar de bus kan stoppen.' },
   breda: { term: 'discobus', context: 'Een feestbus huren vanuit Breda voor een vrijgezellenfeest, festival of bedrijfsuitje? Prestige Coach Service is de regionale partner. Geef aan of de groep bij Breda Centraal, in het Havenkwartier of op een eigen adres wil verzamelen.', planning: 'Komt een deel van de groep uit Prinsenbeek of Bavel, bespreek dan één gezamenlijk vertrekpunt of vraag naar een extra stop. Laat de route en de terugkomst in Breda meenemen in de offerte.' },
@@ -23,7 +24,7 @@ export function applySeoPhaseOne(city: CityPageData): CityPageData {
     ...city,
     metaTitle: `Partybus huren ${city.name} | Feestbus aanvragen`,
     metaDescription: `Partybus of feestbus huren vanuit ${city.name}? Bespreek opstapplaats, groepsgrootte, heenrit en terugrit. Vraag prijs en beschikbaarheid voor jouw datum aan.`,
-    intro: { ...city.intro, paragraphs: [...city.intro.paragraphs.filter(p => p !== copy.context && p !== copy.planning), copy.context, copy.planning] },
+    intro: { ...city.intro, paragraphs: [copy.context, copy.planning, `Vraag een voorstel voor vertrek vanuit ${city.name}. Vermeld het exacte adres, de datum, groepsgrootte en bestemming; de vervoerder bevestigt route, beschikbaarheid en prijs voor deze rit.`] },
     pickup: { ...city.pickup, note: `${copy.planning} Genoemde plekken zijn suggesties; de vervoerder bevestigt het exacte opstappunt.` },
     faqs: [...city.faqs.filter(faq => faq.question !== question), {
       question,

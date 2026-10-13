@@ -27,6 +27,7 @@ interface QuotePayload {
 	partnerId?: string;
 	partnerCity?: string;
 	website?: string;
+	requestId?: string;
 }
 
 const INBOX = 'info@starlocal.nl';
@@ -76,7 +77,7 @@ function resolveFrom(envFrom?: string): string {
 function validate(raw: unknown):
 	| { ok: true; data: QuotePayload }
 	| { ok: false; error: string; fields: string[] } {
-	if (!raw || typeof raw !== 'object') {
+	if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
 		return { ok: false, error: 'Ongeldige aanvraag.', fields: [] };
 	}
 	const body = raw as Record<string, unknown>;
@@ -111,6 +112,16 @@ function validate(raw: unknown):
 	if (!email || !EMAIL_RE.test(email)) fields.push('email');
 	if (!phone) fields.push('phone');
 	if (!city) fields.push('city');
+ const guests = String(body.guests ?? '').trim();
+ const date = String(body.date ?? '').trim();
+ if (guests && (!/^\d+$/.test(guests) || Number(guests) < 1 || Number(guests) > 80)) fields.push('guests');
+ if (date && (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isFinite(Date.parse(date)) || new Date(date).toISOString().slice(0,10) !== date)) fields.push('date');
+ if (name.length > 200) fields.push('name');
+ if (email.length > 254) fields.push('email');
+ if (phone.length > 50) fields.push('phone');
+ if (city.length > 200) fields.push('city');
+ if (String(body.message ?? '').length > 10000) fields.push('message');
+ if (body.partnerId && !partnerId) fields.push('partnerId');
 
 	if (fields.length > 0) {
 		return { ok: false, error: 'Vul alle verplichte velden correct in.', fields };
@@ -123,10 +134,11 @@ function validate(raw: unknown):
 			email,
 			phone,
 			city,
-			date: String(body.date ?? '').trim() || undefined,
-			guests: String(body.guests ?? '').trim() || undefined,
+			date: date || undefined,
+			guests: guests || undefined,
 			message: String(body.message ?? '').trim() || undefined,
 			sourcePage,
+			requestId: String(body.requestId ?? '').slice(0,100),
 			partnerId,
 			partnerCity,
 		},
@@ -149,219 +161,59 @@ function fieldRows(payload: QuotePayload): Array<[string, string]> {
 	return rows;
 }
 
-async function sendResend(
-	apiKey: string,
-	from: string,
-	message: { to: string; subject: string; html: string; text: string; replyTo?: string },
-): Promise<{ ok: true } | { ok: false; status: number; detail: string }> {
-	const body: Record<string, unknown> = {
-		from,
-		to: [message.to],
-		subject: message.subject,
-		html: message.html,
-		text: message.text,
-	};
-	if (message.replyTo) body.reply_to = message.replyTo;
-
-	const response = await fetch('https://api.resend.com/emails', {
-		method: 'POST',
-		headers: {
-			Authorization: `Bearer ${apiKey}`,
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(body),
-	});
-
-	const data = (await response.json().catch(() => ({}))) as {
-		message?: string;
-		name?: string;
-	};
-
-	if (!response.ok) {
-		return {
-			ok: false,
-			status: response.status,
-			detail: data.message || `Resend HTTP ${response.status}`,
-		};
-	}
-	return { ok: true };
-}
-
-function isTestDomainRecipientLimit(detail: string): boolean {
-	const d = detail.toLowerCase();
-	return (
-		d.includes('only send testing emails') ||
-		d.includes('verify a domain') ||
-		d.includes('own email address')
-	);
+async function sendResend(apiKey: string, from: string, idempotencyKey: string, message: {to: string; subject: string; html: string; text: string; replyTo?: string}): Promise<boolean> {
+ const body = {from, to: [message.to], subject: message.subject, html: message.html, text: message.text, reply_to: message.replyTo};
+ for (let attempt=0; attempt<3; attempt++) {
+  try {
+   const response = await fetch('https://api.resend.com/emails', {method:'POST', signal:AbortSignal.timeout(10000), headers:{Authorization:`Bearer ${apiKey}`, 'Content-Type':'application/json', 'Idempotency-Key':idempotencyKey}, body:JSON.stringify(body)});
+   if (response.ok) return true;
+   if (response.status !== 429 && response.status < 500) return false;
+  } catch { /* Retry an uncertain send with the same provider idempotency key. */ }
+  if (attempt < 2) await new Promise(resolve=>setTimeout(resolve, 250 * 2**attempt));
+ }
+ return false;
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
-	let body: unknown;
-	try {
-		body = await context.request.json();
-	} catch {
-		return json({ ok: false, error: 'Ongeldige aanvraag.' }, 400);
-	}
-
-	const validated = validate(body);
-	if (!validated.ok) {
-		return json({ ok: false, error: validated.error, fields: validated.fields }, 400);
-	}
-
-	const payload = validated.data;
-	if (payload.website && payload.website.trim() !== '') {
-		return json({ ok: true, message: SUCCESS, redirect: '/bedankt/' });
-	}
-
-	const apiKey = context.env.RESEND_API_KEY?.trim();
-	const from = resolveFrom(context.env.FROM_EMAIL);
-	if (!apiKey) {
-		return json(
-			{
-				ok: false,
-				error:
-					'E-mailverzending is nog niet geconfigureerd. Probeer later opnieuw of gebruik WhatsApp.',
-			},
-			503,
-		);
-	}
-
-	// Zeeland enquiries are handled by the site owner, who forwards them manually.
-	const inbox = INBOX;
-	const rows = fieldRows(payload);
-	const summaryText = rows.map(([k, v]) => `${k}: ${v}`).join('\n');
-	const summaryHtml = rows
-		.map(
-			([k, v]) =>
-				`<tr><td style="padding:6px 12px 6px 0;color:#666;vertical-align:top;">${escapeHtml(k)}</td><td style="padding:6px 0;color:#111;">${escapeHtml(v).replace(/\n/g, '<br>')}</td></tr>`,
-		)
-		.join('');
-
-	const ownerResult = await sendResend(apiKey, from, {
-		to: inbox,
-		subject: 'Nieuwe offerteaanvraag – Partybus Nederland',
-		text: `Nieuwe aanvraag via Partybus Nederland\n\n${summaryText}`,
-		html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;"><p><strong>Nieuwe offerteaanvraag</strong></p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table></div>`,
-		replyTo: payload.email,
-	});
-
-	if (!ownerResult.ok) {
-		const hint = isTestDomainRecipientLimit(ownerResult.detail)
-			? ` Koppel een geverifieerd afzenderdomein in Resend (FROM_EMAIL), of voeg ${inbox} toe als toegestaan ontvangstadres.`
-			: '';
-		return json(
-			{
-				ok: false,
-				error: `${ERROR_GENERIC}${hint}`,
-			},
-			502,
-		);
-	}
-
-	const partnerLeadEmail = resolveQuotePartnerLeadEmail(payload.partnerId);
-
-	if (partnerLeadEmail && partnerLeadEmail.toLowerCase() !== inbox.toLowerCase()) {
-		const partnerResult = await sendResend(apiKey, from, {
-			to: partnerLeadEmail,
-			subject: `Nieuwe aanvraag via Partybus Nederland – ${payload.partnerCity || payload.city}`,
-			text: `Nieuwe partneraanvraag via Partybus Nederland\n\n${summaryText}`,
-			html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;"><p><strong>Nieuwe partneraanvraag via Partybus Nederland</strong></p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table></div>`,
-			replyTo: payload.email,
-		});
-
-		if (!partnerResult.ok) {
-			if (isTestDomainRecipientLimit(partnerResult.detail)) {
-				await sendResend(apiKey, from, {
-					to: inbox,
-					subject: `Partnerdoorsturing (preview) – bedoeld voor ${payload.partnerId}`,
-					text: [
-						`De partnerdoorsturing kon door de Resend-testdomeinlimiet niet rechtstreeks worden afgeleverd.`,
-						`Bestemde partner: ${payload.partnerId}`,
-						'',
-						summaryText,
-					].join('\n'),
-					html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;"><p><em>Preview:</em> rechtstreekse partnerdoorsturing is geblokkeerd door de Resend-testdomeinlimiet.</p><p><strong>Bestemde partner:</strong> ${escapeHtml(payload.partnerId || '')}</p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table></div>`,
-					replyTo: payload.email,
-				});
-			} else {
-				return json({ ok: false, error: ERROR_GENERIC }, 502);
-			}
-		}
-	}
-
-	const sameAsInbox = payload.email.toLowerCase() === inbox.toLowerCase();
-
-	if (!sameAsInbox) {
-		const customerResult = await sendResend(apiKey, from, {
-			to: payload.email,
-			subject: 'Bedankt voor je aanvraag bij Partybus Nederland',
-			text: [
-				`Hoi ${payload.name},`,
-				'',
-				'Bedankt voor je aanvraag bij Partybus Nederland.',
-				'We hebben je bericht goed ontvangen en gaan ermee aan de slag.',
-				'',
-				'Samenvatting:',
-				summaryText,
-				'',
-				'Met vriendelijke groet,',
-				'Het team van Partybus Nederland',
-			].join('\n'),
-			html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;max-width:560px;"><p>Hoi ${escapeHtml(payload.name)},</p><p>Bedankt voor je aanvraag bij <strong>Partybus Nederland</strong>.</p><p>We hebben je bericht goed ontvangen en gaan ermee aan de slag.</p><p><strong>Samenvatting</strong></p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table><p style="margin-top:24px;">Met vriendelijke groet,<br>Het team van Partybus Nederland</p></div>`,
-			replyTo: inbox,
-		});
-
-		if (!customerResult.ok) {
-			if (isTestDomainRecipientLimit(customerResult.detail)) {
-				// Testdomein: klantmail naar derden geblokkeerd → stuur bevestigingskopie naar inbox
-				await sendResend(apiKey, from, {
-					to: inbox,
-					subject: `Klantbevestiging (preview) – bedoeld voor ${payload.email}`,
-					text: [
-						`Kon de bevestiging niet naar ${payload.email} sturen (Resend-testdomeinlimiet).`,
-						'Tot DNS/afzenderdomein live is, werkt klantmail alleen naar het Resend-accountadres.',
-						'',
-						'--- Bevestigingstekst voor de klant ---',
-						'',
-						`Hoi ${payload.name},`,
-						'Bedankt voor je aanvraag bij Partybus Nederland.',
-						summaryText,
-					].join('\n'),
-					html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;"><p><em>Preview:</em> bevestiging kon niet naar <strong>${escapeHtml(payload.email)}</strong> (Resend testdomein).</p><p>Hoi ${escapeHtml(payload.name)}, bedankt voor je aanvraag.</p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table></div>`,
-					replyTo: payload.email,
-				});
-			} else {
-				return json({ ok: false, error: ERROR_GENERIC }, 502);
-			}
-		}
-	} else {
-		// Zelfde inbox: aparte bevestigingsmail naast de internmelding
-		const confirmResult = await sendResend(apiKey, from, {
-			to: inbox,
-			subject: 'Bedankt voor je aanvraag bij Partybus Nederland',
-			text: [
-				`Hoi ${payload.name},`,
-				'',
-				'Bedankt voor je aanvraag bij Partybus Nederland.',
-				'We hebben je bericht goed ontvangen en gaan ermee aan de slag.',
-				'',
-				'Samenvatting:',
-				summaryText,
-				'',
-				'Met vriendelijke groet,',
-				'Het team van Partybus Nederland',
-			].join('\n'),
-			html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;max-width:560px;"><p>Hoi ${escapeHtml(payload.name)},</p><p>Bedankt voor je aanvraag bij <strong>Partybus Nederland</strong>.</p><p>We hebben je bericht goed ontvangen en gaan ermee aan de slag.</p><p><strong>Samenvatting</strong></p><table style="border-collapse:collapse;font-size:14px;">${summaryHtml}</table><p style="margin-top:24px;">Met vriendelijke groet,<br>Het team van Partybus Nederland</p></div>`,
-			replyTo: inbox,
-		});
-
-		if (!confirmResult.ok) {
-			return json({ ok: false, error: ERROR_GENERIC }, 502);
-		}
-	}
-
-	return json({ ok: true, message: SUCCESS, redirect: '/bedankt/' });
+ const nativeForm = !context.request.headers.get('content-type')?.includes('application/json');
+ let body: unknown;
+ try { body = nativeForm ? Object.fromEntries(await context.request.formData()) : await context.request.json(); }
+ catch { return json({ok:false,error:'Ongeldige aanvraag.'},400); }
+ const validated=validate(body);
+ if(!validated.ok) return json({ok:false,error:validated.error,fields:validated.fields},400);
+ const payload=validated.data;
+ if(payload.website?.trim()) return nativeForm ? new Response(null,{status:303,headers:{Location:'/bedankt/'}}) : json({ok:true,message:SUCCESS,redirect:'/bedankt/'});
+ const apiKey=context.env.RESEND_API_KEY?.trim();
+ if(!apiKey) return json({ok:false,error:'E-mailverzending is nog niet geconfigureerd. Probeer later opnieuw of gebruik WhatsApp.'},503);
+ const from=resolveFrom(context.env.FROM_EMAIL);
+ if (nativeForm && payload.partnerId === 'startransfer') {
+ const native = body as Record<string, unknown>;
+ const details = ['trip','occasion','destination','departureTime','pickup','vehicle','returnDate','returnTime','festivalPickup','dropoff','notes'].filter(field=>native[field]).map(field=>`${field}: ${String(native[field]).slice(0,1000)}`).join('\n');
+ payload.message = [payload.message, details].filter(Boolean).join('\n');
+ }
+ const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(payload)));
+ const key=Array.from(new Uint8Array(digest),value=>value.toString(16).padStart(2,'0')).join('');
+ const rows=fieldRows(payload);
+ const summaryText=rows.map(([k,v])=>`${k}: ${v}`).join('\n');
+ const summaryHtml=rows.map(([k,v])=>`<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(v).replace(/\n/g,'<br>')}</td></tr>`).join('');
+ const html=`<div lang="nl" style="font-family:Arial,sans-serif;line-height:1.6"><p>Nieuwe offerteaanvraag via Partybus Nederland</p><table>${summaryHtml}</table></div>`;
+ const ownerReceived=await sendResend(apiKey,from,`quote-${key}-owner`,{to:INBOX,subject:'Nieuwe offerteaanvraag – Partybus Nederland',html,text:summaryText,replyTo:payload.email});
+ if(!ownerReceived) return json({ok:false,error:ERROR_GENERIC},502);
+ const partnerEmail=resolveQuotePartnerLeadEmail(payload.partnerId);
+ let partnerForwarded=!partnerEmail || partnerEmail.toLowerCase()===INBOX.toLowerCase();
+ if(partnerEmail && partnerEmail.toLowerCase()!==INBOX.toLowerCase()) {
+  partnerForwarded=await sendResend(apiKey,from,`quote-${key}-partner`,{to:partnerEmail,subject:`Nieuwe aanvraag – ${payload.partnerCity||payload.city}`,html,text:summaryText,replyTo:payload.email});
+  if(!partnerForwarded) {
+   console.error('quote_partner_forwarding_failed',{partnerId:payload.partnerId,requestKey:key});
+   await sendResend(apiKey,from,`quote-${key}-forwarding-notice`,{to:INBOX,subject:`Actie nodig: partneraanvraag handmatig doorsturen – ${payload.partnerId}`,html,text:`Rechtstreekse partnerdoorsturing is niet bevestigd. Stuur de ontvangen aanvraag handmatig door.\n\n${summaryText}`,replyTo:payload.email});
+  }
+ }
+ const customerConfirmed=await sendResend(apiKey,from,`quote-${key}-customer`,{to:payload.email,subject:'Bedankt voor je aanvraag bij Partybus Nederland',html:`<div lang="nl" style="font-family:Arial,sans-serif;line-height:1.6"><p>Hoi ${escapeHtml(payload.name)},</p><p>Partybus Nederland heeft je aanvraag ontvangen. Je rit is nog niet geboekt; beschikbaarheid en prijs worden afzonderlijk bevestigd.</p><table>${summaryHtml}</table></div>`,text:`Hoi ${payload.name},\n\nPartybus Nederland heeft je aanvraag ontvangen. Je rit is nog niet geboekt.\n\n${summaryText}`,replyTo:INBOX});
+ if(!customerConfirmed) console.error('quote_customer_confirmation_failed',{requestKey:key});
+ // Receipt by owner is authoritative. Secondary failures must not invite duplicate submissions.
+ const message=customerConfirmed?SUCCESS:'Je aanvraag is ontvangen. De bevestigingsmail kon niet worden bevestigd; je hoeft de aanvraag niet opnieuw te versturen.';
+ if(nativeForm) return new Response(null,{status:303,headers:{Location:'/bedankt/'}});
+ return json({ok:true,message,redirect:'/bedankt/',partnerForwarded,customerConfirmed});
 };
 
 export const onRequest: PagesFunction<Env> = async (context) => {

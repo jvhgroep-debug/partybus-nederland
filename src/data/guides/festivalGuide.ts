@@ -26,7 +26,7 @@ export const festivalGuideSeo = {
 	description:
 		'Festivalvervoer met een partybus uitgelegd: prijzen, opstapplaatsen, terugreis, bagage en populaire festivals. Vergelijk vrijblijvend offertes vanuit jouw stad.',
 	canonical: 'https://www.partybusnederland.nl/gids/festival-vervoer/',
-	ogImage: 'https://www.partybusnederland.nl/images/hero-partybus.png',
+	ogImage: 'https://www.partybusnederland.nl/images/hero-partybus.webp',
 	h1: 'Festivalvervoer met een partybus',
 	eyebrow: 'GIDS',
 	lead: 'Vanuit jouw stad naar Tomorrowland, Defqon.1, Mysteryland of een ander festival: met een partybus vertrek je samen, arriveer je samen en begint de sfeer al onderweg. Deze gids helpt je plannen — van opstapplaatsen tot terugreis.',

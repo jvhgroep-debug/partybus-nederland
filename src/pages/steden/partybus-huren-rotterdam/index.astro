@@ -72,7 +72,7 @@ const faqLd = {
 const ogImage = `https://www.partybusnederland.nl${originalHeroImage.src}`;
 ---
 
-<CityLayout
+<CityLayout pageQuoteHref={"/gratis-partybus-offertes-aanvragen/?" + new URLSearchParams({partner: "tourgo", city: city.name, source: city.path}).toString()}
 	title={city.metaTitle}
 	description={city.metaDescription}
 	canonical={city.canonical}

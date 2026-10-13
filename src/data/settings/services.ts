@@ -45,7 +45,7 @@ export const services: ServiceItem[] = [
 		title: 'Verjaardagen',
 		description:
 			'Vier het in stijl: pick-up, hotspots en een VIP-sfeer onderweg.',
-		image: '/images/hero-partybus.png',
+		image: '/images/hero-partybus.webp',
 		href: '/diensten/partybus-verjaardag/',
 	},
 	{

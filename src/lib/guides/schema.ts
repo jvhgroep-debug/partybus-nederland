@@ -86,16 +86,18 @@ export function buildArticleSchema(opts: {
 			'@type': 'Organization',
 			name: 'Partybus Nederland',
 			url: 'https://www.partybusnederland.nl/',
+			logo: 'https://www.partybusnederland.nl/favicon-partybus-nederland.png',
 		},
 		publisher: {
 			'@type': 'Organization',
 			name: 'Partybus Nederland',
 			url: 'https://www.partybusnederland.nl/',
+			logo: 'https://www.partybusnederland.nl/favicon-partybus-nederland.png',
 		},
 		mainEntityOfPage: {
 			'@type': 'WebPage',
 			'@id': opts.url,
 		},
-		...(opts.image ? { image: opts.image } : {}),
+		image: opts.image ?? 'https://www.partybusnederland.nl/images/partybus-nederland-hero-feest.webp',
 	};
 }

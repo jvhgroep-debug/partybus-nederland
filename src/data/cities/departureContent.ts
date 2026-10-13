@@ -6,7 +6,7 @@ const OCCASION_IMAGES = [
 	'/images/partybus-verhuur.png',
 	'/images/partybus-nederland.png',
 	'/images/partybus-arena.png',
-	'/images/hero-partybus.png',
+	'/images/hero-partybus.webp',
 	'/images/partybus-collage.png',
 	'/images/interior-partybus.png',
 	'/images/partybus-alt.png',

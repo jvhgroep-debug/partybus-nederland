@@ -24,7 +24,7 @@ interface Props {
 
 const { page } = Astro.props;
 const seo = page.seo;
-const ogImage = seo.ogImage ?? 'https://www.partybusnederland.nl/images/hero-partybus.png';
+const ogImage = seo.ogImage ?? 'https://www.partybusnederland.nl/images/hero-partybus.webp';
 
 const jsonLd = [
 	buildWebPageSchema({

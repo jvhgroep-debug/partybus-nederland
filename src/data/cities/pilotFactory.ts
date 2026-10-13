@@ -126,7 +126,7 @@ export function buildCityPageData(slug: string): CityPageData | null {
 		h1: seo.h1,
 		hero: {
 			subtitle: seo.heroSubtitle,
-			image: '/images/hero-partybus.png',
+			image: '/images/hero-partybus.webp',
 			imageAlt: city.imageAlt,
 			whatsappHref: whatsapp.href,
 			trustItems: [

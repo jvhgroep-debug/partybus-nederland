@@ -4,7 +4,7 @@ import citiesData from '../data/cities/cities.json';
  * Exact same hero asset as the homepage (`src/components/home/Hero.astro`).
  * Temporary: all city pages use this until unique city heroes are approved.
  */
-export const CITY_HERO_IMAGE = '/images/hero-partybus.png';
+export const CITY_HERO_IMAGE = '/images/hero-partybus.webp';
 
 /** @deprecated Use CITY_HERO_IMAGE — kept for compatibility. */
 export const DEFAULT_CITY_FALLBACK_IMAGE = CITY_HERO_IMAGE;
@@ -47,7 +47,7 @@ export function resolveCityHeroImage(slug: string): ResolvedCityHeroImage {
 
 	return {
 		src: CITY_HERO_IMAGE,
-		alt: record?.imageAlt ?? `Luxe partybus in ${record?.city ?? slug}`,
+		alt: `Partybus voor groepsvervoer vanuit ${record?.city ?? slug}`,
 		width: CITY_HERO_IMAGE_WIDTH,
 		height: CITY_HERO_IMAGE_HEIGHT,
 	};

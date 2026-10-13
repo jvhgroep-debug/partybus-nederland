@@ -63,14 +63,16 @@ export const NOORD_BRABANT_MUNICIPALITY_SLUGS = [
 export type NoordBrabantMunicipalitySlug =
 	(typeof NOORD_BRABANT_MUNICIPALITY_SLUGS)[number];
 
+export const NOORD_BRABANT_EXTRA_PLACES = { zevenbergen: 'moerdijk', made: 'drimmelen', terheijden: 'drimmelen', prinsenbeek: 'breda', rijen: 'gilze-en-rijen', klundert: 'moerdijk', willemstad: 'moerdijk', fijnaart: 'moerdijk' } as const;
+
 const NOORD_BRABANT_MUNICIPALITY_SET = new Set<string>(
 	NOORD_BRABANT_MUNICIPALITY_SLUGS,
 );
 
 export function isNoordBrabantMunicipalitySlug(
 	slug: string,
-): slug is NoordBrabantMunicipalitySlug {
-	return NOORD_BRABANT_MUNICIPALITY_SET.has(slug);
+): slug is NoordBrabantMunicipalitySlug | keyof typeof NOORD_BRABANT_EXTRA_PLACES {
+	return NOORD_BRABANT_MUNICIPALITY_SET.has(slug) || Object.hasOwn(NOORD_BRABANT_EXTRA_PLACES, slug);
 }
 
 const NOORD_BRABANT_NEIGHBOR_OVERRIDES: Partial<
@@ -264,7 +266,7 @@ export const noordBrabantProvince = {
 	h1: 'Partybus huren in Noord-Brabant',
 	eyebrow: 'Noord-Brabant',
 	lead: 'Van Eindhoven tot Breda en van Tilburg tot Baarle-Nassau: PartybusNederland.nl werkt in Noord-Brabant samen met Prestige Coach Service voor groepsvervoer, feesten, festivals en zakelijke ritten — in alle 56 Brabantse gemeenten.',
-	heroImage: '/images/hero-partybus.png',
+	heroImage: '/images/hero-partybus.webp',
 	heroImageAlt: 'Partybus voor groepsvervoer in Noord-Brabant',
 	sections: {
 		huren: {

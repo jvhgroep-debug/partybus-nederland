@@ -40,7 +40,7 @@ const heroImage = partner.publicProfile.media.hero ?? province.heroImage;
 const socialImage = `https://www.partybusnederland.nl${heroImage}`;
 ---
 
-<BaseLayout
+<BaseLayout pageQuoteHref={"/gratis-partybus-offertes-aanvragen/?" + new URLSearchParams({partner: "party-bussen-westland", city: province.eyebrow, source: province.path}).toString()}
 	title={province.title}
 	description={province.metaDescription}
 	canonical={province.canonical}

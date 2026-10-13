@@ -28,7 +28,8 @@ const configuredPartnerCity = configuredPartnerId ? (partnerCity ?? defaultCity 
 ---
 
 <div class:list={['quote-form', compact && 'quote-form--compact']} data-quote-form>
-	<form class="quote-form__form" novalidate>
+	<form class="quote-form__form" action="/api/offerte" method="post">
+		<input type="hidden" name="requestId" value="" />
 		<input type="hidden" name="sourcePage" value={sourcePage} />
 		{configuredPartnerId && <input type="hidden" name="partnerId" value={configuredPartnerId} />}
 		{configuredPartnerCity && <input type="hidden" name="partnerCity" value={configuredPartnerCity} />}
@@ -105,6 +106,8 @@ const configuredPartnerCity = configuredPartnerId ? (partnerCity ?? defaultCity 
 			const submit = root.querySelector('[type="submit"]');
 			if (!form || !status || !submit) return;
 
+			const requestIdInput = form.querySelector('[name="requestId"]');
+			if (requestIdInput && !requestIdInput.value) requestIdInput.value = crypto.randomUUID();
 			const cityInput = form.querySelector('[name="city"]');
 			if (requestedCity && cityInput && !cityInput.value) {
 				cityInput.value = requestedCity;
@@ -127,6 +130,7 @@ const configuredPartnerCity = configuredPartnerId ? (partnerCity ?? defaultCity 
 				clearFieldErrors();
 				status.hidden = true;
 
+				if (!form.reportValidity()) return;
 				const data = new FormData(form);
 				const payload = Object.fromEntries(data.entries());
 				if (requestedPartner) {
@@ -309,7 +313,7 @@ const configuredPartnerCity = configuredPartnerId ? (partnerCity ?? defaultCity 
 	.quote-form__status--error {
 		border: 1px solid color-mix(in srgb, #e57373 55%, transparent);
 		background: color-mix(in srgb, #e57373 14%, transparent);
-		color: #ffd7d7;
+		color: var(--color-text);
 	}
 
 	@media (max-width: 640px) {

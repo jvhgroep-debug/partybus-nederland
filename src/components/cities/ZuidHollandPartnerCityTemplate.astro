@@ -111,7 +111,7 @@ const conversionCopy = tourgoConversionCopy(city.name, city.slug);
 	<CityConversionBand
 		cityName={city.name}
 		whatsappHref={whatsappHref}
-		quoteHref={tourgoWebsiteHref}
+		quoteHref={"/gratis-partybus-offertes-aanvragen/?" + new URLSearchParams({partner: "tourgo", city: city.name, source: city.path}).toString()}
 		partnerMode={true}
 		eyebrow={conversionCopy.eyebrow}
 		headline={conversionCopy.headline}

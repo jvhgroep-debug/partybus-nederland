@@ -18,8 +18,8 @@ function readSrc(relativePath: string) {
 	return readFileSync(join(root, relativePath), 'utf8');
 }
 
-test('allowlist contains the three configured quote partners', () => {
-	assert.deepEqual([...QUOTE_PARTNER_IDS], ['prestige-coach-service', 'tourgo', 'startransfer']);
+test('allowlist contains the four configured quote partners', () => {
+	assert.deepEqual([...QUOTE_PARTNER_IDS], ['prestige-coach-service', 'tourgo', 'startransfer', 'party-bussen-westland']);
 });
 
 test('A. partnerId=prestige-coach-service selects Prestige', () => {
@@ -59,13 +59,14 @@ test('E. no partnerId stays national', () => {
 
 test('F. unknown partnerId has no partner routing', () => {
 	assert.equal(resolveQuotePartnerId('onbekend'), '');
-	assert.equal(resolveQuotePartnerId('party-bussen-westland'), '');
+	assert.equal(resolveQuotePartnerId('party-bussen-westland'), 'party-bussen-westland');
+	assert.equal(resolveQuotePartnerLeadEmail('party-bussen-westland'), 'info@partybussenwestland.nl');
 	assert.equal(resolveQuotePartnerLeadEmail('onbekend'), null);
 });
 
 test('G. ?partner=onbekend has no partner routing', () => {
 	assert.equal(resolveQuoteFormPartnerId({ queryPartner: 'onbekend' }), '');
-	assert.equal(resolveQuoteFormPartnerId({ queryPartner: 'party-bussen-westland' }), '');
+	assert.equal(resolveQuoteFormPartnerId({ queryPartner: 'party-bussen-westland' }), 'party-bussen-westland');
 });
 
 test('H. Tourgo leadEmail comes only from existing partner data', () => {
@@ -103,7 +104,7 @@ test('QuoteForm and /api/offerte use the shared allowlist, not a global default'
 	assert.match(offerteApi, /resolveQuotePartnerLeadEmail\(payload\.partnerId\)/);
 });
 
-test('existing pages do not get an automatic Tourgo partnerId', () => {
+test('regional forms select their own partner; national form stays unassigned', () => {
 	const zuidHolland = readSrc('src/components/provinces/ZuidHollandProvincePageTemplate.astro');
 	const noordBrabant = readSrc('src/components/provinces/ProvincePageTemplate.astro');
 	const utrecht = readSrc('src/components/partners/UtrechtPartnerHero.astro');
@@ -114,9 +115,9 @@ test('existing pages do not get an automatic Tourgo partnerId', () => {
 	);
 
 	assert.match(noordBrabant, /partnerId=\{prestigeCoachService\.id\}/);
-	assert.doesNotMatch(zuidHolland, /partnerId=/);
-	assert.doesNotMatch(utrecht, /partnerId=/);
-	assert.doesNotMatch(amsterdam, /partnerId=/);
+	assert.match(zuidHolland, /partnerId="tourgo"/);
+	assert.match(utrecht, /partnerId="party-bussen-westland"/);
+	assert.match(amsterdam, /partnerId="party-bussen-westland"/);
 	assert.doesNotMatch(landelijk, /partnerId=/);
 	assert.match(blog, /partnerId=\{tourgoPartybussen\.id\}/);
 	assert.match(blog, /partnerCity="Zuid-Holland"/);
