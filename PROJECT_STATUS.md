@@ -168,3 +168,9 @@ Opdracht Johan: hetzelfde WhatsApp-icoon en invulvenster op alle partnerpagina�
 - Statische controle: 318 partnerpagina’s met exact één venster en passend zwevend nummer: Prestige 114, Tourgo 79, Party Bussen Westland 83, StarTransfer 42. Alle bestaande titles en H1’s gelijk gebleven.
 - Build 577 pagina’s; SEO/link/assetchecks, diff-check en vier-partner message/routering/festivaltests geslaagd. Geen berichten verstuurd. Publicatie/livecontrole worden afzonderlijk geregistreerd.
 
+
+### Alle partner-WhatsAppvensters daadwerkelijk live
+
+Voorstel #9 gemerged als `04c3eb05ea8fab6e7fed43a3042404f1f8ba89cf`. Cloudflare-productiedeploy `28212417-0f55-4448-a2d3-dd2b21b01368` geslaagd. Live browsercontrole op de vier provinciepagina’s bevestigt dat het zwevende icoon het venster voor respectievelijk Prestige Coach Service, Tourgo Partybussen, Party Bussen Westland en StarTransfer opent. StarTransfer toont expliciet de tijdelijke route via Partybus Nederland. Alle vensters weer gesloten; geen berichten verstuurd.
+
+Partnerdata blijven server-side; de browser gebruikt alleen de lichte berichtbouwer. Bestaande 577 pagina’s blijven bereikbaar via dezelfde URL’s. Statische controle dekt 318 partnerpagina’s; interactieve livecontrole is steekproefsgewijs één per partner.
