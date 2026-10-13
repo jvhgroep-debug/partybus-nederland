@@ -140,3 +140,14 @@ Volgende stap: Cloudflare-preview en productie controleren; vervolgens Breda na 
 ### Breda daadwerkelijk gepubliceerd
 
 Voorstel #5 gemerged als `8b4f80eefd4352f110031adf5a2425ae740fe848`. Cloudflare-productiedeploy `d1463528-b7ba-4c92-a81b-45d01c1ab161` geslaagd. Live browsercontrole op 13 oktober bevestigt de nieuwe Breda-title, lokale prijs-/planningssectie, 13 FAQ’s en nul ontbrekende afbeeldingen op `https://www.partybusnederland.nl/steden/partybus-huren-breda/`. Previewcontrole bevestigt openende FAQ en regionale partnerofferteknoppen. Geen echte aanvraag verzonden. Dit is bewijs van publicatie, geen bewijs van hogere Googleposities.
+
+## 13 oktober 2026 — WhatsApp-keuzevenster Breda
+
+Opdracht Johan: bezoekers laten aangeven dat zij via onze site komen, hun naam opnemen en kiezen waarvoor zij contact opnemen. Branch `feature/breda-whatsapp-keuze-2026-10-13`.
+
+- Alle gewone WhatsApp-klikken naar het bestaande Prestige-nummer op de Breda-pagina openen een keuzevenster. Naam optioneel, aanvraagtype, datum, groepsgrootte, vertrekadres, bestemming, terugreis en wensen.
+- Bericht vermeldt expliciet `PartybusNederland.nl, de pagina voor Breda`, ingevulde naam en gekozen aanvraagtype. Een WhatsApp-profielnaam kan niet automatisch worden opgehaald.
+- Alleen de bezoeker opent vervolgens het concept in WhatsApp en verzendt het zelf. Formuliergegevens worden niet naar onze offerte-API of een database gestuurd. Bestaande WhatsApp-clicktracking blijft clicktracking, geen bewijs van verzonden berichten.
+- Prestige-nummer +31 6 29041798 en offerte-/e-mailroutes behouden; andere pagina’s niet gewijzigd. Zonder JavaScript blijft de bestaande WhatsApp-link werken.
+- Build 577 pagina’s; SEO/link/assetchecks en diff-check geslaagd. Geen bericht verstuurd. Preview en publicatie apart te verifiëren.
+
