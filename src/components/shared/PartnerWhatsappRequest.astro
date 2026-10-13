@@ -21,7 +21,7 @@ const {partner,departure,sourcePath}=Astro.props;
  </form>
 </dialog>
 <script>
-import {buildPartnerRequestMessage} from '../../lib/partnerWhatsappRequest';
+import {buildPartnerRequestMessage} from '../../lib/partnerWhatsappMessage';
 const dialog=document.querySelector<HTMLDialogElement>('[data-partner-whatsapp-request]');
 if(dialog && typeof dialog.showModal==='function') {
  const form=dialog.querySelector<HTMLFormElement>('form')!;
