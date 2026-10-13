@@ -155,3 +155,16 @@ Opdracht Johan: bezoekers laten aangeven dat zij via onze site komen, hun naam o
 ### WhatsApp-keuze Breda live bevestigd
 
 Voorstel #7 gemerged als `40099f2ab7bb3ea7f14722e9aa249fee2d83333f`. Cloudflare-productiedeploy `fab283ce-76fb-4c56-8afa-7ba8f6506dab` geslaagd. Browsercontrole op eigen domein: Prestige-knop opent keuzevenster, naamveld ingevuld met fictieve testnaam, festivalkeuze geselecteerd en venster gesloten. Niet doorgegaan naar WhatsApp en geen bericht verstuurd. De ingevulde naam verschijnt in het conceptbericht, niet automatisch als WhatsApp-profielnaam.
+
+## 13 oktober 2026 — WhatsApp-keuzevenster alle vier partners
+
+Opdracht Johan: hetzelfde WhatsApp-icoon en invulvenster op alle partnerpagina’s. Branch `feature/alle-partners-whatsapp-keuze-2026-10-13`.
+
+- Centrale partnerresolver gebruikt bestaande partnerdata, trackingcontext, regionale footer en vier samenwerkingsartikelen. Algemene eigenaarcontactpagina’s worden niet als StarTransfer toegewezen op basis van het gedeelde tijdelijke nummer.
+- Eén gedeeld keuzevenster met naam, aanvraagtype, datum, personen, vertrekadres, bestemming, terugreis en wensen. Naam is vrijwillig; geen automatisch opgehaalde profielgegevens.
+- Bericht noemt PartybusNederland.nl, vertrekplaats/regio, exacte bronpagina, juiste partner en ingevulde gegevens. Geselecteerde festivals en de bestaande festivallijst blijven behouden.
+- Zelfde bestaande groene zwevende icoon op alle partnerpagina’s; gewone partner-WhatsApp-links openen ook het venster. Zonder JavaScript blijft de directe link werken. StarTransfer gebruikt expliciet het bestaande tijdelijke beheerdersnummer; overige drie eigen partnernummers behouden.
+- Bestaande StarTransfer-ritformulier/WhatsApp-knop blijft zijn ingevulde ritgegevens rechtstreeks doorgeven. Geen offerte-/e-mailroute aangepast en geen extra databaseopslag.
+- Statische controle: 318 partnerpagina’s met exact één venster en passend zwevend nummer: Prestige 114, Tourgo 79, Party Bussen Westland 83, StarTransfer 42. Alle bestaande titles en H1’s gelijk gebleven.
+- Build 577 pagina’s; SEO/link/assetchecks, diff-check en vier-partner message/routering/festivaltests geslaagd. Geen berichten verstuurd. Publicatie/livecontrole worden afzonderlijk geregistreerd.
+

@@ -1,6 +1,5 @@
 ---
 import { applySeoPhaseOne } from '../../../data/cities/seoPhaseOne';
-import BredaWhatsappRequest from '../../../components/cities/BredaWhatsappRequest.astro';
 import BredaPlanning from '../../../components/cities/BredaPlanning.astro';
 import CityLayout from '../../../layouts/CityLayout.astro';
 import MasterCityTemplate from '../../../components/cities/MasterCityTemplate.astro';
@@ -108,5 +107,4 @@ const serviceLd = {
 	})}
 >
 	<MasterCityTemplate city={city}><BredaPlanning slot="local-planning" /></MasterCityTemplate>
-	<BredaWhatsappRequest />
 </CityLayout>
