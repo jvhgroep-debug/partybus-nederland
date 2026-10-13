@@ -2,6 +2,8 @@
 import { site } from '../../data/settings/site';
 import { mainNav, primaryCta } from '../../data/settings/navigation';
 import Button from '../buttons/Button.astro';
+interface Props { quoteHref?: string; }
+const { quoteHref = primaryCta.href } = Astro.props;
 ---
 
 <header class="site-header">
@@ -25,7 +27,7 @@ import Button from '../buttons/Button.astro';
 		</nav>
 
 		<div class="site-header__actions">
-			<Button href={primaryCta.href} class="site-header__cta">{primaryCta.label}</Button>
+			<Button href={quoteHref} class="site-header__cta">{primaryCta.label}</Button>
 			<button
 				class="site-header__toggle"
 				type="button"
@@ -49,7 +51,7 @@ import Button from '../buttons/Button.astro';
 				</a>
 			))
 		}
-		<Button href={primaryCta.href} class="site-header__mobile-cta">{primaryCta.label}</Button>
+		<Button href={quoteHref} class="site-header__mobile-cta">{primaryCta.label}</Button>
 	</nav>
 </header>
 
