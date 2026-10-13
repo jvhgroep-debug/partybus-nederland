@@ -16,7 +16,7 @@ export const amsterdamCity: CityPageData = {
 	hero: {
 		...generated.hero,
 		whatsappHref: 'https://wa.me/31684002350',
-		image: '/images/hero-partybus.png',
+		image: '/images/hero-partybus.webp',
 	},
 	cta: {
 		...generated.cta,

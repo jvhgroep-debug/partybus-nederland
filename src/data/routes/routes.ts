@@ -2,7 +2,7 @@ import { whatsapp } from '../settings/whatsapp';
 import type { RouteCategory, RoutePageData } from './types';
 
 const SITE = 'https://www.partybusnederland.nl';
-const HERO = '/images/hero-partybus.png';
+const HERO = '/images/hero-partybus.webp';
 const INTRO_IMG = '/images/interior-partybus.png';
 const CTA_IMG = '/images/partybus-arena.png';
 

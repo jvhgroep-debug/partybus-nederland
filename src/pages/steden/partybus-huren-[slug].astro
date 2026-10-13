@@ -14,6 +14,7 @@ import {
 } from '../../data/partners/prestigeCoachService';
 import {
 	buildTourgoWhatsappHref,
+	buildTourgoQuoteHref,
 	resolveTourgoCityMedia,
 	tourgoPartybussen,
 } from '../../data/partners/tourgoPartybussen';
@@ -97,6 +98,7 @@ const partnerPageProps = isNoordBrabantPartnerCity
 					href: buildTourgoWhatsappHref(city.name),
 					label: tourgoPartybussen.publicProfile.whatsapp.ariaLabel,
 				},
+				pageQuoteHref: buildTourgoQuoteHref(city.name, city.path),
 				regionalFooter: zuidHollandFooter,
 				partnerWhatsappTracking: buildZuidHollandWhatsappTrackingContext({
 					municipalitySlug: city.slug,
@@ -111,6 +113,7 @@ const partnerPageProps = isNoordBrabantPartnerCity
 						href: buildPartyBussenWestlandWhatsappHref(city.name),
 						label: partyBussenWestland.publicProfile.whatsapp.ariaLabel,
 					},
+					pageQuoteHref: "/gratis-partybus-offertes-aanvragen/?" + new URLSearchParams({partner: "party-bussen-westland", city: city.name, source: city.path}).toString(),
 					regionalFooter: utrechtFooter,
 					partnerWhatsappTracking: buildPartyBussenWestlandWhatsappTrackingContext({
 						municipalitySlug: city.slug,

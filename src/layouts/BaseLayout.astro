@@ -69,7 +69,7 @@ const partnerWhatsappTrackingConfig = partnerWhatsappTracking
 	: null;
 const pageTitle = titleExact
 	? title
-	: title === site.name
+	: title === site.name || title.includes(site.name) || `${title} | ${site.name}`.length > 65
 		? site.name
 		: `${title} | ${site.name}`;
 const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
@@ -86,6 +86,15 @@ const jsonLdPayload = jsonLd
 		? jsonLd
 		: [jsonLd]
 	: [];
+function enrichSchema(value: unknown): unknown {
+ if (Array.isArray(value)) return value.map(enrichSchema);
+ if (!value || typeof value !== 'object') return value;
+ const object = Object.fromEntries(Object.entries(value).map(([key, item]) => [key, enrichSchema(item)]));
+ if (object['@type'] === 'Organization' && object.name === 'Partybus Nederland' && !object.logo) object.logo = 'https://www.partybusnederland.nl/favicon-partybus-nederland.png';
+ if (object['@type'] === 'Article' && !object.image) object.image = ogImage || `https://www.partybusnederland.nl${heroPreload || '/images/partybus-nederland-hero-feest.webp'}`;
+ return object;
+}
+const enrichedJsonLd = jsonLdPayload.map(enrichSchema);
 const socialTitle = ogTitle || pageTitle;
 const socialDescription = ogDescription || description;
 const socialUrl = ogUrl || resolvedCanonical;
@@ -121,7 +130,7 @@ const twImage = twitterImage || socialImage;
 		{heroPreload && <link rel="preload" as="image" href={heroPreload} imagesrcset={heroResponsive.srcset} imagesizes={heroResponsive.sizes} fetchpriority="high" />}
 		<title>{pageTitle}</title>
 		{
-			jsonLdPayload.map((item) => (
+			enrichedJsonLd.map((item) => (
 				<script type="application/ld+json" set:html={JSON.stringify(item)} />
 			))
 		}

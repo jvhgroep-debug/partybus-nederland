@@ -1,3 +1,4 @@
+import { partyBussenWestland } from '../data/partners/partyBussenWestland';
 import { starTransfer } from '../data/partners/starTransfer';
 import { prestigeCoachService } from '../data/partners/prestigeCoachService';
 import { tourgoPartybussen } from '../data/partners/tourgoPartybussen';
@@ -10,6 +11,7 @@ export const QUOTE_PARTNER_IDS = [
 	prestigeCoachService.id,
 	tourgoPartybussen.id,
 	starTransfer.id,
+	partyBussenWestland.id,
 ] as const;
 
 export type QuotePartnerId = (typeof QUOTE_PARTNER_IDS)[number];
@@ -38,6 +40,7 @@ export function resolveQuotePartnerLeadEmail(partnerId: string | undefined | nul
 	if (partnerId === tourgoPartybussen.id) {
 		return tourgoPartybussen.internalRouting.leadEmail;
 	}
+	if (partnerId === partyBussenWestland.id) return partyBussenWestland.internalRouting.leadEmail;
 	if (partnerId === starTransfer.id) return starTransfer.internalRouting.leadEmail;
 	return null;
 }

@@ -10,7 +10,7 @@ export const popularCities: PopularCity[] = [
 		name: 'Amsterdam',
 		slug: 'amsterdam',
 		blurb: 'Nightlife, Rembrandtplein en een partybus door de stad.',
-		image: '/images/hero-partybus.png',
+		image: '/images/hero-partybus.webp',
 	},
 	{
 		name: 'Rotterdam',

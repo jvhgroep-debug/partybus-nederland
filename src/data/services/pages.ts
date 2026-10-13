@@ -131,7 +131,7 @@ export const servicePages: readonly ServicePage[] = [
 		h1: 'Partybus voor een verjaardag',
 		eyebrow: 'Verjaardag',
 		lead: 'Maak de rit onderdeel van het feest: haal de groep op, bezoek een bestemming en reis na afloop samen terug.',
-		image: '/images/hero-partybus.png',
+		image: '/images/hero-partybus.webp',
 		imageAlt: 'Partybus voor een verjaardagsfeest',
 		benefits: [
 			{ title: 'Een opvallende entree', text: 'Kom als groep aan bij restaurant, club, evenement of verrassingslocatie.' },
