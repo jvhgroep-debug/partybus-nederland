@@ -1,5 +1,6 @@
 ---
 import { applySeoPhaseOne } from '../../../data/cities/seoPhaseOne';
+import BredaPlanning from '../../../components/cities/BredaPlanning.astro';
 import CityLayout from '../../../layouts/CityLayout.astro';
 import MasterCityTemplate from '../../../components/cities/MasterCityTemplate.astro';
 import { bredaCity as bredaSource } from '../../../data/cities/breda';
@@ -11,12 +12,10 @@ import {
 	resolvePrestigeCoachServiceCityMedia,
 } from '../../../data/partners/prestigeCoachService';
 import { noordBrabantFooter } from '../../../data/settings/regionalFooters';
-import { resolveCityHeroImage } from '../../../lib/cityImages';
 import { buildNoordBrabantWhatsappTrackingContext } from '../../../lib/partnerWhatsappTracking';
 
 const city = applySeoPhaseOne(applyPrestigeMunicipalityCopy(bredaSource));
 const heroImage = resolvePrestigeCoachServiceCityMedia(city.slug).hero;
-const originalHeroImage = resolveCityHeroImage(city.slug);
 
 const webPageLd = {
 	'@context': 'https://schema.org',
@@ -70,7 +69,14 @@ const faqLd = {
 	})),
 };
 
-const ogImage = `https://www.partybusnederland.nl${originalHeroImage.src}`;
+const ogImage = `https://www.partybusnederland.nl${heroImage.src}`;
+const serviceLd = {
+ '@context': 'https://schema.org', '@type': 'Service',
+ name: 'Partybus huren vanuit Breda', serviceType: 'Partybus- en groepsvervoer',
+ url: city.canonical, areaServed: { '@type': 'City', name: 'Breda' },
+ provider: { '@type': 'Organization', name: prestigeCoachService.publicProfile.name, url: prestigeCoachService.publicProfile.website.href,
+ address: { '@type': 'PostalAddress', streetAddress: prestigeCoachService.publicProfile.address.street, postalCode: prestigeCoachService.publicProfile.address.postalCode, addressLocality: prestigeCoachService.publicProfile.address.city, addressCountry: 'NL' } },
+};
 ---
 
 <CityLayout
@@ -85,7 +91,7 @@ const ogImage = `https://www.partybusnederland.nl${originalHeroImage.src}`;
 	twitterTitle={city.metaTitle}
 	twitterDescription={city.metaDescription}
 	twitterImage={ogImage}
-	jsonLd={[webPageLd, breadcrumbLd, faqLd]}
+	jsonLd={[webPageLd, breadcrumbLd, faqLd, serviceLd]}
 	pageWhatsapp={{
 		href: buildPrestigeCoachServiceWhatsappHref(city.name),
 		label: prestigeCoachService.publicProfile.whatsapp.ariaLabel,
@@ -100,5 +106,5 @@ const ogImage = `https://www.partybusnederland.nl${originalHeroImage.src}`;
 		pageType: 'municipality',
 	})}
 >
-	<MasterCityTemplate city={city} />
+	<MasterCityTemplate city={city}><BredaPlanning slot="local-planning" /></MasterCityTemplate>
 </CityLayout>

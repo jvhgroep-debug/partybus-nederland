@@ -10,18 +10,20 @@ const partnerName = prestigeCoachService.publicProfile.name;
 export function applyPrestigeBredaHubCopy(city: CityPageData): CityPageData {
 	return {
 		...city,
-		metaTitle: `Partybus huren Breda | ${partnerName}`,
+		metaTitle: 'Partybus huren Breda | Feestbus & discobus | Prestige',
 		metaDescription:
-			'Partybus huren Breda? Regel groepsvervoer via Prestige Coach Service, de partner van PartybusNederland.nl in Noord-Brabant.',
+			'Partybus, feestbus of discobus huren vanuit Breda? Vraag vrijblijvend een offerte bij Prestige Coach Service voor jullie groep, route en heen- en terugreis.',
 		h1: 'Partybus huren in Breda',
 		hero: {
 			...city.hero,
 			subtitle:
-				'Zoek je een partybus in Breda? PartybusNederland.nl werkt in Noord-Brabant samen met Prestige Coach Service. Een aanvraag gaat naar deze partner.',
+				'Samen vanuit Breda naar een festival, vrijgezellenfeest of bedrijfsuitje. Bespreek jullie opstapplaats, groepsgrootte en terugreis rechtstreeks met Prestige Coach Service.',
 		},
 		intro: {
 			...city.intro,
-			title: 'Groepsvervoer vanuit het centrum van Breda',
+			title: 'Een partybus of feestbus vanuit Breda regelen',
+			image: '/images/partners/prestige-coach-service/prestige-coach-service-hero.webp',
+			imageAlt: 'Prestige Coach Service partybus voor een groepsrit vanuit Breda',
 			paragraphs: [
 				'Wil je een partybus huren in Breda? PartybusNederland.nl werkt in Noord-Brabant samen met Prestige Coach Service. Een aanvraag vanuit Breda gaat naar deze partner.',
 				'Breda is een compacte stad: de Grote Markt, de Havermarkt en de Haven liggen dicht bij elkaar, terwijl delen van de binnenstad autoluw zijn. Wie een partybus Breda zoekt, stapt daarom meestal in op een afgesproken plek op loopafstand, niet midden op een plein. Groepen uit Ginneken, Princenhage, Belcrum of de Haagse Beemden, of uit Prinsenbeek, Bavel en Teteringen, zitten niet vanzelf op één route. Welke verzamelpunten haalbaar zijn, stem je af met Prestige Coach Service.',
@@ -31,15 +33,24 @@ export function applyPrestigeBredaHubCopy(city: CityPageData): CityPageData {
 		},
 		why: {
 			...city.why,
-			lead: 'Eén bus voor de hele groep: van een afgesproken punt in Breda tot het feest, en desgewenst weer terug.',
+			lead: 'Plan de rit rond jullie groep in Breda: één duidelijk vertrekpunt, een passende bus en afspraken over de terugkomst.',
+			items: [
+				{ title: 'Een aanspreekpunt voor jullie rit', text: 'De aanvraag vanuit Breda gaat naar Prestige Coach Service. Bespreek met dezelfde vervoerder de bus, route, tijden en voorwaarden.', icon: 'group' },
+				{ title: 'Vertrek uit jullie eigen wijk', text: 'Geef een bereikbaar adres in Belcrum, Ginneken, Princenhage of de Haagse Beemden door. Ook een vertrek vanuit Prinsenbeek, Bavel of Teteringen kun je aanvragen.', icon: 'route' },
+				{ title: 'Heen- en terugreis vooraf duidelijk', text: 'Leg vast waar de groep na het feest wordt opgehaald en op welk tijdstip iedereen terug wil zijn in Breda.', icon: 'clock' },
+				{ title: 'Een voorstel voor jullie groepsgrootte', text: 'Vermeld het aantal deelnemers. Laat de vervoerder bevestigen hoeveel toegestane zit- of staanplaatsen de aangeboden bus heeft.', icon: 'size' },
+			],
 		},
 		pickup: {
 			...city.pickup,
-			title: 'Opstappen in Breda',
+			title: 'Waar kan de partybus in Breda vertrekken?',
+			items: ['Omgeving Breda Centraal: geef de gewenste zijde en een concreet vertrekadres door.', 'Belcrum of het Havenkwartier: bespreek een bereikbaar verzamelpunt buiten drukke straten.', 'Ginneken, Princenhage of de Haagse Beemden: vraag naar vertrek bij een eigen adres, bedrijf of hotel.', 'Prinsenbeek, Bavel en Teteringen: vermeld extra stops afzonderlijk in de routeaanvraag.'],
 			lead: 'Mogelijke vertrekgebieden zijn de omgeving van Breda Centraal, de rand van het centrum of de Haven. De Grote Markt en de Havermarkt zijn geen vanzelfsprekende halte. De exacte opstap stem je af met Prestige Coach Service.',
 			note: 'Geef de gewenste opstap, bestemming, datum en het aantal personen vanuit Breda door, dan kan Prestige Coach Service aangeven wat haalbaar is.',
 		},
 		faqs: [
+            { question: 'Kan ik een partybus in Breda aanvragen voor 20, 30 of 40 personen?', answer: 'Ja, je kunt voor deze groepsgroottes een voorstel aanvragen bij Prestige Coach Service. Een aanvraag is geen garantie dat een bepaald voertuig vrij is. Vermeld het precieze aantal personen, de datum en of iedereen een zitplaats nodig heeft; de vervoerder bevestigt capaciteit en beschikbaarheid.' },
+            { question: 'Wat moet ik doorgeven voor een complete offerte vanuit Breda?', answer: 'Vermeld datum, aantal personen, vertrekadres in Breda, bestemming, gewenste vertrek- en terugtijd en eventuele extra stops. Vraag of chauffeur, wachttijd, heen- en terugrit en gewenste voorzieningen in het totaalvoorstel zijn inbegrepen.' },
 			{
 				question: 'Wat kost een partybus huren in Breda?',
 				answer: `Er is geen vast tarief voor een partybus of feestbus in Breda. De prijs hangt af van datum, route, ritduur, wachttijd, groepsgrootte en type bus. ${partnerName} geeft de mogelijkheden door op basis van jullie aanvraag.`,
@@ -89,7 +100,8 @@ export function applyPrestigeBredaHubCopy(city: CityPageData): CityPageData {
 		],
 		cta: {
 			...city.cta,
-			title: 'Vraag een partybus of feestbus aan vanuit Breda',
+			title: 'Vraag prijs en beschikbaarheid voor jullie rit vanuit Breda',
+			image: '/images/partners/prestige-coach-service/prestige-coach-service-feest.webp',
 			text: `Vertel wanneer je wilt vertrekken, met hoeveel personen en wat je bestemming is. Je aanvraag vanuit Breda gaat naar ${partnerName}.`,
 		},
 	};

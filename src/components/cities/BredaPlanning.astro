@@ -1,0 +1,37 @@
+---
+import { buildPrestigeCoachServiceQuoteHref, buildPrestigeCoachServiceWhatsappHref } from '../../data/partners/prestigeCoachService';
+const quoteHref = buildPrestigeCoachServiceQuoteHref('Breda', '/steden/partybus-huren-breda/');
+const whatsappHref = buildPrestigeCoachServiceWhatsappHref('Breda');
+const plans = [
+ { title: 'Vrijgezellenfeest of verjaardag', text: 'Spreek af waar iedereen in Breda verzamelt en welke stops jullie willen maken. Geef de eindbestemming en de laatste ophaaltijd door, zodat de rit aansluit op jullie avond.', href: '/diensten/partybus-vrijgezellenfeest/', label: 'Tips voor een vrijgezellenfeest met een partybus' },
+ { title: 'Festivalvervoer vanuit Breda', text: 'Vermeld de naam van het festival, de bezoekdag, gewenste aankomsttijd en het ophalen na afloop. Vraag waar de bus mag afzetten en verzamelen; een festivalticket is geen onderdeel van een vervoersaanvraag.', href: '/provincies/noord-brabant/festivals-2026-2027/', label: 'Bekijk festivalvervoer in Noord-Brabant' },
+ { title: 'Bedrijfsuitje met vertrek bij jullie bedrijf', text: 'Vraag naar vertrek vanaf een bereikbaar bedrijfsadres in Breda. Noteer het aantal collega’s, eventuele bagage en het gewenste tijdstip van terugkomst. Bespreek met de vervoerder de bereikbaarheid voor de bus.', href: '/diensten/partybus-bedrijfsuitje/', label: 'Bekijk aandachtspunten voor een bedrijfsuitje' },
+];
+---
+<section class="section breda-planning" aria-labelledby="breda-prijs-title">
+ <div class="section__inner">
+  <p class="section__eyebrow">Jullie rit vanuit Breda</p>
+  <h2 id="breda-prijs-title">Wat kost een partybus huren in Breda?</h2>
+  <p>Er is geen vaste prijs voor iedere rit. Een korte transfer vanuit Breda vraagt om een ander voorstel dan een hele avond met meerdere stops of festivalvervoer met een terugrit. Vraag Prestige Coach Service om een totaalvoorstel voor jullie datum en route.</p>
+  <div class="breda-table-wrap"><table>
+   <caption>Deze gegevens maken jullie offerte duidelijker</caption>
+   <thead><tr><th scope="col">Onderdeel</th><th scope="col">Wat geef je door?</th><th scope="col">Wat vraag je na?</th></tr></thead>
+   <tbody>
+    <tr><th scope="row">Groepsgrootte</th><td>Bijvoorbeeld 20, 30 of 40 deelnemers.</td><td>Toegestane capaciteit en beschikbare zitplaatsen.</td></tr>
+    <tr><th scope="row">Route vanuit Breda</th><td>Vertrekadres, bestemming en extra stops.</td><td>Welke reistijd en afstand in het voorstel zitten.</td></tr>
+    <tr><th scope="row">Heen- en terugrit</th><td>Vertrektijd, ophaaltijd en terugkomst.</td><td>Of de bus wacht of later terugkomt, en eventuele wachttijd.</td></tr>
+    <tr><th scope="row">Sfeer en voorzieningen</th><td>Muziek, verlichting en wensen voor consumpties.</td><td>Wat de aangeboden bus heeft en welke huisregels gelden.</td></tr>
+   </tbody>
+  </table></div>
+  <p>Zo vergelijk je het volledige voorstel en voorkom je onduidelijkheid over extra stops, wachttijd of de terugreis. <a href="/gidsen/partybus-prijzen/">Lees meer over de kosten van een partybus</a>.</p>
+  <div class="breda-actions"><a class="btn btn--primary" href={quoteHref}>Vraag een offerte voor vertrek uit Breda</a><a class="btn btn--ghost" href={whatsappHref} target="_blank" rel="noopener noreferrer" data-partner-whatsapp="true" data-partner-whatsapp-button-type="cta">Bespreek jullie rit via WhatsApp</a></div>
+  <h2>Feestbus of discobus in Breda: kies op voorzieningen</h2>
+  <p>De woorden partybus, feestbus en discobus worden vaak door elkaar gebruikt. Kies daarom op de aangeboden bus en jullie wensen. Wil je onderweg muziek en sfeerverlichting, vraag dan welke installatie beschikbaar is en hoe die wordt gebruikt. Laat ook afspraken over consumpties, bagage, zitplaatsen en de chauffeur bevestigen. Een naam als ‘discobus’ garandeert geen specifieke uitrusting.</p>
+  <h2>Vanuit Breda naar een festival, feest of bedrijfsuitje</h2>
+  <div class="breda-plans">{plans.map(plan=><article><h3>{plan.title}</h3><p>{plan.text}</p><a href={plan.href}>{plan.label} →</a></article>)}</div>
+  <p>Wil je vanuit Breda naar Defqon.1? <a href="/partybus-breda-defqon/">Bekijk de bestaande routepagina Breda–Defqon.1</a> en vermeld de bezoekdag en beide reistijden in je aanvraag. Beschikbaarheid, route en opstapplaats worden voor jullie rit bevestigd.</p>
+ </div>
+</section>
+<style>
+ .breda-planning p{max-width:76ch;line-height:1.8}.breda-planning h2{margin-block:1.8rem 1rem;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.25}.breda-table-wrap{max-width:100%;overflow-x:auto;margin-block:1.5rem}table{width:100%;border-collapse:collapse;text-align:left;font-size:.95rem}caption{text-align:left;font-weight:700;margin-bottom:.8rem}th,td{padding:.9rem;vertical-align:top;border-bottom:1px solid var(--color-primary-line)}thead{background:var(--color-surface-alt)}.breda-plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}.breda-plans article{padding:1.25rem;border:1px solid var(--color-primary-line);border-radius:.8rem}.breda-plans h3{margin-top:0}.breda-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-block:1.5rem}.breda-planning a:not(.btn){text-decoration:underline;text-underline-offset:.2em}@media(max-width:800px){.breda-plans{grid-template-columns:1fr}}@media(max-width:600px){th,td{padding:.65rem;font-size:.88rem}.breda-actions{display:grid}.breda-actions .btn{white-space:normal;text-align:center}}
+</style>
