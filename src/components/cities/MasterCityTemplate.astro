@@ -1,4 +1,5 @@
 ---
+import { applySeoPhaseOne } from '../../data/cities/seoPhaseOne';
 import { getGeneralProvinceForCity } from '../../data/provinces/general';
 import LocalDepartureNotes from "./LocalDepartureNotes.astro";
 import type { CityPageData } from '../../data/cities/types';
@@ -59,7 +60,7 @@ interface Props {
 const { city: incomingCity } = Astro.props;
 const generalProvince = getGeneralProvinceForCity(incomingCity.slug);
 const isNoordBrabantPartnerCity = isNoordBrabantMunicipalitySlug(incomingCity.slug);
-const city = isNoordBrabantPartnerCity ? applyPrestigeMunicipalityCopy(incomingCity) : incomingCity;
+const city = applySeoPhaseOne(isNoordBrabantPartnerCity ? applyPrestigeMunicipalityCopy(incomingCity) : incomingCity);
 const relatedCitySlugs = isNoordBrabantPartnerCity
 	? getNoordBrabantNeighborSlugs(city.slug)
 	: city.relatedCitySlugs;

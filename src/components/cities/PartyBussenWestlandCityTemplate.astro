@@ -1,4 +1,5 @@
 ---
+import { applySeoPhaseOne } from '../../data/cities/seoPhaseOne';
 import LocalDepartureNotes from "./LocalDepartureNotes.astro";
 import type { CityPageData } from '../../data/cities/types';
 import { getRelatedCities } from '../../data/cities/registry';
@@ -53,7 +54,7 @@ const { city: incomingCity } = Astro.props;
 if (!isUtrechtMunicipalitySlug(incomingCity.slug)) {
 	throw new Error(`PartyBussenWestlandCityTemplate used for non-Utrecht city: ${incomingCity.slug}`);
 }
-const city = applyPartyBussenWestlandMunicipalityCopy(incomingCity);
+const city = applySeoPhaseOne(applyPartyBussenWestlandMunicipalityCopy(incomingCity));
 const relatedCities = getRelatedCities(city.slug, getUtrechtNeighborSlugs(incomingCity.slug), 5);
 const partnerCityMedia = resolvePartyBussenWestlandCityMedia(city.slug);
 const whatsappHref = buildPartyBussenWestlandWhatsappHref(city.name);

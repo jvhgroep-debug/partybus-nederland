@@ -1,4 +1,5 @@
 ---
+import { applySeoPhaseOne } from '../../../data/cities/seoPhaseOne';
 import CityLayout from '../../../layouts/CityLayout.astro';
 import ZuidHollandPartnerCityTemplate from '../../../components/cities/ZuidHollandPartnerCityTemplate.astro';
 import { rotterdamCity as rotterdamSource } from '../../../data/cities/rotterdam';
@@ -12,7 +13,7 @@ import { zuidHollandFooter } from '../../../data/settings/regionalFooters';
 import { resolveCityHeroImage } from '../../../lib/cityImages';
 import { buildZuidHollandWhatsappTrackingContext } from '../../../lib/partnerWhatsappTracking';
 
-const city = applyTourgoMunicipalityCopy(rotterdamSource);
+const city = applySeoPhaseOne(applyTourgoMunicipalityCopy(rotterdamSource));
 const heroImage = resolveTourgoCityMedia(city.slug).hero;
 const originalHeroImage = resolveCityHeroImage(city.slug);
 
