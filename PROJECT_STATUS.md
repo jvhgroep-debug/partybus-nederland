@@ -114,3 +114,9 @@ De drie oude sitemapindieningen zijn niet uit het Search Console-dashboard verwi
 ### Volgende opdracht na herstel
 
 Productiecontrole van redirects, acht extra Brabantse plaatsen, vier partnerformulieren en nieuwe beeldbestanden. Daarna sitemapverwerking/Zeeland-indexering en aanvullende mobiele/CWV-controle.
+
+### Definitieve herstelpublicatie
+
+Aanvullende headercorrectie uit voorstel #3 is gemerged als `e06bc7308943b1f1d6417743ff1e9b0f544cc28d`. Cloudflare-productiedeploy `55c3b2f3-51e3-481b-a27d-f52ceccb22b8` is geslaagd. Live browsercontrole bevestigt op Utrecht twee regionale offerteknoppen (desktop/mobiel) met `partner=party-bussen-westland` en de juiste bronpagina. Geen ontbrekende afbeeldingen op de gecontroleerde pagina. Geen offerte of WhatsApp-bericht verzonden.
+
+De technische herstelversie staat online. Sitemap opnieuw geaccepteerd, nog pending bij Google. Overige open beperkingen hierboven blijven gelden. Deze laatste documentatie-update wijzigt geen websitecode.
