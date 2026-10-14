@@ -1,6 +1,6 @@
 # Partybus Nederland — officieel beheerproject
 
-Laatste update: 13 oktober 2026. Dit bestand is het startpunt voor vervolgwerk vanuit ChatGPT Work.
+Laatste update: 15 oktober 2026. Dit bestand is het startpunt voor vervolgwerk vanuit ChatGPT Work.
 
 ## Vaste werkwijze
 
@@ -186,3 +186,8 @@ Opdracht Johan: bestaande pagina’s gericht bijwerken voor betere zichtbaarheid
 - Geen nieuwe routes, redirects, partnergegevens, WhatsApp-nummers, offerte-/e-mailroutes of tracking gewijzigd. Backlinks zijn niet aangevraagd en er zijn geen berichten verstuurd.
 - Build 577 pagina’s; SEO-audit, interne link-/assetcheck, vier-partner WhatsApp-test en diff-check geslaagd. HTML-vergelijking bevestigt behoud van partnerlinks, formuliervelden, dialogattributen en canonicals. Inhoud verschilt op 12 pagina’s; overige verschillen betreffen de gedeelde CSS-verwijzing/scoping.
 - Publicatie en livecontrole nog afzonderlijk te bevestigen. Geen claim van hogere Googleposities. Effect beoordelen na ten minste 28 volledige dagen na publicatie, per pagina en query met vergelijkbare periode/filters.
+
+
+### Lokale SEO-publicatie bevestigd
+
+Voorstel #11 gemerged als `c6ef31595a45999dbf11b86d7f501c9c2a64dc50`. Cloudflare-productiedeploy `be664160-3a17-4709-9b5b-ac597820ac25` geslaagd. Live browsercontrole op 15 oktober (Dubai) bevestigt nieuwe inhoud op alle twaalf genoemde pagina’s: acht nieuwe titles, negen planningslinksecties, drie vertrekplaatsverwijzingen, telkens één H1. Bestaande partnerdialogen tonen de juiste nummers; op geladen beelden geen ontbrekende afbeeldingen gezien. Alle acht aangepaste FAQ-lijsten lokaal exact vergeleken met JSON-LD. Geen berichten of aanvragen verstuurd. Volledige mobiele visuele QA/CWV en hogere Googleposities zijn hiermee niet bevestigd.
