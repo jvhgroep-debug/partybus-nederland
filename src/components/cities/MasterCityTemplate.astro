@@ -28,6 +28,7 @@ import CityHowItWorks from './CityHowItWorks.astro';
 import CityPickupLocations from './CityPickupLocations.astro';
 import CityConversionBand from './CityConversionBand.astro';
 import CityFaq from './CityFaq.astro';
+import CityPlanningLinks from './CityPlanningLinks.astro';
 import CityRelatedCities from './CityRelatedCities.astro';
 import TilburgSeoClusterLinks from './TilburgSeoClusterLinks.astro';
 import CityCta from './CityCta.astro';
@@ -264,6 +265,7 @@ const conversionCopy = isNoordBrabantPartnerCity
 		cards={isNoordBrabantPartnerCity ? prestigeBookingTips : bookingTips}
 	/>
 
+	{['oss', 'tilburg', 'breda', 'amsterdam', 'utrecht', 'westland', 'leiden', 'rotterdam', 'den-haag', 'maashorst', 'leeuwarden', 'utrechtse-heuvelrug'].includes(city.slug) && <CityPlanningLinks city={city} />}
 	<CityFaq items={city.faqs} cityName={city.name} />
 
 	{city.slug === 'tilburg' && <TilburgSeoClusterLinks />}

@@ -174,3 +174,15 @@ Opdracht Johan: hetzelfde WhatsApp-icoon en invulvenster op alle partnerpagina�
 Voorstel #9 gemerged als `04c3eb05ea8fab6e7fed43a3042404f1f8ba89cf`. Cloudflare-productiedeploy `28212417-0f55-4448-a2d3-dd2b21b01368` geslaagd. Live browsercontrole op de vier provinciepagina’s bevestigt dat het zwevende icoon het venster voor respectievelijk Prestige Coach Service, Tourgo Partybussen, Party Bussen Westland en StarTransfer opent. StarTransfer toont expliciet de tijdelijke route via Partybus Nederland. Alle vensters weer gesloten; geen berichten verstuurd.
 
 Partnerdata blijven server-side; de browser gebruikt alleen de lichte berichtbouwer. Bestaande 577 pagina’s blijven bereikbaar via dezelfde URL’s. Statische controle dekt 318 partnerpagina’s; interactieve livecontrole is steekproefsgewijs één per partner.
+
+## 15 oktober 2026 — lokale SEO-kansen versterken
+
+Opdracht Johan: bestaande pagina’s gericht bijwerken voor betere zichtbaarheid. Branch `seo/lokale-kansen-2026-10-15`. Uitsluitend query/pagina-rapport van `sc-domain:partybusnederland.nl`, web, 14 september–11 oktober 2026. De door Johan geplakte cijfers hebben een onbekende periode en zijn niet als vergelijkbare nulmeting gebruikt. Geen ruwe analytics in GitHub opgeslagen.
+
+- Acht bestaande stadspagina’s: Oss, Tilburg, Amsterdam, Utrecht, Westland, Leiden, Rotterdam en Den Haag. Lokale vertrekintentie, verzameladressen, prijsfactoren, groepen 20/30/40 en terugrit verduidelijkt. Titles/descriptions aangepast; geen verzonnen tarieven, beschikbaarheid of vestigingen.
+- Zichtbare FAQ en bestaande FAQ-schema gebruiken dezelfde aangepaste citydata. Breda’s eerder gemaakte uitgebreide copy blijft intact.
+- Negen stadspagina’s (inclusief Breda) krijgen contextlinks naar bestaande prijs-, bedrijfsuitje-, vrijgezellenfeest-, partner- en festivalinformatie.
+- Search Console liet andere URL’s bij sommige stadsqueries zien. Maashorst, Leeuwarden en Utrechtse Heuvelrug krijgen een expliciete verwijzing naar respectievelijk de vertrekpagina Oss, Leiden en Utrecht stad. Dit is een relevantiesignaal, geen bewezen oplossing voor zoekwoordconcurrentie.
+- Geen nieuwe routes, redirects, partnergegevens, WhatsApp-nummers, offerte-/e-mailroutes of tracking gewijzigd. Backlinks zijn niet aangevraagd en er zijn geen berichten verstuurd.
+- Build 577 pagina’s; SEO-audit, interne link-/assetcheck, vier-partner WhatsApp-test en diff-check geslaagd. HTML-vergelijking bevestigt behoud van partnerlinks, formuliervelden, dialogattributen en canonicals. Inhoud verschilt op 12 pagina’s; overige verschillen betreffen de gedeelde CSS-verwijzing/scoping.
+- Publicatie en livecontrole nog afzonderlijk te bevestigen. Geen claim van hogere Googleposities. Effect beoordelen na ten minste 28 volledige dagen na publicatie, per pagina en query met vergelijkbare periode/filters.
