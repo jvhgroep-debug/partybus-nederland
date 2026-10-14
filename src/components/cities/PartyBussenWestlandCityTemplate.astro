@@ -40,6 +40,7 @@ import CityHowItWorks from './CityHowItWorks.astro';
 import CityPickupLocations from './CityPickupLocations.astro';
 import CityConversionBand from './CityConversionBand.astro';
 import CityFaq from './CityFaq.astro';
+import CityPlanningLinks from './CityPlanningLinks.astro';
 import CityRelatedCities from './CityRelatedCities.astro';
 import CityCta from './CityCta.astro';
 import InfoGuide from '../shared/InfoGuide.astro';
@@ -176,6 +177,7 @@ const conversionCopy = westlandConversionCopy(city.name, city.slug);
 		cards={westlandBookingTips}
 	/>
 
+	{['oss', 'tilburg', 'breda', 'amsterdam', 'utrecht', 'westland', 'leiden', 'rotterdam', 'den-haag', 'maashorst', 'leeuwarden', 'utrechtse-heuvelrug'].includes(city.slug) && <CityPlanningLinks city={city} />}
 	<CityFaq items={city.faqs} cityName={city.name} />
 
 	{relatedCities.length > 0 && <CityRelatedCities cityName={city.name} cities={relatedCities} />}

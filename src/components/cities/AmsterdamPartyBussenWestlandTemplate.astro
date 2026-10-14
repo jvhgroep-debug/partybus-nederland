@@ -29,6 +29,7 @@ import CityHowItWorks from './CityHowItWorks.astro';
 import CityPickupLocations from './CityPickupLocations.astro';
 import CityConversionBand from './CityConversionBand.astro';
 import CityFaq from './CityFaq.astro';
+import CityPlanningLinks from './CityPlanningLinks.astro';
 import CityCta from './CityCta.astro';
 import RegionalPartnerSection from '../partners/RegionalPartnerSection.astro';
 import AmsterdamPartnerHero from '../partners/AmsterdamPartnerHero.astro';
@@ -166,6 +167,7 @@ const partnerGallery = amsterdamWestlandMedia.gallery.slice(0, 6);
 		note={city.pickup.note}
 	/>
 
+	{['oss', 'tilburg', 'breda', 'amsterdam', 'utrecht', 'westland', 'leiden', 'rotterdam', 'den-haag', 'maashorst', 'leeuwarden', 'utrechtse-heuvelrug'].includes(city.slug) && <CityPlanningLinks city={city} />}
 	<CityFaq items={city.faqs} cityName={city.name} />
 
 	<nav class="master-city__links section__inner" aria-label="Vervolgstappen">

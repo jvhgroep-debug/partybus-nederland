@@ -1,4 +1,5 @@
 import type { CityPageData } from './types';
+import { applyFocusedCitySeo } from './focusedCitySeo';
 
 // Selected by GSC impressions, 13 September–10 October 2026. Raw analytics are kept out of the repository.
 const localCopy: Record<string, { context: string; planning: string; term: string }> = {
@@ -16,7 +17,7 @@ const localCopy: Record<string, { context: string; planning: string; term: strin
 };
 
 /** Content-only overlay: preserves routes, partner routing, images, forms and WhatsApp URLs. */
-export function applySeoPhaseOne(city: CityPageData): CityPageData {
+function applySeoPhaseOneBase(city: CityPageData): CityPageData {
   // Breda has a complete local hub; keep its visible copy and schema in sync.
   if (city.slug === 'breda') return city;
   const copy = localCopy[city.slug];
@@ -33,4 +34,8 @@ export function applySeoPhaseOne(city: CityPageData): CityPageData {
       answer: `De prijs voor vertrek vanuit ${city.name} hangt af van datum, aantal personen, route, ritduur en eventuele stops. Geef ook de gewenste terugrit door. Vraag welke kosten en faciliteiten in het voorstel zitten; beschikbaarheid en prijs worden voor jullie rit bevestigd.`,
     }],
   };
+}
+
+export function applySeoPhaseOne(city: CityPageData): CityPageData {
+  return applyFocusedCitySeo(applySeoPhaseOneBase(city));
 }

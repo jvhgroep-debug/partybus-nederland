@@ -1,0 +1,35 @@
+---
+interface Props { city: {slug:string; name:string}; }
+const {city}=Astro.props;
+const regions: Record<string,{name:string;path:string;festival?:string}> = {
+ oss:{name:'Noord-Brabant',path:'/provincies/noord-brabant/',festival:'/provincies/noord-brabant/festivals-2026-2027/'},
+ tilburg:{name:'Noord-Brabant',path:'/provincies/noord-brabant/',festival:'/provincies/noord-brabant/festivals-2026-2027/'},
+ breda:{name:'Noord-Brabant',path:'/provincies/noord-brabant/',festival:'/provincies/noord-brabant/festivals-2026-2027/'},
+ amsterdam:{name:'Amsterdam',path:'/kennisbank/samenwerking-party-bussen-westland-utrecht-amsterdam/',festival:'/steden/partybus-huren-amsterdam/festivals/'},
+ utrecht:{name:'Utrecht',path:'/provincies/utrecht/',festival:'/provincies/utrecht/festivals/'},
+ westland:{name:'Zuid-Holland',path:'/provincies/zuid-holland/',festival:'/provincies/zuid-holland/festivals/'},
+ leiden:{name:'Zuid-Holland',path:'/provincies/zuid-holland/',festival:'/provincies/zuid-holland/festivals/'},
+ rotterdam:{name:'Zuid-Holland',path:'/provincies/zuid-holland/',festival:'/provincies/zuid-holland/festivals/'},
+ 'den-haag':{name:'Zuid-Holland',path:'/provincies/zuid-holland/',festival:'/provincies/zuid-holland/festivals/'},
+};
+const region=regions[city.slug];
+const departureLinks: Record<string,{label:string;path:string;intro:string}> = {
+ maashorst:{label:'Partybus huren in Oss',path:'/steden/partybus-huren-oss/',intro:'Vertrekt jullie groep uit Oss of Berghem? Bekijk de vertrekpagina voor de gemeente Oss. Deze pagina blijft bedoeld voor Maashorst.'},
+ leeuwarden:{label:'Partybus huren in Leiden',path:'/steden/partybus-huren-leiden/',intro:'Is Leiden jullie opstapplaats? Kies de vertrekpagina voor Leiden in Zuid-Holland. Deze pagina gaat over vertrek uit Leeuwarden in Friesland.'},
+ 'utrechtse-heuvelrug':{label:'Partybus huren in Utrecht stad',path:'/steden/partybus-huren-utrecht/',intro:'Verzamelt de groep in de stad Utrecht? Bekijk de stadspagina. Deze pagina gaat over vertrek uit de gemeente Utrechtse Heuvelrug.'},
+};
+const departure=departureLinks[city.slug];
+---
+{region && <section class="section" aria-labelledby="city-plan-links-title"><div class="section__inner">
+ <h2 class="section__title" id="city-plan-links-title">Maak jullie aanvraag vanuit {city.name} compleet</h2>
+ <p>Vergelijk het voorstel op route, tijden en voorzieningen. Met deze informatie kun je gerichter overleggen met de vervoerder.</p>
+ <ul>
+  <li><a href="/gidsen/partybus-prijzen/">Hoe wordt de prijs van een partybus berekend?</a> — bekijk de invloed van ritduur, route en wachttijd.</li>
+  <li><a href="/diensten/partybus-vrijgezellenfeest/">Een partybus voor een vrijgezellenfeest</a> — spreek alle stops en de terugrit af.</li>
+  <li><a href="/diensten/partybus-bedrijfsuitje/">Vervoer voor een bedrijfsuitje</a> — geef vertrekadres, groepsgrootte en eindtijd door.</li>
+  <li><a href={region.path}>Partner en werkgebied {region.name}</a> — bekijk wie jullie aanvraag behandelt.</li>
+  {region.festival && <li><a href={region.festival}>Festivalvervoer in {region.name}</a> — controleer de informatie voor jullie bezoekdag en vraag naar de ophaalplek.</li>}
+ </ul>
+</div></section>}
+{departure && <section class="section"><div class="section__inner"><h2 class="section__title">Kies de pagina voor jullie vertrekplaats</h2><p>{departure.intro} <a href={departure.path}>{departure.label}</a>.</p></div></section>}
+<style>p,li{line-height:1.7;color:var(--color-text-muted)}ul{padding-left:1.3rem;display:grid;gap:.65rem}a{color:var(--color-primary,#d0b978);text-decoration:underline;text-underline-offset:.2em}</style>
