@@ -1,5 +1,13 @@
 # Partybus Nederland — officieel beheerproject
 
+## 16 oktober 2026 — WhatsApp-invulvenster algemeen kennisbankartikel
+
+- Opdracht Johan: op `/kennisbank/groepsgrootte-wijzigen-na-partybus-offerte/` hetzelfde WhatsApp-keuzevenster gebruiken als op de partnerpagina’s.
+- Bestaande gedeelde component hergebruikt voor het algemene contact Partybus Nederland; nummer uit `src/data/settings/whatsapp.ts` blijft `31684002350`. Dit contact wordt niet als StarTransfer toegewezen.
+- Naam, aanvraagtype, datum, groepsgrootte, opstapadres, bestemming, terugreis en wensen gaan mee in het conceptbericht. Herkomst PartybusNederland.nl en exacte artikel-URL blijven opgenomen. Alleen de bezoeker verstuurt het bericht.
+- Geen partnernummer, formulier, tracking of overige artikelinhoud gewijzigd. Componentwijziging betreft alleen de TypeScript-props voor het algemene contact; bestaande partnergedrag blijft identiek.
+- Validatie en Cloudflare-publicatie worden apart bevestigd. Geen echte aanvraag of WhatsApp verstuurd.
+
 ## Blogpublicatie 16 oktober 2026 — algemeen
 
 - Website: `https://www.partybusnederland.nl`; oorspronkelijke planning: `2026-10-16T12:00:00+04:00`.

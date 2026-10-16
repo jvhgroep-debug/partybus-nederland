@@ -1,6 +1,5 @@
 ---
-import type { whatsappRequestPartners } from '../../lib/partnerWhatsappRequest';
-interface Props {partner: (typeof whatsappRequestPartners)[number]; departure: string; sourcePath: string;}
+interface Props {partner: {name: string; phone: string; temporary: boolean}; departure: string; sourcePath: string;}
 const {partner,departure,sourcePath}=Astro.props;
 ---
 <dialog class="partner-whatsapp-request" data-partner-whatsapp-request data-phone={partner.phone} data-partner-name={partner.name} data-departure={departure} data-source-path={sourcePath} aria-labelledby="partner-whatsapp-request-title">

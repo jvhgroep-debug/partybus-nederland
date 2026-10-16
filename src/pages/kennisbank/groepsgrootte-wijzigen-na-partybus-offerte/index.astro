@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import MasterKennisbankArticle from '../../../components/kennisbank/MasterKennisbankArticle.astro';
+import PartnerWhatsappRequest from '../../../components/shared/PartnerWhatsappRequest.astro';
+import { whatsapp } from '../../../data/settings/whatsapp';
 import { groepsgrootteWijzigen as article } from '../../../data/kennisbank/articles/groepsgrootteWijzigen';
 import { buildArticleSchema, buildBreadcrumbSchema, buildFaqPageSchema } from '../../../lib/guides/schema';
 const image = `https://www.partybusnederland.nl${article.heroImage.src}`;
@@ -9,4 +11,5 @@ const jsonLd = [buildArticleSchema({ headline: article.h1, description: article.
 ---
 <BaseLayout title={article.seoTitle} description={article.metaDescription} canonical={article.canonical} titleExact={true} preloadImage={article.heroImage.src} ogImage={image} twitterImage={image} jsonLd={jsonLd}>
   <MasterKennisbankArticle article={article} />
+  <PartnerWhatsappRequest partner={{name: 'Partybus Nederland', phone: whatsapp.phone, temporary: false}} departure="Nederland" sourcePath={article.path} />
 </BaseLayout>
