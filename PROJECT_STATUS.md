@@ -201,3 +201,10 @@ Opdracht Johan: bestaande pagina’s gericht bijwerken voor betere zichtbaarheid
 ### Lokale SEO-publicatie bevestigd
 
 Voorstel #11 gemerged als `c6ef31595a45999dbf11b86d7f501c9c2a64dc50`. Cloudflare-productiedeploy `be664160-3a17-4709-9b5b-ac597820ac25` geslaagd. Live browsercontrole op 15 oktober (Dubai) bevestigt nieuwe inhoud op alle twaalf genoemde pagina’s: acht nieuwe titles, negen planningslinksecties, drie vertrekplaatsverwijzingen, telkens één H1. Bestaande partnerdialogen tonen de juiste nummers; op geladen beelden geen ontbrekende afbeeldingen gezien. Alle acht aangepaste FAQ-lijsten lokaal exact vergeleken met JSON-LD. Geen berichten of aanvragen verstuurd. Volledige mobiele visuele QA/CWV en hogere Googleposities zijn hiermee niet bevestigd.
+
+
+### Bevestiging blogdeployment 16 oktober 2026
+
+Algemeen artikel: **Meer of minder deelnemers na je partybusofferte: wat regel je?** Oorspronkelijke planning `2026-10-16T12:00:00+04:00`; URL `https://www.partybusnederland.nl/kennisbank/groepsgrootte-wijzigen-na-partybus-offerte/`.
+
+Voorstel #13 gemerged als `08f3206f79d6aed5f23295e4542ad0012493092e`. Cloudflare Pages bevestigt succesvolle deployment `ffdfa3ec-2db9-4bd6-b77d-adf0e780c202`. Build, SEO, links/assets en vier-partner WhatsApp-tests geslaagd. Vergelijking met de 577 eerdere pagina’s bevestigt identieke titles/H1/canonicals/formulierattributen/WhatsApp-links/dialog-ID’s; alleen homepage, kennisbankoverzicht en HTML-sitemap hebben toegevoegde verwijzingen. Geen berichten verstuurd. Rechtstreekse publieke domeincontrole is vanuit deze uitvoeromgeving niet bevestigd; HTTP-controle geblokkeerd. Een hostingbevestiging wordt niet als interactieve live browsercontrole omschreven. Maak geen tweede artikel voor deze planningsdatum.
