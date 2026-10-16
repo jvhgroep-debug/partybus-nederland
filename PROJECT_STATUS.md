@@ -216,3 +216,8 @@ Voorstel #11 gemerged als `c6ef31595a45999dbf11b86d7f501c9c2a64dc50`. Cloudflare
 Algemeen artikel: **Meer of minder deelnemers na je partybusofferte: wat regel je?** Oorspronkelijke planning `2026-10-16T12:00:00+04:00`; URL `https://www.partybusnederland.nl/kennisbank/groepsgrootte-wijzigen-na-partybus-offerte/`.
 
 Voorstel #13 gemerged als `08f3206f79d6aed5f23295e4542ad0012493092e`. Cloudflare Pages bevestigt succesvolle deployment `ffdfa3ec-2db9-4bd6-b77d-adf0e780c202`. Build, SEO, links/assets en vier-partner WhatsApp-tests geslaagd. Vergelijking met de 577 eerdere pagina’s bevestigt identieke titles/H1/canonicals/formulierattributen/WhatsApp-links/dialog-ID’s; alleen homepage, kennisbankoverzicht en HTML-sitemap hebben toegevoegde verwijzingen. Geen berichten verstuurd. Rechtstreekse publieke domeincontrole is vanuit deze uitvoeromgeving niet bevestigd; HTTP-controle geblokkeerd. Een hostingbevestiging wordt niet als interactieve live browsercontrole omschreven. Maak geen tweede artikel voor deze planningsdatum.
+
+
+### Publicatie WhatsApp-artikelcorrectie bevestigd
+
+Voorstel #14 gemerged als `488626c2312991ad485ff301d217a7b02ae41962`. Cloudflare-productiedeploy `837e53aa-9867-4ec7-96f4-7b331e5cdae5` geslaagd op 16 oktober 2026. Build/SEO/link/asset-/partnercontroles geslaagd. Het algemene artikel heeft exact één gedeeld WhatsApp-keuzevenster met het bestaande beheerdersnummer, alle acht velden en de exacte bron-URL; bestaande pagina’s behouden partnernummers en contactroutes. Interactieve live browsercontrole niet beschikbaar en niet geclaimd. Geen berichten verstuurd.
