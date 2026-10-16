@@ -1,5 +1,15 @@
 # Partybus Nederland — officieel beheerproject
 
+## Blogpublicatie 16 oktober 2026 — algemeen
+
+- Website: `https://www.partybusnederland.nl`; oorspronkelijke planning: `2026-10-16T12:00:00+04:00`.
+- Titel: Meer of minder deelnemers na je partybusofferte: wat regel je?
+- Artikel: `/kennisbank/groepsgrootte-wijzigen-na-partybus-offerte/`.
+- Bron: `src/data/kennisbank/articles/groepsgrootteWijzigen.ts` en bijbehorende bestaande kennisbanktemplate; register en homepage-contextlink toegevoegd. De bestaande XML- en HTML-sitemaps gebruiken het register automatisch.
+- Branch: `blog/2026-10-16-groepsgegevens`. Nieuw artikel, geen vervanging van homepage of bestaande gidsen. Werkelijke bestaande Prestige-partnerfoto; geen nieuwe prijs-, capaciteits- of beschikbaarheidsclaims.
+- Validatie: npm ci/build geslaagd, 578 pagina’s; SEO-audit, interne link-/assetcheck en vier-partner WhatsApp-tests geslaagd. Nieuwe canonical en JSON-LD gecontroleerd. Geen formulieren ingediend of berichten verstuurd; partnernummers en integraties ongewijzigd.
+- Publicatiestatus: klaar voor wijzigingsvoorstel en deployment; productie wordt pas na afzonderlijke verificatie als bevestigd gemeld. Herhaal bij een onderbroken uitvoering alleen de ontbrekende deploymentcontrole, niet het artikel.
+
 Laatste update: 15 oktober 2026. Dit bestand is het startpunt voor vervolgwerk vanuit ChatGPT Work.
 
 ## Vaste werkwijze
