@@ -1,5 +1,5 @@
 interface Env { PARTNER_ANALYTICS?: D1Database; RESEND_API_KEY?: string; FROM_EMAIL?: string }
-const partners=['prestige-coach-service','tourgo','party-bussen-westland','startransfer'];
+const partners=['prestige-coach-service','tourgo','party-bussen-westland','startransfer','tc-specialistische-reiniging'];
 const headers={'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer'};
 const json=(data:unknown,status=200)=>new Response(JSON.stringify(data),{status,headers});
 const hex=(bytes:ArrayBuffer)=>Array.from(new Uint8Array(bytes),b=>b.toString(16).padStart(2,'0')).join('');
@@ -33,7 +33,7 @@ export const onRequest: PagesFunction<Env> = async ({request,env})=>{
  const token=(request.headers.get('Authorization')||'').replace(/^Bearer /,'');
  if(!await validToken(token,key))return json({error:'Vraag een nieuwe inloglink aan om het overzicht te bekijken.'},401);
  const partner=url.searchParams.get('partner')||'',region=url.searchParams.get('region')||'';
- if(partner&&!partners.includes(partner)||region&&!['noord-brabant','zuid-holland','utrecht','noord-holland','zeeland'].includes(region))return json({error:'Ongeldig filter.'},400);
+ if(partner&&!partners.includes(partner)||region&&!['noord-brabant','zuid-holland','utrecht','noord-holland','zeeland','limburg','noord-brabant-limburg'].includes(region))return json({error:'Ongeldig filter.'},400);
  const start=url.searchParams.get('start')||'',end=url.searchParams.get('end')||'';
  function date(value:string){return /^\d{4}-\d{2}-\d{2}$/.test(value)&&!Number.isNaN(Date.parse(value))&&new Date(value).toISOString().slice(0,10)===value;}
  if(start&&!date(start)||end&&!date(end)||start&&end&&start>end)return json({error:'Kies een geldige periode.'},400);

@@ -221,3 +221,9 @@ Voorstel #13 gemerged als `08f3206f79d6aed5f23295e4542ad0012493092e`. Cloudflare
 ### Publicatie WhatsApp-artikelcorrectie bevestigd
 
 Voorstel #14 gemerged als `488626c2312991ad485ff301d217a7b02ae41962`. Cloudflare-productiedeploy `837e53aa-9867-4ec7-96f4-7b331e5cdae5` geslaagd op 16 oktober 2026. Build/SEO/link/asset-/partnercontroles geslaagd. Het algemene artikel heeft exact één gedeeld WhatsApp-keuzevenster met het bestaande beheerdersnummer, alle acht velden en de exacte bron-URL; bestaande pagina’s behouden partnernummers en contactroutes. Interactieve live browsercontrole niet beschikbaar en niet geclaimd. Geen berichten verstuurd.
+
+## 17 oktober 2026 — TC Specialistische Reiniging in centrale WhatsApp-teller
+
+Opdracht Johan: SchoonVakmannen-partner TC toevoegen aan dezelfde teller. Aparte allowlisted cross-origin ontvangstfunctie voor de bestaande D1-tabel, met partner-ID tc-specialistische-reiniging en de bestaande 180 partnerpagina’s. Geen migratie of wijziging aan bestaande partybusontvangstcode. Dashboard krijgt partner en Limburg-filters en opent TC-bronpagina’s op schoonvakmannen.nl. Algemene partnerpagina’s zijn herkenbaar als Noord-Brabant en Limburg; geen verzonnen provincie toegewezen. Geen naam, klusomschrijving of antwoorden opgeslagen.
+
+Build 578 pagina’s, SEO/link/assetcontroles en bestaande vier-partnertests geslaagd. Nieuwe ontvangstfunctie gebundeld en gemockt gecontroleerd op Brabant/Limburg, onbekende oorsprong/pagina, preflight en opslag. Geen live meetrecords of berichten aangemaakt. Publicatie nog afzonderlijk bevestigen.
