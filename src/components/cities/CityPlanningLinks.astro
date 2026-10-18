@@ -1,4 +1,5 @@
 ---
+import CityLocalTripPlanning from './CityLocalTripPlanning.astro';
 interface Props { city: {slug:string; name:string}; }
 const {city}=Astro.props;
 const regions: Record<string,{name:string;path:string;festival?:string}> = {
@@ -20,6 +21,7 @@ const departureLinks: Record<string,{label:string;path:string;intro:string}> = {
 };
 const departure=departureLinks[city.slug];
 ---
+<CityLocalTripPlanning city={city} />
 {region && <section class="section" aria-labelledby="city-plan-links-title"><div class="section__inner">
  <h2 class="section__title" id="city-plan-links-title">Maak jullie aanvraag vanuit {city.name} compleet</h2>
  <p>Vergelijk het voorstel op route, tijden en voorzieningen. Met deze informatie kun je gerichter overleggen met de vervoerder.</p>

@@ -169,6 +169,8 @@ export const samenwerkingTourgoZuidHolland: KennisbankArticle = {
 		onDark: true,
 	},
 	relatedLinks: [
+    {"label": "Meerdere opstapplaatsen in Zuid-Holland plannen", "href": "/kennisbank/partybus-zuid-holland-meerdere-opstapplaatsen/"},
+
 		{
 			label: 'Partybus Zuid-Holland',
 			href: '/provincies/zuid-holland/',
