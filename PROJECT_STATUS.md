@@ -9,7 +9,13 @@ Opdracht Johan: de aanbevelingen voor Amsterdam, Utrecht, Noord-Brabant en Zuid-
 - Validatie: build geslaagd met 582 pagina’s; SEO-audit, interne link-/assetcheck en vier-partner WhatsApp-tests geslaagd. Gerichte HTML-vergelijking van acht steden bevestigt identieke bestaande offerte-/WhatsApp-links, formulieren, dialogattributen en canonicals; één H1 en zichtbare FAQ-antwoorden gelijk aan JSON-LD. Vier nieuwe blogs gecontroleerd op partnerofferte, precies één dialoog, partnernummer, foto-assets en geldige JSON-LD.
 - Geen berichten of echte aanvragen verstuurd. Browser/mobile QA niet beschikbaar. Publicatie wordt pas na afzonderlijke Cloudflare-bevestiging als geslaagd gemeld. Geen hogere ranking geclaimd; effect later per vergelijkbare meetperiode beoordelen.
 
-Publicatiestatus: implementatiecommit `cf998cf` gecontroleerd. Johan heeft op 18 oktober expliciet bevestigd dat de wijzigingen zoals gebruikelijk naar de bestaande GitHub-repository mogen worden gepubliceerd en live gezet. De eerdere automatische publicatieblokkade is daarmee inhoudelijk beantwoord. Push, merge en Cloudflare-bevestiging worden in deze uitvoering afgerond; productie wordt pas na verificatie bevestigd.
+### Publicatie en domeincontrole bevestigd
+
+Voorstel #16 gemerged als `b1ee333e77159699a4f33225641a8df706138cef`. Cloudflare Pages bevestigt succesvolle productie-deployment `44c6e238-5a84-4467-b97b-d98175a0ef3d` op 18 oktober 2026. De gepubliceerde sourcetree `32e10357046f8c21ee2fe8a95a47310fa1b9f3d4` is exact gelijk aan de lokaal gecontroleerde versie.
+
+Rechtstreekse HTTP-controle op `https://www.partybusnederland.nl` bevestigt voor alle acht aangepaste steden én alle vier nieuwe blogs HTTP 200, de nieuwe inhoud, precies één H1 en de juiste canonicalverwijzing. De vier artikelen staan onder `/kennisbank/opstapplaats-partybus-amsterdam-kiezen/`, `/kennisbank/bedrijfsuitje-utrecht-partybus-terugrit-plannen/`, `/kennisbank/festivalvervoer-brabant-groep-opstapplaatsen/` en `/kennisbank/partybus-zuid-holland-meerdere-opstapplaatsen/`.
+
+Johan heeft expliciet bevestigd de wijzigingen zoals gebruikelijk te publiceren. Geen berichten of aanvragen verstuurd. Interactieve mobiele browser-QA en rankingverbetering blijven niet bevestigd; publicatie en zichtbare nieuwe HTML zijn wel geverifieerd.
 
 # Partybus Nederland — officieel beheerproject
 
