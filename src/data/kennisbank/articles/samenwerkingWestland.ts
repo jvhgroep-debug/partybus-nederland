@@ -127,6 +127,9 @@ export const samenwerkingWestland: KennisbankArticle = {
     "onDark": true
   },
   "relatedLinks": [
+    {"label": "Praktische opstaptips voor Amsterdam", "href": "/kennisbank/opstapplaats-partybus-amsterdam-kiezen/"},
+    {"label": "Bedrijfsuitje vanuit Utrecht: terugrit plannen", "href": "/kennisbank/bedrijfsuitje-utrecht-partybus-terugrit-plannen/"},
+
     {
       "label": "Partybus Utrecht",
       "href": "/provincies/utrecht/",

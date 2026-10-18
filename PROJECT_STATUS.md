@@ -1,3 +1,16 @@
+# SEO-uitbreiding vier partnerregio’s — 18 oktober 2026
+
+Opdracht Johan: de aanbevelingen voor Amsterdam, Utrecht, Noord-Brabant en Zuid-Holland uitvoeren. Werkbranch `seo/vier-regios-2026-10-18`, basis main `7dd1c18`. Vier regio’s bij drie bedrijven: Party Bussen Westland voor Amsterdam/Utrecht, Prestige voor Noord-Brabant en Tourgo voor Zuid-Holland. Zeeland blijft ongewijzigd.
+
+- Acht bestaande stadspagina’s krijgen aanvullende lokale planningsuitleg: Amsterdam, Utrecht, Breda, Rotterdam, Oss, Tilburg, Den Haag en Leiden. Breda en Rotterdam krijgen uitgebreidere uitleg over route, opstapgroepen en terugrit. Bestaande titels, URL’s en FAQ’s blijven behouden na de recente verbeteringen van 15 oktober; geen onnodige herhaalde titelwijzigingen.
+- Vier ondersteunende kennisbankblogs met afzonderlijke planningsvragen: opstappen Amsterdam, bedrijfsuitje/terugrit Utrecht, festivalvervoer/opstapplaatsen Brabant en meerdere opstapplaatsen Zuid-Holland. Bestaande echte partnerfoto’s, correcte partnerofferte en hetzelfde WhatsApp-keuzevenster. Geen prijzen, vestigingen of beschikbaarheid verzonnen.
+- Wederzijdse contextlinks tussen de acht steden en hun nieuwe regionale artikel; de drie bestaande partnerartikelen verwijzen ook naar de nieuwe uitleg. Register, kennisbankoverzicht en beide sitemaps nemen de vier artikelen automatisch mee.
+- Bestaande blogplanning niet gewijzigd of vervangen. Deze vier artikelen zijn een afzonderlijke SEO-uitbreiding op uitdrukkelijk verzoek; geen nieuwe automation aangemaakt.
+- Validatie: build geslaagd met 582 pagina’s; SEO-audit, interne link-/assetcheck en vier-partner WhatsApp-tests geslaagd. Gerichte HTML-vergelijking van acht steden bevestigt identieke bestaande offerte-/WhatsApp-links, formulieren, dialogattributen en canonicals; één H1 en zichtbare FAQ-antwoorden gelijk aan JSON-LD. Vier nieuwe blogs gecontroleerd op partnerofferte, precies één dialoog, partnernummer, foto-assets en geldige JSON-LD.
+- Geen berichten of echte aanvragen verstuurd. Browser/mobile QA niet beschikbaar. Publicatie wordt pas na afzonderlijke Cloudflare-bevestiging als geslaagd gemeld. Geen hogere ranking geclaimd; effect later per vergelijkbare meetperiode beoordelen.
+
+Publicatiestatus: implementatiecommit `cf998cf` gecontroleerd. Johan heeft op 18 oktober expliciet bevestigd dat de wijzigingen zoals gebruikelijk naar de bestaande GitHub-repository mogen worden gepubliceerd en live gezet. De eerdere automatische publicatieblokkade is daarmee inhoudelijk beantwoord. Push, merge en Cloudflare-bevestiging worden in deze uitvoering afgerond; productie wordt pas na verificatie bevestigd.
+
 # Partybus Nederland — officieel beheerproject
 
 ## 16 oktober 2026 — WhatsApp-invulvenster algemeen kennisbankartikel

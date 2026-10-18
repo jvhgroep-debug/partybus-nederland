@@ -162,6 +162,8 @@ export const samenwerkingPrestigeNoordBrabant: KennisbankArticle = {
 		onDark: true,
 	},
 	relatedLinks: [
+    {"label": "Festivalvervoer vanuit Brabant: opstapplaatsen kiezen", "href": "/kennisbank/festivalvervoer-brabant-groep-opstapplaatsen/"},
+
 		{
 			label: 'Partybus Noord-Brabant',
 			href: '/provincies/noord-brabant/',

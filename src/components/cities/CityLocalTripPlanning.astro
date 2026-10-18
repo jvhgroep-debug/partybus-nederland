@@ -1,0 +1,16 @@
+---
+import { localTripPlanning } from '../../data/cities/localTripPlanning';
+import { regionalPlanningForCity } from '../../data/kennisbank/regionalPlanning';
+interface Props { city: { slug: string; name: string } }
+const { city } = Astro.props;
+const plan = localTripPlanning[city.slug];
+const guide = regionalPlanningForCity(city.slug);
+---
+{plan && <section class="section" aria-labelledby="local-trip-title"><div class="section__inner">
+  <p class="section__eyebrow">Vertrek uit {city.name}</p>
+  <h2 class="section__title" id="local-trip-title">{plan.title}</h2>
+  {plan.paragraphs.map(text => <p>{text}</p>)}
+  <ul>{plan.items.map(text => <li>{text}</li>)}</ul>
+  {guide && <p><a href={guide.article.path}>{guide.article.h1} →</a></p>}
+</div></section>}
+<style>p,li{max-width:76ch;line-height:1.75;color:var(--color-text-muted)}ul{padding-left:1.3rem;display:grid;gap:.65rem}a{text-decoration:underline;text-underline-offset:.2em;color:var(--color-primary)}</style>
