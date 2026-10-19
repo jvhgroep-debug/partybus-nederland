@@ -1,3 +1,16 @@
+# Blogplanning 19 oktober 2026 — Prestige / Noord-Brabant
+
+- Website: https://www.partybusnederland.nl; oorspronkelijk gepland `2026-10-19T12:00:00+04:00`.
+- Titel: **Bruiloft in Brabant: dag- en avondgasten in één vervoersplan**.
+- URL: https://www.partybusnederland.nl/kennisbank/bruiloft-brabant-dag-avondgasten-vervoer/
+- Bron: `src/data/kennisbank/articles/bruiloftBrabantGasten.ts`, bestaande MasterKennisbankArticle-template, eigen route en kennisbankregister. Contextlink vanaf de provinciepagina Noord-Brabant; overzicht en sitemaps nemen het register over.
+- Werkbranch `blog/2026-10-19-bruiloft-brabant`, vanaf actuele main `7667ff6d90deab4474064344e4fcfaaf6e803927`. De vier extra blogs van 18 oktober blijven behouden en tellen niet als deze geplande publicatie.
+- Unieke invalshoek: dag- en avondgasten afzonderlijk tellen en transfers tussen ceremonie, diner, feest en retour afstemmen. Geen evenementdata, tarieven, voertuigbeschikbaarheid of lokale vestigingen verzonnen.
+- Echte bestaande Prestige-foto's; primaire bron-URL staat in `publication.photoSource`. Foto's zijn geen bewijs van een specifieke bruiloft of voertuigreservering.
+- Juiste partnerofferte en bestaande gedeelde WhatsApp-pop-up met 31629041798 en herkomst PartybusNederland.nl. Alle partnerdata, overige routes, formulieren, Functions en tracking ongewijzigd. Geen echte aanvragen of berichten verzonden.
+- Validatie: npm ci/build; 583 pagina's; bestaande SEO-audit, interne link-/assetcontrole en vier-partner WhatsApp-test geslaagd. Nieuwe HTML heeft één H1, juiste canonical, Article/FAQ-schema, foto-assets en precies één partnerdialoog met het juiste nummer.
+- Status: gereed voor wijzigingsvoorstel en bestaande Cloudflare-publicatie; echte publieke URL na deployment afzonderlijk controleren. Bij herhaling geen extra artikel voor 19 oktober maken.
+
 # SEO-uitbreiding vier partnerregio’s — 18 oktober 2026
 
 Opdracht Johan: de aanbevelingen voor Amsterdam, Utrecht, Noord-Brabant en Zuid-Holland uitvoeren. Werkbranch `seo/vier-regios-2026-10-18`, basis main `7dd1c18`. Vier regio’s bij drie bedrijven: Party Bussen Westland voor Amsterdam/Utrecht, Prestige voor Noord-Brabant en Tourgo voor Zuid-Holland. Zeeland blijft ongewijzigd.
