@@ -9,7 +9,7 @@
 - Echte bestaande Prestige-foto's; primaire bron-URL staat in `publication.photoSource`. Foto's zijn geen bewijs van een specifieke bruiloft of voertuigreservering.
 - Juiste partnerofferte en bestaande gedeelde WhatsApp-pop-up met 31629041798 en herkomst PartybusNederland.nl. Alle partnerdata, overige routes, formulieren, Functions en tracking ongewijzigd. Geen echte aanvragen of berichten verzonden.
 - Validatie: npm ci/build; 583 pagina's; bestaande SEO-audit, interne link-/assetcontrole en vier-partner WhatsApp-test geslaagd. Nieuwe HTML heeft één H1, juiste canonical, Article/FAQ-schema, foto-assets en precies één partnerdialoog met het juiste nummer.
-- Status: gereed voor wijzigingsvoorstel en bestaande Cloudflare-publicatie; echte publieke URL na deployment afzonderlijk controleren. Bij herhaling geen extra artikel voor 19 oktober maken.
+- Status: **live bevestigd**. Voorstel #17 gemerged als `b99357656dec1d7c4bd5d65fae40165e942ab267`; Cloudflare Pages deployment `19e52c71-ed69-43bc-ae88-240447c45a7d` geslaagd. De echte publieke URL geeft HTTP 200, één H1, juiste canonical, foto en precies één WhatsApp-dialoog met 31629041798. Bij herhaling geen extra artikel voor 19 oktober maken.
 
 # SEO-uitbreiding vier partnerregio’s — 18 oktober 2026
 
