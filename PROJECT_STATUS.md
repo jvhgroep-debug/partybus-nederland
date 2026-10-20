@@ -1,3 +1,16 @@
+# Blogplanning 20 oktober 2026 — Tourgo / Zuid-Holland
+
+- Website: https://www.partybusnederland.nl; oorspronkelijk gepland `2026-10-20T12:00:00+04:00`.
+- Titel: **Weekend weg met een partybus: stem bagage vooraf af**.
+- URL: https://www.partybusnederland.nl/kennisbank/weekend-partybus-zuid-holland-bagage-afstemmen/
+- Bron: `src/data/kennisbank/articles/weekendBagageZuidHolland.ts`, eigen route, bestaand kennisbankregister en MasterKennisbankArticle. Contextlink vanaf provincie Zuid-Holland; kennisbankoverzicht en bestaande sitemaps volgen het register.
+- Werkbranch `blog/2026-10-20-tourgo-bagage`, basis main `486a8ef49df35c3464560979374b8cf62b610b34`. Geen artikel of eerdere SEO-wijziging verwijderd.
+- Nieuwe zoekintentie: aantallen en omvang van weekendbagage, extra spullen, afstemming met verblijf en bevestiging voor het daadwerkelijk aangeboden voertuig. Onderscheidend van de bestaande algemene gids en het Zuid-Hollandse artikel over meerdere opstapplaatsen.
+- Bestaande echte Tourgo-foto’s visueel en met afbeeldingsmetadata gecontroleerd. De XL-buitenfoto is 1600×780; de tweede foto toont interieur (1600×2133), niet een straatbeeld. Altteksten en afmetingen in dit nieuwe artikel daarop afgestemd; bron-URL's in `publication`. Geen bagageruimte of beschikbaarheid uit foto's afgeleid.
+- Bestaande Tourgo-aanvraagroute (`partner=tourgo`, Zuid-Holland, artikel als bron), WhatsApp 31623044970 en gedeelde vragen-pop-up behouden. Geen andere partnerdata, formulieren, Cloudflare Functions, Resend of tracking gewijzigd. Geen berichten of echte aanvragen verstuurd.
+- Validatie: npm ci/build geslaagd met 584 pagina's; `audit-seo.mjs`, `verify-pre-push.mjs`, `test-partner-whatsapp-request.mjs` en git diff --check geslaagd. Gerichte HTML-check bevestigt één H1, juiste canonical/Article/datum, foto's, partnerofferte, precies één dialoog met 31623044970, artikel in kennisbank en beide sitemaps, en contextlink vanaf Zuid-Holland.
+- Publicatiestatus: **klaar voor publicatie; deployment en publieke URL nog te bevestigen**. Bij herhaling eerst bron, deployment en publieke URL controleren; maak geen tweede artikel voor deze geplande datum.
+
 # Blogplanning 19 oktober 2026 — Prestige / Noord-Brabant
 
 - Website: https://www.partybusnederland.nl; oorspronkelijk gepland `2026-10-19T12:00:00+04:00`.
