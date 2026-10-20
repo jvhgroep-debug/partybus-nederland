@@ -3,6 +3,7 @@ import { samenwerkingWestland } from './articles/samenwerkingWestland';
 import type { KennisbankArticle } from './types';
 import { regionalPlanningArticles } from './regionalPlanning';
 import { bruiloftBrabantGasten } from './articles/bruiloftBrabantGasten';
+import { weekendBagageZuidHolland } from './articles/weekendBagageZuidHolland';
 import { groepsgrootteWijzigen } from './articles/groepsgrootteWijzigen';
 import { partybusHurenCompleteGids } from './articles/partybusHurenCompleteGids';
 import { samenwerkingPrestigeNoordBrabant } from './articles/samenwerkingPrestigeNoordBrabant';
@@ -10,6 +11,7 @@ import { samenwerkingTourgoZuidHolland } from './articles/samenwerkingTourgoZuid
 
 /** Registry for Star Local pSEO Suite — kennisbank master articles. */
 export const kennisbankArticles: readonly KennisbankArticle[] = [
+  weekendBagageZuidHolland,
   bruiloftBrabantGasten,
   ...regionalPlanningArticles.map(item => item.article),
   groepsgrootteWijzigen,
