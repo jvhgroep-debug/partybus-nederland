@@ -1,3 +1,4 @@
+import { ritWijzigenZeeland } from './articles/ritWijzigenZeeland';
 import { samenwerkingStarTransferZeeland } from './articles/samenwerkingStarTransferZeeland';
 import { samenwerkingWestland } from './articles/samenwerkingWestland';
 import type { KennisbankArticle } from './types';
@@ -11,6 +12,7 @@ import { samenwerkingTourgoZuidHolland } from './articles/samenwerkingTourgoZuid
 
 /** Registry for Star Local pSEO Suite — kennisbank master articles. */
 export const kennisbankArticles: readonly KennisbankArticle[] = [
+  ritWijzigenZeeland,
   weekendBagageZuidHolland,
   bruiloftBrabantGasten,
   ...regionalPlanningArticles.map(item => item.article),

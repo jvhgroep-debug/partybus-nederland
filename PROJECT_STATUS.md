@@ -1,3 +1,15 @@
+# Blogplanning 22 oktober 2026 — StarTransfer / Zeeland
+
+- Website https://www.partybusnederland.nl; oorspronkelijke planning `2026-10-22T12:00:00+04:00`.
+- Titel: **Je partybusrit vanuit Zeeland verandert: zo geef je wijzigingen duidelijk door**.
+- URL: https://www.partybusnederland.nl/kennisbank/partybus-zeeland-ritwijziging-doorgeven/
+- Bron: `ritWijzigenZeeland.ts`, eigen route, bestaande MasterKennisbankArticle en register; contextlink uitsluitend op de provincie Zeeland via RegionPage. Kennisbank en bestaande sitemaps nemen het register over.
+- Unieke invalshoek: wijzigingen in tijden/adressen/ritdelen vastleggen van oud naar nieuw, één contactpersoon en één nieuwe bevestiging. Het bestaande algemene groepsgrootte-artikel blijft behouden en wordt relevant gekoppeld. Geen fictieve lokale case, tarieven, voorwaarden of beschikbaarheid.
+- Echte bestaande StarTransfer-buitenfoto visueel gecontroleerd; bron-URL in publication. Geen specifieke rit of gereserveerd voertuig geclaimd.
+- Bestaande aanvraaghelper met partner=startransfer, Zeeland en bron-URL. WhatsApp 31684002350, bestaande vragen-pop-up en expliciete tijdelijke handmatige afstemming via Partybus Nederland behouden. Alle andere formulieren, Functions, Resend, partnerdata en tracking behouden. Geen echte aanvraag of bericht verzonden.
+- npm ci/build: 585 pagina’s. SEO-audit, interne-link/assetcheck en vier-partner WhatsApp-tests geslaagd. Gerichte artikelcontrole op H1, canonical, Article/datum, foto, offerteparameters, dialoog/nummer, overzicht en sitemaps volgt vóór commit.
+- Status: bron gereed; deployment en echte publieke bereikbaarheid nog te bevestigen. Hervat hetzelfde artikel en maak geen tweede voor 22 oktober.
+
 # Blogplanning 20 oktober 2026 — Tourgo / Zuid-Holland
 
 - Website: https://www.partybusnederland.nl; oorspronkelijk gepland `2026-10-20T12:00:00+04:00`.
