@@ -8,7 +8,7 @@
 - Echte bestaande StarTransfer-buitenfoto visueel gecontroleerd; bron-URL in publication. Geen specifieke rit of gereserveerd voertuig geclaimd.
 - Bestaande aanvraaghelper met partner=startransfer, Zeeland en bron-URL. WhatsApp 31684002350, bestaande vragen-pop-up en expliciete tijdelijke handmatige afstemming via Partybus Nederland behouden. Alle andere formulieren, Functions, Resend, partnerdata en tracking behouden. Geen echte aanvraag of bericht verzonden.
 - npm ci/build: 585 pagina’s. SEO-audit, interne-link/assetcheck en vier-partner WhatsApp-tests geslaagd. Gerichte artikelcontrole op H1, canonical, Article/datum, foto, offerteparameters, dialoog/nummer, overzicht en sitemaps volgt vóór commit.
-- Status: bron gereed; deployment en echte publieke bereikbaarheid nog te bevestigen. Hervat hetzelfde artikel en maak geen tweede voor 22 oktober.
+- Status: **live bevestigd — published: true**. PR #19 gemerged als `1123c09bf034acf05ccd0d0865672e18736fb060`; Cloudflare Pages productie-deployment `ab893ca6-75b8-4721-b97b-5eac6ef83c5e` geslaagd op 22 oktober 2026. Echte publieke artikel-URL, kennisbank, XML-sitemap en provinciecontextlink HTTP 200 met het artikel. Browser bevestigt één H1, juiste canonical, geladen echte foto’s en één vragenvenster dat voor StarTransfer opent met Zeeland/herkomst en expliciete tijdelijke doorsturing. Berichtbouwer/URL-encoding en offerteparameters gecontroleerd. Geen berichten of aanvragen verstuurd. Maak geen tweede artikel voor 22 oktober.
 
 # Blogplanning 20 oktober 2026 — Tourgo / Zuid-Holland
 
