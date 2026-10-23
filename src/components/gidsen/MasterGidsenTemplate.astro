@@ -18,6 +18,25 @@ interface Props {
 const { page } = Astro.props;
 const seo = page.seo;
 const img = guideImagePool;
+const localExamples: Record<string, { section: string; lead: string; links: { href: string; label: string; description: string }[] }> = {
+	'partybus-prijzen': {
+		section: 'partybus-prijzen-vergelijken',
+		lead: 'Pas de kostenfactoren toe op jullie vertrekplaats en vraag één voorstel voor de volledige rit:',
+		links: [
+			{ href: '/steden/partybus-huren-oss/', label: 'Feestbus huren vanuit Oss', description: 'Vergelijk één verzamelpunt met extra stops in Berghem of Ravenstein.' },
+			{ href: '/steden/partybus-huren-leiden/', label: 'Partybus huren vanuit Leiden', description: 'Neem het vertrekadres, de bestemming en de terugrit samen op in de offerte.' },
+		],
+	},
+	opstapplaatsen: {
+		section: 'opstapplaatsen-bereikbaarheid',
+		lead: 'Bekijk hoe je de keuze voor een bereikbaar opstapadres toepast op deze vertrekplaatsen:',
+		links: [
+			{ href: '/steden/partybus-huren-amsterdam/', label: 'Partybus huren vanuit Amsterdam', description: 'Bespreek een hoteladres in Centrum of een verzamelpunt bij Sloterdijk, Zuid of Amstel.' },
+			{ href: '/steden/partybus-huren-den-haag/', label: 'Feestbus huren vanuit Den Haag', description: 'Stem vertrek in Scheveningen en de gewenste eindstop van de terugrit apart af.' },
+		],
+	},
+};
+const examples = localExamples[page.slug];
 ---
 
 <article class="gidsen-page">
@@ -33,7 +52,12 @@ const img = guideImagePool;
 		</div>
 	</header>
 
-	{page.visualSections.map((section) => <GuideImageSection {...section} />)}
+	{page.visualSections.map((section) => <GuideImageSection {...section}>
+		{examples?.section === section.titleId && <>
+			<p>{examples.lead}</p>
+			<ul>{examples.links.map(link => <li><a href={link.href}>{link.label}</a>: {link.description}</li>)}</ul>
+		</>}
+	</GuideImageSection>)}
 
 	{
 		page.tips.length > 0 && (

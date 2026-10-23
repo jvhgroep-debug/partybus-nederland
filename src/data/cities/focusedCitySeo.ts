@@ -68,20 +68,55 @@ const cities: Record<string, { partner: string; intro: string; planning: string;
   },
 };
 
+// Targeted search presentation; keep the existing departure URLs and partner routes.
+const searchPresentation: Record<string, { title: string; description: string; subtitle: string; question: string; answer: string }> = {
+  oss: {
+    title: 'Partybus & feestbus huren Oss | Vraag een offerte aan',
+    description: 'Feestbus huren vanuit Oss, Berghem of Ravenstein? Bespreek jullie route en terugrit met Prestige Coach Service. Vraag prijs voor jouw datum en groep aan.',
+    subtitle: 'Met je groep vanuit Oss, Berghem of Ravenstein op pad? Vraag Prestige Coach Service om een voorstel voor jullie datum, opstapadressen en terugrit.',
+    question: 'Wat geef ik door als onze groep in Oss én Berghem wil instappen?',
+    answer: 'Maak één aanvraag met beide volledige adressen, het aantal instappers per adres en de gewenste aankomsttijd op de bestemming. Vraag Prestige Coach Service om de volgorde en de kosten van beide stops te bevestigen. Benoem apart of de terugrit ook langs beide adressen moet gaan.',
+  },
+  leiden: {
+    title: 'Partybus huren Leiden | Feestbus met heen- en terugrit',
+    description: 'Partybus of feestbus vanuit Leiden nodig? Bespreek opstappen bij Centraal, Lammenschans of een eigen adres. Vraag Tourgo om een offerte met terugrit.',
+    subtitle: 'Samen vanuit Leiden naar een feest of festival? Vraag Tourgo om prijs en beschikbaarheid voor jullie vertrekadres, groepsgrootte en heen- en terugrit.',
+    question: 'Wat is handiger: opstappen bij Leiden Centraal, Lammenschans of ons eigen adres?',
+    answer: 'Kies op basis van waar deelnemers vandaan komen en hoe zij na de terugrit naar huis gaan. Geef Tourgo het volledige gewenste adres en eventueel een alternatief. Een station is een verzamelgebied, geen gereserveerde bushalte. Tourgo bevestigt welke plek met de aangeboden bus bereikbaar is.',
+  },
+  amsterdam: {
+    title: 'Partybus huren Amsterdam | Vraag een ritofferte aan',
+    description: 'Partybus of discobus vanuit Amsterdam? Bespreek opstappen bij hotel, Sloterdijk of Zuidoost en jullie terugrit. Vraag Party Bussen Westland een offerte.',
+    subtitle: 'Een feestbus of discobus vanuit Amsterdam voor jullie groep? Bespreek opstappen bij hotel, station of een eigen adres en vraag een offerte met terugrit aan.',
+    question: 'Hoe vergelijk ik offertes voor een partybus vanuit Amsterdam?',
+    answer: 'Gebruik bij elk voorstel dezelfde datum, adressen, groepsgrootte en heen- en terugtijden. Laat buscapaciteit, muziek, consumpties, wachttijd en eventuele extra stops apart bevestigen. Vraag bij vertrek uit het centrum welk bereikbaar opstapadres in de prijs is meegenomen. Vergelijk de totaalprijs voor de hele rit.',
+  },
+  'den-haag': {
+    title: 'Partybus huren Den Haag | Feestbus vanuit Scheveningen',
+    description: 'Feestbus huren vanuit Den Haag of Scheveningen? Bespreek opstapadres, groep en terugreis met Tourgo Partybussen. Vraag een offerte voor jullie rit aan.',
+    subtitle: 'Vertrek met je groep uit Den Haag of Scheveningen. Vraag Tourgo om een voorstel met jullie opstapadres, bestemming en afgesproken terugkeeradres.',
+    question: 'Kunnen we heen vertrekken uit Scheveningen en terugkomen bij Hollands Spoor?',
+    answer: 'Je kunt verschillende adressen voor vertrek en terugkomst aanvragen. Geef Tourgo het volledige adres in Scheveningen en het gewenste eindadres bij Hollands Spoor, samen met datum, personen en tijden. Laat de stopplekken, uitvoerbaarheid en totaalprijs bevestigen voordat je de boeking rondmaakt.',
+  },
+};
+
 export function applyFocusedCitySeo(city: CityPageData): CityPageData {
   const local = cities[city.slug];
   if (!local) return city;
   const costQuestion = `Wat kost een partybus of feestbus huren in ${city.name}?`;
   const groupQuestion = `Kan ik een partybus vanuit ${city.name} aanvragen voor 20, 30 of 40 personen?`;
+  const presentation = searchPresentation[city.slug];
   const added = [
     { question: costQuestion, answer: `Er is geen vast tarief voor iedere rit vanuit ${city.name}. ${local.partner} maakt een voorstel op basis van datum, route, aantal deelnemers, ritduur, stops en terugreis. Vraag om een totaalprijs en laat vastleggen of wachttijd, consumpties en eventuele extra stops inbegrepen zijn. Je boekt pas na afspraken met de vervoerder.` },
     { question: groupQuestion, answer: `Geef je werkelijke groepsgrootte door aan ${local.partner}, bijvoorbeeld 20, 30 of 40 personen. Vraag welke bus beschikbaar is en hoeveel toegestane plaatsen die heeft. Een kleinere groep krijgt niet automatisch een lager tarief: voertuig, route en ritduur spelen ook mee. Capaciteit en beschikbaarheid worden per aanvraag bevestigd.` },
     { question: local.question, answer: local.answer },
+    ...(presentation ? [{ question: presentation.question, answer: presentation.answer }] : []),
   ];
   return {
     ...city,
-    metaTitle: `Partybus huren ${city.name} | Feestbus & offerte`,
-    metaDescription: `Partybus of feestbus huren in ${city.name}? Regel vertrek, heen- en terugrit met ${local.partner}. Vraag vrijblijvend prijs en beschikbaarheid aan.`,
+    metaTitle: presentation?.title ?? `Partybus huren ${city.name} | Feestbus & offerte`,
+    metaDescription: presentation?.description ?? `Partybus of feestbus huren in ${city.name}? Regel vertrek, heen- en terugrit met ${local.partner}. Vraag vrijblijvend prijs en beschikbaarheid aan.`,
+    hero: presentation ? { ...city.hero, subtitle: presentation.subtitle } : city.hero,
     intro: { ...city.intro, title: `Partybus of feestbus vanuit ${city.name}: zo plan je de rit`, paragraphs: [local.intro, local.planning, `Vraag ${local.partner} om een voorstel voor jullie datum. Noteer het aantal personen, alle opstapadressen, de bestemming en de gewenste vertrektijd en terugkomst. Laat buscapaciteit, faciliteiten, totaalprijs en voorwaarden bevestigen voordat je boekt.`] },
     pickup: { ...city.pickup, lead: `Deze vertrekgebieden in ${city.name} helpen bij het plannen. Laat de vervoerder het exacte adres en de bereikbaarheid bevestigen.`, items: local.pickup, note: 'Deze suggesties zijn geen vaste haltes of toezeggingen. Spreek voor heenrit en terugrit het concrete adres en tijdstip af.' },
     faqs: [...city.faqs.filter(faq => !/wat kost/i.test(faq.question) && !added.some(item => item.question === faq.question)), ...added],
