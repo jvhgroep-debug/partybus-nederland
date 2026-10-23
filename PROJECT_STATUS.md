@@ -1,3 +1,12 @@
+# 23 oktober 2026 — meer relevante klikken op vier stadspagina’s
+
+- Opdracht Johan: de voorgestelde verbeteringen voor Oss, Leiden, Amsterdam en Den Haag uitvoeren en publiceren. Werkbranch `seo/meer-klikken-steden-2026-10-23`, basis main `a66268f474d91cf12783089e50d12c8fd83e26e2`. Eigen Search Console-export gebruikt voor prioritering; geen ruwe analytics in de repository.
+- Vier onderscheidende titels en metabeschrijvingen, met concrete vertrekintentie, offerte of heen-/terugrit; korte hero-uitleg sluit daarop aan. Geen vaste prijzen, voorzieningen of beschikbaarheid beloofd.
+- Bestaande lokale planningssecties herschreven als keuzehulp: één verzamelpunt versus extra stops in Oss, Centraal/Lammenschans/eigen adres in Leiden, hotel/station/concert in Amsterdam en vertrek-/eindadres Scheveningen/Den Haag. Per stad één relevante extra FAQ; zichtbare tekst en JSON-LD uit dezelfde citydata.
+- Kosten- en opstapgids krijgen contextuele links op de relevante plek naar deze vier bestaande stadspagina’s. Bestaande regionale blogs en links behouden; geen extra of dubbele artikelen toegevoegd.
+- Validatie: npm ci/build (586 pagina’s), SEO-audit, interne-link-/assetcheck, vier-partner WhatsApp-tests en diff-check geslaagd. Voor/na-vergelijking van alle HTML bevestigt identieke canonicals, formulierattributen en offerte-/WhatsApp-links. Alleen de vier stadspagina’s en twee gidsen veranderen inhoudelijk. Gerichte controle bevestigt één H1 en zichtbare FAQ-antwoorden gelijk aan JSON-LD.
+- Geen berichten of aanvragen verstuurd. Geen interactieve browser-/mobiele QA uitgevoerd. Publicatie/livecontrole volgt afzonderlijk; hogere posities of meer klikken zijn nog niet bewezen.
+
 # Blogplanning 23 oktober 2026 — algemeen
 
 - Website https://www.partybusnederland.nl; oorspronkelijke planning `2026-10-23T12:00:00+04:00`. Titel: **Instappen in een partybus: wat bespreek je bij mobiliteitswensen?**
