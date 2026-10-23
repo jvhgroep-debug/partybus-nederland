@@ -1,3 +1,4 @@
+import { mobiliteitswensen } from './articles/mobiliteitswensen';
 import { ritWijzigenZeeland } from './articles/ritWijzigenZeeland';
 import { samenwerkingStarTransferZeeland } from './articles/samenwerkingStarTransferZeeland';
 import { samenwerkingWestland } from './articles/samenwerkingWestland';
@@ -12,6 +13,7 @@ import { samenwerkingTourgoZuidHolland } from './articles/samenwerkingTourgoZuid
 
 /** Registry for Star Local pSEO Suite — kennisbank master articles. */
 export const kennisbankArticles: readonly KennisbankArticle[] = [
+  mobiliteitswensen,
   ritWijzigenZeeland,
   weekendBagageZuidHolland,
   bruiloftBrabantGasten,
