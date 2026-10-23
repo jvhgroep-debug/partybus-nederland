@@ -1,3 +1,13 @@
+# Blogplanning 23 oktober 2026 — algemeen
+
+- Website https://www.partybusnederland.nl; oorspronkelijke planning `2026-10-23T12:00:00+04:00`. Titel: **Instappen in een partybus: wat bespreek je bij mobiliteitswensen?**
+- URL: https://www.partybusnederland.nl/kennisbank/partybus-instappen-mobiliteitswensen-vooraf-bespreken/
+- Bron: `mobiliteitswensen.ts`, eigen kennisbankroute en register; kleine contextlink vanaf de bestaande homepage, alle overige onderdelen behouden. Overzicht en sitemaps via bestaande architectuur.
+- Onderscheidende praktische vraag: informatie over instap, hulpmiddel, werkelijk aangeboden voertuig en complete opstap-/terugritafspraak. Geen toegankelijkheid, hulpmiddelenvervoer, medische geschiktheid of voertuigvoorzieningen beloofd. Geen evenementen of tijdgevoelige bedrijfsfeiten toegevoegd.
+- Echte bestaande Prestige-partnerfoto met bron in publication; niet voorgesteld als bewijs van toegankelijkheid of als gereserveerde bus. Bestaande algemene WhatsApp 31684002350 met één gedeeld vragenvenster en exacte artikelbron; algemene eigenaarcontacten niet als StarTransfer toegewezen.
+- npm ci/build 586 pagina’s, bestaande SEO-audit, interne-link/assetcontrole en vier-partner WhatsApp-test geslaagd. Canonical, H1, Article/datum, foto, aanvraaglink, één vragenvenster, homepagecontext, kennisbank en sitemaps afzonderlijk gecontroleerd vóór commit. Geen aanvraag of bericht verstuurd.
+- Status: bron gereed en lokaal gecontroleerd; publicatie vanaf 12:00 en echte publieke bereikbaarheid nog te bevestigen. Hervat hetzelfde artikel bij een fout, maak geen tweede artikel voor 23 oktober.
+
 # Blogplanning 22 oktober 2026 — StarTransfer / Zeeland
 
 - Website https://www.partybusnederland.nl; oorspronkelijke planning `2026-10-22T12:00:00+04:00`.
