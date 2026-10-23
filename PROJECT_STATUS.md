@@ -6,7 +6,7 @@
 - Onderscheidende praktische vraag: informatie over instap, hulpmiddel, werkelijk aangeboden voertuig en complete opstap-/terugritafspraak. Geen toegankelijkheid, hulpmiddelenvervoer, medische geschiktheid of voertuigvoorzieningen beloofd. Geen evenementen of tijdgevoelige bedrijfsfeiten toegevoegd.
 - Echte bestaande Prestige-partnerfoto met bron in publication; niet voorgesteld als bewijs van toegankelijkheid of als gereserveerde bus. Bestaande algemene WhatsApp 31684002350 met één gedeeld vragenvenster en exacte artikelbron; algemene eigenaarcontacten niet als StarTransfer toegewezen.
 - npm ci/build 586 pagina’s, bestaande SEO-audit, interne-link/assetcontrole en vier-partner WhatsApp-test geslaagd. Canonical, H1, Article/datum, foto, aanvraaglink, één vragenvenster, homepagecontext, kennisbank en sitemaps afzonderlijk gecontroleerd vóór commit. Geen aanvraag of bericht verstuurd.
-- Status: bron gereed en lokaal gecontroleerd; publicatie vanaf 12:00 en echte publieke bereikbaarheid nog te bevestigen. Hervat hetzelfde artikel bij een fout, maak geen tweede artikel voor 23 oktober.
+- Status: **live bevestigd — published: true**. PR #20 gemerged als `3ffeffebe057aac5f42acc4ba5901ec7a555d42a`; Cloudflare Pages productie-deployment `63544475-01d6-4f22-8e6c-87267ad5af20` geslaagd op 23 oktober 2026. Echte publieke artikel-URL, kennisbank, homepagecontext en XML-sitemap HTTP 200 met het artikel. Echte partnerfoto bereikbaar; één H1, canonical/Article, algemeen nummer 31684002350 en precies één bestaand vragenvenster met artikelbron gecontroleerd in publieke HTML. Geen interactieve browsercontrole geclaimd. Geen berichten of aanvragen verstuurd. Maak geen tweede artikel voor 23 oktober.
 
 # Blogplanning 22 oktober 2026 — StarTransfer / Zeeland
 
