@@ -5,7 +5,8 @@
 - Bestaande lokale planningssecties herschreven als keuzehulp: één verzamelpunt versus extra stops in Oss, Centraal/Lammenschans/eigen adres in Leiden, hotel/station/concert in Amsterdam en vertrek-/eindadres Scheveningen/Den Haag. Per stad één relevante extra FAQ; zichtbare tekst en JSON-LD uit dezelfde citydata.
 - Kosten- en opstapgids krijgen contextuele links op de relevante plek naar deze vier bestaande stadspagina’s. Bestaande regionale blogs en links behouden; geen extra of dubbele artikelen toegevoegd.
 - Validatie: npm ci/build (586 pagina’s), SEO-audit, interne-link-/assetcheck, vier-partner WhatsApp-tests en diff-check geslaagd. Voor/na-vergelijking van alle HTML bevestigt identieke canonicals, formulierattributen en offerte-/WhatsApp-links. Alleen de vier stadspagina’s en twee gidsen veranderen inhoudelijk. Gerichte controle bevestigt één H1 en zichtbare FAQ-antwoorden gelijk aan JSON-LD.
-- Geen berichten of aanvragen verstuurd. Geen interactieve browser-/mobiele QA uitgevoerd. Publicatie/livecontrole volgt afzonderlijk; hogere posities of meer klikken zijn nog niet bewezen.
+- Publicatie **live bevestigd**: voorstel #21 gemerged als `0c034280ccd6e05520ba7ef8046ac7b1e4d5729f`; Cloudflare Pages productie-deployment `e9ba9b93-2d4f-47a4-a526-7cd763be461b` geslaagd. Rechtstreekse controle op 23 oktober 2026 om 09:44:17 UTC bevestigt HTTP 200 en nieuwe inhoud op alle vier stadspagina’s en beide gidsen. Titels, canonicals, één H1, structured data en offerte-/WhatsApp-links vergeleken met de gecontroleerde build.
+- Geen berichten of aanvragen verstuurd. Geen interactieve browser-/mobiele QA uitgevoerd. Dit bevestigt publicatie; hogere posities of meer klikken zijn nog niet bewezen. Effect later meten met dezelfde landenfilters en vergelijkbare periodes.
 
 # Blogplanning 23 oktober 2026 — algemeen
 
