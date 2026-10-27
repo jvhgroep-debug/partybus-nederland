@@ -1,0 +1,479 @@
+{
+  "website": "www.partybusnederland.nl",
+  "effectiveFrom": "2026-10-26",
+  "endDate": "2026-12-30",
+  "preserveEarlierPublications": true,
+  "sharedExternalLockVerified": false,
+  "slots": [
+    {
+      "slotId": "www.partybusnederland.nl|2026-10-27|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-10-27",
+      "scheduledAt": "2026-10-27T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "published-confirmed",
+      "published": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-10-28|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-10-28",
+      "scheduledAt": "2026-10-28T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-10-29|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-10-29",
+      "scheduledAt": "2026-10-29T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-10-30|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-10-30",
+      "scheduledAt": "2026-10-30T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-02|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-02",
+      "scheduledAt": "2026-11-02T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-03|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-03",
+      "scheduledAt": "2026-11-03T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-04|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-04",
+      "scheduledAt": "2026-11-04T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-05|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-05",
+      "scheduledAt": "2026-11-05T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-06|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-06",
+      "scheduledAt": "2026-11-06T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-09|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-09",
+      "scheduledAt": "2026-11-09T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-10|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-10",
+      "scheduledAt": "2026-11-10T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-11|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-11",
+      "scheduledAt": "2026-11-11T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-12|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-12",
+      "scheduledAt": "2026-11-12T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-13|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-13",
+      "scheduledAt": "2026-11-13T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-16|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-16",
+      "scheduledAt": "2026-11-16T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-17|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-17",
+      "scheduledAt": "2026-11-17T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-18|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-18",
+      "scheduledAt": "2026-11-18T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-19|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-19",
+      "scheduledAt": "2026-11-19T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-20|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-20",
+      "scheduledAt": "2026-11-20T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-23|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-23",
+      "scheduledAt": "2026-11-23T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-24|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-24",
+      "scheduledAt": "2026-11-24T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-25|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-25",
+      "scheduledAt": "2026-11-25T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-26|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-26",
+      "scheduledAt": "2026-11-26T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-27|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-27",
+      "scheduledAt": "2026-11-27T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-30|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-30",
+      "scheduledAt": "2026-11-30T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-01|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-01",
+      "scheduledAt": "2026-12-01T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-02|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-02",
+      "scheduledAt": "2026-12-02T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-03|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-03",
+      "scheduledAt": "2026-12-03T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-04|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-04",
+      "scheduledAt": "2026-12-04T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-07|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-07",
+      "scheduledAt": "2026-12-07T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-08|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-08",
+      "scheduledAt": "2026-12-08T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-09|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-09",
+      "scheduledAt": "2026-12-09T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-10|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-10",
+      "scheduledAt": "2026-12-10T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-11|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-11",
+      "scheduledAt": "2026-12-11T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-14|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-14",
+      "scheduledAt": "2026-12-14T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-15|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-15",
+      "scheduledAt": "2026-12-15T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-16|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-16",
+      "scheduledAt": "2026-12-16T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-17|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-17",
+      "scheduledAt": "2026-12-17T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-18|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-18",
+      "scheduledAt": "2026-12-18T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-21|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-21",
+      "scheduledAt": "2026-12-21T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-22|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-22",
+      "scheduledAt": "2026-12-22T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-23|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-23",
+      "scheduledAt": "2026-12-23T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-24|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-24",
+      "scheduledAt": "2026-12-24T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-25|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-25",
+      "scheduledAt": "2026-12-25T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-28|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-28",
+      "scheduledAt": "2026-12-28T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-29|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-29",
+      "scheduledAt": "2026-12-29T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-30|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-30",
+      "scheduledAt": "2026-12-30T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "status": "planned",
+      "published": false
+    }
+  ]
+}

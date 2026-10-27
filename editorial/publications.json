@@ -14,8 +14,8 @@
     "title": "Niet iedereen wil tegelijk terug: zo maak je een groepsafspraak",
     "url": "https://www.partybusnederland.nl/kennisbank/partybus-zuid-holland-verschillende-vertrektijden-terugrit/",
     "photoSource": "https://www.partybusnederland.nl/images/partners/tourgo-partybussen/tourgo-partybussen-street.webp",
-    "status": "validated-awaiting-deployment",
-    "published": false,
+    "status": "published-confirmed",
+    "published": true,
     "checks": [
       "npm ci",
       "587 page build",
@@ -23,6 +23,10 @@
       "internal links and assets",
       "four partner WhatsApp routing",
       "article metadata/schema/photo/contacts"
-    ]
+    ],
+    "sourceCommit": "efb793e725a104b722ace56b6eff5505b72134b8",
+    "deploymentId": "44a4df15-0453-43b9-a657-b112995f506f",
+    "verifiedAt": "2026-10-27T00:27:00Z",
+    "publicHttpStatus": 200
   }
 ]

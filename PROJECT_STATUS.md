@@ -3,7 +3,7 @@
 - Vast slot `www.partybusnederland.nl|2026-10-27|1`, start 04:00 Asia/Dubai. Eén artikel over verschillende terugreiswensen binnen een groep; geen extra inhaalartikel voor 26 oktober.
 - Titel: Niet iedereen wil tegelijk terug: zo maak je een groepsafspraak. Bestaande kennisbankarchitectuur, contextlink vanaf Zuid-Holland, echte bestaande Tourgo-foto. Partnernummer 31623044970 en regionale aanvraagroute behouden.
 - Geen actieve GitHub Actions-runs aangetroffen; laatste Cloudflare-check terminal success. Geen verifieerbare gedeelde wachtrij/lock tussen externe routes aangetoond. Verwachte main-SHA wordt bij publiceren gecontroleerd.
-- Validatie geslaagd: npm ci, build 587 pagina’s, SEO-audit, interne links/assets en vier-partner WhatsApp-tests. Artikel-H1/canonical/schema/foto/contacten en ontdekbaarheid gecontroleerd. Publicatie en echte domeincontrole volgen. Geen berichten of aanvragen verstuurd.
+- Validatie geslaagd: npm ci, build 587 pagina’s, SEO-audit, interne links/assets en vier-partner WhatsApp-tests. Artikel-H1/canonical/schema/foto/contacten en ontdekbaarheid gecontroleerd. Voorstel #22 gemerged als efb793e725a104b722ace56b6eff5505b72134b8. Cloudflare-productiedeployment 44a4df15-0453-43b9-a657-b112995f506f geslaagd. Echt domein gecontroleerd: artikel, foto, kennisbank, Zuid-Holland-contextlink en sitemap HTTP 200 en nieuwe inhoud; published bevestigd. Geen berichten of aanvragen verstuurd.
 
 # 23 oktober 2026 — meer relevante klikken op vier stadspagina’s
 
