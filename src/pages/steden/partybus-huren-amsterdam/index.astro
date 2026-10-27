@@ -12,12 +12,10 @@ import {
 	partyBussenWestland,
 } from '../../../data/partners/partyBussenWestland';
 import { amsterdamFooter } from '../../../data/settings/regionalFooters';
-import { resolveCityHeroImage } from '../../../lib/cityImages';
 import { buildPartyBussenWestlandWhatsappTrackingContext } from '../../../lib/partnerWhatsappTracking';
 
 const city = applySeoPhaseOne(applyAmsterdamWestlandCopy(amsterdamSource));
 const heroImage = amsterdamWestlandMedia.hero;
-const originalHeroImage = resolveCityHeroImage(city.slug);
 
 const webPageLd = {
 	'@context': 'https://schema.org',
@@ -71,7 +69,7 @@ const faqLd = {
 	})),
 };
 
-const ogImage = `https://www.partybusnederland.nl${originalHeroImage.src}`;
+const ogImage = `https://www.partybusnederland.nl${heroImage.src}`;
 ---
 
 <CityLayout pageQuoteHref={"/gratis-partybus-offertes-aanvragen/?" + new URLSearchParams({partner: "party-bussen-westland", city: city.name, source: city.path}).toString()}

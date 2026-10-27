@@ -10,12 +10,10 @@ import {
 } from '../../../data/partners/tourgoPartybussen';
 import { applyTourgoMunicipalityCopy } from '../../../data/partners/tourgoCityCopy';
 import { zuidHollandFooter } from '../../../data/settings/regionalFooters';
-import { resolveCityHeroImage } from '../../../lib/cityImages';
 import { buildZuidHollandWhatsappTrackingContext } from '../../../lib/partnerWhatsappTracking';
 
 const city = applySeoPhaseOne(applyTourgoMunicipalityCopy(rotterdamSource));
 const heroImage = resolveTourgoCityMedia(city.slug).hero;
-const originalHeroImage = resolveCityHeroImage(city.slug);
 
 const webPageLd = {
 	'@context': 'https://schema.org',
@@ -69,7 +67,7 @@ const faqLd = {
 	})),
 };
 
-const ogImage = `https://www.partybusnederland.nl${originalHeroImage.src}`;
+const ogImage = `https://www.partybusnederland.nl${heroImage.src}`;
 ---
 
 <CityLayout pageQuoteHref={"/gratis-partybus-offertes-aanvragen/?" + new URLSearchParams({partner: "tourgo", city: city.name, source: city.path}).toString()}

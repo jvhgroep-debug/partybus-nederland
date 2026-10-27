@@ -9,3 +9,12 @@ assert.equal(resolveWhatsappRequestPartner({path:'/kennisbank/samenwerking-tourg
 assert.equal(resolveWhatsappRequestPartner({href:'https://wa.me/31610628733'}).id,'party-bussen-westland');
 const selected='Festival waarvoor ik vervoer wil boeken: Defqon.1\n☑ Defqon.1\n☐ Paaspop';const message=buildPartnerRequestMessage({partnerName:'Prestige Coach Service',departure:'Noord-Brabant',sourcePath:'/provincies/noord-brabant/festivals-2026-2027/',values:{},originalText:selected});assert(message.includes(selected));
 console.log('Four partner routes, source/name/request type and festival preservation passed. General owner contact stays unassigned. No messages sent.');
+const complete=buildPartnerRequestMessage({partnerName:'Tourgo Partybussen',departure:'Den Haag',sourcePath:'/steden/partybus-huren-den-haag/',values:{customerName:'Voorbeeld & groep',departure:'Scheveningen, voorbeeldadres',destination:'Feest & diner',date:'2026-12-12',departureTime:'18:30',guests:'28',occasion:'Verjaardag',returnTrip:'Ja',returnTime:'01:15',message:'Twee stops; graag overleggen.'}});
+for(const expected of ['Mijn naam: Voorbeeld & groep','Gewenste datum: 2026-12-12','Gewenste vertrektijd: 18:30','Aantal personen: 28','Gelegenheid: Verjaardag','Gewenste terugreistijd: 01:15','Scheveningen, voorbeeldadres','Feest & diner','Twee stops; graag overleggen.']) assert(complete.includes(expected),expected);
+const encoded=new URL(`https://wa.me/31623044970?text=${encodeURIComponent(complete)}`);
+assert.equal(encoded.searchParams.get('text'),complete);
+const incomplete=buildPartnerRequestMessage({partnerName:'Partybus Nederland',departure:'Nederland',sourcePath:'/',values:{}});
+assert(incomplete.includes('Gewenste vertrektijd: Nog te bespreken'));
+assert(incomplete.includes('Gelegenheid: Nog te bespreken'));
+assert(!complete.includes('[vul hier in]'));
+console.log('Complete trip fields, optional-field fallback and URL-encoding roundtrip passed. No WhatsApp opened or message sent.');

@@ -56,8 +56,8 @@ const partnerGallery = amsterdamWestlandMedia.gallery.slice(0, 6);
 			{ label: city.name, href: city.path, current: true },
 		]}
 		eyebrow={amsterdamWestlandHero.eyebrow}
-		title={amsterdamWestlandHero.title}
-		lead={amsterdamWestlandHero.lead}
+		title={city.h1}
+		lead={city.hero.subtitle}
 		trustItems={city.hero.trustItems ?? []}
 		whatsappHref={whatsappHref}
 		whatsappButtonType="hero"

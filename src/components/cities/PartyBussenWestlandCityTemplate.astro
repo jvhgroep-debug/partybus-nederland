@@ -80,7 +80,7 @@ const conversionCopy = westlandConversionCopy(city.name, city.slug);
 			{ label: city.name, href: city.path, current: true },
 		]}
 		eyebrow={`Partybus ${city.name}`}
-		title={`Partybus huren in ${city.name}`}
+		title={city.h1}
 		lead={city.hero.subtitle}
 		trustItems={city.hero.trustItems ?? []}
 		whatsappHref={whatsappHref}

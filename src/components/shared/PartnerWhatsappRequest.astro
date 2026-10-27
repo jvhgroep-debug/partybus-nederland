@@ -10,10 +10,12 @@ const {partner,departure,sourcePath}=Astro.props;
   <p>Je bericht vermeldt dat je via <strong>PartybusNederland.nl – {departure}</strong> komt. Controleer het straks in WhatsApp en druk daar zelf op verzenden.</p>
   <label>Je naam (optioneel)<input name="customerName" autocomplete="name" maxlength="100" placeholder="Bijvoorbeeld Johan" /></label>
   <label>Waarvoor neem je contact op?<select name="requestType"><option>Offerte voor een partybusrit</option><option>Informatie over een partybusrit</option><option>Festivalvervoer</option><option>Vrijgezellenfeest</option><option>Bedrijfsuitje</option><option>Bruiloft of verjaardag</option></select></label>
-  <div class="fields"><label>Gewenste datum<input name="date" type="date" /></label><label>Aantal personen<input name="guests" type="number" min="1" max="80" step="1" placeholder="Bijvoorbeeld 30" /></label></div>
+  <div class="fields"><label>Datum van de rit<input name="date" type="date" /></label><label>Gewenste vertrektijd<input name="departureTime" type="time" /></label></div>
+  <div class="fields"><label>Aantal personen<input name="guests" type="number" min="1" step="1" placeholder="Bijvoorbeeld 30" /></label><label>Gelegenheid<select name="occasion"><option value="">Nog te bespreken</option><option>Verjaardag</option><option>Vrijgezellenfeest</option><option>Festival</option><option>Concert</option><option>Bedrijfsuitje</option><option>Bruiloft</option><option>Anders</option></select></label></div>
   <label>Vertrekplaats / opstapadres<input name="departure" maxlength="250" value={departure} /></label>
   <label>Bestemming / festival<input name="destination" maxlength="250" placeholder="Waar willen jullie naartoe?" /></label>
   <label>Terugreis nodig?<select name="returnTrip"><option>Nog te bespreken</option><option>Ja</option><option>Nee</option></select></label>
+  <label>Gewenste terugreistijd (optioneel)<input name="returnTime" type="time" /></label>
   <label>Je vraag of extra wensen<textarea name="message" maxlength="2000" rows="3"></textarea></label>
   <button class="continue" type="submit">Verder naar WhatsApp van {partner.name}</button>
   <p class="note">Je gegevens worden in het WhatsApp-bericht gezet. Er wordt hier niets automatisch verzonden.</p>
@@ -37,6 +39,7 @@ if(dialog && typeof dialog.showModal==='function') {
   if(festival&&!festival.startsWith('☐')&&!festival.startsWith('☑')&&!destination.value) {
    destination.value=festival;
    form.querySelector<HTMLSelectElement>('[name=requestType]')!.value='Festivalvervoer';
+   form.querySelector<HTMLSelectElement>('[name=occasion]')!.value='Festival';
   }
   if(!dialog.open)dialog.showModal();
  });

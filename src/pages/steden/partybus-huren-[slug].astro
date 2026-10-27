@@ -159,7 +159,7 @@ const faqLd = {
 	})),
 };
 
-const ogImage = `https://www.partybusnederland.nl${defaultHeroImage.src}`;
+const ogImage = `https://www.partybusnederland.nl${['utrecht', 'den-haag'].includes(city.slug) ? heroImage.src : defaultHeroImage.src}`;
 ---
 
 <CityLayout
