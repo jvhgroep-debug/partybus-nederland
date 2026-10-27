@@ -164,7 +164,7 @@ const conversionCopy = isNoordBrabantPartnerCity
 		primaryHref={quoteHref}
 		trustItems={city.hero.trustItems}
 		partnerMode={isNoordBrabantPartnerCity}
-		whatsappLabel={isNoordBrabantPartnerCity ? prestigeWhatsappLabel : undefined}
+		whatsappLabel={city.slug === 'breda' ? 'Vraag een offerte via WhatsApp' : isNoordBrabantPartnerCity ? prestigeWhatsappLabel : undefined}
 		ghostLabel={isNoordBrabantPartnerCity ? prestigeCtaLabel : undefined}
 	/>
 

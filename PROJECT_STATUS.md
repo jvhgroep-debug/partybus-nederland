@@ -1,3 +1,13 @@
+# SEO-opdracht 28 oktober 2026 — vijf steden, eerst preview
+
+- Amsterdam, Breda, Utrecht, Rotterdam en Den Haag: bestaande URL’s behouden; unieke citydata met lokale uitleg, H1, title onder 60 tekens, description 150–160 tekens en precies zes zichtbare FAQ’s vanuit dezelfde bron als JSON-LD.
+- Bestaand gedeeld WhatsApp-venster uitgebreid met vertrektijd, gelegenheid en optionele terugreistijd; berichtbouwer gebruikt ingevulde waarden. Namen, telefoonnummers, partnerverdeling, festivalkeuzes en bestaande offerte-/mailroutes behouden. Geen bericht of echte aanvraag versturen tijdens QA.
+- Echte bestaande partnerfoto’s als Open Graph op Amsterdam, Utrecht, Rotterdam en Den Haag. Breda gebruikte al de juiste foto. Homepagekaarten gebruiken responsive, lazy geladen echte partnerbeelden en beschrijvende stadslinks. Geen nieuwe afbeelding gegenereerd.
+- Nieuwe relevante links vanuit steden naar bestaande regionale planningblogs, verjaardagspagina en logisch verwante vertrekplaatsen. Bestaande homepage- en bloglinks blijven behouden. Geen nieuwe verhuur-URL of extra blog toegevoegd.
+- De automatische blogplanning blijft actief en ongewijzigd. Lees bij vervolgblogs ook `editorial/seo-conversion-policy.md`: concrete vraag en oplossing, inhoudelijk relevante verhuurhub, partner-CTA, onderwerpcontrole en geen extra publicaties om het aantal te verhogen.
+- Bronbranch `seo/vijf-steden-conversie-2026-10-28`, vanaf main `9d8e7cf151328fa9050c158b664a6c2ddbe6e0c5`. De gebruiker verlangt eerst controle en goedkeuring: **niet samenvoegen of naar productie publiceren voordat Johan de preview heeft goedgekeurd**. Zijn latere ‘starten maar’ bevestigt uitvoering, niet beoordeling van de nog te maken preview.
+- Lokale build/SEO/link/asset-/WhatsApp- en vijf-stedencontroles geslaagd. Eerste Cloudflare-preview `5cb2a795-ffc1-40b5-8076-635bae8632fe` succesvol; alle vijf steden op desktop gecontroleerd op H1, zes FAQ’s, beelden, overloop en openend partnerformulier. Nieuwe ritvelden invulbaar; geen berichten verstuurd. Responsive CSS nagekeken, maar visuele mobiele eindcontrole blijft open door ontbrekende viewportcontrole en geblokkeerde mobiele testweergave. PageSpeed API HTTP 429; geen CWV-score geclaimd. Zie `docs/SEO_PREVIEW_2026-10-28.md`. Finale preview wordt na de scope-/kopvolgordecorrectie opnieuw gebouwd; voorstel #23 blijft draft en ongemerged.
+
 # Blogplanning 27 oktober 2026 — Tourgo / Zuid-Holland
 
 - Vast slot `www.partybusnederland.nl|2026-10-27|1`, start 04:00 Asia/Dubai. Eén artikel over verschillende terugreiswensen binnen een groep; geen extra inhaalartikel voor 26 oktober.

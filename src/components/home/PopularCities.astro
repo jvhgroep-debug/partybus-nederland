@@ -3,9 +3,23 @@ import { popularCities } from '../../data/cities/popular';
 import { getPublishedCity } from '../../data/cities/registry';
 import { primaryCta } from '../../data/settings/navigation';
 import Button from '../buttons/Button.astro';
+import PartnerImage from '../shared/PartnerImage.astro';
+import { amsterdamWestlandMedia } from '../../data/partners/amsterdamPartyBussenWestland';
+import { resolvePrestigeCoachServiceCityMedia } from '../../data/partners/prestigeCoachService';
+import { resolvePartyBussenWestlandCityMedia } from '../../data/partners/partyBussenWestland';
+import { resolveTourgoCityMedia } from '../../data/partners/tourgoPartybussen';
+
+const partnerPhotos: Record<string, {src:string;alt:string}> = {
+	amsterdam: amsterdamWestlandMedia.hero,
+	breda: resolvePrestigeCoachServiceCityMedia('breda').hero,
+	utrecht: resolvePartyBussenWestlandCityMedia('utrecht').hero,
+	rotterdam: resolveTourgoCityMedia('rotterdam').hero,
+	'den-haag': resolveTourgoCityMedia('den-haag').hero,
+};
 
 const cities = popularCities.map((city) => ({
 	...city,
+	photo: partnerPhotos[city.slug],
 	path: getPublishedCity(city.slug)?.path ?? primaryCta.href,
 }));
 ---
@@ -26,18 +40,23 @@ const cities = popularCities.map((city) => ({
 				cities.map((city) => (
 					<article class="city-card reveal">
 						<a class="city-card__link" href={city.path}>
-							<img
+							{city.photo ? <PartnerImage
+								src={city.photo.src}
+								alt={city.photo.alt}
+								sizes="(min-width: 1024px) 33vw, (min-width: 700px) 50vw, 100vw"
+								loading="lazy"
+							/> : <img
 								src={city.image}
 								alt={`Partybus huren in ${city.name}`}
 								width="1200"
 								height="800"
 								loading="lazy"
 								decoding="async"
-							/>
+							/>}
 							<div class="city-card__overlay">
 								<h3>{city.name}</h3>
 								<p>{city.blurb}</p>
-								<span class="city-card__btn btn btn--primary">Bekijk {city.name}</span>
+								<span class="city-card__btn btn btn--primary">Partybus huren {city.name}</span>
 							</div>
 						</a>
 					</article>

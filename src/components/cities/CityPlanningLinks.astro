@@ -20,14 +20,28 @@ const departureLinks: Record<string,{label:string;path:string;intro:string}> = {
  'utrechtse-heuvelrug':{label:'Partybus huren in Utrecht stad',path:'/steden/partybus-huren-utrecht/',intro:'Verzamelt de groep in de stad Utrecht? Bekijk de stadspagina. Deze pagina gaat over vertrek uit de gemeente Utrechtse Heuvelrug.'},
 };
 const departure=departureLinks[city.slug];
+const conversionLinks: Record<string, { intro: string; links: {label:string;href:string}[] }> = {
+ amsterdam: {intro:'Een vrijgezellenfeest in de stad vraagt om andere stops dan een verjaardagsrit. Werk jullie programma uit voordat je de rit aanvraagt.',links:[{label:'Partybus voor een vrijgezellenfeest plannen',href:'/diensten/partybus-vrijgezellenfeest/'},{label:'Een opstapplaats in Amsterdam kiezen',href:'/kennisbank/opstapplaats-partybus-amsterdam-kiezen/'}]},
+ breda: {intro:'Stem voor een bruiloft dag- en avondgasten afzonderlijk af. Voor een verjaardag of vrijgezellenfeest blijven het aantal instappers en het eindadres net zo belangrijk.',links:[{label:'Dag- en avondgasten vervoeren in Brabant',href:'/kennisbank/bruiloft-brabant-dag-avondgasten-vervoer/'},{label:'Partybus voor een vrijgezellenfeest vanuit Breda aanvragen',href:'/diensten/partybus-vrijgezellenfeest/'}]},
+ utrecht: {intro:'Zet de gewenste terugreis naast jullie activiteit. Gebruik voor vertrek vanuit Doorn of Driebergen de pagina voor Utrechtse Heuvelrug.',links:[{label:'De terugrit van een bedrijfsuitje vanuit Utrecht plannen',href:'/kennisbank/bedrijfsuitje-utrecht-partybus-terugrit-plannen/'},{label:'Partybus huren vanuit Utrechtse Heuvelrug',href:'/steden/partybus-huren-utrechtse-heuvelrug/'}]},
+ rotterdam: {intro:'Komen vrienden uit Den Haag erbij of wil een deel eerder terug? Beschrijf één groepsrit met alle gewenste stops en ritmomenten.',links:[{label:'Verschillende terugreiswensen in één groep afstemmen',href:'/kennisbank/partybus-zuid-holland-verschillende-vertrektijden-terugrit/'},{label:'Vertrek met een partybus vanuit Den Haag',href:'/steden/partybus-huren-den-haag/'}]},
+ 'den-haag': {intro:'Wil de groep in Den Haag instappen en komen er deelnemers uit Rotterdam mee? Vraag één routevoorstel aan en laat ophalen en terugkomst per adres bevestigen.',links:[{label:'Meerdere opstapplaatsen in Zuid-Holland plannen',href:'/kennisbank/partybus-zuid-holland-meerdere-opstapplaatsen/'},{label:'Partybus huren vanuit Rotterdam',href:'/steden/partybus-huren-rotterdam/'}]},
+};
+const conversion=conversionLinks[city.slug];
 ---
 <CityLocalTripPlanning city={city} />
+{conversion && <section class="section"><div class="section__inner">
+ <h2 class="section__title">Van jullie programma naar een complete ritofferte</h2>
+ <p>{conversion.intro}</p>
+ <ul>{conversion.links.map(link=><li><a href={link.href}>{link.label}</a></li>)}</ul>
+</div></section>}
 {region && <section class="section" aria-labelledby="city-plan-links-title"><div class="section__inner">
  <h2 class="section__title" id="city-plan-links-title">Maak jullie aanvraag vanuit {city.name} compleet</h2>
  <p>Vergelijk het voorstel op route, tijden en voorzieningen. Met deze informatie kun je gerichter overleggen met de vervoerder.</p>
  <ul>
   <li><a href="/gidsen/partybus-prijzen/">Hoe wordt de prijs van een partybus berekend?</a> — bekijk de invloed van ritduur, route en wachttijd.</li>
   <li><a href="/diensten/partybus-vrijgezellenfeest/">Een partybus voor een vrijgezellenfeest</a> — spreek alle stops en de terugrit af.</li>
+  {conversion && <li><a href="/diensten/partybus-verjaardag/">Een partybus voor een verjaardag organiseren</a> — stem de gastenlijst, muziek en terugkomst af.</li>}
   <li><a href="/diensten/partybus-bedrijfsuitje/">Vervoer voor een bedrijfsuitje</a> — geef vertrekadres, groepsgrootte en eindtijd door.</li>
   <li><a href={region.path}>Partner en werkgebied {region.name}</a> — bekijk wie jullie aanvraag behandelt.</li>
   {region.festival && <li><a href={region.festival}>Festivalvervoer in {region.name}</a> — controleer de informatie voor jullie bezoekdag en vraag naar de ophaalplek.</li>}

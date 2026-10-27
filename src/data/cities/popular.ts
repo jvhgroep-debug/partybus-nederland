@@ -9,25 +9,25 @@ export const popularCities: PopularCity[] = [
 	{
 		name: 'Amsterdam',
 		slug: 'amsterdam',
-		blurb: 'Nightlife, Rembrandtplein en een partybus door de stad.',
+		blurb: 'Bespreek een bereikbaar vertrekadres bij hotel, station of kantoor.',
 		image: '/images/hero-partybus.webp',
 	},
 	{
 		name: 'Rotterdam',
 		slug: 'rotterdam',
-		blurb: 'Skyline, havens en een royale bus voor jouw feestavond.',
+		blurb: 'Plan ophalen, een concert bij Ahoy en de terugrit met Tourgo.',
 		image: '/images/partybus-verhuur.png',
 	},
 	{
 		name: 'Utrecht',
 		slug: 'utrecht',
-		blurb: 'Centraal gelegen — ideaal voor vrijgezellen en groepen.',
+		blurb: 'Van Jaarbeurs of Leidsche Rijn naar jullie uitje en weer terug.',
 		image: '/images/partybus-nederland.png',
 	},
 	{
 		name: 'Den Haag',
 		slug: 'den-haag',
-		blurb: 'Scheveningen, Skybar vibes en comfortabel vervoer.',
+		blurb: 'Leg vertrek uit Den Haag of Scheveningen en het eindadres vast.',
 		image: '/images/partybus-collage.png',
 	},
 	{
@@ -39,7 +39,7 @@ export const popularCities: PopularCity[] = [
 	{
 		name: 'Breda',
 		slug: 'breda',
-		blurb: 'Bourgondische stad met een bruisend uitgaansleven en de Grote Markt.',
+		blurb: 'Vraag Prestige om een ritvoorstel vanuit Breda, Bavel of Prinsenbeek.',
 		image: '/images/city-breda.jpg',
 	},
 ];

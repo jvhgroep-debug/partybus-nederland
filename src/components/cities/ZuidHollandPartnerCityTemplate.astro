@@ -86,7 +86,7 @@ const conversionCopy = tourgoConversionCopy(city.name, city.slug);
 		primaryHref={tourgoWebsiteHref}
 		trustItems={city.hero.trustItems}
 		partnerMode={true}
-		whatsappLabel={tourgoWhatsappLabel}
+		whatsappLabel={['rotterdam', 'den-haag'].includes(city.slug) ? 'Vraag een offerte via WhatsApp' : tourgoWhatsappLabel}
 		ghostLabel={tourgoWebsiteLabel}
 	/>
 

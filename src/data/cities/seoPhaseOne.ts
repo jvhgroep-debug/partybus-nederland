@@ -1,5 +1,6 @@
 import type { CityPageData } from './types';
 import { applyFocusedCitySeo } from './focusedCitySeo';
+import { applyCityConversionSeo } from './conversionSeo';
 
 // Selected by GSC impressions, 13 September–10 October 2026. Raw analytics are kept out of the repository.
 const localCopy: Record<string, { context: string; planning: string; term: string }> = {
@@ -37,5 +38,5 @@ function applySeoPhaseOneBase(city: CityPageData): CityPageData {
 }
 
 export function applySeoPhaseOne(city: CityPageData): CityPageData {
-  return applyFocusedCitySeo(applySeoPhaseOneBase(city));
+  return applyCityConversionSeo(applyFocusedCitySeo(applySeoPhaseOneBase(city)));
 }
