@@ -116,7 +116,7 @@ export function applyCityConversionSeo(city: CityPageData): CityPageData {
     metaTitle: copy.title,
     metaDescription: copy.description,
     h1: `Partybus huren ${city.name}`,
-    hero: { ...city.hero, subtitle: copy.lead },
+    hero: { ...city.hero, subtitle: copy.lead, trustItems: city.hero.trustItems?.map(item => /80 personen/i.test(item) ? 'Capaciteit per voertuig bevestigd' : item) },
     intro: { ...city.intro, title: copy.heading, paragraphs: copy.paragraphs },
     faqs: copy.faqs,
   };
