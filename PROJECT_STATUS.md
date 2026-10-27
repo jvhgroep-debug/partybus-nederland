@@ -1,3 +1,10 @@
+# Blogplanning 27 oktober 2026 — Tourgo / Zuid-Holland
+
+- Vast slot `www.partybusnederland.nl|2026-10-27|1`, start 04:00 Asia/Dubai. Eén artikel over verschillende terugreiswensen binnen een groep; geen extra inhaalartikel voor 26 oktober.
+- Titel: Niet iedereen wil tegelijk terug: zo maak je een groepsafspraak. Bestaande kennisbankarchitectuur, contextlink vanaf Zuid-Holland, echte bestaande Tourgo-foto. Partnernummer 31623044970 en regionale aanvraagroute behouden.
+- Geen actieve GitHub Actions-runs aangetroffen; laatste Cloudflare-check terminal success. Geen verifieerbare gedeelde wachtrij/lock tussen externe routes aangetoond. Verwachte main-SHA wordt bij publiceren gecontroleerd.
+- Validatie geslaagd: npm ci, build 587 pagina’s, SEO-audit, interne links/assets en vier-partner WhatsApp-tests. Artikel-H1/canonical/schema/foto/contacten en ontdekbaarheid gecontroleerd. Publicatie en echte domeincontrole volgen. Geen berichten of aanvragen verstuurd.
+
 # 23 oktober 2026 — meer relevante klikken op vier stadspagina’s
 
 - Opdracht Johan: de voorgestelde verbeteringen voor Oss, Leiden, Amsterdam en Den Haag uitvoeren en publiceren. Werkbranch `seo/meer-klikken-steden-2026-10-23`, basis main `a66268f474d91cf12783089e50d12c8fd83e26e2`. Eigen Search Console-export gebruikt voor prioritering; geen ruwe analytics in de repository.
