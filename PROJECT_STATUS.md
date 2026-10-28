@@ -1,4 +1,11 @@
-# SEO-opdracht 28 oktober 2026 — vijf steden, eerst preview
+# Publicatie bevestigd 28 oktober 2026 — vijf steden en WhatsApp
+
+- Johan heeft de getoonde preview expliciet goedgekeurd met ‘goedgekeurt’ en de afronding bevestigd. Voorstel #23 is samengevoegd als `40f7bb3d405d0414b41ca7b292b7be8f5571b25a`. Main was vóór merge gelijk aan de gecontroleerde basis; geen tussentijdse blogwijzigingen overschreven.
+- Cloudflare Pages-productiedeployment `c15bfd9e-2f69-48ab-ac23-c43c41bed944` geslaagd. Op 28 oktober opnieuw het echte domein in de browser gecontroleerd: alle vijf steden tonen de nieuwe titels, descriptions, één H1, zes FAQ’s, eigen canonical, partnerfoto en alle ritvelden met de juiste partnernummers. Geen horizontale overloop op desktop. Amsterdam opent het juiste WhatsApp-venster; geen bericht of aanvraag verzonden.
+- Homepage toont de vijf beschrijvende stadslinks en vijf partnerbeelden. Bestaande URL’s, partners, Cloudflare Pages, domein/DNS en automatische blogplanning behouden.
+- Visuele mobiele eindcontrole en betrouwbare CWV-meting blijven open zoals vóór goedkeuring gemeld. Geen rankingverbetering of gemeten snelheidsscore geclaimd. Volledige oplevering: `docs/SEO_PREVIEW_2026-10-28.md`. De onderstaande previewstatus is historische voorbereidingsinformatie, geen actuele publicatieblokkade.
+
+# SEO-opdracht 28 oktober 2026 — vijf steden, eerst preview (historie)
 
 - Amsterdam, Breda, Utrecht, Rotterdam en Den Haag: bestaande URL’s behouden; unieke citydata met lokale uitleg, H1, title onder 60 tekens, description 150–160 tekens en precies zes zichtbare FAQ’s vanuit dezelfde bron als JSON-LD.
 - Bestaand gedeeld WhatsApp-venster uitgebreid met vertrektijd, gelegenheid en optionele terugreistijd; berichtbouwer gebruikt ingevulde waarden. Namen, telefoonnummers, partnerverdeling, festivalkeuzes en bestaande offerte-/mailroutes behouden. Geen bericht of echte aanvraag versturen tijdens QA.

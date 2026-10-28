@@ -1,6 +1,6 @@
 # SEO-preview Partybus Nederland — 28 oktober 2026
 
-Status: voorstel op `seo/vijf-steden-conversie-2026-10-28`, draftvoorstel #23. Niet goedgekeurd voor productie. Bestaande Cloudflare Pages, domein en DNS behouden.
+Status: Johan heeft de getoonde preview expliciet goedgekeurd. Voorstel #23 is samengevoegd als `40f7bb3d405d0414b41ca7b292b7be8f5571b25a`; Cloudflare Pages-productiedeployment `c15bfd9e-2f69-48ab-ac23-c43c41bed944` geslaagd. De vijf steden en homepage zijn op 28 oktober 2026 opnieuw op het echte domein gecontroleerd. Bestaande Cloudflare Pages, domein en DNS behouden.
 
 ## Bestaande verhuurpagina’s
 
@@ -45,12 +45,15 @@ De lokale preview is gestopt omdat de ontwikkelserver de beschikbare host niet t
 
 ## Blogs en meten
 
-De centrale nachtelijke blogplanning is actief aangetroffen en niet gewijzigd. De werkwijze voor volgende blogs staat in `editorial/seo-conversion-policy.md`: één echte vraag, bruikbare oplossing, relevant verhuurdoel, partner-CTA en controle op herhaling. Die broninstructie gaat pas mee na goedkeuring en merge van dit voorstel.
+De centrale nachtelijke blogplanning is actief aangetroffen en niet gewijzigd. De werkwijze voor volgende blogs staat in `editorial/seo-conversion-policy.md`: één echte vraag, bruikbare oplossing, relevant verhuurdoel, partner-CTA en controle op herhaling. Die broninstructie is met het goedgekeurde voorstel opgenomen in main.
 
 De aangeleverde cijfers met label 28 oktober zijn de opdracht-nulmeting. Periode, land en apparaat zijn niet gespecificeerd; ze zijn geen bewijs van effecten van deze preview. Meet na eventuele publicatie per hub met dezelfde filters en vergelijkbare volledige perioden, en onderscheid WhatsApp-klikken van werkelijk verstuurde aanvragen.
 
-## Nog open vóór/na productie
+## Publicatiecontrole en resterende punten
 
-1. Johan beoordeelt de uiteindelijke preview; visuele mobiele eindcontrole afronden op een telefoon of in een omgeving met ondersteunde viewportcontrole.
-2. Pas na expliciete goedkeuring samenvoegen. Vlak voor merge actuele main en eventuele nieuwe blogwijzigingen controleren en behouden; checks herhalen bij bronwijzigingen.
-3. Na productie nieuwe Cloudflare-status en echte domeinpagina’s controleren. CWV uit echte bezoekers later afzonderlijk meten; previewtests geven die niet.
+1. Afgerond: expliciete goedkeuring ontvangen; actuele main vóór merge gecontroleerd en gelijk aan de gecontroleerde basis. Voorstel #23 samengevoegd en Cloudflare-productie succesvol gebouwd.
+2. Afgerond: alle vijf echte domeinpagina’s tonen de nieuwe metadata, één juiste H1, zes FAQ’s, eigen canonical, partnergebonden deelfoto en de volledige ritvelden. Partnernummers kloppen. Amsterdam opent het juiste WhatsApp-venster. Homepage toont de vijf beschrijvende stadslinks en vijf partnerbeelden. Geen horizontale overloop op desktop; geen externe inzendingen gedaan.
+3. Open: visuele mobiele eindcontrole op een telefoon of in een omgeving met ondersteunde viewportcontrole. Betrouwbare Core Web Vitals uit echte bezoekers later afzonderlijk meten; de eerdere PageSpeed-aanvraag was beperkt met HTTP 429.
+4. Meting: vergelijk na voldoende volledige meetdagen per hub dezelfde Search Console-filters en perioden. WhatsApp-klikken zijn geen bewijs van daadwerkelijk verstuurde aanvragen; geen resultaat in Google beloofd.
+
+Definitieve goedgekeurde preview: https://85e133f7.partybus-nederland.pages.dev/ — live website: https://www.partybusnederland.nl/ .
