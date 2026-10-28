@@ -17,6 +17,7 @@ const { title, paragraphs, image, imageAlt } = Astro.props;
 			<h2 id="city-intro-title" class="section__title">{title}</h2>
 			<div class="city-intro__copy">
 				{paragraphs.map((p) => <p>{p}</p>)}
+				<slot />
 			</div>
 		</div>
 		<figure class="city-intro__visual reveal">

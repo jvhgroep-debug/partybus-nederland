@@ -49,7 +49,9 @@ const { route } = Astro.props;
 		paragraphs={route.intro.paragraphs}
 		image={route.intro.image}
 		imageAlt={route.intro.imageAlt}
-	/>
+	>
+		{route.slug === 'rotterdam-tomorrowland' && <p>Bekijk daarnaast onze tips voor <a href="/gidsen/festival-vervoer/">festivalvervoer naar Nederland en België</a>, met aandacht voor opstapplaatsen en de terugreis.</p>}
+	</CityIntro>
 
 	<InfoGuide
 		eyebrow="Informatie"
@@ -105,7 +107,9 @@ const { route } = Astro.props;
 		title="Checklist vóór je offertes aanvraagt"
 		lead="Gebruik deze tips om sneller passende offertes te krijgen voor jouw route."
 		cards={bookingTips}
-	/>
+	>
+		{route.slug === 'breda-defqon' && <p>Lees vóór je aanvraag ook hoe je <a href="/gidsen/festival-vervoer/">met een partybus naar een festival</a> reist, met aandacht voor bagage en verzamelen na afloop.</p>}
+	</InfoGuide>
 
 	<CityFaq
 		items={route.faqs}
