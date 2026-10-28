@@ -1,3 +1,10 @@
+# Preview 28 oktober 2026 — acht interne links naar festivalvervoergids
+
+- Johan heeft het uitvoeren van de acht voorgestelde interne links goedgekeurd. Branch `seo/festival-interne-links-2026-10-28`, basis main `bac48e3113cc78c576e6ce21132cbc884b071401`. Eerst preview ter beoordeling; deze wijziging nog niet naar productie samenvoegen.
+- Doel `/gidsen/festival-vervoer/`. Eén natuurlijke link per pagina: `/diensten/partybus-festival/`, `/festivals/`, `/gids/festival-vervoer/`, `/kennisbank/festivalvervoer-brabant-groep-opstapplaatsen/`, `/provincies/noord-brabant/festivals-2026-2027/`, `/festivals/lowlands/`, `/partybus-rotterdam-tomorrowland/`, `/partybus-breda-defqon/`. Ankerteksten en invoegzinnen volgen het beoordeelde voorstel.
+- Build 587 pagina’s, SEO-audit en interne link-/assetcontrole slagen. Gerichte HTML-controle bevestigt alle acht unieke ankerteksten naar de juiste bestemming, zonder uitrol naar andere festival-, route- of dienstpagina’s. Bestaande URLs, metadata, partnergegevens en blogplanning behouden. Geen nieuwe pagina’s of berichten aangemaakt.
+- De twee festivalgidsen blijven bestaan; inhoudelijke overlap is met één interne link niet opgelost en valt buiten deze gerichte wijziging. Cloudflare-preview en browsercontrole volgen na het opslaan van deze branch.
+
 # Publicatie bevestigd 28 oktober 2026 — vijf steden en WhatsApp
 
 - Johan heeft de getoonde preview expliciet goedgekeurd met ‘goedgekeurt’ en de afronding bevestigd. Voorstel #23 is samengevoegd als `40f7bb3d405d0414b41ca7b292b7be8f5571b25a`. Main was vóór merge gelijk aan de gecontroleerde basis; geen tussentijdse blogwijzigingen overschreven.

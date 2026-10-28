@@ -122,6 +122,7 @@ const related = servicePages.filter((item) => item.slug !== service.slug).slice(
 			</div>
 			<div>
 				<p>{service.safetyText}</p>
+				{service.slug === 'partybus-festival' && <p>Bekijk onze praktische gids voor <a href="/gidsen/festival-vervoer/">festivalvervoer</a> om ook opstapplaatsen, bagage en de terugreis af te stemmen.</p>}
 				<p>
 					Vergelijk capaciteit, voorwaarden, inbegrepen faciliteiten en afspraken over route en tijden.
 					De uitvoerende aanbieder bevestigt wat voor jouw rit mogelijk is.
