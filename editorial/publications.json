@@ -75,10 +75,36 @@
     "photoSource": "https://partybussenwestland.nl/storage/2025/07/image00041-2048x1365.jpeg",
     "title": "Je activiteit heeft een vast tijdslot: wat vertel je de partybusvervoerder?",
     "url": "https://www.partybusnederland.nl/kennisbank/partybus-utrecht-activiteit-vast-tijdslot/",
-    "status": "source-written",
-    "published": false,
+    "status": "public-verified",
+    "published": true,
     "photoGenerated": false,
     "photoApproval": "Existing owned company website photograph; reused under Johan permission. White minibus is not represented as a reserved vehicle or a specific Utrecht customer trip.",
-    "sourcesCheckedAt": "2026-10-30T02:55:55+04:00"
+    "sourcesCheckedAt": "2026-10-30T02:55:55+04:00",
+    "publicVerifiedAt": "2026-10-30T03:02:19.775803+04:00",
+    "publicHttpStatus": 200,
+    "commitSha": "28af8743cea0a8b8d1e28b69ed9d6e9b04106ded",
+    "deploymentId": "8efb214c-705e-411f-b7c1-d48939c0dbab",
+    "verificationChecks": [
+      {
+        "url": "https://www.partybusnederland.nl/kennisbank/partybus-utrecht-activiteit-vast-tijdslot/",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://www.partybusnederland.nl/images/blog/westland-bus-vertrektijd.jpeg",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://www.partybusnederland.nl/kennisbank/",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://www.partybusnederland.nl/provincies/utrecht/",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://www.partybusnederland.nl/sitemap.xml",
+        "httpStatus": 200
+      }
+    ]
   }
 ]

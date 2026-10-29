@@ -1,3 +1,9 @@
+# Herstel 28 oktober live bevestigd — 30 oktober 2026
+
+Je activiteit heeft een vast tijdslot: wat vertel je de partybusvervoerder?
+https://www.partybusnederland.nl/kennisbank/partybus-utrecht-activiteit-vast-tijdslot/
+PR #27 gemerged als 28af8743cea0a8b8d1e28b69ed9d6e9b04106ded; CF-productie 8efb214c-705e-411f-b7c1-d48939c0dbab succeeded. Echte artikel-URL, exacte foto, kennisbank, Utrecht-context en sitemap HTTP200 gecontroleerd 2026-10-30T03:02:19.775803+04:00. Publicatiestatus daarna bevestigd; oorspronkelijke woensdagpositie behouden. Build 590 pagina’s, SEO/assets/interne links en vier-partner WhatsApp/encoding geslaagd. Geen berichten verstuurd.
+
 # Hervatting slot 28 oktober — 30 oktober 2026
 
 Je activiteit heeft een vast tijdslot: wat vertel je de partybusvervoerder?
