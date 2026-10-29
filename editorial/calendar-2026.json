@@ -12,12 +12,14 @@
       "scheduledAt": "2026-10-26T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "Prestige Coach Service / Noord-Brabant",
-      "status": "source-written",
-      "published": false,
+      "status": "public-verified",
+      "published": true,
       "title": "Je regelt de partybus, maar reist niet mee: wie is het aanspreekpunt?",
       "url": "https://www.partybusnederland.nl/kennisbank/partybus-brabant-organisator-reist-niet-mee/",
       "registrationRecoveredAt": "2026-10-30T02:45:27+04:00",
-      "recoveryReason": "Actual Monday calendar position omitted by prior no-catchup instruction; restored under Johan 30 October recovery instruction."
+      "recoveryReason": "Actual Monday calendar position omitted by prior no-catchup instruction; restored under Johan 30 October recovery instruction.",
+      "datePublished": "2026-10-30T02:45:27+04:00",
+      "publicVerifiedAt": "2026-10-30T02:50:13.343531+04:00"
     },
     {
       "slotId": "www.partybusnederland.nl|2026-10-27|1",

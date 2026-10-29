@@ -1,3 +1,9 @@
+# Herstel 26 oktober live bevestigd — 30 oktober 2026
+
+Je regelt de partybus, maar reist niet mee: wie is het aanspreekpunt?
+https://www.partybusnederland.nl/kennisbank/partybus-brabant-organisator-reist-niet-mee/
+PR #26 gemerged als 8d815ce8baf5b2db0fa17ee2f31aaea57810fea5. CF-productie d825d86c-4aa1-4c5e-89e1-8eb594aaa68d succeeded. Echte URL/foto/kennisbank/Brabant-context/sitemap HTTP200 gecontroleerd 2026-10-30T02:50:13.343531+04:00. Published true pas na verificatie; oorspronkelijke maandag-slotidentiteit behouden, werkelijke publicatiedatum 30 oktober. Build 589 pagina’s, SEO/assets/interne links/vier-partner WhatsApp-tests geslaagd. Geen berichten verstuurd.
+
 # Herstel origineel slot 26 oktober — 30 oktober 2026
 
 Je regelt de partybus, maar reist niet mee: wie is het aanspreekpunt?

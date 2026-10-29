@@ -57,9 +57,13 @@
     "photoSource": "https://www.partybusnederland.nl/images/partners/prestige-coach-service/prestige-coach-service-groepsfoto.webp",
     "title": "Je regelt de partybus, maar reist niet mee: wie is het aanspreekpunt?",
     "url": "https://www.partybusnederland.nl/kennisbank/partybus-brabant-organisator-reist-niet-mee/",
-    "status": "source-written",
-    "published": false,
+    "status": "public-verified",
+    "published": true,
     "photoGenerated": false,
-    "photoApproval": "Existing permitted partner presentation photograph; not a specific organiser/customer case."
+    "photoApproval": "Existing permitted partner presentation photograph; not a specific organiser/customer case.",
+    "publicVerifiedAt": "2026-10-30T02:50:13.343531+04:00",
+    "publicHttpStatus": 200,
+    "commitSha": "8d815ce8baf5b2db0fa17ee2f31aaea57810fea5",
+    "deploymentId": "d825d86c-4aa1-4c5e-89e1-8eb594aaa68d"
   }
 ]
