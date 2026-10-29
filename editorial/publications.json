@@ -38,7 +38,14 @@
     "photoSource": "https://www.partybusnederland.nl/images/partners/startransfer/partybus-buiten.webp",
     "title": "Blijft de partybus tijdens je uitje wachten? Leg de ritdelen vast",
     "url": "https://www.partybusnederland.nl/kennisbank/partybus-zeeland-wachten-tussen-heen-terugrit/",
-    "published": false,
-    "status": "ready-for-validation-and-deployment"
+    "published": true,
+    "status": "published-confirmed",
+    "sourceCommit": "5d8f164d8213ff9a9bd64d6e5b36b96c0ed6f3e8",
+    "deploymentId": "4b86a45d-b0ff-40ef-b5c8-445f3daaec0a",
+    "verifiedAt": "2026-10-29T00:11:59.319509+00:00",
+    "publicHttpStatus": 200,
+    "sourceCommitted": true,
+    "deploymentConfirmed": true,
+    "liveChecked": true
   }
 ]

@@ -3,7 +3,7 @@
 - Vast slot www.partybusnederland.nl|2026-10-29|1. Nieuw artikel over vervoer tijdens het uitje versus twee afgesproken ritten; geen wijzigingen aan eerdere artikelen of SEO-werk van 28 oktober.
 - Titel: Blijft de partybus tijdens je uitje wachten? Leg de ritdelen vast. Route /kennisbank/partybus-zeeland-wachten-tussen-heen-terugrit/. Echte bestaande StarTransfer-foto, bestaande partnerofferte, nummer 31684002350 en tijdelijke handmatige doorsturing behouden.
 - Actuele main 29caf1b22ff529106af77e927731f85e53640ebd, geen Actions-runs, Cloudflare-check completed/success; vorige centrale publicatie afgerond. Geen verifieerbare gedeelde technische lock met externe routes aangetoond.
-- Status: controles en publicatie nog te bevestigen; published false. Geen berichten of aanvragen verstuurd.
+- Live bevestigd 2026-10-29T00:11:59.319509+00:00: PR #25 gemerged als 5d8f164d8213ff9a9bd64d6e5b36b96c0ed6f3e8; Cloudflare-productiedeployment 4b86a45d-b0ff-40ef-b5c8-445f3daaec0a succesvol. Echte artikel-URL, foto, kennisbank, Zeeland-context en sitemap HTTP 200; H1/canonical/Article/datum/nummer/handmatige doorsturing gecontroleerd. Build 588 pagina’s, SEO, links/assets en vier-partner WhatsApp-tests geslaagd. Published true. Geen berichten of aanvragen verstuurd.
 
 # Live bevestigd 28 oktober 2026 — acht interne links naar festivalvervoergids
 

@@ -32,8 +32,8 @@
       "scheduledAt": "2026-10-29T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "StarTransfer / Zeeland",
-      "status": "ready-for-validation-and-deployment",
-      "published": false,
+      "status": "published-confirmed",
+      "published": true,
       "title": "Blijft de partybus tijdens je uitje wachten? Leg de ritdelen vast",
       "url": "https://www.partybusnederland.nl/kennisbank/partybus-zeeland-wachten-tussen-heen-terugrit/"
     },
