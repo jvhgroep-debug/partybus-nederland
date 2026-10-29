@@ -1,3 +1,9 @@
+# Hervatting slot 28 oktober — 30 oktober 2026
+
+Je activiteit heeft een vast tijdslot: wat vertel je de partybusvervoerder?
+https://www.partybusnederland.nl/kennisbank/partybus-utrecht-activiteit-vast-tijdslot/
+Origineel slot www.partybusnederland.nl|2026-10-28|1 behouden. Gericht onderwerp vaste activiteitstart/afspraken op elkaar aansluiten, aanvullend op bestaande gids over de terugrit. Utrecht als eerste hervatte woensdagpositie, volgende woensdag Amsterdam; geen afwijkende werkgebieden of vestiging geclaimd. Bron f67243f30cecb75aece1d8d151ecbbe3858d4033 met volledig geverifieerd 26-oktoberslot; bijbehorende CF-check terminal success en geen open PR/actieve Actions. Officiële partnerwebsite en aanvraagvelden gecontroleerd op 30 oktober. Bestaande echte 2048×1365 bedrijfswebsitefoto behouden; herkomst intern, geen zichtbaar credit. Partnernummer 31610628733 en bestaande vraag-/offertehulpfuncties intact. Status source-written; deployment/publieke controle volgen.
+
 # Herstel 26 oktober live bevestigd — 30 oktober 2026
 
 Je regelt de partybus, maar reist niet mee: wie is het aanspreekpunt?
