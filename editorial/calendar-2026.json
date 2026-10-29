@@ -38,8 +38,12 @@
       "scheduledAt": "2026-10-28T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
-      "status": "planned",
-      "published": false
+      "status": "source-written",
+      "published": false,
+      "title": "Je activiteit heeft een vast tijdslot: wat vertel je de partybusvervoerder?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-utrecht-activiteit-vast-tijdslot/",
+      "regionalFocus": "Utrecht",
+      "nextWednesdayFocus": "Amsterdam"
     },
     {
       "slotId": "www.partybusnederland.nl|2026-10-29|1",
