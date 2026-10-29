@@ -1,3 +1,10 @@
+# Blogplanning 29 oktober 2026 — StarTransfer / Zeeland
+
+- Vast slot www.partybusnederland.nl|2026-10-29|1. Nieuw artikel over vervoer tijdens het uitje versus twee afgesproken ritten; geen wijzigingen aan eerdere artikelen of SEO-werk van 28 oktober.
+- Titel: Blijft de partybus tijdens je uitje wachten? Leg de ritdelen vast. Route /kennisbank/partybus-zeeland-wachten-tussen-heen-terugrit/. Echte bestaande StarTransfer-foto, bestaande partnerofferte, nummer 31684002350 en tijdelijke handmatige doorsturing behouden.
+- Actuele main 29caf1b22ff529106af77e927731f85e53640ebd, geen Actions-runs, Cloudflare-check completed/success; vorige centrale publicatie afgerond. Geen verifieerbare gedeelde technische lock met externe routes aangetoond.
+- Status: controles en publicatie nog te bevestigen; published false. Geen berichten of aanvragen verstuurd.
+
 # Live bevestigd 28 oktober 2026 — acht interne links naar festivalvervoergids
 
 - Johan heeft het uitvoeren van de acht voorgestelde interne links goedgekeurd. Branch `seo/festival-interne-links-2026-10-28`, basis main `bac48e3113cc78c576e6ce21132cbc884b071401`. Na de gecontroleerde preview heeft Johan expliciet opdracht gegeven: ‘oke zet maar live’. Voorstel #24 is samengevoegd als `88603e2a638c9ed895e82867dcc59138ca486b6a`; de basis main was nog ongewijzigd.
