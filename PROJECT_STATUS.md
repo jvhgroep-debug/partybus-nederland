@@ -1,3 +1,10 @@
+# Herstel origineel slot 26 oktober — 30 oktober 2026
+
+Je regelt de partybus, maar reist niet mee: wie is het aanspreekpunt?
+https://www.partybusnederland.nl/kennisbank/partybus-brabant-organisator-reist-niet-mee/
+
+Origineel slot www.partybusnederland.nl|2026-10-26|1 ontbreekt in kalender en publicatieregistratie, geen bestaand artikel of 26-oktobermetadata in actuele kennisbankbron aangetroffen. Onder nieuwste herstelautorisatie hetzelfde maandag-slot geregistreerd; geen extra kalenderpositie. Onderwerp onderscheidt zich van bruiloftsgasten, bagage, mobiliteitswensen en ritwijzigingsgidsen. Actuele main 99e36a971baf6833a2ed9b1918006a03e9a0d7d6, laatste CF-check success en geen actieve Actions. Geen gedeelde lock geclaimd. Partnernummer/aanvraagroute/hulpfuncties behouden, bestaande Prestige-foto intern geregistreerd. Status source-written, publicatiecontrole volgt.
+
 # Blogplanning 29 oktober 2026 — StarTransfer / Zeeland
 
 - Vast slot www.partybusnederland.nl|2026-10-29|1. Nieuw artikel over vervoer tijdens het uitje versus twee afgesproken ritten; geen wijzigingen aan eerdere artikelen of SEO-werk van 28 oktober.

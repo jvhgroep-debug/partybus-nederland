@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import MasterKennisbankArticle from '../../../components/kennisbank/MasterKennisbankArticle.astro';
+import { organisatorBrabant as article, publication } from '../../../data/kennisbank/articles/organisatorBrabant';
+import { buildArticleSchema, buildBreadcrumbSchema, buildFaqPageSchema } from '../../../lib/guides/schema';
+const image=`https://www.partybusnederland.nl${article.heroImage.src}`;
+const jsonLd=[buildArticleSchema({headline:article.h1,description:article.metaDescription,url:article.canonical,image,datePublished:publication.datePublished,dateModified:publication.datePublished}),buildBreadcrumbSchema([{label:'Home',href:'/'},{label:'Kennisbank',href:'/kennisbank/'},{label:article.h1}]),buildFaqPageSchema(article.faqs)];
+---
+<BaseLayout title={article.seoTitle} titleExact={true} description={article.metaDescription} canonical={article.canonical} ogImage={image} twitterImage={image} preloadImage={article.heroImage.src} jsonLd={jsonLd} pageQuoteHref={article.heroPrimaryHref} pageWhatsapp={{href:article.cta.whatsappHref!,label:'WhatsApp-aanvraag voor Prestige Coach Service via Partybus Nederland'}}>
+  <MasterKennisbankArticle article={article} />
+</BaseLayout>

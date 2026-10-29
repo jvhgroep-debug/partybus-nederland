@@ -1,3 +1,4 @@
+import { organisatorBrabant } from './articles/organisatorBrabant';
 import { wachtenZeeland } from './articles/wachtenZeeland';
 import { terugritGroepskeuze } from './articles/terugritGroepskeuze';
 import { mobiliteitswensen } from './articles/mobiliteitswensen';
@@ -15,6 +16,7 @@ import { samenwerkingTourgoZuidHolland } from './articles/samenwerkingTourgoZuid
 
 /** Registry for Star Local pSEO Suite — kennisbank master articles. */
 export const kennisbankArticles: readonly KennisbankArticle[] = [
+  organisatorBrabant,
   wachtenZeeland,
   terugritGroepskeuze,
   mobiliteitswensen,
