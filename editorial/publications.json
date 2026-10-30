@@ -106,5 +106,32 @@
         "httpStatus": 200
       }
     ]
+  },
+  {
+    "website": "www.partybusnederland.nl",
+    "slotId": "www.partybusnederland.nl|2026-10-30|1",
+    "originalScheduledAt": "2026-10-30T04:00:00+04:00",
+    "datePublished": "2026-10-30T04:06:39+04:00",
+    "type": "algemeen",
+    "photoSource": "https://startransfer.nl/wp-content/uploads/verhuur-the-experience-binnen-2.jpeg",
+    "title": "Een afspeellijst voor de partybus: wat regel je vóór vertrek?",
+    "url": "https://www.partybusnederland.nl/kennisbank/partybus-afspeellijst-muziek-voorbereiden/",
+    "status": "source-written",
+    "published": false,
+    "photoGenerated": false,
+    "photoApproval": "Existing permitted StarTransfer company photograph; original source and owner permission recorded internally. No specific reserved bus or customer trip claimed.",
+    "sourcesCheckedAt": "2026-10-30T04:06:39+04:00",
+    "sources": [
+      "https://startransfer.nl/partybus/"
+    ],
+    "priorPublicationCheck": {
+      "checkedAt": "2026-10-30T04:06:39+04:00",
+      "main": "829b0060f167cdccf460672185ac5ea383cdbf41",
+      "cloudflareDeployment": "c5ebcb95-5420-4c2a-aab9-5598d1176412",
+      "status": "completed/success",
+      "activeActions": 0,
+      "openPullRequests": 0,
+      "sharedLockVerified": false
+    }
   }
 ]

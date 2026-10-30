@@ -1,3 +1,9 @@
+# Blogslot 30 oktober 2026 — algemeen
+
+Een afspeellijst voor de partybus: wat regel je vóór vertrek?
+https://www.partybusnederland.nl/kennisbank/partybus-afspeellijst-muziek-voorbereiden/
+Oorspronkelijk vrijdag-slot www.partybusnederland.nl|2026-10-30|1 om 04:00 behouden; werkelijke publicatiedatum 2026-10-30T04:06:39+04:00. Geen achterstand uit 26–29 oktober: alle vier kalenderposities gepubliceerd en geverifieerd. Actuele main 829b0060f167cdccf460672185ac5ea383cdbf41, CF-check completed/success, geen Actions of open PR’s; huidige centrale uitvoering onderscheiden van eerdere afgeronde verwerking. Geen gedeelde technische lock geclaimd. Onderwerp verschilt van algemene voorzieningen-FAQ door concrete groepsinventarisatie, lijstbeheer, aparte heen-/terugreis en vooraf bevestigde afspeelmethode; geen aansluiting, DJ, beschikbaarheid of tarief beloofd. Bestaande echte StarTransfer-interieurfoto met geregistreerde oorspronkelijke bron, geen zichtbaar credit. Centrale aanvraag en WhatsApp 31684002350 met één vragen-pop-up; partnergegevens intact. Homepage krijgt één contextuele sectie, bestaande onderdelen behouden. Status source-written; published false tot productie en echte domeincontrole.
+
 # Herstel 28 oktober live bevestigd — 30 oktober 2026
 
 Je activiteit heeft een vast tijdslot: wat vertel je de partybusvervoerder?
