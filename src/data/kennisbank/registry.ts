@@ -1,3 +1,4 @@
+import { afspeellijst } from './articles/afspeellijst';
 import { tijdslotUtrecht } from './articles/tijdslotUtrecht';
 import { organisatorBrabant } from './articles/organisatorBrabant';
 import { wachtenZeeland } from './articles/wachtenZeeland';
@@ -17,6 +18,7 @@ import { samenwerkingTourgoZuidHolland } from './articles/samenwerkingTourgoZuid
 
 /** Registry for Star Local pSEO Suite — kennisbank master articles. */
 export const kennisbankArticles: readonly KennisbankArticle[] = [
+  afspeellijst,
   tijdslotUtrecht,
   organisatorBrabant,
   wachtenZeeland,

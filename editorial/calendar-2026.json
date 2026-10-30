@@ -90,8 +90,11 @@
       "scheduledAt": "2026-10-30T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "Algemeen",
-      "status": "planned",
-      "published": false
+      "status": "source-written",
+      "published": false,
+      "title": "Een afspeellijst voor de partybus: wat regel je vóór vertrek?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-afspeellijst-muziek-voorbereiden/",
+      "datePublished": "2026-10-30T04:06:39+04:00"
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-02|1",
