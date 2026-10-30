@@ -1,3 +1,9 @@
+# Blogslot 30 oktober live bevestigd
+
+Een afspeellijst voor de partybus: wat regel je vóór vertrek?
+https://www.partybusnederland.nl/kennisbank/partybus-afspeellijst-muziek-voorbereiden/
+PR #28 gemerged als eda0431803d0a82b565809f2328e062b159aa11e. Cloudflare-productie 1ebeaf02-a744-4e9c-b654-084b01c4a47d completed/success. Artikel, exacte bestaande partnerfoto, homepagecontext, kennisbank en sitemap HTTP200 gecontroleerd 2026-10-30T04:10:31.774593+04:00. H1/canonical/Article/datum, deelafbeelding en één centraal WhatsApp-vragenvenster met juiste herkomst en bestemming gecontroleerd. Published daarna true; oorspronkelijk vrijdag-slot behouden. Build 591 pagina’s, SEO/interne links/assets en WhatsApp/encodingchecks geslaagd; geen berichten verstuurd. Geen nieuw Star Local-slot op vrijdag.
+
 # Blogslot 30 oktober 2026 — algemeen
 
 Een afspeellijst voor de partybus: wat regel je vóór vertrek?

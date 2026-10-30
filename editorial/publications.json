@@ -116,8 +116,8 @@
     "photoSource": "https://startransfer.nl/wp-content/uploads/verhuur-the-experience-binnen-2.jpeg",
     "title": "Een afspeellijst voor de partybus: wat regel je vóór vertrek?",
     "url": "https://www.partybusnederland.nl/kennisbank/partybus-afspeellijst-muziek-voorbereiden/",
-    "status": "source-written",
-    "published": false,
+    "status": "public-verified",
+    "published": true,
     "photoGenerated": false,
     "photoApproval": "Existing permitted StarTransfer company photograph; original source and owner permission recorded internally. No specific reserved bus or customer trip claimed.",
     "sourcesCheckedAt": "2026-10-30T04:06:39+04:00",
@@ -132,6 +132,32 @@
       "activeActions": 0,
       "openPullRequests": 0,
       "sharedLockVerified": false
-    }
+    },
+    "publicVerifiedAt": "2026-10-30T04:10:31.774593+04:00",
+    "publicHttpStatus": 200,
+    "commitSha": "eda0431803d0a82b565809f2328e062b159aa11e",
+    "deploymentId": "1ebeaf02-a744-4e9c-b654-084b01c4a47d",
+    "verificationChecks": [
+      {
+        "url": "https://www.partybusnederland.nl/kennisbank/partybus-afspeellijst-muziek-voorbereiden/",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://www.partybusnederland.nl/images/partners/startransfer/experience-interieur.webp",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://www.partybusnederland.nl/",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://www.partybusnederland.nl/kennisbank/",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://www.partybusnederland.nl/sitemap.xml",
+        "httpStatus": 200
+      }
+    ]
   }
 ]
