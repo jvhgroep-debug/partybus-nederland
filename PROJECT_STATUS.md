@@ -1,3 +1,10 @@
+# Blogslot 2 november — public-verified na hervatten
+
+Een partybus als verrassing: wat spreek je vooraf af?
+https://www.partybusnederland.nl/kennisbank/partybus-brabant-verrassingsrit-voorbereiden/
+
+Oorspronkelijk slot www.partybusnederland.nl|2026-11-02|1 en oorspronkelijke werkelijke publicatiedatum 2 november behouden. Bestaande PR #31 met uitsluitend de eerder voorbereide tekstcorrectie hervat; preview 4de8dc32-e073-4a5e-b5dd-28211162a773 completed/success, vervolgens merge 79fe6c70774e1727baac3b736434c6f695f0ce28. Cloudflare-productie a09a9d4d-38b7-4e78-8800-1ca9fb710ab0 completed/success. Echte artikelpagina/canonical/geladen partnerfoto/correcte tekst, kennisbank, Noord-Brabant-context en sitemap gecontroleerd op 2026-11-03T01:26:18.428893+04:00. Bestaand WhatsApp-vragenvenster opent naar 31629041798 met juiste bronpad; geen aanvraag verstuurd. 592-paginabuild, SEO, interne links/assets en vier partner WhatsApp-/encodingchecks geslaagd. Geen nieuwe blog of kalenderpositie; nieuwe dinsdagpublicatie blijft gepland voor eigen 04:00-slot. Voltooiing en bron/deployment/controletijd in kalender, publicaties en artikelmetadata vastgelegd.
+
 # Blogslot 2 november 2026 — Prestige / Noord-Brabant
 
 Een partybus als verrassing: wat spreek je vooraf af?
