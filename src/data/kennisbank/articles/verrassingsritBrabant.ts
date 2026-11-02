@@ -157,7 +157,7 @@ const content = {
       "href": "/steden/partybus-huren-tilburg/"
     }
   ],
-  "trustNote": "De foto toont een bestaand partnerinterieur; Prestige bevestigt welk voertuig en welke uitvoering voor jullie rit worden aangeboden."
+  "trustNote": "Prestige Coach Service bevestigt het aangeboden voertuig, de uitvoering en de afspraken voor jullie rit."
 };
 const quote='/gratis-partybus-offertes-aanvragen/?'+new URLSearchParams({partner:'prestige-coach-service',city:'Noord-Brabant',source:content.path}).toString();
 export const verrassingsritBrabant: KennisbankArticle = {...content,heroPrimaryHref:quote,cta:{...content.cta,primaryHref:quote,whatsappHref:buildPrestigeCoachServiceWhatsappHref('Noord-Brabant')}};
