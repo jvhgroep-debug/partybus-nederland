@@ -1,3 +1,4 @@
+import { verrassingsritBrabant } from './articles/verrassingsritBrabant';
 import { afspeellijst } from './articles/afspeellijst';
 import { tijdslotUtrecht } from './articles/tijdslotUtrecht';
 import { organisatorBrabant } from './articles/organisatorBrabant';
@@ -18,6 +19,7 @@ import { samenwerkingTourgoZuidHolland } from './articles/samenwerkingTourgoZuid
 
 /** Registry for Star Local pSEO Suite — kennisbank master articles. */
 export const kennisbankArticles: readonly KennisbankArticle[] = [
+  verrassingsritBrabant,
   afspeellijst,
   tijdslotUtrecht,
   organisatorBrabant,

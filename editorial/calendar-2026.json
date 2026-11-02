@@ -129,8 +129,13 @@
       "scheduledAt": "2026-11-02T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "Prestige Coach Service / Noord-Brabant",
-      "status": "planned",
-      "published": false
+      "status": "source-written",
+      "published": false,
+      "title": "Een partybus als verrassing: wat spreek je vooraf af?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-brabant-verrassingsrit-voorbereiden/",
+      "datePublished": "2026-11-02T04:04:16.965208+04:00",
+      "searchIntent": "Hoe regel ik een partybus als verrassing zonder dat de echte ritafspraken onduidelijk worden?",
+      "photoSource": "Existing permitted partner gallery photograph /images/partners/prestige-coach-service/prestige-coach-service-interieur.webp"
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-03|1",
