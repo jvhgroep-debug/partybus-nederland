@@ -1,3 +1,9 @@
+# Blogslot 2 november 2026 — Prestige / Noord-Brabant
+
+Een partybus als verrassing: wat spreek je vooraf af?
+https://www.partybusnederland.nl/kennisbank/partybus-brabant-verrassingsrit-voorbereiden/
+Oorspronkelijk maandag-slot www.partybusnederland.nl|2026-11-02|1 om 04:00 behouden. Actuele main/kalender/concepten/kennisbank en echte partnerbron gelezen: geen ouder ontbrekend Partybus-slot of bestaand verrassingsartikel. Unieke vraag: geheim onthulmoment versus juiste ritgegevens, met stappen, checklist en passende verhuurhub. Geen fictieve prijzen, voertuigen, beschikbaarheid of inbegrepen uitvoering. Bestaande toegestane interieurfoto visueel gecontroleerd; herkomst/toestemming intern. Juiste Prestige-offerte/WhatsApp 31629041798 via bestaande helpers; andere partners/Functions/Resend/tracking behouden. Geen open PR of actieve Actions; eerdere CF-build success. Huidige centrale run onderscheiden van afgeronde vorige run; geen gedeelde technische lock geclaimd. Nieuwere Johan-autorisatie voor dit blog is leidend boven historische previewgoedkeuring voor de inmiddels afgeronde SEO-opdracht. Source-written, published false tot echte domeincontrole. Build en controles volgen; geen berichten verstuurd.
+
 # Blogslot 30 oktober live bevestigd
 
 Een afspeellijst voor de partybus: wat regel je vóór vertrek?
