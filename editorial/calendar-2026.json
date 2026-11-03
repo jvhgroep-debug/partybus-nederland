@@ -150,8 +150,34 @@
       "scheduledAt": "2026-11-03T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "Tourgo Partybussen / Zuid-Holland",
-      "status": "planned",
-      "published": false
+      "status": "source-written",
+      "published": false,
+      "originalScheduledAt": "2026-11-03T04:00:00+04:00",
+      "datePublished": "2026-11-03T04:09:35.241220+04:00",
+      "partner": "Tourgo Partybussen",
+      "language": "nl-NL",
+      "searchIntent": "Hoe vraag ik een passende partybus aan als ik nog geen voertuigvoorkeur heb?",
+      "photoSource": "Existing approved Tourgo partner photograph /images/partners/tourgo-partybussen/tourgo-partybussen-exclusive.webp",
+      "photoGenerated": false,
+      "photoApproval": "Johan 30 October 2026; existing partner gallery permitted; provenance internal, no visible caption",
+      "sources": [
+        "https://www.tourgo.nl/",
+        "src/data/partners/tourgoPartybussen.ts"
+      ],
+      "sourcesCheckedAt": "2026-11-03T04:09:35.241220+04:00",
+      "title": "Nog geen busvoorkeur? Zo maak je een bruikbare partybusaanvraag",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-zuid-holland-geen-busvoorkeur-aanvragen/",
+      "priorPublicationCheck": {
+        "checkedAt": "2026-11-03T04:09:35.241220+04:00",
+        "main": "8c137d18e31404b696e12d22f58e0b7f2e8606ad",
+        "activeActions": 0,
+        "openPullRequests": 0,
+        "lastContentDeployment": "a09a9d4d-38b7-4e78-8800-1ca9fb710ab0",
+        "lastContentDeploymentStatus": "completed/success; latest source checkpoint intentionally CI skipped",
+        "currentRun": "26b57517-a310-8320-aa6c-4b65e0bedb75",
+        "previousRun": "726e8184-300c-8320-a123-1ed78a234148",
+        "previousRunStatus": "completed"
+      }
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-04|1",
