@@ -1,3 +1,10 @@
+# Slot 3 november — public-verified, registratie hervat
+
+Nog geen busvoorkeur? Zo maak je een bruikbare partybusaanvraag
+https://www.partybusnederland.nl/kennisbank/partybus-zuid-holland-geen-busvoorkeur-aanvragen/
+
+Gecontroleerd 2026-11-03T20:57:56.341Z. Bestaande merge 1fbf7c7f60b396a5c3f60da519b0b89329d5dc98 en Cloudflare d53ec28e-1472-4c45-a50f-39645aed1ca5 completed/success. Werkelijke artikel-URL/H1/canonical/Article/datum, geladen partnerfoto, overzicht en publieke sitemap opnieuw bevestigd. Oorspronkelijke publicatiedatum 3 november en artikel ongewijzigd; uitsluitend onderbroken bronregistratie afgerond. Geen nieuwe deployment, blog, formulier of bericht. Alleen ongebruikte statusmetadata verandert; artikelinhoud en render-invoer ongewijzigd.
+
 # Blogslot 3 november — Tourgo / Zuid-Holland, source-written
 
 Nog geen busvoorkeur? Zo maak je een bruikbare partybusaanvraag
