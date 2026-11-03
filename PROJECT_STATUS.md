@@ -1,3 +1,10 @@
+# Blogslot 3 november — Tourgo / Zuid-Holland, source-written
+
+Nog geen busvoorkeur? Zo maak je een bruikbare partybusaanvraag
+https://www.partybusnederland.nl/kennisbank/partybus-zuid-holland-geen-busvoorkeur-aanvragen/
+
+Origineel slot www.partybusnederland.nl|2026-11-03|1 behouden; actuele bron, alle eerdere slots en live kennisbank gecontroleerd. Unieke zoekvraag over aanvraag zonder voertuigvoorkeur; geen duplicaat van bestaande terugrit-, bagage- of groepsgroottegids. Tourgo-website en echte keuze “Geen voorkeur” bevestigd op 3 november. Alleen bevestigde diensten; geen prijzen, voertuigcapaciteit of beschikbaarheid beloofd. Bestaande goedgekeurde Tourgo-foto, herkomst intern, geen bijschrift. Bestaande offertehelper/WhatsApp 31623044970 met bronpad behouden. Alle andere partners, Functions, Resend en tracking ongewijzigd. Geen AGENTS.md in actuele tree. Eerdere centrale run voltooid en geen actieve Actions of open PR; laatste contentdeployment succesvol, bronstatuscheckpoint CI skip. Geen fictieve gedeelde lock. Bouw/SEO/links/WhatsApp-checks volgen; published false tot deployment en publieke controle.
+
 # Blogslot 2 november — public-verified na hervatten
 
 Een partybus als verrassing: wat spreek je vooraf af?
