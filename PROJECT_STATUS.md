@@ -1,3 +1,10 @@
+# Herstelslot 4 november — public-verified
+
+Zelfde begin- en eindadres: rondrit of retour met een partybus?
+https://www.partybusnederland.nl/kennisbank/partybus-amsterdam-rondrit-of-retour-aanvragen/
+
+Origineel slot 4 november 04:00 behouden; werkelijke publicatiedatum 2026-11-05T01:06:24.198515+04:00. Preview ec459745-5d01-4e26-b2c2-00e2c6ad324e completed/success; PR #33 gemerged als 9b533c6ddbe1f78fb3167f5f8d15cb5f0ecdf351. Productie Cloudflare 451269ed-ea56-43db-be7f-325539e45045 completed/success. Publieke artikel-URL/H1/canonical/Article/datum, geladen partnerfoto, kennisbankoverzicht, Amsterdam-context, sitemap en bestaande partnerpopup met juiste nummer/brongegevens gecontroleerd 2026-11-04T21:11:42.992549+00:00. Published pas daarna true. 594-paginabuild, SEO, interne links/assets en vier partner-WhatsApp/encodingchecks geslaagd. Geen aanvragen of berichten verstuurd. Volgend regulier Partybus-slot 5 november blijft gepland op eigen tijd; deze registratie wijzigt geen artikelinhoud of renderdatum.
+
 # Herstelslot 4 november — Amsterdam, source-written
 
 Zelfde begin- en eindadres: rondrit of retour met een partybus?
