@@ -12,6 +12,7 @@ import GuideFaqList from '../guides/GuideFaqList.astro';
 import RegionalPartnerSection from '../partners/RegionalPartnerSection.astro';
 import UtrechtPartnerHero from '../partners/UtrechtPartnerHero.astro';
 import ProvinceMunicipalityGrid from './ProvinceMunicipalityGrid.astro';
+import Button from '../buttons/Button.astro';
 
 interface Props {
 	municipalities: ProvinceMunicipality[];
@@ -55,7 +56,8 @@ const sectionImages = {
 	<UtrechtPartnerHero
 		breadcrumbs={[
 			{ label: 'Home', href: '/' },
-			{ label: province.eyebrow, href: province.path, current: true },
+			{ label: 'Provincies', href: '/provincies/' },
+			{ label: 'Provincie Utrecht', href: province.path, current: true },
 		]}
 		eyebrow="Partybus provincie Utrecht"
 		title={province.h1}
@@ -70,7 +72,7 @@ const sectionImages = {
 		photo={photos.hero}
 		sourcePage={province.path}
 		defaultCity="Utrecht"
-		formTitle="Offerte aanvragen voor een partybus in Utrecht"
+		formTitle="Vraag een ritofferte aan voor provincie Utrecht"
 		formLead="Vul je wensen in. PartybusNederland.nl werkt in provincie Utrecht samen met Party Bussen Westland."
 	/>
 
@@ -79,6 +81,7 @@ const sectionImages = {
 			<div>
 				<h2 id="province-huren-title" class="section__title">{province.sections.huren.title}</h2>
 				{province.sections.huren.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+				<p>Vertrekt de groep in de stad zelf? Bekijk <a href="/steden/partybus-huren-utrecht/">partybus huren vanuit Utrecht stad</a> voor de lokale opstapplanning. Lees ook <a href="/kennisbank/samenwerking-party-bussen-westland-utrecht-amsterdam/">wie jullie vervoersaanvraag behandelt</a>.</p>
 			</div>
 			<figure class="ut-photo">
 				<img
@@ -98,6 +101,12 @@ const sectionImages = {
 			<div>
 				<h2 id="province-groepsvervoer-title" class="section__title">{province.sections.groepsvervoer.title}</h2>
 				{province.sections.groepsvervoer.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+				<h3>Amersfoort en omgeving</h3>
+				<p>Komen deelnemers uit <a href="/steden/partybus-huren-amersfoort/">Amersfoort</a>, <a href="/steden/partybus-huren-soest/">Soest</a> en <a href="/steden/partybus-huren-baarn/">Baarn</a>? Bepaal eerst of iedereen zelf naar één adres kan komen. Vraag anders een routevoorstel met de afzonderlijke stops.</p>
+				<h3>Heuvelrug en het oosten van de provincie</h3>
+				<p>Voor vertrek uit <a href="/steden/partybus-huren-utrechtse-heuvelrug/">Utrechtse Heuvelrug</a> of <a href="/steden/partybus-huren-veenendaal/">Veenendaal</a> noteer je de concrete plaats en het volledige adres. Alleen de naam van de gemeente is niet genoeg voor een ophaalafspraak.</p>
+				<h3>Woerden, Nieuwegein en Houten</h3>
+				<p>Een groep uit <a href="/steden/partybus-huren-woerden/">Woerden</a>, <a href="/steden/partybus-huren-nieuwegein/">Nieuwegein</a> of <a href="/steden/partybus-huren-houten/">Houten</a> hoeft niet eerst naar Utrecht Centraal. Bespreek een bereikbaar eigen vertrekadres en laat de vervoerder de mogelijkheden bevestigen.</p>
 			</div>
 			<figure class="ut-photo">
 				<img
@@ -117,6 +126,7 @@ const sectionImages = {
 			<div>
 				<h2 id="province-feesten-title" class="section__title">{province.sections.feesten.title}</h2>
 				{province.sections.feesten.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+				<p>Bereid het programma voor met onze tips voor <a href="/diensten/partybus-vrijgezellenfeest/">een partybus bij een vrijgezellenfeest</a>, <a href="/diensten/partybus-verjaardag/">verjaardagsvervoer</a> of <a href="/diensten/partybus-bruiloft/">groepsvervoer bij een bruiloft</a>.</p>
 			</div>
 			<figure class="ut-photo">
 				<img
@@ -136,6 +146,7 @@ const sectionImages = {
 			<div>
 				<h2 id="province-festivals-title" class="section__title">{province.sections.festivals.title}</h2>
 				{province.sections.festivals.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+				<p><a href="/provincies/utrecht/festivals/">Kies je festival en boek hier je rit →</a> of lees eerst de <a href="/gidsen/festival-vervoer/">praktische gids voor festivalvervoer</a>.</p>
 			</div>
 			<figure class="ut-photo">
 				<img
@@ -155,6 +166,7 @@ const sectionImages = {
 			<div>
 				<h2 id="province-bedrijfsfeesten-title" class="section__title">{province.sections.bedrijfsfeesten.title}</h2>
 				{province.sections.bedrijfsfeesten.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+				<p>Lees hoe je <a href="/kennisbank/partybus-utrecht-activiteit-vast-tijdslot/">de vaste starttijd doorgeeft bij je ritvraag</a> en <a href="/kennisbank/bedrijfsuitje-utrecht-partybus-terugrit-plannen/">de terugrit na een bedrijfsuitje vanuit Utrecht afspreekt</a>.</p>
 			</div>
 			<figure class="ut-photo">
 				<img
@@ -174,6 +186,8 @@ const sectionImages = {
 			<div>
 				<h2 id="province-partijen-title" class="section__title">{province.sections.partijen.title}</h2>
 				{province.sections.partijen.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+				<p>Bekijk ook <a href="/gidsen/partybus-prijzen/">welke kostenfactoren de partybusprijs bepalen</a>.</p>
+				<Button href={whatsappHref} target="_blank" rel="noopener noreferrer" partnerWhatsappButtonType="cta">Vraag jullie ritofferte via WhatsApp</Button>
 			</div>
 			<figure class="ut-photo">
 				<img
@@ -230,11 +244,18 @@ const sectionImages = {
 	<ProvinceMunicipalityGrid
 		municipalities={municipalities}
 		title="Partybus huren per gemeente in Utrecht"
-		lead="Elke gemeente heeft een bestaande pagina. De URL’s blijven ongewijzigd."
+		lead="Kies de gemeente waar jullie instappen voor lokale informatie over de vertrekplaats en het aanvragen van een rit."
 		countLabel={`${municipalities.length} gemeenten in provincie Utrecht`}
 	/>
 
 	<GuideFaqList title="Vragen over partybus huren in provincie Utrecht" items={province.faqs} />
+	<section class="section" aria-labelledby="province-request-title">
+		<div class="section__inner">
+			<h2 id="province-request-title" class="section__title">Bespreek jullie vertrekplaats, feestbus en terugrit</h2>
+			<p>Stuur jullie plannen naar Party Bussen Westland. Laat het voertuig, de volledige route en de totaalprijs bevestigen voor je de rit boekt.</p>
+			<Button href={whatsappHref} target="_blank" rel="noopener noreferrer" partnerWhatsappButtonType="cta">Bespreek de rit via WhatsApp</Button>
+		</div>
+	</section>
 </article>
 
 <style>
@@ -280,6 +301,9 @@ const sectionImages = {
 		line-height: 1.75;
 		color: #4f4f4b;
 	}
+
+	.ut-split a { color: #68521b; text-decoration: underline; text-underline-offset: 0.16em; }
+	.ut-split h3 { margin: 1.25rem 0 0.5rem; font-size: 1.2rem; }
 
 	.ut-split p:last-child {
 		margin-bottom: 0;
