@@ -270,5 +270,35 @@
     "deploymentId": "451269ed-ea56-43db-be7f-325539e45045",
     "publicVerifiedAt": "2026-11-04T21:11:42.992549+00:00",
     "verification": "Real www.partybusnederland.nl browser: article/H1/canonical/Article actual date, loaded partner photo 2048px, no caption, knowledge overview, Amsterdam context and sitemap verified. Existing WhatsApp questions popup opened with Amsterdam, correct partner and 31610628733. No form or message sent."
+  },
+  {
+    "website": "www.partybusnederland.nl",
+    "slotId": "www.partybusnederland.nl|2026-11-05|1",
+    "originalScheduledAt": "2026-11-05T04:00:00+04:00",
+    "datePublished": "2026-11-05T04:11:16.471123+04:00",
+    "partner": "StarTransfer / Zeeland",
+    "language": "nl-NL",
+    "searchIntent": "Welke bedrijfs- en factuurgegevens bereid ik voor als ik een partybus voor ons bedrijfsuitje vanuit Zeeland aanvraag?",
+    "photoSource": "Existing approved partner gallery /images/partners/startransfer/partybus-buiten.webp",
+    "photoGenerated": false,
+    "photoApproval": "Johan 30 October 2026; existing partner photos approved; no visible provenance caption; not claimed as confirmed vehicle",
+    "sources": [
+      "https://startransfer.nl/",
+      "src/data/partners/starTransfer.ts",
+      "src/components/startransfer/RegionPage.astro"
+    ],
+    "sourcesCheckedAt": "2026-11-05T04:11:16.471123+04:00",
+    "title": "Partybus voor een bedrijfsuitje: wie vraagt aan en wie ontvangt de factuur?",
+    "url": "https://www.partybusnederland.nl/kennisbank/partybus-bedrijfsuitje-zeeland-offerte-factuurgegevens/",
+    "status": "source-written",
+    "published": false,
+    "priorPublicationCheck": {
+      "main": "7f46f4541ef42f8d399b6990a021b8f70d2ff1bc",
+      "previousContentDeployment": "451269ed-ea56-43db-be7f-325539e45045",
+      "previousContentDeploymentStatus": "completed/success; previous run verified",
+      "activeActions": 0,
+      "openPullRequests": 0,
+      "runId": "0fe03d85-d93c-8324-abf6-e75a4321636f"
+    }
   }
 ]
