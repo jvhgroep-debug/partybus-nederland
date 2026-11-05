@@ -1,3 +1,10 @@
+# 5 november 2026 — bedrijfsaanvraag Zeeland, source-written
+
+Partybus voor een bedrijfsuitje: wie vraagt aan en wie ontvangt de factuur?
+https://www.partybusnederland.nl/kennisbank/partybus-bedrijfsuitje-zeeland-offerte-factuurgegevens/
+
+Bestaand donderdag-slot, geen inhaalartikel. Actuele main 7f46f4541ef42f8d399b6990a021b8f70d2ff1bc; Actions geen runs, geen open PR; vorige inhoudsdeployment succeeded. Officiële StarTransfer-bron en huidige partner-/formulierbron gelezen. Unieke zoekvraag rond organisator, beslisser en factuurcontact; geen betaaltermijnen of factuurmogelijkheden beloofd. Bestaande echte partnerfoto, tijdelijke WhatsApp 31684002350 en handmatige doorsturing behouden. AGENTS.md ontbreekt in huidige bron. Published false tot deployment en echte domeincontrole.
+
 # Herstelslot 4 november — public-verified
 
 Zelfde begin- en eindadres: rondrit of retour met een partybus?
