@@ -210,11 +210,16 @@
       "scheduledAt": "2026-11-05T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "StarTransfer / Zeeland",
-      "status": "source-written",
-      "published": false,
+      "status": "public-verified",
+      "published": true,
       "title": "Partybus voor een bedrijfsuitje: wie vraagt aan en wie ontvangt de factuur?",
       "url": "https://www.partybusnederland.nl/kennisbank/partybus-bedrijfsuitje-zeeland-offerte-factuurgegevens/",
-      "actualPublicationAt": "2026-11-05T04:11:16.471123+04:00"
+      "actualPublicationAt": "2026-11-05T04:11:16.471123+04:00",
+      "sourceCommit": "f17b8e5fb7d4a211f6a540753da2726e62cf574f",
+      "deploymentCommit": "f3bb97e9b13f954476bafabcad3ce3e8c8097d50",
+      "deploymentId": "6f753e3b-c4d7-4b5e-92e7-9acedb99f294",
+      "publicVerifiedAt": "2026-11-05T00:16:08.260687+00:00",
+      "verification": "Cloudflare production completed/success. Real domain article H1/canonical/Article date, loaded partner photo 1600x1200, no caption, overview, Zeeland context and sitemap verified. Existing StarTransfer WhatsApp helper destination 31684002350 and prefilled Zeeland/source retained; article link has same existing direct-link behavior. No request or message sent."
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-06|1",
