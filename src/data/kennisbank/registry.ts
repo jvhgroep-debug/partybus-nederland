@@ -1,3 +1,4 @@
+import { vertrekadressen } from './articles/vertrekadressen';
 import { bedrijfsgegevensZeeland } from './articles/bedrijfsgegevensZeeland';
 import { rondritAmsterdam } from './articles/rondritAmsterdam';
 import { busVoorkeur } from './articles/busVoorkeur';
@@ -22,6 +23,7 @@ import { samenwerkingTourgoZuidHolland } from './articles/samenwerkingTourgoZuid
 
 /** Registry for Star Local pSEO Suite — kennisbank master articles. */
 export const kennisbankArticles: readonly KennisbankArticle[] = [
+  vertrekadressen,
   bedrijfsgegevensZeeland,
   rondritAmsterdam,
   busVoorkeur,
