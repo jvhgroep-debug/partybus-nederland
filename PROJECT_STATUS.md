@@ -1,3 +1,10 @@
+# 6 november — public-verified
+
+2026-11-06T00:10:07.795560+00:00: Twee mogelijke vertrekadressen voor je partybus: hoe kies je er één?
+https://www.partybusnederland.nl/kennisbank/partybus-twee-vertrekadressen-vergelijken/
+
+Origineel vrijdag-slot 6 november 04:00 behouden; werkelijke artikelpublicatiedatum 2026-11-06T04:04:02.023729+04:00. PR36 gecontroleerd gemerged, inhoud fc20e4dd5f03badc2d2237d631d3515aeaa521b8, productie fdc61286f46c1240e221439a3d840b8936cf3a95, preview 4d7fbacb-bb59-40cf-b3c0-680d6fc43974 en productie 09ef409e-e8d4-4d56-b1d7-c3bdab679905 completed/success. Cloudflare productie completed/success. Echte www.partybusnederland.nl artikel-URL, unieke H1/title/meta/canonical/Article met werkelijke datum, OG en geladen partnerfoto 1140x475 zonder bijschrift bevestigd. Kennisbankoverzicht, homepagecontext en echte sitemap.xml met artikel gecontroleerd. Bestaand vragenvenster geopend en gesloten; nummer 31684002350, Nederland en artikelherkomst behouden. Geen aanvraag of bericht verzonden. Losse HTTP-controle gaf 403; browsercontrole slaagde. Niet-bestaande sitemap-0.xml is niet de gepubliceerde sitemap; robots.txt en bron verwijzen naar sitemap.xml. npm ci, 596-paginabuild, SEO, nul ontbrekende assets/interne links en partner-WhatsApp/encodingtests geslaagd. Functions/Resend/tracking/partnerbronnen behouden. PR35 Utrecht blijft open op ongewijzigde head en is niet meegenomen. Star Local volgens actuele scheduledAt-kalender niet verschuldigd; volgende drie slots 8 november. Thisavi eerste reguliere slot 9 november. Alleen redactionele verificatiecheckpoint; geen tweede deployment.
+
 # 6 november 2026 — vrijdagartikel, source-written
 
 Twee mogelijke vertrekadressen voor je partybus: hoe kies je er één?

@@ -228,13 +228,18 @@
       "scheduledAt": "2026-11-06T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "Algemeen",
-      "status": "source-written",
-      "published": false,
+      "status": "public-verified",
+      "published": true,
       "title": "Twee mogelijke vertrekadressen voor je partybus: hoe kies je er één?",
       "url": "https://www.partybusnederland.nl/kennisbank/partybus-twee-vertrekadressen-vergelijken/",
       "datePublished": "2026-11-06T04:04:02.023729+04:00",
       "searchIntent": "Twee alternatieve vertrekadressen vergelijken om één gezamenlijke opstapplek te kiezen vóór de boeking",
-      "photoSource": "https://startransfer.nl/wp-content/uploads/verhuur-the-experience-binnen-2.jpeg"
+      "photoSource": "https://startransfer.nl/wp-content/uploads/verhuur-the-experience-binnen-2.jpeg",
+      "sourceCommit": "fc20e4dd5f03badc2d2237d631d3515aeaa521b8",
+      "productionCommit": "fdc61286f46c1240e221439a3d840b8936cf3a95",
+      "deploymentId": "09ef409e-e8d4-4d56-b1d7-c3bdab679905",
+      "publicVerifiedAt": "2026-11-06T00:10:07.795560+00:00",
+      "verification": "Cloudflare productie completed/success. Echte www.partybusnederland.nl artikel-URL, unieke H1/title/meta/canonical/Article met werkelijke datum, OG en geladen partnerfoto 1140x475 zonder bijschrift bevestigd. Kennisbankoverzicht, homepagecontext en echte sitemap.xml met artikel gecontroleerd. Bestaand vragenvenster geopend en gesloten; nummer 31684002350, Nederland en artikelherkomst behouden. Geen aanvraag of bericht verzonden. Losse HTTP-controle gaf 403; browsercontrole slaagde. Niet-bestaande sitemap-0.xml is niet de gepubliceerde sitemap; robots.txt en bron verwijzen naar sitemap.xml."
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-09|1",

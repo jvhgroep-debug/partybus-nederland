@@ -317,8 +317,8 @@
     "url": "https://www.partybusnederland.nl/kennisbank/partybus-twee-vertrekadressen-vergelijken/",
     "language": "nl-NL",
     "searchIntent": "Twee alternatieve vertrekadressen vergelijken om één gezamenlijke opstapplek te kiezen vóór de boeking",
-    "status": "source-written",
-    "published": false,
+    "status": "public-verified",
+    "published": true,
     "photoGenerated": false,
     "photoApproval": "Bestaande echte StarTransfer-partnerfoto, toegestaan door Johan; intern geregistreerd volgens 30 oktober 2026. Geen zichtbaar herkomstbijschrift.",
     "sources": [
@@ -342,6 +342,31 @@
       "previousCentralRunStatus": "completed",
       "sharedLockClaimed": false
     },
-    "olderCalendarReview": "Alle eerdere slots sinds 26 oktober published true; geen extra inhaalslot."
+    "olderCalendarReview": "Alle eerdere slots sinds 26 oktober published true; geen extra inhaalslot.",
+    "sourceCommit": "fc20e4dd5f03badc2d2237d631d3515aeaa521b8",
+    "productionCommit": "fdc61286f46c1240e221439a3d840b8936cf3a95",
+    "previewDeploymentId": "4d7fbacb-bb59-40cf-b3c0-680d6fc43974",
+    "pullRequest": 36,
+    "checks": [
+      "npm ci",
+      "596-page build",
+      "SEO audit",
+      "internal links and assets",
+      "H1/canonical/Article actual date/OG/photo no caption",
+      "homepage/overview/sitemap",
+      "four partner WhatsApp routes and encoded request fields"
+    ],
+    "deploymentId": "09ef409e-e8d4-4d56-b1d7-c3bdab679905",
+    "publicVerifiedAt": "2026-11-06T00:10:07.795560+00:00",
+    "verification": "Cloudflare productie completed/success. Echte www.partybusnederland.nl artikel-URL, unieke H1/title/meta/canonical/Article met werkelijke datum, OG en geladen partnerfoto 1140x475 zonder bijschrift bevestigd. Kennisbankoverzicht, homepagecontext en echte sitemap.xml met artikel gecontroleerd. Bestaand vragenvenster geopend en gesloten; nummer 31684002350, Nederland en artikelherkomst behouden. Geen aanvraag of bericht verzonden. Losse HTTP-controle gaf 403; browsercontrole slaagde. Niet-bestaande sitemap-0.xml is niet de gepubliceerde sitemap; robots.txt en bron verwijzen naar sitemap.xml.",
+    "central0400Review": {
+      "checkedAt": "2026-11-06T00:10:07.795560+00:00",
+      "ownRunId": "2e7d7844-93c0-8330-9bd6-281dbe208151",
+      "partybusOlderSlots": "all published; no backlog",
+      "starLocal": "Current main calendar checked: no due/uncompleted slots at 6 November 04:00; slots 22–24 public-verified on 5 November; next slots25–27 scheduledAt 8 November 04:00, original identities retained.",
+      "thisavi": "Not due: first authorized scheduled slot9 November04:00; no scheduled backlog before9 November.",
+      "separatePr35": "still open at unchanged head bdb1ef93e5c454b1f33eed57893e58dff36d26e6; not merged",
+      "newTasksCreated": false
+    }
   }
 ]
