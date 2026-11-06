@@ -1,3 +1,10 @@
+# 6 november 2026 — vrijdagartikel, source-written
+
+Twee mogelijke vertrekadressen voor je partybus: hoe kies je er één?
+https://www.partybusnederland.nl/kennisbank/partybus-twee-vertrekadressen-vergelijken/
+
+Origineel slot 6 november 04:00 Asia/Dubai, begonnen na publishAt. Bestaande algemene aanvraag- en WhatsApp-route behouden. Unieke vergelijking van twee alternatieve vertrekadressen; geen extra stops of beschikbare uitvoering beloofd. Bestaande toegestane partnerfoto zonder zichtbaar herkomstbijschrift. Oudere kalenderposities gecontroleerd: volledig gepubliceerd. Afzonderlijk Utrecht-voorstel PR35 en afgeronde preview behouden; niet gemerged. AGENTS.md ontbreekt. Published false tot succesvolle productie en echte domeincontrole.
+
 # 5 november — public-verified
 
 2026-11-05T00:16:08.260687+00:00: Bedrijfsuitje/offerte- en factuurgegevens, https://www.partybusnederland.nl/kennisbank/partybus-bedrijfsuitje-zeeland-offerte-factuurgegevens/ . PR34 gecontroleerd gemerged, productie f3bb97e9b13f954476bafabcad3ce3e8c8097d50, Cloudflare 6f753e3b-c4d7-4b5e-92e7-9acedb99f294 completed/success. Echte artikel-URL, H1/canonical/Article/datum, partnerfoto 1600x1200, overzicht, Zeeland-context en sitemap bevestigd. Bestaande tijdelijke WhatsApp en directe helperroute behouden; geen formulier/bericht verstuurd. npm ci/build, SEO/link/assetcontrole en partner-WhatsApp-test geslaagd; vier aanvullende StarTransfer-formuliertests met expliciete TS-import in tijdelijke testkopie geslaagd (standaard node-testimport zonder extensie was niet oplosbaar). Alleen redactionele statuscheckpoint, geen tweede deployment.

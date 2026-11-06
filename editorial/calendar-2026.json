@@ -228,8 +228,13 @@
       "scheduledAt": "2026-11-06T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "Algemeen",
-      "status": "planned",
-      "published": false
+      "status": "source-written",
+      "published": false,
+      "title": "Twee mogelijke vertrekadressen voor je partybus: hoe kies je er één?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-twee-vertrekadressen-vergelijken/",
+      "datePublished": "2026-11-06T04:04:02.023729+04:00",
+      "searchIntent": "Twee alternatieve vertrekadressen vergelijken om één gezamenlijke opstapplek te kiezen vóór de boeking",
+      "photoSource": "https://startransfer.nl/wp-content/uploads/verhuur-the-experience-binnen-2.jpeg"
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-09|1",
