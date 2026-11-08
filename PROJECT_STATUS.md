@@ -1,3 +1,7 @@
+# 8 november2026 — reductie naar drie blogs per week
+
+Kalender vanaf8November uitsluitend ma/wo/vr; 15 toekomstige di/do-posities geannuleerd met originele ID en inhoud behouden. 23 resterende posities tot30December, categorieën doorlopend herverdeeld vanafPrestige, WestlandUtrecht eerst. Historische artikelen/datums/status behouden. Buildselectie controleert kalender, einddatum en tijdafscherming vóór render; cancelled/skipped-quality niet als achterstand selecteren. Geen nieuw artikel in deze wijziging. Eigen centrale run7b47ddb3-9ef4-8320-9189-b439cb73476d; vorige run afgerond. Vorige productie completed/success; geen Actions-workflows. PR35 apart behouden.
+
 # 6 november — public-verified
 
 2026-11-06T00:10:07.795560+00:00: Twee mogelijke vertrekadressen voor je partybus: hoe kies je er één?

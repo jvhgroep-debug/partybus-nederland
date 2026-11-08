@@ -14,7 +14,7 @@
     "validate:gidsen": "node scripts/validate-gidsen-wordcount.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "prebuild": "node scripts/build-partner-images.mjs"
+    "prebuild": "node scripts/validate-publication-calendar.mjs && node scripts/build-partner-images.mjs"
   },
   "dependencies": {
     "astro": "^7.0.9"
