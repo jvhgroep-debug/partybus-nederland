@@ -1,3 +1,7 @@
+# 8 november — roosterreductie gepubliceerd en gecontroleerd
+
+2026-11-08T00:05:49.553057+00:00: PR37 gemerged als3e9e8591a94502fede600a48895a2f223288da8b. Preview0bf1dc99-1332-4e1c-bfd6-2d9e77c8056e en productiea1eb3863-b94a-4aad-8709-a8831c779965 completed/success.596-paginabuild, SEO/link/asset/WhatsApp- en datumgrenschecks geslaagd; bestaande6November-artikel op echte domein gelezen. Alleen kalender/selectie aangepast, geen nieuw artikel of pagina-inhoud. PR35 behouden. Metadatacheckpoint zonder nieuwe deployment.
+
 # 8 november2026 — reductie naar drie blogs per week
 
 Kalender vanaf8November uitsluitend ma/wo/vr; 15 toekomstige di/do-posities geannuleerd met originele ID en inhoud behouden. 23 resterende posities tot30December, categorieën doorlopend herverdeeld vanafPrestige, WestlandUtrecht eerst. Historische artikelen/datums/status behouden. Buildselectie controleert kalender, einddatum en tijdafscherming vóór render; cancelled/skipped-quality niet als achterstand selecteren. Geen nieuw artikel in deze wijziging. Eigen centrale run7b47ddb3-9ef4-8320-9189-b439cb73476d; vorige run afgerond. Vorige productie completed/success; geen Actions-workflows. PR35 apart behouden.

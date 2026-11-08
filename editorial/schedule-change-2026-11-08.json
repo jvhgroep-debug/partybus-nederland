@@ -49,5 +49,12 @@
   "openPr35": "Separate Utrecht preview retained at bdb1ef93e5c454b1f33eed57893e58dff36d26e6; not merged",
   "externalActionsRuns": 0,
   "workflowFiles": [],
-  "newArticlePublished": false
+  "newArticlePublished": false,
+  "status": "deployed-verified",
+  "sourceCommit": "c3e52760bae4620519d804fd6b285b98179d9d0b",
+  "productionCommit": "3e9e8591a94502fede600a48895a2f223288da8b",
+  "previewDeployment": "0bf1dc99-1332-4e1c-bfd6-2d9e77c8056e",
+  "productionDeployment": "a1eb3863-b94a-4aad-8709-a8831c779965",
+  "verifiedAt": "2026-11-08T00:05:49.553057+00:00",
+  "checks": "596-page build, SEO, no broken links/assets, partner WhatsApp and calendar boundary tests passed. Both Cloudflare checks completed/success; existing real-domain November6 article rendered correctly. No public article content changed; no new article."
 }
