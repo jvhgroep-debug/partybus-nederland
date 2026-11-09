@@ -1,3 +1,7 @@
+# 9 november 2026 — homepage en vertrekregio’s live bevestigd
+
+PR40 gemerged als109b96c230c2004a92d700ccf60dfa24ba627fed. Cloudflare-preview1b96c281-a6f1-4e56-834b-e32aae6c0f83 en productie f8744698-fcd2-4bae-bed8-cae5b1f7b642 completed/success. Rechtstreekse HTTP-controle met status200 op echte www.partybusnederland.nl homepage en /provincies/ bevestigt nieuwe titles/H1, vier partnerkaarten en aanvraagchecklist. Build597pagina’s, SEO-, link-/asset-, FAQ/schema- en vier-partner WhatsAppchecks geslaagd. Bestaande canonicals/contact-/formulierbestemmingen behouden. Geen aanvraag of bericht verstuurd. PR35 Utrecht blijft apart. Uitsluitend statuscheckpoint; geen extra inhoudspublicatie. Rankingeffect nog niet vastgesteld.
+
 # 9 november 2026 — homepage en vertrekregio’s, bron gereed
 
 - Opdracht Johan: Partybus Nederland opnieuw optimaliseren na het weekrapport. Weektotalen bewijzen geen oorzaak per zoekvraag; deze wijziging verbetert bestaande pagina’s zonder een rankingherstel te claimen.
