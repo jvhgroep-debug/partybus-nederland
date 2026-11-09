@@ -378,8 +378,8 @@
     "partner": "Prestige Coach Service / Noord-Brabant",
     "language": "nl-NL",
     "searchIntent": "Welke ritgegevens en beschrijving geef ik door als ik na een partybusrit spullen mis?",
-    "status": "source-written",
-    "published": false,
+    "status": "public-verified",
+    "published": true,
     "title": "Iets laten liggen in de partybus? Zo maak je een duidelijke melding",
     "url": "https://www.partybusnederland.nl/kennisbank/spullen-kwijt-na-partybusrit-brabant/",
     "photoSource": "Existing /images/partners/prestige-coach-service/prestige-coach-service-interieur.webp",
@@ -400,6 +400,13 @@
       "separatePr35": "Utrecht preview retained, no merge",
       "previousCentralRun": "Aurora9November complete/public-verified; Captain/AJ have no backlog",
       "sharedLockClaimed": false
-    }
+    },
+    "productionCommit": "4802a9b16acf7a7ce5b37fdc39196189e864df32",
+    "deploymentId": "a7e42565-f0d8-46d7-8913-6ea1fba46245",
+    "previewDeploymentId": "bff33edb-fa64-4ea3-a149-109143353d4e",
+    "pullRequest": 38,
+    "routeCorrectionPr": 39,
+    "publicVerifiedAt": "2026-11-09T00:12:58.344Z",
+    "verification": "Cloudflare completed/success; real-domain single H1/canonical/Article actual date, loaded1600px partner photograph, overview, Brabant context, sitemap.xml and existing Prestige questions dialog/31629041798 verified. Footer quote route restored and verified with partner/city/source. No requests or messages sent."
   }
 ]

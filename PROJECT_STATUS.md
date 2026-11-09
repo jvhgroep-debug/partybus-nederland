@@ -1,3 +1,10 @@
+# 9 november2026 — public-verified
+
+Iets laten liggen in de partybus? Zo maak je een duidelijke melding
+https://www.partybusnederland.nl/kennisbank/spullen-kwijt-na-partybusrit-brabant/
+
+Cloudflare completed/success; real-domain single H1/canonical/Article actual date, loaded1600px partner photograph, overview, Brabant context, sitemap.xml and existing Prestige questions dialog/31629041798 verified. Footer quote route restored and verified with partner/city/source. No requests or messages sent. Productie 4802a9b16acf7a7ce5b37fdc39196189e864df32, deployment a7e42565-f0d8-46d7-8913-6ea1fba46245, controle 2026-11-09T00:12:58.344Z. Slot public-verified; geen extra artikel of metadata-herpublicatie. Geen afzonderlijke paginaverbeteringen of skipped-quality-slots.
+
 # 9 november2026 — spullen na de rit, source-written
 
 Origineel slot www.partybusnederland.nl|2026-11-09|1. Prestige volgt6NovemberAlgemeen; gereduceerd rooster gecontroleerd. Geen oudere open slots. Bestaande gidsen noemen kort achtergebleven spullen; nieuwe invalshoek is de concrete melding na afloop, met datum/ritdeel/kenmerken en bevestigde overdracht. Partnerbron limobus.nl en live kennisbank/Brabant gelezen. Geen nieuwe retour- of bewaarbeleidsclaims. Echte toegestane interieurfoto visueel gecontroleerd. WhatsApp31629041798 en bestaande routes behouden. Open Utrecht-PR35 blijft ongemoeid. Publicatie/echte domeincontrole nog te bevestigen.

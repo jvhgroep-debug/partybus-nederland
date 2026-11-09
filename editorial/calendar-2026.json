@@ -248,13 +248,16 @@
       "scheduledAt": "2026-11-09T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "Prestige Coach Service / Noord-Brabant",
-      "status": "source-written",
-      "published": false,
+      "status": "public-verified",
+      "published": true,
       "previousType": "Prestige Coach Service / Noord-Brabant",
       "scheduleActive": true,
       "title": "Iets laten liggen in de partybus? Zo maak je een duidelijke melding",
       "url": "https://www.partybusnederland.nl/kennisbank/spullen-kwijt-na-partybusrit-brabant/",
-      "datePublished": "2026-11-09T04:06:14.898931+04:00"
+      "datePublished": "2026-11-09T04:06:14.898931+04:00",
+      "productionCommit": "4802a9b16acf7a7ce5b37fdc39196189e864df32",
+      "deploymentId": "a7e42565-f0d8-46d7-8913-6ea1fba46245",
+      "publicVerifiedAt": "2026-11-09T00:12:58.344Z"
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-10|1",
