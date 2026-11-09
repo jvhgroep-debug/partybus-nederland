@@ -1,8 +1,33 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { provincePages } from '../../data/provinces/registry';
+import DepartureRegions from '../../components/home/DepartureRegions.astro';
+const partnerRegions = new Set(['noord-brabant', 'zuid-holland', 'utrecht', 'zeeland']);
+const otherProvinces = provincePages.filter(province => !partnerRegions.has(province.slug));
 ---
-<BaseLayout title="Partybus huren per provincie | Partybus Nederland" description="Bekijk partybusvervoer in alle twaalf provincies. Kies je vertrekregio voor lokale plaatsen, routeadvies en een vrijblijvende aanvraag." canonical="https://www.partybusnederland.nl/provincies/" titleExact={true}>
- <article class="provinces section__inner"><h1>Partybus huren per provincie</h1><p>Kies de provincie waar jullie groep vertrekt. Op de regiopagina vind je plaatsen, praktische informatie en de aanvraagmogelijkheden voor jullie rit.</p><ul>{provincePages.map(province => <li><a href={province.path}>{province.h1}</a></li>)}</ul><p>Beschikbaarheid, prijs en voertuig worden voor jullie datum en route door de aanbieder bevestigd.</p><a href="/gratis-partybus-offertes-aanvragen/">Gratis offertes aanvragen</a></article>
+<BaseLayout title="Partybus huren per provincie | Kies je vertrekregio" description="Waar vertrekt jouw groep? Kies je provincie, vind lokale vertrekplaatsen en bekijk de aanvraagroute. Bereid datum, route, groepsgrootte en terugrit voor." canonical="https://www.partybusnederland.nl/provincies/" titleExact={true}>
+ <article class="provinces">
+  <div class="section__inner">
+   <h1>Partybus huren per provincie</h1>
+   <p>Kies de provincie waar jullie groep vertrekt. Een feestbus naar een andere provincie vraag je aan vanuit de opstapplaats, niet vanuit de bestemming. Hieronder vind je de regionale partners en informatie voor alle twaalf provincies.</p>
+  </div>
+  <DepartureRegions showOverviewLink={false} />
+  <section class="section__inner" aria-labelledby="other-provinces-title">
+   <h2 id="other-provinces-title">Andere vertrekprovincies</h2>
+   <p>Gebruik de provinciale informatie om je vertrekplaats en ritvraag voor te bereiden. De beschikbare vervoerder en uitvoering worden voor jullie aanvraag beoordeeld.</p>
+   <ul>{otherProvinces.map(province => <li><a href={province.path}>{province.h1}</a></li>)}</ul>
+  </section>
+  <section class="section__inner" aria-labelledby="request-checklist-title">
+   <h2 id="request-checklist-title">Wat geef je door voor een passende ritofferte?</h2>
+   <ol>
+    <li><strong>Vertrek:</strong> datum, gewenste vertrektijd en volledige opstapadressen. Vermeld bij meerdere stops hoeveel mensen per adres instappen.</li>
+    <li><strong>Groep en bestemming:</strong> aantal reizigers, eventuele bagage, het bestemmingsadres en een vaste aankomsttijd als die belangrijk is.</li>
+    <li><strong>Terugrit:</strong> ophaaldatum, tijd en eindadres. Geef aan of iedereen op dezelfde plek uitstapt.</li>
+    <li><strong>Vergelijking:</strong> laat bus, toegestane capaciteit, totaalprijs, wachttijd en voorwaarden bevestigen voordat je boekt.</li>
+   </ol>
+   <p>Lees <a href="/gidsen/partybus-prijzen/">welke factoren de partybusprijs bepalen</a> of bereid met de <a href="/gidsen/opstapplaatsen/">gids voor opstapplaatsen</a> een bereikbaar verzamelpunt voor.</p>
+   <a href="/gratis-partybus-offertes-aanvragen/">Gratis offertes aanvragen →</a>
+  </section>
+ </article>
 </BaseLayout>
-<style>.provinces { padding-top: calc(var(--header-height) + 3rem); padding-bottom: 4rem; } ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-block: 2rem; } a { color: var(--color-primary); } p { max-width: 75ch; line-height: 1.8; }</style>
+<style>.provinces { padding-top: calc(var(--header-height) + 3rem); padding-bottom: 4rem; } ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 1.5rem; margin-block: 2rem; } ol { display: grid; gap: 1rem; padding-left: 1.5rem; line-height: 1.8; } a { color: var(--color-primary); } p { max-width: 75ch; line-height: 1.8; } section[aria-labelledby="request-checklist-title"] { margin-top: 3rem; }</style>

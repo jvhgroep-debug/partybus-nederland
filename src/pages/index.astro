@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/home/Hero.astro';
 import TrustBar from '../components/home/TrustBar.astro';
 import Intro from '../components/home/Intro.astro';
+import DepartureRegions from '../components/home/DepartureRegions.astro';
 import Services from '../components/home/Services.astro';
 import PopularCities from '../components/home/PopularCities.astro';
 import HowItWorks from '../components/home/HowItWorks.astro';
@@ -52,14 +53,14 @@ const websiteSchema = {
 ---
 
 <BaseLayout
-	title="Partybus huren Nederland | Vergelijk offertes"
-	description="Complete informatie over partybus huren in Nederland: prijzen, tips, bestemmingen, festivals en routes. Vergelijk daarna gratis meerdere offertes."
+	title="Partybus huren | Vergelijk prijs, bus en ritvoorwaarden"
+	description="Partybus of feestbus huren? Kies je vertrekplaats, bekijk prijsfactoren en plan de heen- en terugrit. Vraag gratis offertes aan voor jouw groep."
 	titleExact={true}
 	jsonLd={[organizationSchema, websiteSchema, faqSchema]}
 >
 	<Hero
-		title="Vergelijk partybussen. Kies de beste rit voor jouw groep."
-		subtitle="Eén gratis aanvraag, meerdere passende offertes. Vergelijk luxe, capaciteit, voorwaarden en prijs — jij kiest zelf."
+		title="Partybus huren voor jouw groep"
+		subtitle="Plan je vertrekplaats, groepsgrootte en terugrit. Vergelijk prijs, bus en voorwaarden voor jullie festival, feest of bedrijfsuitje — jij kiest zelf."
 		image="/images/partybus-nederland-hero-feest.webp"
 		imageWidth={1200}
 		imageHeight={800}
@@ -69,6 +70,7 @@ const websiteSchema = {
 	/>
 	<TrustBar />
 	<Intro />
+	<DepartureRegions />
 	<HowItWorks />
 	<Services />
 	<SafetyAndPartners />
