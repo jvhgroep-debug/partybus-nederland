@@ -1,3 +1,7 @@
+# 9 november2026 — spullen na de rit, source-written
+
+Origineel slot www.partybusnederland.nl|2026-11-09|1. Prestige volgt6NovemberAlgemeen; gereduceerd rooster gecontroleerd. Geen oudere open slots. Bestaande gidsen noemen kort achtergebleven spullen; nieuwe invalshoek is de concrete melding na afloop, met datum/ritdeel/kenmerken en bevestigde overdracht. Partnerbron limobus.nl en live kennisbank/Brabant gelezen. Geen nieuwe retour- of bewaarbeleidsclaims. Echte toegestane interieurfoto visueel gecontroleerd. WhatsApp31629041798 en bestaande routes behouden. Open Utrecht-PR35 blijft ongemoeid. Publicatie/echte domeincontrole nog te bevestigen.
+
 # 8 november — roosterreductie gepubliceerd en gecontroleerd
 
 2026-11-08T00:05:49.553057+00:00: PR37 gemerged als3e9e8591a94502fede600a48895a2f223288da8b. Preview0bf1dc99-1332-4e1c-bfd6-2d9e77c8056e en productiea1eb3863-b94a-4aad-8709-a8831c779965 completed/success.596-paginabuild, SEO/link/asset/WhatsApp- en datumgrenschecks geslaagd; bestaande6November-artikel op echte domein gelezen. Alleen kalender/selectie aangepast, geen nieuw artikel of pagina-inhoud. PR35 behouden. Metadatacheckpoint zonder nieuwe deployment.
