@@ -12,7 +12,7 @@ export const homeFaqs: FaqItem[] = [
 	{
 		question: 'Hoe snel ontvang ik offertes?',
 		answer:
-			'Na je aanvraag gaan we aan de slag met passende aanbieders. In de praktijk krijg je vaak binnen korte tijd meerdere voorstellen, zodat je rustig kunt vergelijken.',
+			'Dat hangt af van de aanbieder, datum en volledigheid van je aanvraag. Geef vertrekadres, bestemming, groepsgrootte en heen- en terugtijden door. Een aanvraag is nog geen reservering; laat prijs en beschikbaarheid bevestigen voordat je boekt.',
 	},
 	{
 		question: 'Kan ik vanuit mijn stad naar een festival of andere stad rijden?',
@@ -27,7 +27,7 @@ export const homeFaqs: FaqItem[] = [
 	{
 		question: 'Voor hoeveel personen is een partybus geschikt?',
 		answer:
-			'Dat verschilt per bus. Partybus Nederland vergelijkt mogelijkheden voor kleine en grote groepen, tot maximaal 80 personen. Geef het aantal gasten door in je aanvraag.',
+			'Dat verschilt per voertuig. Geef het aantal reizigers, eventuele bagage en praktische instapwensen door. Laat de aanbieder de toegestane capaciteit en passende uitvoering voor jullie groep bevestigen.',
 	},
 	{
 		question: 'Waar let ik op bij het vergelijken van offertes?',
@@ -38,5 +38,15 @@ export const homeFaqs: FaqItem[] = [
 		question: 'Hoe lang van tevoren moet ik reserveren?',
 		answer:
 			'Voor weekenden, feestdagen en festivals is vroeg aanvragen verstandig. Beschikbaarheid verschilt per aanbieder en periode — wij garanderen geen beschikbaarheid.',
+	},
+	{
+		question: 'Wat is het verschil tussen een partybus en een feestbus?',
+		answer:
+			'Beide namen worden gebruikt voor feestelijk groepsvervoer. De naam zegt niet welke voorzieningen inbegrepen zijn. Vergelijk het concrete voertuig, toegestane capaciteit, muziek, verlichting, consumpties en huisregels in het voorstel.',
+	},
+	{
+		question: 'Kies ik mijn vertrekprovincie of de provincie van het festival?',
+		answer:
+			'Begin bij de plaats waar jullie instappen. Vertrekt de groep bijvoorbeeld uit Breda naar een festival buiten Brabant, kies dan Noord-Brabant als vertrekregio. Geef alle opstapadressen, de bestemming en de gewenste terugrit door; de vervoerder beoordeelt de route.',
 	},
 ];

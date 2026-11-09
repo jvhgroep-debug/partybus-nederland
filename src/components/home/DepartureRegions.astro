@@ -1,0 +1,47 @@
+---
+import { prestigeCoachService } from '../../data/partners/prestigeCoachService';
+import { tourgoPartybussen } from '../../data/partners/tourgoPartybussen';
+import { partyBussenWestland } from '../../data/partners/partyBussenWestland';
+import { starTransfer } from '../../data/partners/starTransfer';
+
+interface Props { showOverviewLink?: boolean; }
+const { showOverviewLink = true } = Astro.props;
+const regions = [
+  { name: 'Noord-Brabant', href: '/provincies/noord-brabant/', partner: prestigeCoachService.publicProfile.name, detail: 'Vertrek uit onder meer Breda, Tilburg of Eindhoven.' },
+  { name: 'Zuid-Holland', href: '/provincies/zuid-holland/', partner: tourgoPartybussen.publicProfile.name, detail: 'Vertrek uit onder meer Rotterdam, Den Haag of Leiden.' },
+  { name: 'Utrecht', href: '/provincies/utrecht/', partner: partyBussenWestland.publicProfile.name, detail: 'Vertrek uit onder meer Utrecht, Amersfoort of Woerden.' },
+  { name: 'Zeeland', href: '/provincies/zeeland/', partner: starTransfer.publicProfile.name, detail: 'Vertrek uit onder meer Goes, Middelburg of Terneuzen.' },
+];
+---
+<section id="vertrekregio" class="section departure-regions" aria-labelledby="departure-regions-title">
+  <div class="section__inner">
+    <div class="section__head">
+      <p class="section__eyebrow">Vertrekplaats &amp; vervoerspartner</p>
+      <h2 id="departure-regions-title" class="section__title">Waar wil je de partybus laten vertrekken?</h2>
+      <p class="section__lead">Kies waar jullie instappen, ook als het feest of festival in een andere provincie is. Op de regiopagina vind je de partner, vertrekplaatsen en de aanvraagroute voor jullie rit.</p>
+    </div>
+    <div class="departure-regions__grid">
+      {regions.map(region => (
+        <a href={region.href} class="departure-regions__card">
+          <h3>Partybus huren in {region.name}</h3>
+          <p>{region.detail}</p>
+          <p class="departure-regions__partner">{region.partner}</p>
+          <span>Bekijk vertrekplaatsen en vraag je rit aan →</span>
+        </a>
+      ))}
+    </div>
+    <p class="departure-regions__note">Vertrek je uit Amsterdam? Bekijk de <a href="/steden/partybus-huren-amsterdam/">partybuspagina voor Amsterdam</a>. De vervoerder bevestigt de bus, bereikbaarheid van het opstapadres en beschikbaarheid voor jullie datum.</p>
+    {showOverviewLink && <p><a href="/provincies/">Bekijk partybus huren per provincie →</a></p>}
+  </div>
+</section>
+<style>
+  .departure-regions__grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+  .departure-regions__card { display: flex; flex-direction: column; gap: 0.75rem; padding: 1.5rem; border: 1px solid var(--color-primary-line); border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-primary) 5%, #090909); }
+  .departure-regions__card:hover, .departure-regions__card:focus-visible { border-color: var(--color-primary); }
+  .departure-regions__card h3 { margin: 0; font-family: var(--font-display); font-size: 1.15rem; color: var(--color-primary); }
+  .departure-regions__card p { margin: 0; color: var(--color-text-muted); line-height: 1.6; }
+  .departure-regions__card .departure-regions__partner { font-weight: 700; color: var(--color-text); }
+  .departure-regions__card span { margin-top: auto; font-weight: 600; font-size: 0.92rem; }
+  .departure-regions__note { margin-top: 1.5rem; line-height: 1.75; max-width: 80ch; }
+  .departure-regions a:not(.departure-regions__card) { color: var(--color-primary); text-decoration: underline; text-underline-offset: 0.2em; }
+</style>

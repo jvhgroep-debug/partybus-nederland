@@ -1,3 +1,11 @@
+# 9 november 2026 — homepage en vertrekregio’s, bron gereed
+
+- Opdracht Johan: Partybus Nederland opnieuw optimaliseren na het weekrapport. Weektotalen bewijzen geen oorzaak per zoekvraag; deze wijziging verbetert bestaande pagina’s zonder een rankingherstel te claimen.
+- Homepage: beschrijvende partybus-H1, title/meta rond prijs/bus/ritvoorwaarden en een regioselectie met namen uit de actuele partnerdata. Vier bestaande provincieroutes en Amsterdam; volledige provinciekeuze via het bestaande overzicht.
+- Provincieoverzicht: heldere keuze op basis van vertrekplaats, alle twaalf provincies behouden en checklist voor opstapadressen, groepsgrootte, bestemming, terugrit en bevestiging van totaalprijs/voertuig/voorwaarden. FAQ verduidelijkt responstijd, capaciteit en feestbus/partybus; zichtbaar en schema uit dezelfde data.
+- Geen nieuwe pagina’s of blogs. URL’s, canonicals, foto’s, partnernummers, aanvraagformulieren, WhatsApp-dialogen, Functions, tracking en rooster behouden. Bestaand Utrecht-voorstel PR35 blijft ongemoeid.
+- npm ci/build, SEO-audit, interne links/assets en vier-partner WhatsApp/encodingchecks geslaagd. Alle 597 pagina’s vergeleken: alleen homepage-title/H1 en provincieoverzicht-title aangepast; alle canonicals en contact-/formulierattributen behouden. Negen zichtbare homepage-FAQ’s gelijk aan schema. Preview/merge/productiedomeincontrole worden afzonderlijk bevestigd.
+
 # 9 november2026 — public-verified
 
 Iets laten liggen in de partybus? Zo maak je een duidelijke melding
