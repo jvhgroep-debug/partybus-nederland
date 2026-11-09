@@ -10,6 +10,7 @@ interface Props {
 	partnerId?: string;
 	partnerCity?: string;
 	submitLabel?: string;
+	messagePlaceholder?: string;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
 	partnerId,
 	partnerCity,
 	submitLabel = 'Gratis offertes aanvragen',
+	messagePlaceholder = 'Vertel kort over je plannen, route of gelegenheid.',
 } = Astro.props;
 const successMessage = emailSettings.successMessage;
 const errorMessage = emailSettings.errorMessage;
@@ -72,7 +74,7 @@ const configuredPartnerCity = configuredPartnerId ? (partnerCity ?? defaultCity 
 
 			<label class="quote-form__field quote-form__field--full">
 				<span>Bericht / wensen</span>
-				<textarea name="message" rows="4" placeholder="Vertel kort over je plannen, route of gelegenheid."></textarea>
+				<textarea name="message" rows="4" placeholder={messagePlaceholder}></textarea>
 			</label>
 		</div>
 

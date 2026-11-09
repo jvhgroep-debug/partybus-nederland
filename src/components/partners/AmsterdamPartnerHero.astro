@@ -89,8 +89,10 @@ const {
 		</div>
 
 		<div class="ams-hero__actions">
+			<Button href="#offerte" size="lg">Vraag je ritofferte aan</Button>
 			<Button
 				href={whatsappHref}
+				variant="ghost"
 				size="lg"
 				target="_blank"
 				rel="noopener noreferrer"
@@ -104,7 +106,8 @@ const {
 			<p class="ams-hero__form-eyebrow">Offerteaanvraag</p>
 			<h2 class="ams-hero__form-title">{formTitle}</h2>
 			<p class="ams-hero__form-lead">{formLead}</p>
-			<QuoteForm sourcePage={sourcePage} defaultCity={defaultCity} partnerId="party-bussen-westland" partnerCity={defaultCity} />
+			<p class="ams-hero__form-lead">Vrijblijvend je rit bespreken met Party Bussen Westland. De partner bevestigt prijs, bus en beschikbaarheid; je aanvraag is nog geen boeking.</p>
+			<QuoteForm sourcePage={sourcePage} defaultCity={defaultCity} partnerId="party-bussen-westland" partnerCity={defaultCity} submitLabel="Vraag mijn ritofferte aan" messagePlaceholder="Opstapadres in Amsterdam, bestemming en gewenste heen- en terugtijden. Vermeld extra stops en het aantal instappers per adres." />
 		</div>
 	</div>
 </header>
@@ -121,9 +124,9 @@ const {
 		display: grid;
 		grid-template-areas:
 			'copy'
-			'media'
 			'actions'
-			'form';
+			'form'
+			'media';
 		gap: 1.5rem;
 		min-width: 0;
 	}
@@ -146,11 +149,19 @@ const {
 		gap: 1rem;
 	}
 
+	.ams-hero__actions :global(.btn--ghost) {
+		color: #f7f5f0;
+		border-color: rgba(247, 245, 240, 0.55);
+	}
+
 	.ams-hero__actions {
 		grid-area: actions;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.75rem;
+	}
+	@media (max-width: 959px) {
+		.ams-hero__actions :global(.btn) { width: 100%; }
 	}
 
 	.ams-hero__form {

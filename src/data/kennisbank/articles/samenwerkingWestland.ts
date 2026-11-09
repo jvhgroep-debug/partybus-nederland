@@ -131,7 +131,7 @@ export const samenwerkingWestland: KennisbankArticle = {
     {"label": "Bedrijfsuitje vanuit Utrecht: terugrit plannen", "href": "/kennisbank/bedrijfsuitje-utrecht-partybus-terugrit-plannen/"},
 
     {
-      "label": "Partybus Utrecht",
+      "label": "Partybus huren in de provincie Utrecht",
       "href": "/provincies/utrecht/",
       "description": "Alle 26 gemeentepagina’s in de provincie"
     },

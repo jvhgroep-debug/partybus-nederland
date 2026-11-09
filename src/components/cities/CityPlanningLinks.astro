@@ -1,5 +1,6 @@
 ---
 import CityLocalTripPlanning from './CityLocalTripPlanning.astro';
+import { isUtrechtMunicipalitySlug } from '../../data/provinces/utrecht';
 interface Props { city: {slug:string; name:string}; }
 const {city}=Astro.props;
 const regions: Record<string,{name:string;path:string;festival?:string}> = {
@@ -13,7 +14,7 @@ const regions: Record<string,{name:string;path:string;festival?:string}> = {
  rotterdam:{name:'Zuid-Holland',path:'/provincies/zuid-holland/',festival:'/provincies/zuid-holland/festivals/'},
  'den-haag':{name:'Zuid-Holland',path:'/provincies/zuid-holland/',festival:'/provincies/zuid-holland/festivals/'},
 };
-const region=regions[city.slug];
+const region=regions[city.slug] ?? (isUtrechtMunicipalitySlug(city.slug) ? regions.utrecht : undefined);
 const departureLinks: Record<string,{label:string;path:string;intro:string}> = {
  maashorst:{label:'Partybus huren in Oss',path:'/steden/partybus-huren-oss/',intro:'Vertrekt jullie groep uit Oss of Berghem? Bekijk de vertrekpagina voor de gemeente Oss. Deze pagina blijft bedoeld voor Maashorst.'},
  leeuwarden:{label:'Partybus huren in Leiden',path:'/steden/partybus-huren-leiden/',intro:'Is Leiden jullie opstapplaats? Kies de vertrekpagina voor Leiden in Zuid-Holland. Deze pagina gaat over vertrek uit Leeuwarden in Friesland.'},

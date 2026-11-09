@@ -100,6 +100,7 @@ const conversionCopy = westlandConversionCopy(city.name, city.slug);
 		image={introImage}
 		imageAlt={city.intro.imageAlt}
 	/>
+	<LocalDepartureNotes slug={city.slug} />
 
 	<CityWhy title={`Waarom een partybus huren vanuit ${city.name}?`} lead={city.why.lead} items={city.why.items} />
 
@@ -119,7 +120,7 @@ const conversionCopy = westlandConversionCopy(city.name, city.slug);
 		eyebrow={conversionCopy.eyebrow}
 		headline={conversionCopy.headline}
 		whatsappLabel={partyBussenWestlandWhatsappLabel}
-		ghostLabel={partyBussenWestlandWebsiteLabel}
+		ghostLabel="Vraag een ritofferte aan"
 	/>
 
 	<RegionalPartnerSection
@@ -146,8 +147,6 @@ const conversionCopy = westlandConversionCopy(city.name, city.slug);
 		checklist={westlandPlanningChecklist}
 		checklistTitle="Waar je op let bij Party Bussen Westland"
 	/>
-
-	<LocalDepartureNotes slug={city.slug} />
 
 	<CityPickupLocations
 		title={city.pickup.title}
@@ -177,7 +176,7 @@ const conversionCopy = westlandConversionCopy(city.name, city.slug);
 		cards={westlandBookingTips}
 	/>
 
-	{['oss', 'tilburg', 'breda', 'amsterdam', 'utrecht', 'westland', 'leiden', 'rotterdam', 'den-haag', 'maashorst', 'leeuwarden', 'utrechtse-heuvelrug'].includes(city.slug) && <CityPlanningLinks city={city} />}
+	<CityPlanningLinks city={city} />
 	<CityFaq items={city.faqs} cityName={city.name} />
 
 	{relatedCities.length > 0 && <CityRelatedCities cityName={city.name} cities={relatedCities} />}
@@ -193,7 +192,7 @@ const conversionCopy = westlandConversionCopy(city.name, city.slug);
 			Direct contact via WhatsApp →
 		</a>
 		<a href={partyBussenWestlandWebsiteHref} target="_blank" rel="noopener noreferrer">Bekijk de partybussen →</a>
-		<a href={utrechtProvince.path}>Partybus Utrecht →</a>
+		<a href={utrechtProvince.path}>Partybus huren in de provincie Utrecht →</a>
 		<a href="/gids/partybus-huren/">Meer lezen in de partybus-gids →</a>
 		<a href="/kennisbank/">Naar de kennisbank →</a>
 	</nav>
@@ -204,10 +203,10 @@ const conversionCopy = westlandConversionCopy(city.name, city.slug);
 		text={city.cta.text}
 		whatsappHref={whatsappHref}
 		image={ctaImage}
-		primaryHref={partyBussenWestlandWebsiteHref}
+		primaryHref="#offerte"
 		partnerMode={true}
 		whatsappLabel={partyBussenWestlandWhatsappLabel}
-		ghostLabel={partyBussenWestlandWebsiteLabel}
+		ghostLabel="Vraag je ritofferte aan"
 	/>
 </div>
 

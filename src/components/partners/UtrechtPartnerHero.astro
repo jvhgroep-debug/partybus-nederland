@@ -66,8 +66,10 @@ const {
 				<h1>{title}</h1>
 				<p>{lead}</p>
 				<div class="ut-hero__actions">
+					<Button href="#offerte" size="lg">Vraag je ritofferte aan</Button>
 					<Button
 						href={whatsappHref}
+						variant="ghost"
 						size="lg"
 						target="_blank"
 						rel="noopener noreferrer"
@@ -104,7 +106,8 @@ const {
 			<p class="ut-hero__form-eyebrow">Offerteaanvraag</p>
 			<h2 class="ut-hero__form-title">{formTitle}</h2>
 			<p class="ut-hero__form-lead">{formLead}</p>
-			<QuoteForm sourcePage={sourcePage} defaultCity={defaultCity} partnerId="party-bussen-westland" partnerCity={defaultCity} />
+			<p class="ut-hero__form-lead">Vrijblijvend je rit bespreken met Party Bussen Westland. De partner bevestigt prijs, bus en beschikbaarheid; je aanvraag is nog geen boeking.</p>
+			<QuoteForm sourcePage={sourcePage} defaultCity={defaultCity} partnerId="party-bussen-westland" partnerCity={defaultCity} submitLabel="Vraag mijn ritofferte aan" messagePlaceholder="Gewenst opstapadres, bestemming, vertrektijd en terugrit. Vermeld extra stops, bagage of andere wensen." />
 		</div>
 	</div>
 </header>
@@ -164,6 +167,11 @@ const {
 
 	.ut-hero__breadcrumbs a {
 		color: inherit;
+	}
+
+	.ut-hero__actions :global(.btn--ghost) {
+		color: #f7f5f0;
+		border-color: rgba(247, 245, 240, 0.55);
 	}
 
 	.ut-hero__actions {
@@ -231,6 +239,13 @@ const {
 			align-items: start;
 			gap: 2rem;
 		}
+	}
+	@media (max-width: 959px) {
+		.ut-hero__main { display: contents; }
+		.ut-hero__copy { order: 0; }
+		.ut-hero__form { order: 1; }
+		.ut-hero__media { order: 2; }
+		.ut-hero__actions :global(.btn) { width: 100%; }
 	}
 
 	.ut-hero__form {
