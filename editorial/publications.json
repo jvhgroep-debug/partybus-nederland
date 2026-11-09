@@ -368,5 +368,38 @@
       "separatePr35": "still open at unchanged head bdb1ef93e5c454b1f33eed57893e58dff36d26e6; not merged",
       "newTasksCreated": false
     }
+  },
+  {
+    "website": "www.partybusnederland.nl",
+    "slotId": "www.partybusnederland.nl|2026-11-09|1",
+    "originalScheduledAt": "2026-11-09T04:00:00+04:00",
+    "publishAt": "2026-11-09T04:00:00+04:00",
+    "datePublished": "2026-11-09T04:06:14.898931+04:00",
+    "partner": "Prestige Coach Service / Noord-Brabant",
+    "language": "nl-NL",
+    "searchIntent": "Welke ritgegevens en beschrijving geef ik door als ik na een partybusrit spullen mis?",
+    "status": "source-written",
+    "published": false,
+    "title": "Iets laten liggen in de partybus? Zo maak je een duidelijke melding",
+    "url": "https://www.partybusnederland.nl/kennisbank/spullen-kwijt-na-partybusrit-brabant/",
+    "photoSource": "Existing /images/partners/prestige-coach-service/prestige-coach-service-interieur.webp",
+    "photoGenerated": false,
+    "photoApproval": "Johan30October existing partner gallery permission; visually checked9November; no visible credit. Not proof of the vehicle used on an individual trip.",
+    "sources": [
+      "https://limobus.nl/",
+      "src/data/partners/prestigeCoachService.ts",
+      "src/data/kennisbank",
+      "src/data/gidsen/content/index.ts"
+    ],
+    "sourcesCheckedAt": "2026-11-09T04:06:14.898931+04:00",
+    "overlapReview": "Live kennisbank and Brabant page compared with all source articles/guides/services. Existing guides briefly advise checking belongings/contacting provider; this article supplies a dedicated after-ride identification and handover checklist. No retrieval, custody, return time or fee policy invented.",
+    "priorPublicationCheck": {
+      "main": "d10723a3f44a914e9e34e74ed0b0f659b96dc998",
+      "previousProduction": "a1eb3863-b94a-4aad-8709-a8831c779965 completed/success",
+      "activeActions": 0,
+      "separatePr35": "Utrecht preview retained, no merge",
+      "previousCentralRun": "Aurora9November complete/public-verified; Captain/AJ have no backlog",
+      "sharedLockClaimed": false
+    }
   }
 ]
