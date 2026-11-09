@@ -1,3 +1,7 @@
+# 9 november 2026 — Utrecht, 26 gemeenten en Amsterdam live bevestigd
+
+PR41 gemerged als 76f94d75ca3113e6bde70a7096196f4f6e358d86 (inhoud 004bfe6ed30b494bb767374ef7b75e05c5ea196a). Cloudflare-preview 058ae8b7-64a4-4115-96c3-7d9829a12098 en productie 5e88ff30-ca9b-40e2-81ec-d02431096778 completed/success. Browser op echte www.partybusnederland.nl/provincies/utrecht/ en /steden/partybus-huren-amsterdam/ bevestigt nieuwe offerteknoppen, formulierhulp en leesbare WhatsApp-knop; Amsterdam #offerte bevestigd. Alle 28 doelpagina’s via gedeelde templates gebouwd en gecontroleerd; 597-pagina SEO/link/asset/partnerchecks geslaagd. Afzonderlijke HTTP-proef gaf 403; browsercontrole slaagde. Geen mobiele visuele eindcontrole of conversieverbetering gemeten/geclaimd. PR35 gesloten omdat inhoud is overgenomen in PR41. Geen aanvraag of bericht verzonden. Alleen statuscheckpoint; geen extra inhoudsdeployment.
+
 # 9 november 2026 — Utrecht en Amsterdam, bron gereed
 
 - Opdracht Johan: provincie Utrecht met alle steden en Amsterdam verbeteren voor meer passende ritaanvragen. Bestaande Utrecht-inhoud uit PR35 overgenomen op actuele main, zonder het verouderde statusbestand; PR35 wordt hiermee vervangen.
