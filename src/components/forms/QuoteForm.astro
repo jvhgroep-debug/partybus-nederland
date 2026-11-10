@@ -1,4 +1,6 @@
 ---
+import QuoteRequestFields from './QuoteRequestFields.astro';
+import {quotePartnerNames} from '../../lib/quoteTripDetails';
 import { emailSettings } from '../../data/settings/email';
 import { QUOTE_PARTNER_IDS, resolveQuotePartnerId } from '../../lib/quotePartnerRouting';
 
@@ -29,7 +31,8 @@ const configuredPartnerId = resolveQuotePartnerId(partnerId);
 const configuredPartnerCity = configuredPartnerId ? (partnerCity ?? defaultCity ?? '').trim() : '';
 ---
 
-<div class:list={['quote-form', compact && 'quote-form--compact']} data-quote-form>
+<div class:list={['quote-form', compact && 'quote-form--compact']} data-quote-form data-configured-partner={configuredPartnerId} data-configured-city={configuredPartnerCity}>
+	<p>Offerteaanvraag voor <strong data-form-partner>{quotePartnerNames[configuredPartnerId] || 'Partybus Nederland'}</strong> via <strong>PartybusNederland.nl</strong>.</p>
 	<form class="quote-form__form" action="/api/offerte" method="post">
 		<input type="hidden" name="requestId" value="" />
 		<input type="hidden" name="sourcePage" value={sourcePage} />
@@ -41,42 +44,7 @@ const configuredPartnerCity = configuredPartnerId ? (partnerCity ?? defaultCity 
 			<input type="text" name="website" tabindex="-1" autocomplete="off" />
 		</label>
 
-		<div class="quote-form__grid">
-			<label class="quote-form__field">
-				<span>Naam <abbr title="verplicht">*</abbr></span>
-				<input type="text" name="name" required autocomplete="name" placeholder="Je naam" />
-			</label>
-
-			<label class="quote-form__field">
-				<span>E-mail <abbr title="verplicht">*</abbr></span>
-				<input type="email" name="email" required autocomplete="email" placeholder="naam@email.nl" />
-			</label>
-
-			<label class="quote-form__field">
-				<span>Telefoon <abbr title="verplicht">*</abbr></span>
-				<input type="tel" name="phone" required autocomplete="tel" placeholder="06 12345678" />
-			</label>
-
-			<label class="quote-form__field">
-				<span>Stad / locatie <abbr title="verplicht">*</abbr></span>
-				<input type="text" name="city" required autocomplete="address-level2" placeholder="Bijv. Amsterdam" value={defaultCity ?? ''} />
-			</label>
-
-			<label class="quote-form__field">
-				<span>Gewenste datum</span>
-				<input type="date" name="date" />
-			</label>
-
-			<label class="quote-form__field">
-				<span>Aantal personen</span>
-				<input type="number" name="guests" min="1" max="80" inputmode="numeric" placeholder="Bijv. 20" />
-			</label>
-
-			<label class="quote-form__field quote-form__field--full">
-				<span>Bericht / wensen</span>
-				<textarea name="message" rows="4" placeholder={messagePlaceholder}></textarea>
-			</label>
-		</div>
+		<QuoteRequestFields defaultCity={defaultCity} messagePlaceholder={messagePlaceholder} partnerName={quotePartnerNames[configuredPartnerId] || 'Partybus Nederland'} />
 
 		<p class="quote-form__note">* Verplicht. We sturen een bevestiging naar je e-mailadres.</p>
 
@@ -90,23 +58,39 @@ const configuredPartnerCity = configuredPartnerId ? (partnerCity ?? defaultCity 
 	</form>
 </div>
 
-<script is:inline define:vars={{ successMessage, errorMessage, allowedPartnerIds, configuredPartnerId, configuredPartnerCity }}>
+<script is:inline define:vars={{ successMessage, errorMessage, allowedPartnerIds, quotePartnerNames }}>
 	(function () {
 		const roots = document.querySelectorAll('[data-quote-form]');
 		const query = new URLSearchParams(window.location.search);
 		const queryPartnerRaw = String(query.get('partner') || '').trim();
 		const queryPartner = allowedPartnerIds.indexOf(queryPartnerRaw) !== -1 ? queryPartnerRaw : '';
-		const requestedPartner = configuredPartnerId || queryPartner;
-		const requestedCity = requestedPartner
-			? (configuredPartnerCity || String(query.get('city') || '').trim())
-			: '';
-		const requestedSource = requestedPartner ? String(query.get('source') || '').trim() : '';
-
 		roots.forEach(function (root) {
+			if (root.dataset.quoteReady) return;
+			root.dataset.quoteReady = 'true';
+			const requestedPartner = root.dataset.configuredPartner || queryPartner;
+			const requestedCity = requestedPartner ? (root.dataset.configuredCity || String(query.get('city') || '').trim()) : '';
+			const querySource = String(query.get('source') || '').trim();
+			const requestedSource = requestedPartner && querySource.startsWith('/') && !querySource.startsWith('//') ? querySource : '';
+			const partnerName = quotePartnerNames[requestedPartner] || 'Partybus Nederland';
+			root.querySelector('[data-form-partner]').textContent = partnerName;
+			root.querySelector('[data-vehicle-partner]').textContent = partnerName;
+			if (requestedPartner === 'startransfer') {
+				const choices = root.querySelector('[data-vehicle-options]');
+				choices.replaceChildren();
+				['Geen voorkeur — graag advies','Partybus','The Experience','StarTransfer V.I.P.'].forEach(function(value){const option=document.createElement('option');option.value=value;choices.appendChild(option);});
+			}
+
 			const form = root.querySelector('form');
 			const status = root.querySelector('[data-form-status]');
 			const submit = root.querySelector('[type="submit"]');
 			if (!form || !status || !submit) return;
+			if (requestedPartner) {
+				[['partnerId',requestedPartner],['partnerCity',requestedCity],['sourcePage',requestedSource || window.location.pathname]].forEach(function(entry){
+					let input=form.querySelector('[name="'+entry[0]+'"]');
+					if(!input){input=document.createElement('input');input.type='hidden';input.name=entry[0];form.appendChild(input);}
+					input.value=entry[1];
+				});
+			}
 
 			const requestIdInput = form.querySelector('[name="requestId"]');
 			if (requestIdInput && !requestIdInput.value) requestIdInput.value = crypto.randomUUID();
