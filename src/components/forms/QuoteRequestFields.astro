@@ -29,7 +29,6 @@ const vehicleListId='quote-bus-'+crypto.randomUUID();
   <label>Plaats opstapplaats{requiredContact?' *':''}<input name="city" value={defaultCity} required={requiredContact} maxlength="200" /></label>
  </div></fieldset>
  <fieldset><legend>Bestemming en terugreis</legend><div class="grid">
-  <label>Aankomstdatum<input name="arrivalDate" type="date" /></label>
   <label data-return-details>Datum terugrit / ophalen<input name="returnDate" type="date" /></label>
   <label data-return-details>Retourtijd / ophaaltijd<input name="returnTime" type="time" /></label>
   <label class="wide"><span data-destination-label>Straat en huisnummer / bestemming{requiredTrip?' *':''}</span><input name="destination" required={requiredTrip} placeholder={festival||'Adres, festival of evenementlocatie'} maxlength="250" /></label>

@@ -1,3 +1,7 @@
+# 11 november 2026 — aankomstdatum uit formulieren
+
+Johan vraagt de aankomstdatum bij ‘Bestemming en terugreis’ overal te verwijderen; datum terugrit/ophalen en retourtijd blijven staan. De gedeelde component past alle 420 openbare aanvraagformulieren aan; ook de directe WhatsApp-invultekst verliest deze extra vraag. Servercompatibiliteit voor reeds geopende formulieren blijft behouden zodat eerder ingevulde gegevens niet worden weggegooid. Partnernamen, nummers, bronwebsite en routes behouden. Kleine opvolgcorrectie op de zojuist goedgekeurde live formulieren; direct publiceren na build-/rendercontrole. Publicatie en eigen domeincontrole volgen afzonderlijk.
+
 # 11 november 2026 — uitgebreide partnerformulieren live bevestigd
 
 Johan heeft na de getoonde preview expliciet ‘oke zet live’ opgedragen. PR42 met head `12bb2164fef2aecf6f0ce04d12b289f38fa7ded6` samengevoegd als `afe24966081d63ec144262063d134a5e8de11c01`; main was nog gelijk aan de gecontroleerde basis. Cloudflare-productiedeployment `4154ff27-5bd9-44af-913c-c2e65198cb28` completed/success.
