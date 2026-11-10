@@ -1,0 +1,65 @@
+---
+interface Props { defaultCity?: string; festival?: string; requiredContact?: boolean; requiredTrip?: boolean; nameField?: string; messagePlaceholder?: string; partnerName?: string; }
+const {defaultCity='',festival='',requiredContact=true,requiredTrip=false,nameField='name',messagePlaceholder='Tussenstops, bagage, wensen of een vraag aan de vervoerder.',partnerName='Partybus Nederland'}=Astro.props;
+const vehicleListId='quote-bus-'+crypto.randomUUID();
+---
+<div class="request-fields" data-shared-quote-fields>
+ <fieldset><legend>Soort vervoer en reis</legend><div class="grid">
+  <label>Soort vervoer<select name="transportType"><option value="">Nog te bespreken</option><option>Partybus</option><option>Touringcar</option><option>Pendelbus</option></select></label>
+  <label>Soort reis<select name="trip"><option value="">Nog te bespreken</option><option value="Heen en terug" selected={requiredTrip}>Retourreis</option><option value="Alleen heenrit">Enkele reis</option><option>Ophalen vanaf festival / alleen terugrit</option><option value="Voertuig ter beschikking">Voertuig blijft ter beschikking tijdens de reis</option><option value="Dagtocht / meerdaagse reis">Dagtocht of meerdaagse reis</option></select></label>
+ </div><p class="hint">Dit zijn je wensen. De vervoerder bevestigt welk vervoer en voertuig mogelijk zijn.</p></fieldset>
+ <fieldset><legend>Uw gegevens</legend><div class="grid">
+  <label>Naam{requiredContact?' *':''}<input name={nameField} required={requiredContact} autocomplete="name" maxlength="100" /></label>
+  <label>Bedrijfsnaam (optioneel)<input name="company" autocomplete="organization" maxlength="200" /></label>
+  <label>E-mail{requiredContact?' *':''}<input name="email" type="email" required={requiredContact} autocomplete="email" maxlength="254" /></label>
+  <label>Telefoonnummer{requiredContact?' *':''}<input name="phone" type="tel" required={requiredContact} autocomplete="tel" maxlength="50" /></label>
+  <label>Soort gelegenheid<input name="occasion" value={festival} placeholder="Bijvoorbeeld verjaardag, bedrijfsuitje of festivalnaam" maxlength="200" /></label>
+  <label>Aantal personen{requiredTrip?' *':''}<input name="guests" type="number" min="1" step="1" required={requiredTrip} inputmode="numeric" /></label>
+ </div></fieldset>
+ <fieldset><legend>Uw adres (optioneel)</legend><div class="grid">
+  <label class="wide">Straat en huisnummer<input name="customerStreet" autocomplete="section-customer street-address" maxlength="250" /></label>
+  <label>Postcode<input name="customerPostalCode" autocomplete="section-customer postal-code" maxlength="30" /></label>
+  <label>Plaats<input name="customerCity" autocomplete="section-customer address-level2" maxlength="200" /></label>
+ </div></fieldset>
+ <fieldset><legend>Reisgegevens en opstapplaats</legend><div class="grid">
+  <label><span data-date-label>Vertrekdatum</span><input name="date" type="date" /></label>
+  <label><span data-time-label>Vertrektijd</span><input name="departureTime" type="time" /></label>
+  <label class="wide">Straat en huisnummer / opstapadres<input name="pickup" maxlength="250" placeholder="Exact adres of afgesproken ophaalpunt" /></label>
+  <label>Postcode opstapplaats<input name="pickupPostalCode" maxlength="30" /></label>
+  <label>Plaats opstapplaats{requiredContact?' *':''}<input name="city" value={defaultCity} required={requiredContact} maxlength="200" /></label>
+ </div></fieldset>
+ <fieldset><legend>Bestemming en terugreis</legend><div class="grid">
+  <label>Aankomstdatum<input name="arrivalDate" type="date" /></label>
+  <label data-return-details>Datum terugrit / ophalen<input name="returnDate" type="date" /></label>
+  <label data-return-details>Retourtijd / ophaaltijd<input name="returnTime" type="time" /></label>
+  <label class="wide"><span data-destination-label>Straat en huisnummer / bestemming{requiredTrip?' *':''}</span><input name="destination" required={requiredTrip} placeholder={festival||'Adres, festival of evenementlocatie'} maxlength="250" /></label>
+  <label>Postcode bestemming<input name="destinationPostalCode" maxlength="30" /></label>
+  <label>Plaats bestemming<input name="destinationCity" maxlength="200" /></label>
+  <label>Ophaalpunt bij festival (indien van toepassing)<input name="festivalPickup" maxlength="250" /></label>
+  <label data-return-details>Afzetadres terugrit (indien anders)<input name="dropoff" maxlength="250" /></label>
+ </div></fieldset>
+ <fieldset><legend>Voorkeur en opmerkingen</legend><div class="grid">
+  <label>Voorkeur bus bij <span data-vehicle-partner>{partnerName}</span><input name="vehicle" list={vehicleListId} placeholder="Geen voorkeur, graag advies / gewenste busnaam" maxlength="200" /><datalist id={vehicleListId} data-vehicle-options><option value="Geen voorkeur — graag advies" />{partnerName==='StarTransfer'&&<><option value="Partybus" /><option value="The Experience" /><option value="StarTransfer V.I.P." /></>}</datalist></label>
+  <label>Kortingscode (optioneel)<input name="discountCode" maxlength="100" /></label>
+  <label class="wide">Eventuele opmerkingen<textarea name="message" rows="3" maxlength="2000" placeholder={messagePlaceholder}></textarea></label>
+  <label class="wide">Hoe heeft u PartybusNederland.nl gevonden?<input name="discovery" placeholder="Bijvoorbeeld Google, via vrienden of een andere website" maxlength="250" /></label>
+ </div></fieldset>
+</div>
+<script>
+for(const root of document.querySelectorAll<HTMLElement>('[data-shared-quote-fields]')){
+ const trip=root.querySelector<HTMLSelectElement>('[name=trip]')!;
+ function update(){
+  const onlyReturn=trip.value==='Ophalen vanaf festival / alleen terugrit';
+  root.querySelector('[data-date-label]')!.textContent=onlyReturn?'Datum ophalen / terugrit':'Vertrekdatum';
+  root.querySelector('[data-time-label]')!.textContent=onlyReturn?'Gewenste ophaaltijd':'Vertrektijd';
+  for(const label of root.querySelectorAll<HTMLElement>('[data-return-details]')){
+   label.hidden=onlyReturn||trip.value==='Alleen heenrit';
+   for(const field of label.querySelectorAll<HTMLInputElement>('input'))field.disabled=label.hidden;
+  }
+ }
+ trip.addEventListener('change',update);update();
+}
+</script>
+<style>
+.request-fields{display:grid;gap:1.25rem;min-width:0;color:inherit}fieldset{min-width:0;margin:0;padding:1rem;border:1px solid #a5a5a5;border-radius:.6rem}legend{padding:0 .35rem;font-weight:700;font-size:1rem}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}label{min-width:0;display:grid;align-content:start;gap:.4rem;font-size:.95rem;line-height:1.5}input,select,textarea{min-width:0;width:100%;min-height:44px;padding:.7rem .8rem;border:1px solid #888;border-radius:.45rem;background:#fff;color:#171717;font:inherit}textarea{resize:vertical}.wide{grid-column:1/-1}.hint{margin:.7rem 0 0;font-size:.85rem;line-height:1.5}input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #75602a;outline-offset:2px}[hidden]{display:none!important}@media(max-width:640px){.grid{grid-template-columns:minmax(0,1fr)}fieldset{padding:.85rem}}
+</style>

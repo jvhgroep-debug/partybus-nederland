@@ -9,13 +9,14 @@ import {
 	resolveQuotePartnerId,
 	resolveQuotePartnerLeadEmail,
 } from '../../src/lib/quotePartnerRouting';
+import {quotePartnerNames,quoteSourceUrl,readQuoteTripDetails,quoteTripRows,type QuoteTripDetails} from '../../src/lib/quoteTripDetails';
 
 interface Env {
 	RESEND_API_KEY?: string;
 	FROM_EMAIL?: string;
 }
 
-interface QuotePayload {
+interface QuotePayload extends QuoteTripDetails {
 	name: string;
 	email: string;
 	phone: string;
@@ -104,7 +105,7 @@ function validate(raw: unknown):
 		? String(body.partnerCity ?? '').trim() || city
 		: undefined;
 	const requestedSourcePage = String(body.sourcePage ?? '').trim();
-	const sourcePage = requestedSourcePage.startsWith('/')
+	const sourcePage = requestedSourcePage.startsWith('/') && !requestedSourcePage.startsWith('//')
 		? requestedSourcePage.slice(0, 500)
 		: undefined;
 	const fields: string[] = [];
@@ -114,7 +115,7 @@ function validate(raw: unknown):
 	if (!city) fields.push('city');
  const guests = String(body.guests ?? '').trim();
  const date = String(body.date ?? '').trim();
- if (guests && (!/^\d+$/.test(guests) || Number(guests) < 1 || Number(guests) > 80)) fields.push('guests');
+ if (guests && (!/^\d+$/.test(guests) || !Number.isSafeInteger(Number(guests)) || Number(guests) < 1)) fields.push('guests');
  if (date && (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isFinite(Date.parse(date)) || new Date(date).toISOString().slice(0,10) !== date)) fields.push('date');
  if (name.length > 200) fields.push('name');
  if (email.length > 254) fields.push('email');
@@ -122,6 +123,10 @@ function validate(raw: unknown):
  if (city.length > 200) fields.push('city');
  if (String(body.message ?? '').length > 10000) fields.push('message');
  if (body.partnerId && !partnerId) fields.push('partnerId');
+ const tripDetails=readQuoteTripDetails(body);
+ for(const [key,value] of Object.entries(tripDetails))if(value.length>2000)fields.push(key);
+ for(const key of ['arrivalDate','returnDate'] as const){const value=tripDetails[key];if(value&&(!/^\d{4}-\d{2}-\d{2}$/.test(value)||!Number.isFinite(Date.parse(value))||new Date(value).toISOString().slice(0,10)!==value))fields.push(key);}
+ for(const key of ['departureTime','returnTime'] as const){const value=tripDetails[key];if(value&&!/^([01]\d|2[0-3]):[0-5]\d$/.test(value))fields.push(key);}
 
 	if (fields.length > 0) {
 		return { ok: false, error: 'Vul alle verplichte velden correct in.', fields };
@@ -130,6 +135,7 @@ function validate(raw: unknown):
 	return {
 		ok: true,
 		data: {
+			...tripDetails,
 			name,
 			email,
 			phone,
@@ -147,16 +153,19 @@ function validate(raw: unknown):
 
 function fieldRows(payload: QuotePayload): Array<[string, string]> {
 	const rows: Array<[string, string]> = [
+		['Website van herkomst', 'PartybusNederland.nl'],
+		['Aanvraag voor', quotePartnerNames[payload.partnerId || ''] || 'Partybus Nederland'],
 		['Naam', payload.name],
 		['E-mail', payload.email],
 		['Telefoon', payload.phone],
 		['Stad', payload.city],
 	];
-	if (payload.date) rows.push(['Datum', payload.date]);
+	if (payload.date) rows.push([payload.trip==='Ophalen vanaf festival / alleen terugrit'?'Datum ophalen / terugrit':'Vertrekdatum', payload.date]);
 	if (payload.guests) rows.push(['Aantal gasten', payload.guests]);
-	if (payload.sourcePage) rows.push(['Bronpagina', payload.sourcePage]);
+	if (payload.sourcePage) rows.push(['Bronpagina', quoteSourceUrl(payload.sourcePage)]);
 	if (payload.partnerId) rows.push(['Partner-ID', payload.partnerId]);
 	if (payload.partnerCity) rows.push(['Partnergemeente', payload.partnerCity]);
+	rows.push(...quoteTripRows(payload));
 	if (payload.message) rows.push(['Bericht', payload.message]);
 	return rows;
 }
@@ -186,11 +195,6 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
  const apiKey=context.env.RESEND_API_KEY?.trim();
  if(!apiKey) return json({ok:false,error:'E-mailverzending is nog niet geconfigureerd. Probeer later opnieuw of gebruik WhatsApp.'},503);
  const from=resolveFrom(context.env.FROM_EMAIL);
- if (nativeForm && payload.partnerId === 'startransfer') {
- const native = body as Record<string, unknown>;
- const details = ['trip','occasion','destination','departureTime','pickup','vehicle','returnDate','returnTime','festivalPickup','dropoff','notes'].filter(field=>native[field]).map(field=>`${field}: ${String(native[field]).slice(0,1000)}`).join('\n');
- payload.message = [payload.message, details].filter(Boolean).join('\n');
- }
  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(payload)));
  const key=Array.from(new Uint8Array(digest),value=>value.toString(16).padStart(2,'0')).join('');
  const rows=fieldRows(payload);
