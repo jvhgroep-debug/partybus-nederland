@@ -1,4 +1,10 @@
-# 10 november 2026 — volledige vragen in alle aanvraagformulieren, preview
+# 11 november 2026 — uitgebreide partnerformulieren live bevestigd
+
+Johan heeft na de getoonde preview expliciet ‘oke zet live’ opgedragen. PR42 met head `12bb2164fef2aecf6f0ce04d12b289f38fa7ded6` samengevoegd als `afe24966081d63ec144262063d134a5e8de11c01`; main was nog gelijk aan de gecontroleerde basis. Cloudflare-productiedeployment `4154ff27-5bd9-44af-913c-c2e65198cb28` completed/success.
+
+Echte domeincontrole 2026-11-10T20:05:39.923Z (11 november 00:05 Dubai): Utrecht, Noord-Brabant, Zuid-Holland, Zeeland en Amsterdam HTTP200; volledige vragen in offerte-/boekingsformulier én WhatsApp-dialogen, juiste partners/nummers, canonicals en geen noindex-header. Gecontroleerd artefact bevat 420 openbare formulieren op 597 pagina’s. Eerdere native/JSON/mail/WhatsApp-tests en browserpreview blijven van toepassing; geen echte aanvraag, e-mail of WhatsApp verstuurd. Geen afzonderlijke mobiele visuele eindcontrole geclaimd. Eigen partnernamen, routes en PartybusNederland.nl/herkomst blijven behouden. Alleen statuscheckpoint, geen tweede inhoudspublicatie.
+
+# 10 november 2026 — volledige vragen in alle aanvraagformulieren, preview (historie)
 
 - Johan vraagt alle formulieren op PartybusNederland.nl uit te breiden met de vragen van https://startransfer.nl/offerte/, met behoud van eigen partnernaam en websiteherkomst. Bestaande GitHub/Cloudflare-route; branch `forms/volledige-ritaanvraag-2026-11-10`, basis `09ef996721e7cd74d1d3490a03380f0c8c3fb077`. Geen wijziging aan StarTransfer.nl zelf. Eerst preview ter beoordeling.
 - Eén gedeelde vragenset voor gewone offertes, StarTransfer-boekingen en bestaande WhatsApp-dialogen: soort vervoer/reis, naam/bedrijf/e-mail/telefoon/gelegenheid/personen, klantadres, opstapdatum/tijd/adres/postcode/plaats, aankomstdatum/bestemmingsadres/postcode/plaats, terugdatum/tijd/afzetadres, busvoorkeur, kortingscode, opmerkingen en hoe gevonden. Klantadres en aanvullende details optioneel; bestaande verplichte contactvelden behouden. Geen arbitraire 80-persoonsgrens als voertuigbelofte.
