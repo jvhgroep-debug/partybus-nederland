@@ -26,7 +26,7 @@ for (const [slug,name] of Object.entries(names)) {
   const dialog = html.match(/<dialog\b[^>]*data-partner-whatsapp-request[^>]*>[\s\S]*?<\/dialog>/g) ?? [];
   assert.equal(dialog.length,1,`${name} one dialogue`);
   assert(dialog[0].includes(`data-phone="${phones[slug]}"`));
-  for (const field of ['customerName','company','email','phone','transportType','trip','customerStreet','customerPostalCode','customerCity','pickup','pickupPostalCode','city','destination','destinationPostalCode','destinationCity','date','arrivalDate','returnDate','departureTime','guests','occasion','vehicle','discountCode','discovery','message','returnTime']) assert(dialog[0].includes(`name="${field}"`),`${name} ${field}`);
+  for (const field of ['customerName','company','email','phone','transportType','trip','customerStreet','customerPostalCode','customerCity','pickup','pickupPostalCode','city','destination','destinationPostalCode','destinationCity','date','returnDate','departureTime','guests','occasion','vehicle','discountCode','discovery','message','returnTime']) assert(dialog[0].includes(`name="${field}"`),`${name} ${field}`);
   assert(home.includes(`href="${route}"`));
   assert(sitemap.includes(`https://www.partybusnederland.nl${route}`));
   const og = html.match(/property="og:image" content="([^"]+)"/)[1];

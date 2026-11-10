@@ -20,7 +20,6 @@ export function buildPartnerWhatsappHref(phone: string, partnerName: string, dep
 		'Postcode en plaats opstap: ',
 		'Bestemming / eventuele tussenstops: ',
 		'Postcode en plaats bestemming: ',
-		'Aankomstdatum: ',
 		'Gewenste vertrektijd: ',
 		'Terugreis nodig? Ja / nee: ',
 		'Gewenste terugreistijd: ',
