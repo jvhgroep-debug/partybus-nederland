@@ -279,13 +279,19 @@
       "scheduledAt": "2026-11-11T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "Tourgo Partybussen / Zuid-Holland",
-      "status": "source-written",
-      "published": false,
+      "status": "public-verified",
+      "published": true,
       "previousType": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
       "scheduleActive": true,
       "title": "Dezelfde partybusaanvraag via formulier én WhatsApp: wat doe je nu?",
       "url": "https://www.partybusnederland.nl/kennisbank/partybus-aanvraag-formulier-whatsapp-dubbel/",
-      "datePublished": "2026-11-12T04:04:03.475248+04:00"
+      "datePublished": "2026-11-12T04:04:03.475248+04:00",
+      "productionCommit": "15b80086898e871d54c14b04a3935b784104133a",
+      "deploymentId": "8209d4a2-9d3c-4a1d-9b0e-fb5ec6bfebbd",
+      "previewDeploymentId": "762c9f9a-d4fe-4fbd-8667-e8d6f36b1eb7",
+      "pullRequest": 44,
+      "publicVerifiedAt": "2026-11-12T00:09:02.755660+00:00",
+      "verification": "Cloudflare preview and production completed/success. Real-domain article singleH1/canonical/Article actual date/loaded1920px partner photo/OG/no caption, kennisbank, Zuid-Holland context and actual sitemap.xml verified. Tourgo questions window opened/closed with correct31623044970 and origin; latest full questions retained. No requests or messages sent."
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-12|1",
