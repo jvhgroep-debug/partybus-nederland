@@ -1,3 +1,7 @@
+# Herstel slot11november — public-verified
+
+2026-11-12T00:09:02.755660+00:00: Cloudflare preview and production completed/success. Real-domain article singleH1/canonical/Article actual date/loaded1920px partner photo/OG/no caption, kennisbank, Zuid-Holland context and actual sitemap.xml verified. Tourgo questions window opened/closed with correct31623044970 and origin; latest full questions retained. No requests or messages sent. PR44, productiecommit 15b80086898e871d54c14b04a3935b784104133a, deployment 8209d4a2-9d3c-4a1d-9b0e-fb5ec6bfebbd. Originele11novemberpositie en werkelijke12novemberdatum behouden. Geen nieuwe donderdagpositie. Volgende13novemberWestlandUtrecht. Alleen broncheckpoint, geen extra deployment.
+
 Checks12november:598pagina’s build/SEO, nul ontbrekende assets/interne links, vier-partner WhatsApp/encodingtests geslaagd. Nieuw artikel éénH1/canonical/Article werkelijke datum/foto/OG/geen bijschrift/bron en Tourgo-quoteparameters gecontroleerd. Lokale preview stopt door achtergronddraaiende Astro; configuratie behouden, Cloudflarepreview en echt domein volgen.
 
 # Herstel oorspronkelijk slot11november — source-written

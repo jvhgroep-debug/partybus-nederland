@@ -418,8 +418,8 @@
     "partner": "Tourgo Partybussen / Zuid-Holland",
     "language": "nl-NL",
     "searchIntent": "Wat doe ik als ik dezelfde gewenste partybusrit via het formulier en WhatsApp heb aangevraagd?",
-    "status": "source-written",
-    "published": false,
+    "status": "public-verified",
+    "published": true,
     "title": "Dezelfde partybusaanvraag via formulier én WhatsApp: wat doe je nu?",
     "url": "https://www.partybusnederland.nl/kennisbank/partybus-aanvraag-formulier-whatsapp-dubbel/",
     "photoSource": "/images/partners/tourgo-partybussen/tourgo-partybussen-hero.webp",
@@ -442,6 +442,12 @@
       "previousCentralRun": "e9d770c1-6438-832e-a9d7-d00f4aecd405 completed",
       "currentRun": "2667eff3-9fc8-832e-9cf6-755bee53414e",
       "sharedLockClaimed": false
-    }
+    },
+    "productionCommit": "15b80086898e871d54c14b04a3935b784104133a",
+    "deploymentId": "8209d4a2-9d3c-4a1d-9b0e-fb5ec6bfebbd",
+    "previewDeploymentId": "762c9f9a-d4fe-4fbd-8667-e8d6f36b1eb7",
+    "pullRequest": 44,
+    "publicVerifiedAt": "2026-11-12T00:09:02.755660+00:00",
+    "verification": "Cloudflare preview and production completed/success. Real-domain article singleH1/canonical/Article actual date/loaded1920px partner photo/OG/no caption, kennisbank, Zuid-Holland context and actual sitemap.xml verified. Tourgo questions window opened/closed with correct31623044970 and origin; latest full questions retained. No requests or messages sent."
   }
 ]
