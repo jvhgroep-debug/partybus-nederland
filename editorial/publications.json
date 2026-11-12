@@ -408,5 +408,40 @@
     "routeCorrectionPr": 39,
     "publicVerifiedAt": "2026-11-09T00:12:58.344Z",
     "verification": "Cloudflare completed/success; real-domain single H1/canonical/Article actual date, loaded1600px partner photograph, overview, Brabant context, sitemap.xml and existing Prestige questions dialog/31629041798 verified. Footer quote route restored and verified with partner/city/source. No requests or messages sent."
+  },
+  {
+    "website": "www.partybusnederland.nl",
+    "slotId": "www.partybusnederland.nl|2026-11-11|1",
+    "originalScheduledAt": "2026-11-11T04:00:00+04:00",
+    "publishAt": "2026-11-11T04:00:00+04:00",
+    "datePublished": "2026-11-12T04:04:03.475248+04:00",
+    "partner": "Tourgo Partybussen / Zuid-Holland",
+    "language": "nl-NL",
+    "searchIntent": "Wat doe ik als ik dezelfde gewenste partybusrit via het formulier en WhatsApp heb aangevraagd?",
+    "status": "source-written",
+    "published": false,
+    "title": "Dezelfde partybusaanvraag via formulier én WhatsApp: wat doe je nu?",
+    "url": "https://www.partybusnederland.nl/kennisbank/partybus-aanvraag-formulier-whatsapp-dubbel/",
+    "photoSource": "/images/partners/tourgo-partybussen/tourgo-partybussen-hero.webp",
+    "photoGenerated": false,
+    "photoApproval": "Existing permitted partner gallery, Johan30October. No visible credit or assumed assigned vehicle.",
+    "sources": [
+      "src/data/kennisbank",
+      "src/data/gidsen/content/index.ts",
+      "src/data/partners/tourgoPartybussen.ts",
+      "src/components/forms",
+      "https://www.partybusnederland.nl/kennisbank/"
+    ],
+    "overlapReview": "Compared live kennisbank, existing regional/partner/service material and source guides. Existing multiple-stop guidance warns against multiple applications but does not address recovery after the same enquiry was already sent through two channels, identifying recipient/version and separating receipt/offer/booking. No automatic backend behaviour or cancellation policy invented.",
+    "sourcesCheckedAt": "2026-11-12T04:04:03.475248+04:00",
+    "priorPublicationCheck": {
+      "main": "d3c00506888fd8f34c404fda7e135dfbb1828773",
+      "previousProduction": "91318602-9dda-491f-9ad8-afe8057d72b2 completed/success fresh check",
+      "activeActions": 0,
+      "openPullRequests": 0,
+      "previousCentralRun": "e9d770c1-6438-832e-a9d7-d00f4aecd405 completed",
+      "currentRun": "2667eff3-9fc8-832e-9cf6-755bee53414e",
+      "sharedLockClaimed": false
+    }
   }
 ]
