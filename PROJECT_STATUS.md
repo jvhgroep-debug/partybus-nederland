@@ -1,3 +1,14 @@
+Checks12november:598pagina’s build/SEO, nul ontbrekende assets/interne links, vier-partner WhatsApp/encodingtests geslaagd. Nieuw artikel éénH1/canonical/Article werkelijke datum/foto/OG/geen bijschrift/bron en Tourgo-quoteparameters gecontroleerd. Lokale preview stopt door achtergronddraaiende Astro; configuratie behouden, Cloudflarepreview en echt domein volgen.
+
+# Herstel oorspronkelijk slot11november — source-written
+
+Dezelfde partybusaanvraag via formulier én WhatsApp: wat doe je nu?
+https://www.partybusnederland.nl/kennisbank/partybus-aanvraag-formulier-whatsapp-dubbel/
+
+Compared live kennisbank, existing regional/partner/service material and source guides. Existing multiple-stop guidance warns against multiple applications but does not address recovery after the same enquiry was already sent through two channels, identifying recipient/version and separating receipt/offer/booking. No automatic backend behaviour or cancellation policy invented.
+
+Origineel11november04:00 en werkelijke datum12november apart. Laatste publicatie9novemberPrestige; daaromTourgo. Reductie/15vervallen posities behouden. Nieuwste formulierenwijzigingenPR42/43 behouden. Publicatie na branch/build/merge/domeincheck; published false.
+
 # 11 november 2026 — aankomstdatum overal verwijderd (live)
 
 Johan vraagt de aankomstdatum bij ‘Bestemming en terugreis’ overal te verwijderen; datum terugrit/ophalen en retourtijd blijven staan. De gedeelde component past alle 420 openbare aanvraagformulieren aan; ook de directe WhatsApp-invultekst verliest deze extra vraag. Servercompatibiliteit voor reeds geopende formulieren blijft behouden zodat eerder ingevulde gegevens niet worden weggegooid. Partnernamen, nummers, bronwebsite en routes behouden. Kleine opvolgcorrectie op de zojuist goedgekeurde live formulieren; direct publiceren na build-/rendercontrole. PR43 samengevoegd als `c4c9612291bdc4d31dcfba24595dde86df76abfb`; Cloudflare-productie `91318602-9dda-491f-9ad8-afe8057d72b2` completed/success. Echte domeincontrole 2026-11-10T20:36:08.307Z (11 november Dubai) bevestigt bij de vier partners, Amsterdam en de landelijke offertepagina: geen aankomstdatum, retourdatum en retourtijd behouden; partnernamen/nummers en canonicals kloppen. Geen echte aanvragen of berichten verstuurd.

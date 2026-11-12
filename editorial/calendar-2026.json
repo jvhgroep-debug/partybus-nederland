@@ -279,10 +279,13 @@
       "scheduledAt": "2026-11-11T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "Tourgo Partybussen / Zuid-Holland",
-      "status": "planned",
+      "status": "source-written",
       "published": false,
       "previousType": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
-      "scheduleActive": true
+      "scheduleActive": true,
+      "title": "Dezelfde partybusaanvraag via formulier én WhatsApp: wat doe je nu?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-aanvraag-formulier-whatsapp-dubbel/",
+      "datePublished": "2026-11-12T04:04:03.475248+04:00"
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-12|1",

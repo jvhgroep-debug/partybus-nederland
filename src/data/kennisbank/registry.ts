@@ -1,3 +1,4 @@
+import { dubbeleAanvraag } from './articles/dubbeleAanvraag';
 import { gevondenSpullen } from './articles/gevondenSpullen';
 import { vertrekadressen } from './articles/vertrekadressen';
 import { bedrijfsgegevensZeeland } from './articles/bedrijfsgegevensZeeland';
@@ -24,6 +25,7 @@ import { samenwerkingTourgoZuidHolland } from './articles/samenwerkingTourgoZuid
 
 /** Registry for Star Local pSEO Suite — kennisbank master articles. */
 export const kennisbankArticles: readonly KennisbankArticle[] = [
+  dubbeleAanvraag,
   gevondenSpullen,
   vertrekadressen,
   bedrijfsgegevensZeeland,
