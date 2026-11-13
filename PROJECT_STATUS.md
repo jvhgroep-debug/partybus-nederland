@@ -1,3 +1,7 @@
+#13november — nachtelijke terugritdatum public-verified
+
+2026-11-13T00:12:59.401984+00:00: Cloudflare preview and production completed/success. Real-domain article1H1/canonical/Article actual date, loaded2048px existing partner photo/OG/no caption, knowledge hub/Utrecht context/sitemap.xml verified. Partner WhatsApp questions opened/closed;31610628733 and Utrecht retained, return date/time present and arrivalDate absent. No requests or messages sent. PR45, productie77641769570d5767fee50dafafb1151edf9c9f95, deployment eccd7aca-e0d6-4259-b774-e137e346f8c5. Oorspronkelijk slot13november04:00 en werkelijke datum behouden. Alle599pagina’s build/SEO/links/assets/partnerchecks geslaagd, alle overige kalenderposities en formulieren/Functions/partnerdata/homepagebron ongewijzigd. Geen afzonderlijke paginaverbetering of kwaliteitsskip. Metadata-checkpoint CI Skip; geen tweede inhoudsdeployment.
+
 #13november — nachtelijke terugritdatum source-written
 
 Terug met de partybus na middernacht: welke datum vul je in?

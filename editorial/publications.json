@@ -459,8 +459,8 @@
     "partner": "Party Bussen Westland / Utrecht",
     "language": "nl-NL",
     "searchIntent": "Welke datum vul ik in voor een partybus die na middernacht terugrijdt, en wat verandert bij alleen een terugrit?",
-    "status": "source-written",
-    "published": false,
+    "status": "public-verified",
+    "published": true,
     "title": "Terug met de partybus na middernacht: welke datum vul je in?",
     "url": "https://www.partybusnederland.nl/kennisbank/partybus-terugrit-na-middernacht-datum-invullen/",
     "photoSource": "/images/blog/westland-bus-vertrektijd.jpeg; existing approved image from https://partybussenwestland.nl/storage/2025/07/image00041-2048x1365.jpeg",
@@ -483,6 +483,12 @@
       "previousCentralRun": "37497d20-e520-8326-b9d0-81d8d5694ca7 completed",
       "currentRun": "adee3487-8b14-8326-a52f-6bf1fdc16878",
       "sharedLockClaimed": false
-    }
+    },
+    "productionCommit": "77641769570d5767fee50dafafb1151edf9c9f95",
+    "deploymentId": "eccd7aca-e0d6-4259-b774-e137e346f8c5",
+    "previewDeploymentId": "feb104b0-15d5-49d3-84b8-4bc4c1eb85f0",
+    "pullRequest": 45,
+    "publicVerifiedAt": "2026-11-13T00:12:59.401984+00:00",
+    "verification": "Cloudflare preview and production completed/success. Real-domain article1H1/canonical/Article actual date, loaded2048px existing partner photo/OG/no caption, knowledge hub/Utrecht context/sitemap.xml verified. Partner WhatsApp questions opened/closed;31610628733 and Utrecht retained, return date/time present and arrivalDate absent. No requests or messages sent."
   }
 ]
