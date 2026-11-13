@@ -1,3 +1,4 @@
+import { nachtDatum } from './articles/nachtDatum';
 import { dubbeleAanvraag } from './articles/dubbeleAanvraag';
 import { gevondenSpullen } from './articles/gevondenSpullen';
 import { vertrekadressen } from './articles/vertrekadressen';
@@ -25,6 +26,7 @@ import { samenwerkingTourgoZuidHolland } from './articles/samenwerkingTourgoZuid
 
 /** Registry for Star Local pSEO Suite — kennisbank master articles. */
 export const kennisbankArticles: readonly KennisbankArticle[] = [
+  nachtDatum,
   dubbeleAanvraag,
   gevondenSpullen,
   vertrekadressen,

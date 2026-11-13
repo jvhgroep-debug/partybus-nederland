@@ -1,3 +1,10 @@
+#13november — nachtelijke terugritdatum source-written
+
+Terug met de partybus na middernacht: welke datum vul je in?
+https://www.partybusnederland.nl/kennisbank/partybus-terugrit-na-middernacht-datum-invullen/
+
+Origineelslot13november04:00; werkelijk2026-11-13T04:07:31.839477+04:00. Nieuwste maine8461de3b82d4a38a81c3761f3a9d3b871ca728f en vorige productie8209d4a2-9d3c-4a1d-9b0e-fb5ec6bfebbd success gecontroleerd. Geen actieve Actions/open PR. Vorige centrale run afgerond; eigenadee3487-8b14-8326-a52f-6bf1fdc16878 apart. Geen gedeelde lock geclaimd. Reductie/15geannuleerde posities ongewijzigd. Doorlopende categorieWestlandUtrecht na Tourgo. Nieuwe concrete kalenderdatum/conditionele-formulierveldenvraag; bestaande rondritgids noemt datum kort maar legt deze twee invulgevallen niet uit. Klant-/opstapadresonderwerp afgewezen wegens overlapZeeland. Laatste gedeelde vragen en retourvelden behouden; geen aankomstdatum teruggebracht. Bestaande toegestane foto visueel gecontroleerd. Publicatie na checks/branch/merge/domeincontrole; publishedfalse.
+
 # Herstel slot11november — public-verified
 
 2026-11-12T00:09:02.755660+00:00: Cloudflare preview and production completed/success. Real-domain article singleH1/canonical/Article actual date/loaded1920px partner photo/OG/no caption, kennisbank, Zuid-Holland context and actual sitemap.xml verified. Tourgo questions window opened/closed with correct31623044970 and origin; latest full questions retained. No requests or messages sent. PR44, productiecommit 15b80086898e871d54c14b04a3935b784104133a, deployment 8209d4a2-9d3c-4a1d-9b0e-fb5ec6bfebbd. Originele11novemberpositie en werkelijke12novemberdatum behouden. Geen nieuwe donderdagpositie. Volgende13novemberWestlandUtrecht. Alleen broncheckpoint, geen extra deployment.

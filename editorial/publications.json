@@ -449,5 +449,40 @@
     "pullRequest": 44,
     "publicVerifiedAt": "2026-11-12T00:09:02.755660+00:00",
     "verification": "Cloudflare preview and production completed/success. Real-domain article singleH1/canonical/Article actual date/loaded1920px partner photo/OG/no caption, kennisbank, Zuid-Holland context and actual sitemap.xml verified. Tourgo questions window opened/closed with correct31623044970 and origin; latest full questions retained. No requests or messages sent."
+  },
+  {
+    "website": "www.partybusnederland.nl",
+    "slotId": "www.partybusnederland.nl|2026-11-13|1",
+    "originalScheduledAt": "2026-11-13T04:00:00+04:00",
+    "publishAt": "2026-11-13T04:00:00+04:00",
+    "datePublished": "2026-11-13T04:07:31.839477+04:00",
+    "partner": "Party Bussen Westland / Utrecht",
+    "language": "nl-NL",
+    "searchIntent": "Welke datum vul ik in voor een partybus die na middernacht terugrijdt, en wat verandert bij alleen een terugrit?",
+    "status": "source-written",
+    "published": false,
+    "title": "Terug met de partybus na middernacht: welke datum vul je in?",
+    "url": "https://www.partybusnederland.nl/kennisbank/partybus-terugrit-na-middernacht-datum-invullen/",
+    "photoSource": "/images/blog/westland-bus-vertrektijd.jpeg; existing approved image from https://partybussenwestland.nl/storage/2025/07/image00041-2048x1365.jpeg",
+    "photoGenerated": false,
+    "photoApproval": "Existing partner gallery, Johan30October permission; visually checked13November; no assigned vehicle or location claim, no caption.",
+    "sources": [
+      "src/components/forms/QuoteRequestFields.astro",
+      "src/data/partners/partyBussenWestland.ts",
+      "src/data/kennisbank/articles/rondritAmsterdam.ts",
+      "src/data/kennisbank/articles/tijdslotUtrecht.ts",
+      "https://www.partybusnederland.nl/provincies/utrecht/"
+    ],
+    "overlapReview": "Compared existing knowledge/guide/service/partner pages and live knowledge hub. The round-trip article briefly says to specify the calendar date; it does not show separate outbound/return date fields versus the conditional single-return fields. New concrete output is a two-case dated field example. Rejected customer-versus-pickup-address angle because bedrijfsgegevensZeeland already answers it. No municipality variant.",
+    "sourcesCheckedAt": "2026-11-13T04:07:31.839477+04:00",
+    "priorPublicationCheck": {
+      "main": "e8461de3b82d4a38a81c3761f3a9d3b871ca728f",
+      "previousProduction": "8209d4a2-9d3c-4a1d-9b0e-fb5ec6bfebbd completed/success fresh",
+      "activeActions": 0,
+      "openPullRequests": 0,
+      "previousCentralRun": "37497d20-e520-8326-b9d0-81d8d5694ca7 completed",
+      "currentRun": "adee3487-8b14-8326-a52f-6bf1fdc16878",
+      "sharedLockClaimed": false
+    }
   }
 ]
