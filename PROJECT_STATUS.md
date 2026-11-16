@@ -1,3 +1,8 @@
+#16november — terreintoegang public-verified
+
+Cloudflare preview/production completed/success. Real canonical domain article oneH1/Article actualdate, loaded1600px approved partner photo/OG/no caption, knowledge hub, Zeeland context and actual sitemap.xml verified. Existing StarTransfer questions dialog inspected with Zeeland,31684002350 and source; dismissed by navigation after close-button browser input timed out. No requests/messages sent. Local preview infrastructure stopped; production browser check succeeded.
+{"sourceCommit": "23a974a633e8398417cc577e4bfbe9a7264980c3", "productionCommit": "da0b944f69dbae61f5e91da7b845d85e6c0daa84", "deploymentId": "508d7fab-4b5a-4193-9d9a-738f7bf06f82", "previewDeploymentId": "66df3b41-206c-49a0-b137-4fd25cb55cad", "pullRequest": 46, "publicVerifiedAt": "2026-11-16T00:10:25.364680+00:00", "verification": "Cloudflare preview/production completed/success. Real canonical domain article oneH1/Article actualdate, loaded1600px approved partner photo/OG/no caption, knowledge hub, Zeeland context and actual sitemap.xml verified. Existing StarTransfer questions dialog inspected with Zeeland,31684002350 and source; dismissed by navigation after close-button browser input timed out. No requests/messages sent. Local preview infrastructure stopped; production browser check succeeded."}. Oorspronkelijke slotidentiteit en15cancelled behouden. Geen verbeteringen/kwaliteitsskips. Source-only checkpoint CI Skip, geen tweede publicatie.
+
 #16november — terreintoegang source-written
 
 Partybus ophalen achter een slagboom: wat regel je vooraf?
