@@ -336,10 +336,15 @@
       "scheduledAt": "2026-11-16T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "StarTransfer / Zeeland",
-      "status": "planned",
+      "status": "source-written",
       "published": false,
       "previousType": "Prestige Coach Service / Noord-Brabant",
-      "scheduleActive": true
+      "scheduleActive": true,
+      "title": "Partybus ophalen achter een slagboom: wat regel je vooraf?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-slagboom-terreintoegang-voorbereiden/",
+      "datePublished": "2026-11-16T04:05:11.823532+04:00",
+      "searchIntent": "Welke toegangsinformatie moet ik vóór een partybusrit afstemmen als de ophaalplek achter een slagboom ligt?",
+      "photoSource": "/images/partners/startransfer/partybus-buiten.webp"
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-17|1",
