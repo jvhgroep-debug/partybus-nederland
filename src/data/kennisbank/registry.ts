@@ -1,3 +1,4 @@
+import { zelfVersieren } from './articles/zelfVersieren';
 import { terreinToegang } from './articles/terreinToegang';
 import { nachtDatum } from './articles/nachtDatum';
 import { dubbeleAanvraag } from './articles/dubbeleAanvraag';
@@ -27,6 +28,7 @@ import { samenwerkingTourgoZuidHolland } from './articles/samenwerkingTourgoZuid
 
 /** Registry for Star Local pSEO Suite — kennisbank master articles. */
 export const kennisbankArticles: readonly KennisbankArticle[] = [
+  zelfVersieren,
   terreinToegang,
   nachtDatum,
   dubbeleAanvraag,
