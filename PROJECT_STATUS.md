@@ -1,3 +1,9 @@
+#18november — zelf versieren source-written
+
+Zelf een partybus versieren: wat moet je vooraf afspreken?
+https://www.partybusnederland.nl/kennisbank/partybus-zelf-versieren-afspraken-vooraf/
+Origineel18november04:00; werkelijk2026-11-18T04:01:13.460038+04:00. Algemeen na StarTransfer/Zeeland, doorlopende ronde behouden.15cancelledposities ongewijzigd. Concrete materialen-/uitvoeringsafspraak vergeleken met gidsen/dienstpagina’s; geen nieuwe toestemming, kosten of faciliteiten beloofd. Bestaande contactroutes/partnerdata/Functions/homepagebron behouden. Publishedfalse tot branch/build/merge en echte domeincontrole. Build601pagina’s, SEO/link/asset/pre-pushchecks en vier-partner WhatsApp/encodingtests geslaagd. Originele overige kalenderposities en15cancelled ongewijzigd; bestaande foto1140x475 visueel gecontroleerd. Geen aparte paginaverbetering of kwaliteitsskip.
+
 #16november — terreintoegang public-verified
 
 Cloudflare preview/production completed/success. Real canonical domain article oneH1/Article actualdate, loaded1600px approved partner photo/OG/no caption, knowledge hub, Zeeland context and actual sitemap.xml verified. Existing StarTransfer questions dialog inspected with Zeeland,31684002350 and source; dismissed by navigation after close-button browser input timed out. No requests/messages sent. Local preview infrastructure stopped; production browser check succeeded.

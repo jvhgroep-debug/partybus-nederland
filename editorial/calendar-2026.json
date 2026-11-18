@@ -373,10 +373,14 @@
       "scheduledAt": "2026-11-18T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "Algemeen",
-      "status": "planned",
+      "status": "source-written",
       "published": false,
       "previousType": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
-      "scheduleActive": true
+      "scheduleActive": true,
+      "title": "Zelf een partybus versieren: wat moet je vooraf afspreken?",
+      "slug": "partybus-zelf-versieren-afspraken-vooraf",
+      "datePublished": "2026-11-18T04:01:13.460038+04:00",
+      "searchIntent": "Wat spreek ik over materialen, bevestiging, aanbrengen en verwijderen af als ik zelf een partybus wil versieren?"
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-19|1",
