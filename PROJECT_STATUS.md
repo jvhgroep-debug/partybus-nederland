@@ -1,3 +1,10 @@
+#18november — zelf versieren public-verified
+
+Zelf een partybus versieren: wat moet je vooraf afspreken?
+https://www.partybusnederland.nl/kennisbank/partybus-zelf-versieren-afspraken-vooraf/
+{"status": "public-verified", "published": true, "sourceCommit": "4b213ff3a18355ffef5229646a0fc7739963361c", "productionCommit": "dcc7b2c61dec958abb2ff997ced0c56c7d7ecbab", "deploymentId": "a9a7b5cb-084b-4409-8823-671da4daface", "previewDeploymentId": "30777f0a-c4be-4240-8e03-87e9c33ee594", "pullRequest": 47, "publicVerifiedAt": "2026-11-18T00:06:43.993548+00:00", "verification": "Cloudflare preview/production completed/success. Actual canonical domain singleH1/Article actualdate, loaded1140px approved partner photo/OG/no caption, kennisbank and actual sitemap.xml verified. Original general WhatsApp questions opened without sending,31684002350 and source retained. Existing homepage knowledge context preserved. No messages or requests. Source-only checkpoint, no second publication."}
+Origineel18november04:00 en werkelijke publicatiedatum behouden. Geen aparte pagina-verbetering of kwaliteitsskip. Overige kalenderposities en15cancelled behouden. Source-only checkpoint CI Skip, geen tweede inhoudsdeployment.
+
 #18november — zelf versieren source-written
 
 Zelf een partybus versieren: wat moet je vooraf afspreken?
