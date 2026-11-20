@@ -1,3 +1,12 @@
+# 20 november — oorspronkelijk Brabant-slot source-written
+
+Twee partybussen voor één groep: hoe houd je de indeling duidelijk?
+https://www.partybusnederland.nl/kennisbank/twee-partybussen-groep-indeling-heen-terugrit/
+
+Current knowledge hub and article/guide/service/landing sources compared. Tilburg50 FAQ mentions bus labels/contact persons, school guide says split larger groups, group-size guide handles changed totals, wedding guide handles different guests and organiser guide handles absent organiser. None supplies a per-bus, per-leg reconciliation with a worked numerical allocation and changed return assignment. Focus narrowed to this concrete planning output; not a city variant or promise of multiple vehicles.
+
+Origineel20november04:00; werkelijk2026-11-20T04:05:48.037374+04:00. Actueelmain1f140dd8 en productie18november success gecontroleerd; geenActions/openPR. Reductie en15cancelledposities behouden; geen oudere open slots. Alle huidige bronbestanden exact tegen GitHubtree vergeleken vóór schrijven. Eén nieuwe concrete klantvraag; bestaande foto1200x904 visueel gecontroleerd. Behoud homepage, partnerdata, contactroutes, Functions en gelijktijdig werk. Publicatie na build/branch/merge/domeincontrole; publishedfalse. Geen aparte verbetering of kwaliteitsskip.
+
 #18november — zelf versieren public-verified
 
 Zelf een partybus versieren: wat moet je vooraf afspreken?
@@ -324,236 +333,737 @@ Opdracht Johan: de aanbevelingen voor Amsterdam, Utrecht, Noord-Brabant en Zuid-
 
 Voorstel #16 gemerged als `b1ee333e77159699a4f33225641a8df706138cef`. Cloudflare Pages bevestigt succesvolle productie-deployment `44c6e238-5a84-4467-b97b-d98175a0ef3d` op 18 oktober 2026. De gepubliceerde sourcetree `32e10357046f8c21ee2fe8a95a47310fa1b9f3d4` is exact gelijk aan de lokaal gecontroleerde versie.
 
-Rechtstreekse HTTP-controle op `https://www.partybusnederland.nl` bevestigt voor alle acht aangepaste steden én alle vier nieuwe blogs HTTP 200, de nieuwe inhoud, precies één H1 en de juiste canonicalverwijzing. De vier artikelen staan onder `/kennisbank/opstapplaats-partybus-amsterdam-kiezen/`, `/kennisbank/bedrijfsuitje-utrecht-partybus-terugrit-plannen/`, `/kennisbank/festivalvervoer-brabant-groep-opstapplaatsen/` en `/kennisbank/partybus-zuid-holland-meerdere-opstapplaatsen/`.
-
-Johan heeft expliciet bevestigd de wijzigingen zoals gebruikelijk te publiceren. Geen berichten of aanvragen verstuurd. Interactieve mobiele browser-QA en rankingverbetering blijven niet bevestigd; publicatie en zichtbare nieuwe HTML zijn wel geverifieerd.
-
-# Partybus Nederland — officieel beheerproject
-
-## 16 oktober 2026 — WhatsApp-invulvenster algemeen kennisbankartikel
-
-- Opdracht Johan: op `/kennisbank/groepsgrootte-wijzigen-na-partybus-offerte/` hetzelfde WhatsApp-keuzevenster gebruiken als op de partnerpagina’s.
-- Bestaande gedeelde component hergebruikt voor het algemene contact Partybus Nederland; nummer uit `src/data/settings/whatsapp.ts` blijft `31684002350`. Dit contact wordt niet als StarTransfer toegewezen.
-- Naam, aanvraagtype, datum, groepsgrootte, opstapadres, bestemming, terugreis en wensen gaan mee in het conceptbericht. Herkomst PartybusNederland.nl en exacte artikel-URL blijven opgenomen. Alleen de bezoeker verstuurt het bericht.
-- Geen partnernummer, formulier, tracking of overige artikelinhoud gewijzigd. Componentwijziging betreft alleen de TypeScript-props voor het algemene contact; bestaande partnergedrag blijft identiek.
-- Validatie en Cloudflare-publicatie worden apart bevestigd. Geen echte aanvraag of WhatsApp verstuurd.
-
-## Blogpublicatie 16 oktober 2026 — algemeen
-
-- Website: `https://www.partybusnederland.nl`; oorspronkelijke planning: `2026-10-16T12:00:00+04:00`.
-- Titel: Meer of minder deelnemers na je partybusofferte: wat regel je?
-- Artikel: `/kennisbank/groepsgrootte-wijzigen-na-partybus-offerte/`.
-- Bron: `src/data/kennisbank/articles/groepsgrootteWijzigen.ts` en bijbehorende bestaande kennisbanktemplate; register en homepage-contextlink toegevoegd. De bestaande XML- en HTML-sitemaps gebruiken het register automatisch.
-- Branch: `blog/2026-10-16-groepsgegevens`. Nieuw artikel, geen vervanging van homepage of bestaande gidsen. Werkelijke bestaande Prestige-partnerfoto; geen nieuwe prijs-, capaciteits- of beschikbaarheidsclaims.
-- Validatie: npm ci/build geslaagd, 578 pagina’s; SEO-audit, interne link-/assetcheck en vier-partner WhatsApp-tests geslaagd. Nieuwe canonical en JSON-LD gecontroleerd. Geen formulieren ingediend of berichten verstuurd; partnernummers en integraties ongewijzigd.
-- Publicatiestatus: klaar voor wijzigingsvoorstel en deployment; productie wordt pas na afzonderlijke verificatie als bevestigd gemeld. Herhaal bij een onderbroken uitvoering alleen de ontbrekende deploymentcontrole, niet het artikel.
-
-Laatste update: 15 oktober 2026. Dit bestand is het startpunt voor vervolgwerk vanuit ChatGPT Work.
-
-## Vaste werkwijze
-
-- Analyseer en gebruik uitsluitend Search Console-gegevens van PartybusNederland.nl.
-- Gebruik uitsluitend de bestaande repository `jvhgroep-debug/partybus-nederland`.
-- Bestaande hosting: Cloudflare Pages. Geen nieuwe website, repository of hosting aanmaken.
-- Werk eerst op een aparte branch. Behoud URL's, canonical-instellingen, formulieren, partnergegevens en WhatsApp-koppelingen.
-- Lees dit bestand vóór elke nieuwe opdracht en werk het na afloop bij.
-- Een commit of geslaagde build is geen bewijs van publicatie. Noteer productie pas als die afzonderlijk is geverifieerd.
-
-## Projectafbakening gecontroleerd
-
-Alle wijzigingen in deze werksessie betreffen uitsluitend deze repository. Alle SEO-rapporten zijn uitsluitend opgevraagd voor `sc-domain:partybusnederland.nl`. De read-only lijst met verbonden properties gaf ook andere websitenamen terug; hun rapporten zijn niet geopend, gebruikt of aangepast. Deze controle betreft deze werksessie, niet andere chats.
-
-De eerste push is door automatische goedkeuringscontrole geblokkeerd vanwege een ruwe GSC-export. Die export en de numerieke analytics zijn uit de te publiceren commit verwijderd. Er wordt uitsluitend websitecode en projectdocumentatie gepusht.
-
-## Uitgevoerde werkzaamheden
-
-### 13 oktober 2026 — SEO-fase 1
-
-- Repository gecontroleerd vanaf main-commit `e89ef72`.
-- Werkbranch: `seo/fase-1-steden-2026-10-13`.
-- Search Console geraadpleegd: `sc-domain:partybusnederland.nl`, web, 13 september t/m 10 oktober 2026 (28 volledige dagen).
-- Tien bestaande gemeentepagina's geselecteerd op hoogste aantal vertoningen; zoekopdrachten gebruikt om de inhoud gericht te verbeteren.
-- Unieke titles en meta descriptions aangescherpt; bestaande titelfocus 'partybus huren' behouden en 'feestbus aanvragen' toegevoegd.
-- Lokale uitleg toegevoegd over vertrekplaatsen, route, heen-/terugrit en aanvraaggegevens. Termen discobus/feestbus/borrelbus verwerkt waar de zoekopdrachten daar aanleiding toe geven.
-- Prijsvraag met praktisch antwoord toegevoegd aan zichtbare FAQ en de bestaande FAQ-structured data.
-- Utrechtse Heuvelrug expliciet onderscheiden van de stad Utrecht. Leeuwarden expliciet als vertrekplaats in Friesland benoemd vanwege vertoningen bij zoekopdrachten over Leiden/Rotterdam.
-- Formulieren, API's, partners, WhatsApp-nummers, tracking, foto's en bestaande URL's behouden.
-
-Geselecteerde pagina's: Rotterdam, Amsterdam, Breda, Den Haag, Utrecht, Westland, Tilburg, Utrechtse Heuvelrug, Oss en Leeuwarden. Westland en Utrechtse Heuvelrug zijn gemeenten met meerdere kernen; zij behoren op basis van de GSC-controle tot de tien geselecteerde pagina's. Ruwe analytics en individuele zoekopdrachtstatistieken worden niet in GitHub opgeslagen.
-
-## Validatie
-
-- `npm ci` en `npm run build`: geslaagd; 577 pagina's gebouwd.
-- `node scripts/audit-seo.mjs`: geslaagd; geen dubbele titles/descriptions of ontbrekende H1 in de audit.
-- `node scripts/verify-pre-push.mjs`: geslaagd; 0 kapotte interne links, geen ontbrekende assets volgens deze controle.
-- Tien gewijzigde HTML-pagina's vergeleken met een aparte build van main-commit `e89ef72`: formulier-/invoerveldattributen, WhatsApp-URL's en offerte-URL's identiek; één H1, juiste canonical en geldige JSON-LD per pagina.
-- `git diff --check`: geslaagd.
-- Geen offerte ingestuurd en geen WhatsApp-bericht verzonden. Externe mailaflevering is in deze controle niet getest.
-
-## Wat daadwerkelijk online staat
-
-Update websiteaudit 13 oktober 2026: SEO-fase 1 is inmiddels naar main gemerged als `286c176`. De live SEO-crawl bevestigt de nieuwe titels op de gecontroleerde stadspagina’s. Alle 577 huidige gegenereerde adressen hebben een HTTP 200 eindstatus. Dit vervangt de eerdere beperking van de 403-controle; exact Cloudflare deployment-ID/volledige productiecommit is niet bevestigd.
-
-Auditdocumentatie staat uitsluitend op `audit/websitecontrole-2026-10-13`. Er zijn door de audit geen websitewijzigingen gepubliceerd, geen partnergegevens aangepast en geen echte aanvragen verstuurd. Twee oude adressen geven live 404. Zie `WEBSITE_AUDIT.md` voor bewijs en beperkingen.
-
-## Actieve partners volgens de huidige broncode
-
-Er staan vier partners in de huidige repository, inclusief StarTransfer. Geen partner verwijderd op basis van het eerder genoemde aantal van drie.
-
-| Partner | Gebied | WhatsApp | Bron |
-| --- | --- | --- | --- |
-| Prestige Coach Service | Noord-Brabant | +31 6 29041798 | `src/data/partners/prestigeCoachService.ts` |
-| Tourgo Partybussen | Zuid-Holland | +31 6 23044970 | `src/data/partners/tourgoPartybussen.ts` |
-| Party Bussen Westland | Provincie Utrecht + Amsterdam | +31 6 10628733 | `src/data/partners/partyBussenWestland.ts` |
-| StarTransfer | Zeeland | +31 6 84002350 (tijdelijk via Partybus Nederland) | `src/data/partners/starTransfer.ts` |
-
-Let op: de gemeentepagina Westland valt in de huidige routering onder **Tourgo/Zuid-Holland**. De partner met de naam Party Bussen Westland bedient hier Utrecht en Amsterdam. Deze routering is bewust behouden.
-
-StarTransfer-aanvragen worden volgens de configuratie intern naar `info@starlocal.nl` gestuurd voor handmatige doorsturing; het tijdelijke WhatsApp-nummer is niet het eigen nummer van StarTransfer. Algemeen WhatsApp-contact: +31 6 84002350.
-
-## Resterende SEO-werkzaamheden
-
-1. Branch en eventuele Cloudflare-preview beoordelen; na goedgekeurde merge productie apart verifiëren en deze sectie bijwerken met commit/deployment en controle-datum.
-2. Na publicatie de tien pagina's inspecteren op bereikbaarheid, canonical, title, FAQ, WhatsApp en formulierroutering; sitemap-status controleren.
-3. Na 28 volledige dagen vanaf publicatie dezelfde GSC-pagina's vergelijken op klikken, vertoningen, CTR en positie. Publicatiedatum is nog niet vastgesteld.
-4. Leeuwarden en Utrechtse Heuvelrug volgen op ongewenste geografische zoekopdrachten; zo nodig bestaande interne linkstructuur verder aanscherpen.
-5. Oude URL's zoals `/steden/den-haag/` en `/steden/Apeldoorn` controleren op passende redirects/canonical: ze komen nog voor in GSC. Geen redirects aangepast in fase 1.
-6. Volgende gemeentepagina's op basis van nieuwe GSC-data selecteren, vervolgens provincie- en dienstpagina's verbeteren.
-
-## 13 oktober 2026 — volledige websiteaudit
-
-- Bron/main `286c176` en 577 live adressen onderzocht. Build, bestaande SEO/linkchecks en lokale gemockte offerte-API geslaagd.
-- Rapport: `WEBSITE_AUDIT.md`; auditbranch `audit/websitecontrole-2026-10-13`.
-- Belangrijkste bevindingen: twee oude 404-URL’s; drie oude sitemapindieningen met fouten; acht extra Brabantse plaatsen met algemeen WhatsApp-nummer; verschillende partneraanvraagroutes; formulier-/mailbetrouwbaarheid; overlap lokale teksten; Zeeland nog onbekend bij Google; zware beelden.
-- Partnernummers behouden. StarTransfer loopt handmatig via eigenaar; Westland heeft geen directe e-mailroute in onze API. Eigen partnerwebsites blijven bestaan.
-- GSC alleen `sc-domain:partybusnederland.nl`, laatste 28 afgeronde dagen. Geen andere sites geanalyseerd of gewijzigd in deze audit.
-- Mobiele visuele QA, Core Web Vitals, live Resend/Functions-settings en volledige indexering niet bevestigd. Externe links gedeeltelijk gecontroleerd. Het rapport onderscheidt signalen van bewezen fouten.
-
-## Volgende opdracht
-
-**Eerst WEBSITE_AUDIT.md beoordelen en bepalen welke verbeteringen mogen worden uitgevoerd.** Aanbevolen: oude 404-URL’s en sitemaps, daarna partnerroutering/aanvragen, daarna lokale SEO en afbeeldingen. Geen nieuwe pagina’s, partnerwijzigingen of publicatie zonder vervolginstructie. De eerdere opdracht om meteen verder te publiceren is hiermee vervangen.
-
-## 13 oktober 2026 — herstel na audit (opdracht Johan)
-
-Branch: `fix/website-audit-2026-10-13`. Website-aanpassingen zijn door Johan na beoordeling van de audit opgedragen.
-
-- Permanente redirects voor historische stadadressen en oude sitemapadressen toegevoegd; uitsluitend naar bestaande pagina’s.
-- Acht extra Brabantse plaatsen krijgen de bestaande Prestige-WhatsApp/offertekoppeling. Geen partnernaam, nummer of e-mailadres gewijzigd.
-- Westland-partner toegevoegd aan expliciete e-mailallowlist. Utrecht/Amsterdam- en Zuid-Holland-formulieren en offerteknoppen behouden hun regio via partner-ID. Externe links naar partnerwebsites blijven. StarTransfer behoudt handmatige doorsturing.
-- Datum, groepsgrootte en veldlengten server-side gecontroleerd; formulierfallback zonder JavaScript.
-- Resend-verzending met vaste idempotency keys per aanvraag/ontvanger, time-out en begrensde retries. Mislukte partnerdoorsturing meldt handmatige actie aan eigenaar. Klantmailfout leidt na ontvangst door eigenaar niet tot een nieuwe inzending. Geen echte e-mails verzonden.
-- Lokale vertrekintentie op elf bestaande stadspagina’s aangescherpt, inclusief Dordrecht; geen nieuwe routes. Langere titels krijgen geen extra merksuffix; homepage-title korter.
-- Eigen Organization-logo en Article-image aangevuld; StarTransfer-logo in service-schema. Decoratieve lege altteksten en privé dashboard noindex behouden. Generieke hero-alttekst beschrijft geen niet-afgebeeld plaatselijk monument.
-- Generieke PNG-hero vervangen door WebP-variant met hetzelfde beeld: 2,75 MB naar 273 kB. Zes zware stadsbeelden op dezelfde URL opnieuw als echte WebP gecomprimeerd: 15,17 MB naar 1,49 MB samen. Logo-dimensies toegevoegd.
-- Build: 577 pagina’s; SEO-audit, link/assetcheck en diff-check geslaagd. 23 bestaande tests geslaagd via bundling. Aanvullende gemockte offertests controleren vier partners, foutafhandeling, validatie, idempotency en native fallback.
-
-### Publicatiestatus herstel
-
-Herstelvoorstel #2 is gemerged als `c57d9b05363d400c702e5d08f555b985a1611659`. Cloudflare Pages meldt succesvolle productiebuild/deploy `8355e2f9-e05f-4698-8c48-7727a2842706`. Livecontrole op 13 oktober 2026 bevestigt redirects Den Haag/Apeldoorn, Prestige op Zevenbergen en gewijzigde regionale formulieren. Preview/browsercontrole: geen ontbrekende beelden op gecontroleerde pagina’s, geen site-JavaScriptfouten gezien; mobiele viewport en veld-CWV blijven onbevestigd.
-
-Sitemap `https://www.partybusnederland.nl/sitemap.xml` opnieuw ingediend op 13 oktober 2026, 08:10 UTC: geaccepteerd, pending, geen gemelde fouten op dat moment. Dit is geen bevestiging dat Google alle pagina’s geïndexeerd heeft.
-
-Livecontrole vond nog een algemene header-offerteknop. Aanvullende herstelbranch `fix/regionale-header-2026-10-13` geeft de bestaande pageQuoteHref door aan desktop- en mobiele headerknoppen. Geen nieuwe routes of partnerwijzigingen.
-
-### Resterende beperkingen
-
-De drie oude sitemapindieningen zijn niet uit het Search Console-dashboard verwijderd; hun URL’s krijgen redirects zodra code live is. CrUX en mobiele visuele controle zijn niet beschikbaar. Live Resend-verificatie/configuratie, mailaflevering en complete indexering zijn niet bevestigd. Er zijn gerichte lokale SEO-verbeteringen gedaan; niet alle herhaalde uitleg op 352 steden herschreven. Google-effect pas na publicatie en voldoende meettijd beoordelen.
-
-### Volgende opdracht na herstel
-
-Productiecontrole van redirects, acht extra Brabantse plaatsen, vier partnerformulieren en nieuwe beeldbestanden. Daarna sitemapverwerking/Zeeland-indexering en aanvullende mobiele/CWV-controle.
-
-### Definitieve herstelpublicatie
-
-Aanvullende headercorrectie uit voorstel #3 is gemerged als `e06bc7308943b1f1d6417743ff1e9b0f544cc28d`. Cloudflare-productiedeploy `55c3b2f3-51e3-481b-a27d-f52ceccb22b8` is geslaagd. Live browsercontrole bevestigt op Utrecht twee regionale offerteknoppen (desktop/mobiel) met `partner=party-bussen-westland` en de juiste bronpagina. Geen ontbrekende afbeeldingen op de gecontroleerde pagina. Geen offerte of WhatsApp-bericht verzonden.
-
-De technische herstelversie staat online. Sitemap opnieuw geaccepteerd, nog pending bij Google. Overige open beperkingen hierboven blijven gelden. Deze laatste documentatie-update wijzigt geen websitecode.
-
-## 13 oktober 2026 — Breda versterken
-
-Opdracht Johan: bestaande Breda-pagina sterk verbeteren. Branch `seo/breda-versterken-2026-10-13`. Alleen GSC van PartybusNederland.nl gebruikt; Breda-pagina gefilterd, laatste 28 afgeronde dagen (13 september–10 oktober). Geen ruwe zoekstatistieken in GitHub opgeslagen.
-
-- Zoekintentie: partybus huren Breda, feestbus huren Breda, discobus Breda; titel, description en lokale inhoud daarop afgestemd.
-- Algemene SEO-overlay overschreef Breda-hubcopy; Breda behoudt voortaan zijn eigen lokale inhoud. Zichtbare copy en JSON-LD komen uit dezelfde data.
-- Uitleg over vertrekgebieden, meerdere stops, groepsgrootte, prijsfactoren, heen-/terugreis en voorzieningen. Bestaande route- en informatiepagina’s intern gekoppeld.
-- Praktische offertelijst en partner-CTA’s toegevoegd. Geen verzonnen tarieven, busbeschikbaarheid, lokale vestiging of nieuwe klantreviews.
-- 13 zichtbare FAQ-vragen/antwoorden exact gelijk aan FAQ-schema; Service-schema met Breda als werkgebied en werkelijke partneradres in Baarle-Nassau.
-- Social sharing gebruikt de bestaande Prestige-hero van de pagina. Bestaande partnerbeelden, nummer +31 6 29041798, formulier/API en offerte-ID behouden.
-- Build: 577 pagina’s. SEO/link/assetchecks en diff-check geslaagd. Alleen de gegenereerde Breda-HTML verschilt; de overige 576 HTML-bestanden zijn byte-identiek aan de voorafgaande build.
-- Geen nieuwe pagina’s, externe testaanvragen of berichten. Publicatie wordt apart geverifieerd; Google-effect pas na voldoende meettijd beoordelen.
-
-Volgende stap: Cloudflare-preview en productie controleren; vervolgens Breda na 28 volledige dagen volgen op relevante klikken, vertoningen en CTR. Mobiele/CWV- en mailafleveringsbeperkingen uit de audit blijven gelden.
-
-
-### Breda daadwerkelijk gepubliceerd
-
-Voorstel #5 gemerged als `8b4f80eefd4352f110031adf5a2425ae740fe848`. Cloudflare-productiedeploy `d1463528-b7ba-4c92-a81b-45d01c1ab161` geslaagd. Live browsercontrole op 13 oktober bevestigt de nieuwe Breda-title, lokale prijs-/planningssectie, 13 FAQ’s en nul ontbrekende afbeeldingen op `https://www.partybusnederland.nl/steden/partybus-huren-breda/`. Previewcontrole bevestigt openende FAQ en regionale partnerofferteknoppen. Geen echte aanvraag verzonden. Dit is bewijs van publicatie, geen bewijs van hogere Googleposities.
-
-## 13 oktober 2026 — WhatsApp-keuzevenster Breda
-
-Opdracht Johan: bezoekers laten aangeven dat zij via onze site komen, hun naam opnemen en kiezen waarvoor zij contact opnemen. Branch `feature/breda-whatsapp-keuze-2026-10-13`.
-
-- Alle gewone WhatsApp-klikken naar het bestaande Prestige-nummer op de Breda-pagina openen een keuzevenster. Naam optioneel, aanvraagtype, datum, groepsgrootte, vertrekadres, bestemming, terugreis en wensen.
-- Bericht vermeldt expliciet `PartybusNederland.nl, de pagina voor Breda`, ingevulde naam en gekozen aanvraagtype. Een WhatsApp-profielnaam kan niet automatisch worden opgehaald.
-- Alleen de bezoeker opent vervolgens het concept in WhatsApp en verzendt het zelf. Formuliergegevens worden niet naar onze offerte-API of een database gestuurd. Bestaande WhatsApp-clicktracking blijft clicktracking, geen bewijs van verzonden berichten.
-- Prestige-nummer +31 6 29041798 en offerte-/e-mailroutes behouden; andere pagina’s niet gewijzigd. Zonder JavaScript blijft de bestaande WhatsApp-link werken.
-- Build 577 pagina’s; SEO/link/assetchecks en diff-check geslaagd. Geen bericht verstuurd. Preview en publicatie apart te verifiëren.
-
-
-### WhatsApp-keuze Breda live bevestigd
-
-Voorstel #7 gemerged als `40099f2ab7bb3ea7f14722e9aa249fee2d83333f`. Cloudflare-productiedeploy `fab283ce-76fb-4c56-8afa-7ba8f6506dab` geslaagd. Browsercontrole op eigen domein: Prestige-knop opent keuzevenster, naamveld ingevuld met fictieve testnaam, festivalkeuze geselecteerd en venster gesloten. Niet doorgegaan naar WhatsApp en geen bericht verstuurd. De ingevulde naam verschijnt in het conceptbericht, niet automatisch als WhatsApp-profielnaam.
-
-## 13 oktober 2026 — WhatsApp-keuzevenster alle vier partners
-
-Opdracht Johan: hetzelfde WhatsApp-icoon en invulvenster op alle partnerpagina’s. Branch `feature/alle-partners-whatsapp-keuze-2026-10-13`.
-
-- Centrale partnerresolver gebruikt bestaande partnerdata, trackingcontext, regionale footer en vier samenwerkingsartikelen. Algemene eigenaarcontactpagina’s worden niet als StarTransfer toegewezen op basis van het gedeelde tijdelijke nummer.
-- Eén gedeeld keuzevenster met naam, aanvraagtype, datum, personen, vertrekadres, bestemming, terugreis en wensen. Naam is vrijwillig; geen automatisch opgehaalde profielgegevens.
-- Bericht noemt PartybusNederland.nl, vertrekplaats/regio, exacte bronpagina, juiste partner en ingevulde gegevens. Geselecteerde festivals en de bestaande festivallijst blijven behouden.
-- Zelfde bestaande groene zwevende icoon op alle partnerpagina’s; gewone partner-WhatsApp-links openen ook het venster. Zonder JavaScript blijft de directe link werken. StarTransfer gebruikt expliciet het bestaande tijdelijke beheerdersnummer; overige drie eigen partnernummers behouden.
-- Bestaande StarTransfer-ritformulier/WhatsApp-knop blijft zijn ingevulde ritgegevens rechtstreeks doorgeven. Geen offerte-/e-mailroute aangepast en geen extra databaseopslag.
-- Statische controle: 318 partnerpagina’s met exact één venster en passend zwevend nummer: Prestige 114, Tourgo 79, Party Bussen Westland 83, StarTransfer 42. Alle bestaande titles en H1’s gelijk gebleven.
-- Build 577 pagina’s; SEO/link/assetchecks, diff-check en vier-partner message/routering/festivaltests geslaagd. Geen berichten verstuurd. Publicatie/livecontrole worden afzonderlijk geregistreerd.
-
-
-### Alle partner-WhatsAppvensters daadwerkelijk live
-
-Voorstel #9 gemerged als `04c3eb05ea8fab6e7fed43a3042404f1f8ba89cf`. Cloudflare-productiedeploy `28212417-0f55-4448-a2d3-dd2b21b01368` geslaagd. Live browsercontrole op de vier provinciepagina’s bevestigt dat het zwevende icoon het venster voor respectievelijk Prestige Coach Service, Tourgo Partybussen, Party Bussen Westland en StarTransfer opent. StarTransfer toont expliciet de tijdelijke route via Partybus Nederland. Alle vensters weer gesloten; geen berichten verstuurd.
-
-Partnerdata blijven server-side; de browser gebruikt alleen de lichte berichtbouwer. Bestaande 577 pagina’s blijven bereikbaar via dezelfde URL’s. Statische controle dekt 318 partnerpagina’s; interactieve livecontrole is steekproefsgewijs één per partner.
-
-## 15 oktober 2026 — lokale SEO-kansen versterken
-
-Opdracht Johan: bestaande pagina’s gericht bijwerken voor betere zichtbaarheid. Branch `seo/lokale-kansen-2026-10-15`. Uitsluitend query/pagina-rapport van `sc-domain:partybusnederland.nl`, web, 14 september–11 oktober 2026. De door Johan geplakte cijfers hebben een onbekende periode en zijn niet als vergelijkbare nulmeting gebruikt. Geen ruwe analytics in GitHub opgeslagen.
-
-- Acht bestaande stadspagina’s: Oss, Tilburg, Amsterdam, Utrecht, Westland, Leiden, Rotterdam en Den Haag. Lokale vertrekintentie, verzameladressen, prijsfactoren, groepen 20/30/40 en terugrit verduidelijkt. Titles/descriptions aangepast; geen verzonnen tarieven, beschikbaarheid of vestigingen.
-- Zichtbare FAQ en bestaande FAQ-schema gebruiken dezelfde aangepaste citydata. Breda’s eerder gemaakte uitgebreide copy blijft intact.
-- Negen stadspagina’s (inclusief Breda) krijgen contextlinks naar bestaande prijs-, bedrijfsuitje-, vrijgezellenfeest-, partner- en festivalinformatie.
-- Search Console liet andere URL’s bij sommige stadsqueries zien. Maashorst, Leeuwarden en Utrechtse Heuvelrug krijgen een expliciete verwijzing naar respectievelijk de vertrekpagina Oss, Leiden en Utrecht stad. Dit is een relevantiesignaal, geen bewezen oplossing voor zoekwoordconcurrentie.
-- Geen nieuwe routes, redirects, partnergegevens, WhatsApp-nummers, offerte-/e-mailroutes of tracking gewijzigd. Backlinks zijn niet aangevraagd en er zijn geen berichten verstuurd.
-- Build 577 pagina’s; SEO-audit, interne link-/assetcheck, vier-partner WhatsApp-test en diff-check geslaagd. HTML-vergelijking bevestigt behoud van partnerlinks, formuliervelden, dialogattributen en canonicals. Inhoud verschilt op 12 pagina’s; overige verschillen betreffen de gedeelde CSS-verwijzing/scoping.
-- Publicatie en livecontrole nog afzonderlijk te bevestigen. Geen claim van hogere Googleposities. Effect beoordelen na ten minste 28 volledige dagen na publicatie, per pagina en query met vergelijkbare periode/filters.
-
-
-### Lokale SEO-publicatie bevestigd
-
-Voorstel #11 gemerged als `c6ef31595a45999dbf11b86d7f501c9c2a64dc50`. Cloudflare-productiedeploy `be664160-3a17-4709-9b5b-ac597820ac25` geslaagd. Live browsercontrole op 15 oktober (Dubai) bevestigt nieuwe inhoud op alle twaalf genoemde pagina’s: acht nieuwe titles, negen planningslinksecties, drie vertrekplaatsverwijzingen, telkens één H1. Bestaande partnerdialogen tonen de juiste nummers; op geladen beelden geen ontbrekende afbeeldingen gezien. Alle acht aangepaste FAQ-lijsten lokaal exact vergeleken met JSON-LD. Geen berichten of aanvragen verstuurd. Volledige mobiele visuele QA/CWV en hogere Googleposities zijn hiermee niet bevestigd.
-
-
-### Bevestiging blogdeployment 16 oktober 2026
-
-Algemeen artikel: **Meer of minder deelnemers na je partybusofferte: wat regel je?** Oorspronkelijke planning `2026-10-16T12:00:00+04:00`; URL `https://www.partybusnederland.nl/kennisbank/groepsgrootte-wijzigen-na-partybus-offerte/`.
-
-Voorstel #13 gemerged als `08f3206f79d6aed5f23295e4542ad0012493092e`. Cloudflare Pages bevestigt succesvolle deployment `ffdfa3ec-2db9-4bd6-b77d-adf0e780c202`. Build, SEO, links/assets en vier-partner WhatsApp-tests geslaagd. Vergelijking met de 577 eerdere pagina’s bevestigt identieke titles/H1/canonicals/formulierattributen/WhatsApp-links/dialog-ID’s; alleen homepage, kennisbankoverzicht en HTML-sitemap hebben toegevoegde verwijzingen. Geen berichten verstuurd. Rechtstreekse publieke domeincontrole is vanuit deze uitvoeromgeving niet bevestigd; HTTP-controle geblokkeerd. Een hostingbevestiging wordt niet als interactieve live browsercontrole omschreven. Maak geen tweede artikel voor deze planningsdatum.
-
-
-### Publicatie WhatsApp-artikelcorrectie bevestigd
-
-Voorstel #14 gemerged als `488626c2312991ad485ff301d217a7b02ae41962`. Cloudflare-productiedeploy `837e53aa-9867-4ec7-96f4-7b331e5cdae5` geslaagd op 16 oktober 2026. Build/SEO/link/asset-/partnercontroles geslaagd. Het algemene artikel heeft exact één gedeeld WhatsApp-keuzevenster met het bestaande beheerdersnummer, alle acht velden en de exacte bron-URL; bestaande pagina’s behouden partnernummers en contactroutes. Interactieve live browsercontrole niet beschikbaar en niet geclaimd. Geen berichten verstuurd.
-
-## 17 oktober 2026 — TC Specialistische Reiniging in centrale WhatsApp-teller
-
-Opdracht Johan: SchoonVakmannen-partner TC toevoegen aan dezelfde teller. Aparte allowlisted cross-origin ontvangstfunctie voor de bestaande D1-tabel, met partner-ID tc-specialistische-reiniging en de bestaande 180 partnerpagina’s. Geen migratie of wijziging aan bestaande partybusontvangstcode. Dashboard krijgt partner en Limburg-filters en opent TC-bronpagina’s op schoonvakmannen.nl. Algemene partnerpagina’s zijn herkenbaar als Noord-Brabant en Limburg; geen verzonnen provincie toegewezen. Geen naam, klusomschrijving of antwoorden opgeslagen.
-
-Build 578 pagina’s, SEO/link/assetcontroles en bestaande vier-partnertests geslaagd. Nieuwe ontvangstfunctie gebundeld en gemockt gecontroleerd op Brabant/Limburg, onbekende oorsprong/pagina, preflight en opslag. Geen live meetrecords of berichten aangemaakt. Publicatie nog afzonderlijk bevestigen.
+Rechtstreekse HTTP-controle op `https://www.partybusnederland.nl` bevestigt voor alle acht aangepaste steden én alle vier nieuwe blogs HTTP 200, de nieuwe inhoud, precies één H1 en de juiste canonicalverwijzing. De vier artikelen staan onder `/kennisbank/opstapplaats-partybus-amsterdam-kiezen/`, `/kennisbank/bedrijfsuitje-utrecht-partybus-terugrit-plannen/`, `/kennisbank/festivalvervoer-brabant-groep-opstapplaatsen/` …7269 tokens truncated…commitSha": "28af8743cea0a8b8d1e28b69ed9d6e9b04106ded",
+      "deploymentId": "8efb214c-705e-411f-b7c1-d48939c0dbab",
+      "verificationChecks": [
+        {
+          "url": "https://www.partybusnederland.nl/kennisbank/partybus-utrecht-activiteit-vast-tijdslot/",
+          "httpStatus": 200
+        },
+        {
+          "url": "https://www.partybusnederland.nl/images/blog/westland-bus-vertrektijd.jpeg",
+          "httpStatus": 200
+        },
+        {
+          "url": "https://www.partybusnederland.nl/kennisbank/",
+          "httpStatus": 200
+        },
+        {
+          "url": "https://www.partybusnederland.nl/provincies/utrecht/",
+          "httpStatus": 200
+        },
+        {
+          "url": "https://www.partybusnederland.nl/sitemap.xml",
+          "httpStatus": 200
+        }
+      ]
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-10-29|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-10-29",
+      "scheduledAt": "2026-10-29T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "published-confirmed",
+      "published": true,
+      "title": "Blijft de partybus tijdens je uitje wachten? Leg de ritdelen vast",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-zeeland-wachten-tussen-heen-terugrit/"
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-10-30|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-10-30",
+      "scheduledAt": "2026-10-30T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "public-verified",
+      "published": true,
+      "title": "Een afspeellijst voor de partybus: wat regel je vóór vertrek?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-afspeellijst-muziek-voorbereiden/",
+      "datePublished": "2026-10-30T04:06:39+04:00",
+      "publicVerifiedAt": "2026-10-30T04:10:31.774593+04:00",
+      "publicHttpStatus": 200,
+      "commitSha": "eda0431803d0a82b565809f2328e062b159aa11e",
+      "deploymentId": "1ebeaf02-a744-4e9c-b654-084b01c4a47d",
+      "verificationChecks": [
+        {
+          "url": "https://www.partybusnederland.nl/kennisbank/partybus-afspeellijst-muziek-voorbereiden/",
+          "httpStatus": 200
+        },
+        {
+          "url": "https://www.partybusnederland.nl/images/partners/startransfer/experience-interieur.webp",
+          "httpStatus": 200
+        },
+        {
+          "url": "https://www.partybusnederland.nl/",
+          "httpStatus": 200
+        },
+        {
+          "url": "https://www.partybusnederland.nl/kennisbank/",
+          "httpStatus": 200
+        },
+        {
+          "url": "https://www.partybusnederland.nl/sitemap.xml",
+          "httpStatus": 200
+        }
+      ]
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-02|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-02",
+      "scheduledAt": "2026-11-02T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "public-verified",
+      "published": true,
+      "title": "Een partybus als verrassing: wat spreek je vooraf af?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-brabant-verrassingsrit-voorbereiden/",
+      "datePublished": "2026-11-02T04:04:16.965208+04:00",
+      "searchIntent": "Hoe regel ik een partybus als verrassing zonder dat de echte ritafspraken onduidelijk worden?",
+      "photoSource": "Existing permitted partner gallery photograph /images/partners/prestige-coach-service/prestige-coach-service-interieur.webp",
+      "sourceCommit": "4c0fc299567ced9b8aeb8d80c35d79dee8cd3015",
+      "deploymentCommit": "79fe6c70774e1727baac3b736434c6f695f0ce28",
+      "deploymentId": "a09a9d4d-38b7-4e78-8800-1ca9fb710ab0",
+      "publicVerifiedAt": "2026-11-03T01:26:18.428893+04:00",
+      "publicationCompletedAt": "2026-11-03T01:26:18.428893+04:00",
+      "resumedOriginalSlot": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-03|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-03",
+      "scheduledAt": "2026-11-03T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "public-verified",
+      "published": true,
+      "originalScheduledAt": "2026-11-03T04:00:00+04:00",
+      "datePublished": "2026-11-03T04:09:35.241220+04:00",
+      "partner": "Tourgo Partybussen",
+      "language": "nl-NL",
+      "searchIntent": "Hoe vraag ik een passende partybus aan als ik nog geen voertuigvoorkeur heb?",
+      "photoSource": "Existing approved Tourgo partner photograph /images/partners/tourgo-partybussen/tourgo-partybussen-exclusive.webp",
+      "photoGenerated": false,
+      "photoApproval": "Johan 30 October 2026; existing partner gallery permitted; provenance internal, no visible caption",
+      "sources": [
+        "https://www.tourgo.nl/",
+        "src/data/partners/tourgoPartybussen.ts"
+      ],
+      "sourcesCheckedAt": "2026-11-03T04:09:35.241220+04:00",
+      "title": "Nog geen busvoorkeur? Zo maak je een bruikbare partybusaanvraag",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-zuid-holland-geen-busvoorkeur-aanvragen/",
+      "priorPublicationCheck": {
+        "checkedAt": "2026-11-03T04:09:35.241220+04:00",
+        "main": "8c137d18e31404b696e12d22f58e0b7f2e8606ad",
+        "activeActions": 0,
+        "openPullRequests": 0,
+        "lastContentDeployment": "a09a9d4d-38b7-4e78-8800-1ca9fb710ab0",
+        "lastContentDeploymentStatus": "completed/success; latest source checkpoint intentionally CI skipped",
+        "currentRun": "26b57517-a310-8320-aa6c-4b65e0bedb75",
+        "previousRun": "726e8184-300c-8320-a123-1ed78a234148",
+        "previousRunStatus": "completed"
+      },
+      "sourceCommit": "9e302a818db1eae9c5d4672527af1e6e048becac",
+      "deploymentCommit": "1fbf7c7f60b396a5c3f60da519b0b89329d5dc98",
+      "deploymentId": "d53ec28e-1472-4c45-a50f-39645aed1ca5",
+      "publicVerifiedAt": "2026-11-03T20:57:56.341Z",
+      "registrationRecoveredAt": "2026-11-03T20:57:56.341Z",
+      "verification": "Cloudflare completed/success; actual domain article/H1/canonical/Article/date, loaded approved photo, overview and sitemap verified again. Existing Zuid-Holland context and Tourgo dialog checked during original deployment; no messages or applications sent. Original article and date retained; no republish."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-04|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-04",
+      "scheduledAt": "2026-11-04T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "status": "public-verified",
+      "published": true,
+      "title": "Zelfde begin- en eindadres: rondrit of retour met een partybus?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-amsterdam-rondrit-of-retour-aanvragen/",
+      "actualPublicationAt": "2026-11-05T01:06:24.198515+04:00",
+      "sourceCommit": "fd6a609a328a9fa8c66dbec05b52e4b7e19968f8",
+      "deploymentCommit": "9b533c6ddbe1f78fb3167f5f8d15cb5f0ecdf351",
+      "deploymentId": "451269ed-ea56-43db-be7f-325539e45045",
+      "publicVerifiedAt": "2026-11-04T21:11:42.992549+00:00",
+      "verification": "Real www.partybusnederland.nl browser: article/H1/canonical/Article actual date, loaded partner photo 2048px, no caption, knowledge overview, Amsterdam context and sitemap verified. Existing WhatsApp questions popup opened with Amsterdam, correct partner and 31610628733. No form or message sent."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-05|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-05",
+      "scheduledAt": "2026-11-05T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "public-verified",
+      "published": true,
+      "title": "Partybus voor een bedrijfsuitje: wie vraagt aan en wie ontvangt de factuur?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-bedrijfsuitje-zeeland-offerte-factuurgegevens/",
+      "actualPublicationAt": "2026-11-05T04:11:16.471123+04:00",
+      "sourceCommit": "f17b8e5fb7d4a211f6a540753da2726e62cf574f",
+      "deploymentCommit": "f3bb97e9b13f954476bafabcad3ce3e8c8097d50",
+      "deploymentId": "6f753e3b-c4d7-4b5e-92e7-9acedb99f294",
+      "publicVerifiedAt": "2026-11-05T00:16:08.260687+00:00",
+      "verification": "Cloudflare production completed/success. Real domain article H1/canonical/Article date, loaded partner photo 1600x1200, no caption, overview, Zeeland context and sitemap verified. Existing StarTransfer WhatsApp helper destination 31684002350 and prefilled Zeeland/source retained; article link has same existing direct-link behavior. No request or message sent."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-06|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-06",
+      "scheduledAt": "2026-11-06T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "public-verified",
+      "published": true,
+      "title": "Twee mogelijke vertrekadressen voor je partybus: hoe kies je er één?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-twee-vertrekadressen-vergelijken/",
+      "datePublished": "2026-11-06T04:04:02.023729+04:00",
+      "searchIntent": "Twee alternatieve vertrekadressen vergelijken om één gezamenlijke opstapplek te kiezen vóór de boeking",
+      "photoSource": "https://startransfer.nl/wp-content/uploads/verhuur-the-experience-binnen-2.jpeg",
+      "sourceCommit": "fc20e4dd5f03badc2d2237d631d3515aeaa521b8",
+      "productionCommit": "fdc61286f46c1240e221439a3d840b8936cf3a95",
+      "deploymentId": "09ef409e-e8d4-4d56-b1d7-c3bdab679905",
+      "publicVerifiedAt": "2026-11-06T00:10:07.795560+00:00",
+      "verification": "Cloudflare productie completed/success. Echte www.partybusnederland.nl artikel-URL, unieke H1/title/meta/canonical/Article met werkelijke datum, OG en geladen partnerfoto 1140x475 zonder bijschrift bevestigd. Kennisbankoverzicht, homepagecontext en echte sitemap.xml met artikel gecontroleerd. Bestaand vragenvenster geopend en gesloten; nummer 31684002350, Nederland en artikelherkomst behouden. Geen aanvraag of bericht verzonden. Losse HTTP-controle gaf 403; browsercontrole slaagde. Niet-bestaande sitemap-0.xml is niet de gepubliceerde sitemap; robots.txt en bron verwijzen naar sitemap.xml."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-09|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-09",
+      "scheduledAt": "2026-11-09T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "public-verified",
+      "published": true,
+      "previousType": "Prestige Coach Service / Noord-Brabant",
+      "scheduleActive": true,
+      "title": "Iets laten liggen in de partybus? Zo maak je een duidelijke melding",
+      "url": "https://www.partybusnederland.nl/kennisbank/spullen-kwijt-na-partybusrit-brabant/",
+      "datePublished": "2026-11-09T04:06:14.898931+04:00",
+      "productionCommit": "4802a9b16acf7a7ce5b37fdc39196189e864df32",
+      "deploymentId": "a7e42565-f0d8-46d7-8913-6ea1fba46245",
+      "publicVerifiedAt": "2026-11-09T00:12:58.344Z"
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-10|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-10",
+      "scheduledAt": "2026-11-10T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "Tourgo Partybussen / Zuid-Holland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-11|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-11",
+      "scheduledAt": "2026-11-11T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "public-verified",
+      "published": true,
+      "previousType": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "scheduleActive": true,
+      "title": "Dezelfde partybusaanvraag via formulier én WhatsApp: wat doe je nu?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-aanvraag-formulier-whatsapp-dubbel/",
+      "datePublished": "2026-11-12T04:04:03.475248+04:00",
+      "productionCommit": "15b80086898e871d54c14b04a3935b784104133a",
+      "deploymentId": "8209d4a2-9d3c-4a1d-9b0e-fb5ec6bfebbd",
+      "previewDeploymentId": "762c9f9a-d4fe-4fbd-8667-e8d6f36b1eb7",
+      "pullRequest": 44,
+      "publicVerifiedAt": "2026-11-12T00:09:02.755660+00:00",
+      "verification": "Cloudflare preview and production completed/success. Real-domain article singleH1/canonical/Article actual date/loaded1920px partner photo/OG/no caption, kennisbank, Zuid-Holland context and actual sitemap.xml verified. Tourgo questions window opened/closed with correct31623044970 and origin; latest full questions retained. No requests or messages sent."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-12|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-12",
+      "scheduledAt": "2026-11-12T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "StarTransfer / Zeeland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-13|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-13",
+      "scheduledAt": "2026-11-13T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Utrecht",
+      "status": "public-verified",
+      "published": true,
+      "previousType": "Algemeen",
+      "scheduleActive": true,
+      "title": "Terug met de partybus na middernacht: welke datum vul je in?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-terugrit-na-middernacht-datum-invullen/",
+      "datePublished": "2026-11-13T04:07:31.839477+04:00",
+      "searchIntent": "Welke datum vul ik in voor een partybus die na middernacht terugrijdt, en wat verandert bij alleen een terugrit?",
+      "photoSource": "/images/blog/westland-bus-vertrektijd.jpeg; existing approved image from https://partybussenwestland.nl/storage/2025/07/image00041-2048x1365.jpeg",
+      "productionCommit": "77641769570d5767fee50dafafb1151edf9c9f95",
+      "deploymentId": "eccd7aca-e0d6-4259-b774-e137e346f8c5",
+      "previewDeploymentId": "feb104b0-15d5-49d3-84b8-4bc4c1eb85f0",
+      "pullRequest": 45,
+      "publicVerifiedAt": "2026-11-13T00:12:59.401984+00:00",
+      "verification": "Cloudflare preview and production completed/success. Real-domain article1H1/canonical/Article actual date, loaded2048px existing partner photo/OG/no caption, knowledge hub/Utrecht context/sitemap.xml verified. Partner WhatsApp questions opened/closed;31610628733 and Utrecht retained, return date/time present and arrivalDate absent. No requests or messages sent."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-16|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-16",
+      "scheduledAt": "2026-11-16T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "public-verified",
+      "published": true,
+      "previousType": "Prestige Coach Service / Noord-Brabant",
+      "scheduleActive": true,
+      "title": "Partybus ophalen achter een slagboom: wat regel je vooraf?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-slagboom-terreintoegang-voorbereiden/",
+      "datePublished": "2026-11-16T04:05:11.823532+04:00",
+      "searchIntent": "Welke toegangsinformatie moet ik vóór een partybusrit afstemmen als de ophaalplek achter een slagboom ligt?",
+      "photoSource": "/images/partners/startransfer/partybus-buiten.webp",
+      "sourceCommit": "23a974a633e8398417cc577e4bfbe9a7264980c3",
+      "productionCommit": "da0b944f69dbae61f5e91da7b845d85e6c0daa84",
+      "deploymentId": "508d7fab-4b5a-4193-9d9a-738f7bf06f82",
+      "previewDeploymentId": "66df3b41-206c-49a0-b137-4fd25cb55cad",
+      "pullRequest": 46,
+      "publicVerifiedAt": "2026-11-16T00:10:25.364680+00:00",
+      "verification": "Cloudflare preview/production completed/success. Real canonical domain article oneH1/Article actualdate, loaded1600px approved partner photo/OG/no caption, knowledge hub, Zeeland context and actual sitemap.xml verified. Existing StarTransfer questions dialog inspected with Zeeland,31684002350 and source; dismissed by navigation after close-button browser input timed out. No requests/messages sent. Local preview infrastructure stopped; production browser check succeeded."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-17|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-17",
+      "scheduledAt": "2026-11-17T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "Tourgo Partybussen / Zuid-Holland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-18|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-18",
+      "scheduledAt": "2026-11-18T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "public-verified",
+      "published": true,
+      "previousType": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "scheduleActive": true,
+      "title": "Zelf een partybus versieren: wat moet je vooraf afspreken?",
+      "slug": "partybus-zelf-versieren-afspraken-vooraf",
+      "datePublished": "2026-11-18T04:01:13.460038+04:00",
+      "searchIntent": "Wat spreek ik over materialen, bevestiging, aanbrengen en verwijderen af als ik zelf een partybus wil versieren?",
+      "sourceCommit": "4b213ff3a18355ffef5229646a0fc7739963361c",
+      "productionCommit": "dcc7b2c61dec958abb2ff997ced0c56c7d7ecbab",
+      "deploymentId": "a9a7b5cb-084b-4409-8823-671da4daface",
+      "previewDeploymentId": "30777f0a-c4be-4240-8e03-87e9c33ee594",
+      "pullRequest": 47,
+      "publicVerifiedAt": "2026-11-18T00:06:43.993548+00:00",
+      "verification": "Cloudflare preview/production completed/success. Actual canonical domain singleH1/Article actualdate, loaded1140px approved partner photo/OG/no caption, kennisbank and actual sitemap.xml verified. Original general WhatsApp questions opened without sending,31684002350 and source retained. Existing homepage knowledge context preserved. No messages or requests. Source-only checkpoint, no second publication.",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-zelf-versieren-afspraken-vooraf/"
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-19|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-19",
+      "scheduledAt": "2026-11-19T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "StarTransfer / Zeeland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-20|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-20",
+      "scheduledAt": "2026-11-20T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "source-written",
+      "published": false,
+      "previousType": "Algemeen",
+      "scheduleActive": true,
+      "datePublished": "2026-11-20T04:05:48.037374+04:00",
+      "title": "Twee partybussen voor één groep: hoe houd je de indeling duidelijk?",
+      "slug": "twee-partybussen-groep-indeling-heen-terugrit",
+      "url": "https://www.partybusnederland.nl/kennisbank/twee-partybussen-groep-indeling-heen-terugrit/"
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-23|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-23",
+      "scheduledAt": "2026-11-23T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "planned",
+      "published": false,
+      "previousType": "Prestige Coach Service / Noord-Brabant",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-24|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-24",
+      "scheduledAt": "2026-11-24T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "Tourgo Partybussen / Zuid-Holland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-25|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-25",
+      "scheduledAt": "2026-11-25T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Amsterdam",
+      "status": "planned",
+      "published": false,
+      "previousType": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-26|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-26",
+      "scheduledAt": "2026-11-26T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "StarTransfer / Zeeland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-27|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-27",
+      "scheduledAt": "2026-11-27T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "planned",
+      "published": false,
+      "previousType": "Algemeen",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-30|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-11-30",
+      "scheduledAt": "2026-11-30T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "planned",
+      "published": false,
+      "previousType": "Prestige Coach Service / Noord-Brabant",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-01|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-01",
+      "scheduledAt": "2026-12-01T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "Tourgo Partybussen / Zuid-Holland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-02|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-02",
+      "scheduledAt": "2026-12-02T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "planned",
+      "published": false,
+      "previousType": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-03|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-03",
+      "scheduledAt": "2026-12-03T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "StarTransfer / Zeeland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-04|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-04",
+      "scheduledAt": "2026-12-04T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "planned",
+      "published": false,
+      "previousType": "Algemeen",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-07|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-07",
+      "scheduledAt": "2026-12-07T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Utrecht",
+      "status": "planned",
+      "published": false,
+      "previousType": "Prestige Coach Service / Noord-Brabant",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-08|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-08",
+      "scheduledAt": "2026-12-08T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "Tourgo Partybussen / Zuid-Holland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-09|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-09",
+      "scheduledAt": "2026-12-09T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "planned",
+      "published": false,
+      "previousType": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-10|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-10",
+      "scheduledAt": "2026-12-10T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "StarTransfer / Zeeland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-11|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-11",
+      "scheduledAt": "2026-12-11T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "planned",
+      "published": false,
+      "previousType": "Algemeen",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-14|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-14",
+      "scheduledAt": "2026-12-14T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "planned",
+      "published": false,
+      "previousType": "Prestige Coach Service / Noord-Brabant",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-15|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-15",
+      "scheduledAt": "2026-12-15T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "Tourgo Partybussen / Zuid-Holland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-16|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-16",
+      "scheduledAt": "2026-12-16T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "planned",
+      "published": false,
+      "previousType": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-17|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-17",
+      "scheduledAt": "2026-12-17T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "StarTransfer / Zeeland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-18|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-18",
+      "scheduledAt": "2026-12-18T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Amsterdam",
+      "status": "planned",
+      "published": false,
+      "previousType": "Algemeen",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-21|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-21",
+      "scheduledAt": "2026-12-21T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "planned",
+      "published": false,
+      "previousType": "Prestige Coach Service / Noord-Brabant",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-22|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-22",
+      "scheduledAt": "2026-12-22T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "Tourgo Partybussen / Zuid-Holland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-23|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-23",
+      "scheduledAt": "2026-12-23T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Algemeen",
+      "status": "planned",
+      "published": false,
+      "previousType": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-24|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-24",
+      "scheduledAt": "2026-12-24T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "StarTransfer / Zeeland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "StarTransfer / Zeeland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-25|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-25",
+      "scheduledAt": "2026-12-25T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Prestige Coach Service / Noord-Brabant",
+      "status": "planned",
+      "published": false,
+      "previousType": "Algemeen",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-28|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-28",
+      "scheduledAt": "2026-12-28T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "planned",
+      "published": false,
+      "previousType": "Prestige Coach Service / Noord-Brabant",
+      "scheduleActive": true
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-29|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-29",
+      "scheduledAt": "2026-12-29T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Tourgo Partybussen / Zuid-Holland",
+      "status": "cancelled-by-schedule-change",
+      "published": false,
+      "previousType": "Tourgo Partybussen / Zuid-Holland",
+      "scheduleActive": false,
+      "cancellationReason": "Johan7November2026: vanaf8November uitsluitend ma/wo/vr; concepten bewaren, geen automatische inhaalpublicatie."
+    },
+    {
+      "slotId": "www.partybusnederland.nl|2026-12-30|1",
+      "website": "www.partybusnederland.nl",
+      "originalScheduledDate": "2026-12-30",
+      "scheduledAt": "2026-12-30T04:00:00+04:00",
+      "timezone": "Asia/Dubai",
+      "type": "Party Bussen Westland / Utrecht",
+      "status": "planned",
+      "published": false,
+      "previousType": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
+      "scheduleActive": true
+    }
+  ],
+  "cadence": "MO/WE/FR: one article per day, three per complete week",
+  "scheduleEffectiveFrom": "2026-11-08",
+  "categoryRotation": [
+    "Prestige Coach Service / Noord-Brabant",
+    "Tourgo Partybussen / Zuid-Holland",
+    "Party Bussen Westland",
+    "StarTransfer / Zeeland",
+    "Algemeen"
+  ],
+  "rotationBasis": "Laatste gepubliceerde6November was Algemeen; volgendePrestige. LaatsteWestland4November wasAmsterdam; volgendeUtrecht. Geen weekreset.",
+  "cancelledTopicsRetained": true,
+  "qualitySkipStatus": "skipped-quality"
+}
