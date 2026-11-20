@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-11-20T04:14:23+04:00",
+  "previousCentralRun": "fae5bfa7-7d7c-832a-8469-6454ab4e199e completed; its temporary executor limitation resolved by fresh source check",
+  "ownRun": "3b715976-7e7c-8330-9048-112754d9c451",
+  "sharedLockClaimed": false,
+  "newPublications": [
+    {
+      "slotId": "www.partybusnederland.nl|2026-11-20|1",
+      "url": "https://www.partybusnederland.nl/kennisbank/twee-partybussen-groep-indeling-heen-terugrit/",
+      "sourceCommit": "4ced5b34a190dcdb28408ec4f17deea4769b1bba",
+      "productionCommit": "6fb75b2962e7feeb27daa96ffb4a55e71a329436",
+      "deploymentId": "b1b3b114-0e09-4702-b4b0-a03b9e1a1332",
+      "checkpointCommit": "e19e347354533808c5d7c9121bdfb5a7b44e4c16",
+      "status": "public-verified"
+    }
+  ],
+  "improvements": [],
+  "qualitySkips": [],
+  "reviews": {
+    "partybus": {
+      "olderUnfinished": 0,
+      "cancelledPositionsPreserved": 15
+    },
+    "starLocal": {
+      "freshCalendar": true,
+      "olderUnfinished": 0,
+      "cancelledPositionsPreserved": 49,
+      "remainingBatchSlot": 1,
+      "remainingDays": "TU/TH/SU",
+      "next": "2026-11-22T04:00:00+04:00",
+      "last": "2026-12-29T04:00:00+04:00"
+    },
+    "thisavi": {
+      "freshSourceCommit": "fa973ad2b41e4f8560c05c24d6f5c435ad659a6c",
+      "calendarPositions": 15,
+      "olderUnfinished": 0,
+      "next": "2026-11-23T04:00:00+04:00",
+      "last": "2026-12-28T04:00:00+04:00",
+      "latestDeployment": "appgdep_6afeb5395c588191bf851bc3f39abf40 succeeded",
+      "audience": "public unchanged"
+    },
+    "captain": {
+      "freshSourceCommit": "ed70f83eb424cbd3ed2c3e4978cf0e844f9201dc",
+      "olderUnfinished": 0,
+      "november19": "skipped-quality terminal, not backlog",
+      "recoveryRead": "editorial/recovery-2026-11-05.md",
+      "sitemapSource": "post-sitemap.xml has no xml-stylesheet; no sitemap changes",
+      "next": "2026-11-21T03:00:00+04:00"
+    },
+    "ajTaxi": {
+      "freshSourceCommit": "31876ac891f6e67f6c4a2fe1125fbbc33773504d",
+      "olderUnfinished": 0,
+      "allSixSlotsThroughNovember19": "public-verified",
+      "next": "2026-11-24T03:00:00+04:00"
+    },
+    "aurora": {
+      "sourceReviewEarlierToday": "12 posts registered published, last18November public-verified; no20November slot",
+      "next": "2026-11-21T03:00:00+04:00"
+    },
+    "earlierQueues": "20November01 Deals completed,02 Tropicana public-verified and Super Pasta skipped-quality terminal; no repeat or replacement. All-ten calendar reconciliation at01 found no earlier unfinished slots."
+  },
+  "futureStatuses": "planned retained; no early render/publication, no new slots or extension",
+  "automation": "existing central task retained through own31December endpoint; no new task or hour start"
+}
