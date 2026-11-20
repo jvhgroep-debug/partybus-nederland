@@ -1,3 +1,12 @@
+# 20 november — oorspronkelijk Brabant-slot source-written
+
+Twee partybussen voor één groep: hoe houd je de indeling duidelijk?
+https://www.partybusnederland.nl/kennisbank/twee-partybussen-groep-indeling-heen-terugrit/
+
+Current knowledge hub and article/guide/service/landing sources compared. Tilburg50 FAQ mentions bus labels/contact persons, school guide says split larger groups, group-size guide handles changed totals, wedding guide handles different guests and organiser guide handles absent organiser. None supplies a per-bus, per-leg reconciliation with a worked numerical allocation and changed return assignment. Focus narrowed to this concrete planning output; not a city variant or promise of multiple vehicles.
+
+Origineel20november04:00; werkelijk2026-11-20T04:05:48.037374+04:00. Actueelmain1f140dd8 en productie18november success gecontroleerd; geenActions/openPR. Reductie en15cancelledposities behouden; geen oudere open slots. Alle huidige bronbestanden exact tegen GitHubtree vergeleken vóór schrijven. Eén nieuwe concrete klantvraag; bestaande foto1200x904 visueel gecontroleerd. Behoud homepage, partnerdata, contactroutes, Functions en gelijktijdig werk. Publicatie na build/branch/merge/domeincontrole; publishedfalse. Geen aparte verbetering of kwaliteitsskip.
+
 #18november — zelf versieren public-verified
 
 Zelf een partybus versieren: wat moet je vooraf afspreken?

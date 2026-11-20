@@ -410,10 +410,14 @@
       "scheduledAt": "2026-11-20T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "Prestige Coach Service / Noord-Brabant",
-      "status": "planned",
+      "status": "source-written",
       "published": false,
       "previousType": "Algemeen",
-      "scheduleActive": true
+      "scheduleActive": true,
+      "datePublished": "2026-11-20T04:05:48.037374+04:00",
+      "title": "Twee partybussen voor één groep: hoe houd je de indeling duidelijk?",
+      "slug": "twee-partybussen-groep-indeling-heen-terugrit",
+      "url": "https://www.partybusnederland.nl/kennisbank/twee-partybussen-groep-indeling-heen-terugrit/"
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-23|1",
