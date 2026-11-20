@@ -532,5 +532,49 @@
     "pullRequest": 46,
     "publicVerifiedAt": "2026-11-16T00:10:25.364680+00:00",
     "verification": "Cloudflare preview/production completed/success. Real canonical domain article oneH1/Article actualdate, loaded1600px approved partner photo/OG/no caption, knowledge hub, Zeeland context and actual sitemap.xml verified. Existing StarTransfer questions dialog inspected with Zeeland,31684002350 and source; dismissed by navigation after close-button browser input timed out. No requests/messages sent. Local preview infrastructure stopped; production browser check succeeded."
+  },
+  {
+    "website": "www.partybusnederland.nl",
+    "slotId": "www.partybusnederland.nl|2026-11-20|1",
+    "originalScheduledAt": "2026-11-20T04:00:00+04:00",
+    "publishAt": "2026-11-20T04:00:00+04:00",
+    "datePublished": "2026-11-20T04:05:48.037374+04:00",
+    "type": "Prestige Coach Service / Noord-Brabant",
+    "language": "nl-NL",
+    "searchIntent": "Hoe bereid ik een groepsindeling voor twee aangevraagde partybussen voor, met aparte aantallen en afspraken voor heen- en terugrit?",
+    "status": "public-verified",
+    "published": true,
+    "title": "Twee partybussen voor één groep: hoe houd je de indeling duidelijk?",
+    "url": "https://www.partybusnederland.nl/kennisbank/twee-partybussen-groep-indeling-heen-terugrit/",
+    "photoSource": "/images/partners/prestige-coach-service/prestige-coach-service-groepsfoto.webp",
+    "photoGenerated": false,
+    "photoApproval": "Existing approved Prestige partner gallery, Johan30October; visually checked20November. Illustrates group transport, no specific two-bus deployment or customers in the example claimed. No visible provenance caption.",
+    "sources": [
+      "src/data/kennisbank/articles/organisatorBrabant.ts",
+      "src/data/kennisbank/articles/groepsgrootteWijzigen.ts",
+      "src/data/kennisbank/articles/bruiloftBrabantGasten.ts",
+      "src/data/kennisbank/articles/busVoorkeur.ts",
+      "src/data/tilburg/clusterPages.ts",
+      "src/data/gidsen/content/index.ts",
+      "src/data/partners/prestigeCoachService.ts",
+      "https://www.partybusnederland.nl/kennisbank/"
+    ],
+    "overlapReview": "Current knowledge hub and article/guide/service/landing sources compared. Tilburg50 FAQ mentions bus labels/contact persons, school guide says split larger groups, group-size guide handles changed totals, wedding guide handles different guests and organiser guide handles absent organiser. None supplies a per-bus, per-leg reconciliation with a worked numerical allocation and changed return assignment. Focus narrowed to this concrete planning output; not a city variant or promise of multiple vehicles.",
+    "priorPublicationCheck": {
+      "main": "1f140dd8c386e3f7361e4b309d3aecec58becb74",
+      "production": "a9a7b5cb-084b-4409-8823-671da4daface completed/success fresh check",
+      "actions": 0,
+      "openPRs": 0,
+      "previousRun": "fae5bfa7-7d7c-832a-8469-6454ab4e199e completed",
+      "ownRun": "3b715976-7e7c-8330-9048-112754d9c451",
+      "sharedLockClaimed": false
+    },
+    "sourceCommit": "4ced5b34a190dcdb28408ec4f17deea4769b1bba",
+    "productionCommit": "6fb75b2962e7feeb27daa96ffb4a55e71a329436",
+    "deploymentId": "b1b3b114-0e09-4702-b4b0-a03b9e1a1332",
+    "previewDeploymentId": "454400f0-ae11-44bd-b39f-c281ddcfbf97",
+    "pullRequest": 48,
+    "publicVerifiedAt": "2026-11-20T04:11:47.851203+04:00",
+    "verification": "Cloudflare preview/production completed/success. Actual canonical domain1H1/Article actualdate, loaded1200px approved partner photo/OG/no caption, kennisbank, Noord-Brabant context and actual sitemap.xml verified. Prestige questions opened and closed; original31629041798, source URL and current return fields retained. No messages or requests sent. Source-only verification checkpoint; no second publication."
   }
 ]
