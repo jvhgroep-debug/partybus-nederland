@@ -460,10 +460,15 @@
       "scheduledAt": "2026-11-23T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "Tourgo Partybussen / Zuid-Holland",
-      "status": "planned",
+      "status": "source-written",
       "published": false,
       "previousType": "Prestige Coach Service / Noord-Brabant",
-      "scheduleActive": true
+      "scheduleActive": true,
+      "title": "Eten onderweg of een maaltijdstop met de partybus: wat vraag je aan?",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-maaltijdstop-eten-onderweg-afstemmen/",
+      "slug": "partybus-maaltijdstop-eten-onderweg-afstemmen",
+      "datePublished": "2026-11-23T04:01:54.651501+04:00",
+      "searchIntent": "Hoe scheid ik eten aan boord en een maaltijdstop in mijn partybusaanvraag en welke afspraken moeten bus en eetlocatie apart bevestigen?"
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-24|1",
