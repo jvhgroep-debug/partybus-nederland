@@ -1,3 +1,4 @@
+import { toiletPauze } from './articles/toiletPauze';
 import { maaltijdstop } from './articles/maaltijdstop';
 import { tweeBussen } from './articles/tweeBussen';
 import { zelfVersieren } from './articles/zelfVersieren';
@@ -30,6 +31,7 @@ import { samenwerkingTourgoZuidHolland } from './articles/samenwerkingTourgoZuid
 
 /** Registry for Star Local pSEO Suite — kennisbank master articles. */
 export const kennisbankArticles: readonly KennisbankArticle[] = [
+  toiletPauze,
   maaltijdstop,
   tweeBussen,
   zelfVersieren,
