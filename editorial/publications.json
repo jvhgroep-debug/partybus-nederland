@@ -628,8 +628,8 @@
     "type": "Party Bussen Westland / Amsterdam",
     "language": "nl-NL",
     "searchIntent": "Hoe controleer ik toiletgebruik in de aangeboden partybus en spreek ik zo nodig een pauze af vóór ik de rit boek?",
-    "status": "deployment-pending",
-    "published": false,
+    "status": "public-verified",
+    "published": true,
     "title": "Een toilet in de partybus of een pauze onderweg: wat spreek je af?",
     "url": "https://www.partybusnederland.nl/kennisbank/partybus-toilet-pauze-vooraf-afspreken/",
     "photoSource": "https://partybussenwestland.nl/storage/2025/07/image00041-2048x1365.jpeg",
@@ -663,8 +663,13 @@
     "previewDeploymentId": "3ef72750-ba31-42df-a8ec-67ba811384ad",
     "pullRequest": 50,
     "deploymentStatus": "completed/success",
-    "checkedAt": "2026-11-25T04:16:20.999947+04:00",
-    "blockedReason": "Public verification pending: cloud browser cannot start tab (Browser Use could not read requirements; infrastructure error, no site-served denial). Direct canonical-domain HTTP attempt403. Web reader cannot retrieve new article, image or sitemap and returns an older overview without this article. No site-outage inferred. Need actual-domain article/photo/currentoverview/sitemap and WhatsApp UI checks before publishedtrue.",
-    "verification": "Local604page build,601eligibleexistingtitle/H1/canonical baseline, allinternal links/assets, image2048x1365, oneH1/schemaactualdate, no caption, existingAmsterdam partner31610628733/source and4partnerrequest tests passed. BothCloudflare preview andproduction terminalsuccess; no overlappingdeployment or automaticrepublish. Resume sameoriginalslot; do not createanotherarticle."
+    "checkedAt": "2026-11-26T01:06:20+04:00",
+    "verification": "Actual canonical-domain browser verification succeeded: full article and early practical answer; unique title/meta, one H1, self-canonical and Article datePublished 2026-11-25T04:12:07.688331+04:00; both partner images loaded at 2048x1365; knowledgebank listing and Amsterdam contextual link include exact article URL; actual sitemap.xml includes URL. Existing WhatsApp questions dialog opens for Party Bussen Westland / Amsterdam, destination 31610628733 and source preserved; closed without input or sending. Production deployment freshly confirmed completed/success. Metadata-only checkpoint; no render, rebuild or redeployment.",
+    "previousVerificationBlock": {
+      "reason": "Public verification pending: cloud browser cannot start tab (Browser Use could not read requirements; infrastructure error, no site-served denial). Direct canonical-domain HTTP attempt403. Web reader cannot retrieve new article, image or sitemap and returns an older overview without this article. No site-outage inferred. Need actual-domain article/photo/currentoverview/sitemap and WhatsApp UI checks before publishedtrue.",
+      "resolvedAt": "2026-11-26T01:06:20+04:00"
+    },
+    "publicVerifiedAt": "2026-11-26T01:06:20+04:00",
+    "verificationRun": "69247ea1-d79c-8328-8c41-eb91c82ad5fa"
   }
 ]
