@@ -628,7 +628,7 @@
     "type": "Party Bussen Westland / Amsterdam",
     "language": "nl-NL",
     "searchIntent": "Hoe controleer ik toiletgebruik in de aangeboden partybus en spreek ik zo nodig een pauze af vóór ik de rit boek?",
-    "status": "source-written",
+    "status": "deployment-pending",
     "published": false,
     "title": "Een toilet in de partybus of een pauze onderweg: wat spreek je af?",
     "url": "https://www.partybusnederland.nl/kennisbank/partybus-toilet-pauze-vooraf-afspreken/",
@@ -656,6 +656,15 @@
       "previousRun": "e04886f2-0dd8-8330-a343-d37b6fe94999 completed",
       "ownRun": "f702a480-82a8-8330-b45a-6e4c1b8de21e",
       "sharedLockClaimed": false
-    }
+    },
+    "sourceCommit": "d883bd39a5e163ba868a8e58b378206f4416a593",
+    "productionCommit": "a04f411b44e983ae351750929c9f149153a1bbc8",
+    "deploymentId": "5ff33b4f-3bc1-42bd-9e0c-cef88e1f3cdd",
+    "previewDeploymentId": "3ef72750-ba31-42df-a8ec-67ba811384ad",
+    "pullRequest": 50,
+    "deploymentStatus": "completed/success",
+    "checkedAt": "2026-11-25T04:16:20.999947+04:00",
+    "blockedReason": "Public verification pending: cloud browser cannot start tab (Browser Use could not read requirements; infrastructure error, no site-served denial). Direct canonical-domain HTTP attempt403. Web reader cannot retrieve new article, image or sitemap and returns an older overview without this article. No site-outage inferred. Need actual-domain article/photo/currentoverview/sitemap and WhatsApp UI checks before publishedtrue.",
+    "verification": "Local604page build,601eligibleexistingtitle/H1/canonical baseline, allinternal links/assets, image2048x1365, oneH1/schemaactualdate, no caption, existingAmsterdam partner31610628733/source and4partnerrequest tests passed. BothCloudflare preview andproduction terminalsuccess; no overlappingdeployment or automaticrepublish. Resume sameoriginalslot; do not createanotherarticle."
   }
 ]
