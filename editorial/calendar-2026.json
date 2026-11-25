@@ -521,10 +521,13 @@
       "scheduledAt": "2026-11-25T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "Party Bussen Westland / Amsterdam",
-      "status": "planned",
+      "status": "source-written",
       "published": false,
       "previousType": "Party Bussen Westland / Utrecht en Amsterdam afwisselend",
-      "scheduleActive": true
+      "scheduleActive": true,
+      "title": "Een toilet in de partybus of een pauze onderweg: wat spreek je af?",
+      "datePublished": "2026-11-25T04:12:07.688331+04:00",
+      "url": "https://www.partybusnederland.nl/kennisbank/partybus-toilet-pauze-vooraf-afspreken/"
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-26|1",
