@@ -172,4 +172,4 @@ const content = {
 };
 const quote='/gratis-partybus-offertes-aanvragen/?'+new URLSearchParams({partner:'startransfer',city:'Zeeland',source:content.path}).toString();
 const photo={...partnerArticle.heroImage,alt:'Zwarte StarTransfer-partybus met geopende voordeur',title:'StarTransfer-partybus'};
-export const evenementAfgelast:KennisbankArticle={...content,heroImage:photo,ctaImage:photo,heroPrimaryHref:quote,heroPrimaryLabel:'Bespreek je rit vanuit Zeeland',cta:{...content.cta,primaryHref:quote,whatsappHref:buildStarTransferWhatsappHref('Zeeland')}};
+export const evenementAfgelast:KennisbankArticle={...content,heroImage:photo,ctaImage:photo,heroPrimaryHref:quote,heroPrimaryLabel:'Bespreek je rit vanuit Zeeland',cta:{...content.cta,onDark:true,primaryHref:quote,whatsappHref:buildStarTransferWhatsappHref('Zeeland')}};
