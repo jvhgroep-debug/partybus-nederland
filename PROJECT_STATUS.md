@@ -1,3 +1,7 @@
+## 27 november 2026 — bestaand StarTransfer-slot, bron gereed
+
+Slot www.partybusnederland.nl|2026-11-27|1: **source-written / published:false**. Artikel ‘Evenement afgelast, partybus geboekt: wat regel je nu?’ behandelt evenementmelding versus busboeking, bevestigde afhandeling en groepscommunicatie. Overlap gecontroleerd tegen bestaande kennisbank, wijzigings-/aanvraaggidsen en relevante landingspagina’s. Actuele StarTransfer-voorwaarden gelezen; geen rechten, vaste kosten of restitutie toegezegd. Bestaande toegestane partnerfoto; contact, tijdelijke eigenaars-WhatsApp en handmatige afstemming behouden. Geen berichten of aanvragen verstuurd. Vorige productioncheck completed/success; geen actieve Actions of open PR aangetroffen. Publicatie vereist nog preview, merge/deployment en echte-domeincontrole. Kalenderreductie en overige slots behouden.
+
 # 26 november 2026 — publieke controle afgerond
 
 Slot `www.partybusnederland.nl|2026-11-25|1` is public-verified / published:true. Titel: Een toilet in de partybus of een pauze onderweg: wat spreek je af?

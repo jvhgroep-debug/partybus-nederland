@@ -563,10 +563,12 @@
       "scheduledAt": "2026-11-27T04:00:00+04:00",
       "timezone": "Asia/Dubai",
       "type": "StarTransfer / Zeeland",
-      "status": "planned",
+      "status": "source-written",
       "published": false,
       "previousType": "Algemeen",
-      "scheduleActive": true
+      "scheduleActive": true,
+      "title": "Evenement afgelast, partybus geboekt: wat regel je nu?",
+      "url": "https://www.partybusnederland.nl/kennisbank/evenement-afgelast-partybus-geboekt/"
     },
     {
       "slotId": "www.partybusnederland.nl|2026-11-30|1",
