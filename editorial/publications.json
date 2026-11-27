@@ -671,5 +671,43 @@
     },
     "publicVerifiedAt": "2026-11-26T01:06:20+04:00",
     "verificationRun": "69247ea1-d79c-8328-8c41-eb91c82ad5fa"
+  },
+  {
+    "website": "www.partybusnederland.nl",
+    "slotId": "www.partybusnederland.nl|2026-11-27|1",
+    "originalScheduledAt": "2026-11-27T04:00:00+04:00",
+    "publishAt": "2026-11-27T04:00:00+04:00",
+    "datePublished": "2026-11-27T04:13:33.638415+04:00",
+    "type": "StarTransfer / Zeeland",
+    "language": "nl-NL",
+    "searchIntent": "Wat moet ik met een al geboekte partybus regelen als het evenement wordt afgelast?",
+    "status": "source-written",
+    "published": false,
+    "title": "Evenement afgelast, partybus geboekt: wat regel je nu?",
+    "url": "https://www.partybusnederland.nl/kennisbank/evenement-afgelast-partybus-geboekt/",
+    "photoSource": "https://www.partybusnederland.nl/images/partners/startransfer/partybus-buiten.webp",
+    "photoGenerated": false,
+    "photoApproval": "Existing permitted StarTransfer partner gallery, Johan30October. 1600x1200 photo visually checked27November; no specific cancelled trip or location claim; no visible provenance caption.",
+    "sources": [
+      "src/data/kennisbank/registry.ts",
+      "src/data/kennisbank/articles/ritWijzigenZeeland.ts",
+      "src/data/kennisbank/articles/dubbeleAanvraag.ts",
+      "src/data/kennisbank/articles/bedrijfsgegevensZeeland.ts",
+      "src/data/kennisbank/articles/samenwerkingStarTransferZeeland.ts",
+      "src/data/gidsen/content/index.ts",
+      "src/components/startransfer/RegionPage.astro",
+      "src/data/partners/starTransfer.ts",
+      "https://startransfer.nl/algemene-voorwaarden/"
+    ],
+    "sourcesCheckedAt": "2026-11-27T04:13:33.638415+04:00",
+    "overlapReview": "Compared existing knowledge articles, regional/festival/contact/quote landings and general guides. Ritwijzigen covers changed route/time; duplicate-enquiry guide covers duplicates. Neither handles event notice vs separate bus confirmation, event/ticket reference vs transport reference, booking status, event/transport group updates and asking provider for concrete handling before group-money promises. No legal entitlement, fixed fee/refund/time or availability inferred; current primary StarTransfer terms support discussing changes with office only.",
+    "priorPublicationCheck": {
+      "main": "b917a254805f45b33d1957953872dee63ea19cb3",
+      "previousProduction": "5ff33b4f-3bc1-42bd-9e0c-cef88e1f3cdd completed/success",
+      "actions": 0,
+      "openPRs": 0,
+      "ownRun": "7a3980d1-653c-8320-ad2f-85fa4b612284",
+      "sharedLockClaimed": false
+    }
   }
 ]
