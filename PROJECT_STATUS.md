@@ -1,3 +1,11 @@
+## 27 november 2026 — StarTransfer-slot public-verified
+
+Slot www.partybusnederland.nl|2026-11-27|1 volledig afgerond: **public-verified / published:true**. ‘Evenement afgelast, partybus geboekt: wat regel je nu?’ — https://www.partybusnederland.nl/kennisbank/evenement-afgelast-partybus-geboekt/
+
+Werkelijke publicatiedatum 2026-11-27T04:13:33.638415+04:00; originele datum en slot behouden. Eerste productie 222fe5b70baa5f07a927e1e3756f580521de033f / 24092680-0762-4443-a57e-f16e1eff9548 succeeded. Daarna verwijzing binnen bestaande Zeeland-layout geplaatst en bestaande donkere CTA-opmaak toegepast voor leesbaar contrast; geen extra artikel, URL of kalenderpositie. Definitieve productie cfd7a6785c45aacf77e8ddd44558384bc5b65078 / 683f3cf9-6094-4504-b083-bb9f018825a9 completed/success. Controle 2026-11-27T04:24:19.141735+04:00: echte artikel-URL, één H1, canonical, Article-datum, OG/foto1600x1200, overzicht, echte XML-sitemap, Zeeland-context vóór footer, partnercontact en WhatsApp-vragenvenster (StarTransfer/Zeeland/31684002350, handmatige doorsturing) bevestigd. Niets verstuurd. npm ci/build605pagina's, SEO, assets/interne links en vier partnerroutes geslaagd. Brede oude auditmeldingen betroffen geen nieuwe artikelpagina.
+
+Kalenderreductie met15 vervallen posities en overige geplande slots behouden; volgende actieve partnercategorie Algemeen op30november. Alleen metadata-checkpoint; geen nieuwe deployment voor deze registratie.
+
 ## 27 november 2026 — bestaand StarTransfer-slot, bron gereed
 
 Slot www.partybusnederland.nl|2026-11-27|1: **source-written / published:false**. Artikel ‘Evenement afgelast, partybus geboekt: wat regel je nu?’ behandelt evenementmelding versus busboeking, bevestigde afhandeling en groepscommunicatie. Overlap gecontroleerd tegen bestaande kennisbank, wijzigings-/aanvraaggidsen en relevante landingspagina’s. Actuele StarTransfer-voorwaarden gelezen; geen rechten, vaste kosten of restitutie toegezegd. Bestaande toegestane partnerfoto; contact, tijdelijke eigenaars-WhatsApp en handmatige afstemming behouden. Geen berichten of aanvragen verstuurd. Vorige productioncheck completed/success; geen actieve Actions of open PR aangetroffen. Publicatie vereist nog preview, merge/deployment en echte-domeincontrole. Kalenderreductie en overige slots behouden.

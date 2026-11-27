@@ -681,8 +681,8 @@
     "type": "StarTransfer / Zeeland",
     "language": "nl-NL",
     "searchIntent": "Wat moet ik met een al geboekte partybus regelen als het evenement wordt afgelast?",
-    "status": "source-written",
-    "published": false,
+    "status": "public-verified",
+    "published": true,
     "title": "Evenement afgelast, partybus geboekt: wat regel je nu?",
     "url": "https://www.partybusnederland.nl/kennisbank/evenement-afgelast-partybus-geboekt/",
     "photoSource": "https://www.partybusnederland.nl/images/partners/startransfer/partybus-buiten.webp",
@@ -708,6 +708,39 @@
       "openPRs": 0,
       "ownRun": "7a3980d1-653c-8320-ad2f-85fa4b612284",
       "sharedLockClaimed": false
-    }
+    },
+    "productionCommit": "cfd7a6785c45aacf77e8ddd44558384bc5b65078",
+    "deploymentId": "683f3cf9-6094-4504-b083-bb9f018825a9",
+    "contentCommit": "97cbd9242ecc8c82bc5f310f478883b788fe9b24",
+    "deploymentStatus": "completed/success",
+    "publicVerifiedAt": "2026-11-27T04:24:19.141735+04:00",
+    "verification": {
+      "article": "https://www.partybusnederland.nl/kennisbank/evenement-afgelast-partybus-geboekt/",
+      "photo": "https://www.partybusnederland.nl/images/partners/startransfer/partybus-buiten.webp",
+      "overview": "https://www.partybusnederland.nl/kennisbank/",
+      "context": "https://www.partybusnederland.nl/provincies/zeeland/",
+      "sitemap": "https://www.partybusnederland.nl/sitemap.xml",
+      "checks": [
+        "Actual-domain article rendered: one H1,selfcanonical,unique SEO title/meta,Article actual date and OG photo",
+        "Actual photo loaded1600x1200, descriptivealt, no provenance caption",
+        "New article present in current knowledgehub and real XML sitemap",
+        "StarTransfer WhatsApp questions window opened and closed, correct partner/Zeeland/source and owner31684002350, manual forwarding notice; no messages/forms sent",
+        "Original15 cancelled positions retained; future slots planned",
+        "605page Astro build,npmci,SEOaudit,assets/internal links,four partner message tests pass",
+        "Article CTA uses existing dark theme; province context inside BaseLayout before footer"
+      ]
+    },
+    "initialPublication": {
+      "contentCommit": "eadc8d01c6a65fc114caef0ff81cbe3937eb6aa9",
+      "productionCommit": "222fe5b70baa5f07a927e1e3756f580521de033f",
+      "deploymentId": "24092680-0762-4443-a57e-f16e1eff9548",
+      "deploymentStatus": "completed/success"
+    },
+    "layoutAdjustment": {
+      "productionCommit": "ca1808c56833b68c78de8112be364b6cc104a068",
+      "deploymentId": "552a3d1a-bac7-4177-931b-a367d7c7310a",
+      "deploymentStatus": "completed/success"
+    },
+    "verificationRun": "7a3980d1-653c-8320-ad2f-85fa4b612284"
   }
 ]
